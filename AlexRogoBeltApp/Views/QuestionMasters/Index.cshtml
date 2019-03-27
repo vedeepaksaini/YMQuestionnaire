@@ -1,0 +1,63 @@
+﻿@model IEnumerable<AlexRogoBeltApp.Entities.QuestionMaster>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Introduction)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Question)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Deactive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionOrder)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SelectionType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LevelMaster.LevelName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Introduction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Deactive)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionOrder)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SelectionType)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LevelMaster.LevelName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,144 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Signin Page</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
+        crossorigin="anonymous">
+
+    <link href="css/animate.css" rel="stylesheet" />
+
+
+    <link href="css/admin-style.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
+    <!-- jQuery library -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="js/script.js"></script>
+    <script>
+        $('#forget-form').hide();
+        $(document).ready(function () {
+            $('#forget_btn').click(function () {
+                $('#login-form').hide();
+                $('#forget-form').show();
+                $('h4').removeClass('fadeInLeft');
+                $('.login-form').removeClass('fadeInLeft');
+                $('h4').addClass('fadeInRight');
+                $('.login-form').addClass('fadeInRight');
+            });
+            $('#login_btn').click(function () {
+                $('#forget-form').hide();
+                $('#login-form').show();
+                $('h4').removeClass('fadeInRight');
+                $('.login-form').removeClass('fadeInRight');
+                $('h4').addClass('fadeInLeft');
+                $('.login-form').addClass('fadeInLeft');
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <div class="wraper login-page">
+        <!--<nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                        <a class="navbar-brand" href="/">
+                            <img src="images/Aquaflow-logo.png" class="img-responsive logo-img" />
+                        </a>
+
+                </div>
+            </div>
+        </nav>-->
+
+
+        <div class="login-box">
+            <h1><img src="images/logo_black.png" class="img-responsive logo-img" /></h1>
+            <div class="animation-container">
+                <div id="login-form">
+                    <h4 class="animated"><span>Sign in</span></h4>
+                    <hr class="signin" />
+
+                    <div class="login-form animated">
+                        <form method="post" action="?">
+                            <div class="form-group">
+                                <label class="control-label">Username</label>
+                                <div class="input-grp">
+                                    <input type="text" class="form-control" placeholder="Enter Username" />
+                                    <span class="icn"><i class="fa fa-user"></i></span>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="control-label">Password</label>
+                                <div class="input-grp">
+                                    <input type="password" class="form-control" placeholder="Enter Password" />
+                                    <span class="icn"><i class="fa fa-key"></i></span>
+                                </div>
+                            </div>
+                            <div class="form-group mt-10 ">
+
+                                <div class="options">
+                                    <label>
+                                        <input type="checkbox" value="">
+                                        Remember me
+                                        <i class="fas fa-check"></i>
+                                    </label>
+                                </div>
+
+
+                            </div>
+                            <div class="form-group">
+                                <a href="#" class="btn btn-primary btn-block btn-primry">Sign in</a>
+                            </div>
+                            <div class="form-group mt-10">
+                                <div class="pull-right">
+                                    <a href="#" id="forget_btn">Forget Password?</a>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div id="forget-form" style="display:none;">
+                    <h4 class="animated"><span>Recover Password</span></h4>
+                    <hr class="signin" />
+                    <div class="login-form animated ">
+                        <form method="post" action="?">
+                            <div class="form-group">
+                                <label class="control-label">Username</label>
+                                <div class="input-grp">
+                                    <input type="text" class="form-control" placeholder="Enter Username" />
+                                    <span class="icn"><i class="fa fa-user"></i></span>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <a href="#" class="btn btn-primary btn-block btn-primry">Submit</a>
+                            </div>
+                            <div class="form-group mt-10">
+                                <div class="pull-right">
+                                    <a href="#" id="login_btn">Back to Login</a>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>

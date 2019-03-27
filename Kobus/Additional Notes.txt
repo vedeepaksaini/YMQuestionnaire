@@ -1,0 +1,15 @@
+P6 – “will sign up after filling their information” – we want a member to sign into their existing account on TOCICO.org, and then continue to purchase level 1, etc. of the training modules you will build. See login page below. If it is necessary to build the new modules in a new domain it would be best if the member does not have to login again – to make it seamless (especially if they come back later to continue coursework). We can give your developer full access to build pages on TOCICO.org with API to YourMembership where our member database resides.
+
+Yes, existing signup/login mechanism can be used for member login as well and it will be seamless login without needing to validate user again.
+
+Also, training modules can be built inside existing application architecture (and to be hosted as subdomain e.g. certification.tocico.org or yellowbelt.certification.tocico.org as per your preference). We need existing codebase to develop inside the tocico.org website. If for any reason, the code is not available, we can develop as a separate hosted app with membership data integration.
+
+For purchasing belt level, I could not found any payment gateway or link to buy, I have added the same in revised estimation. Now existing member can buy the certification level first before going into details of the module, assessment etc.
+
+
+P7 – We want to use existing member login, registration, profile and admin page. This already links past certifications that  our members have. Your courses will be added to members profiles once they purchase and complete.
+
+Yes, we can use the same login and registration features. If you have the source code of deployed website tocico.org - we can develop inside the same application and integrate the training modules.
+
+P8 – Use TOCICO.org as hosting domain if possible, else seamless user and data transfer between this and new domains.
+This was obvious from the beginning as the module is hosted inside domain (tocico.org) as subdomains. Not much effort or any costing involved in creating sub-domain.

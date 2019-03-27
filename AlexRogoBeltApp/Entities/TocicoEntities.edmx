@@ -1,0 +1,1028 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TOCICOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActionMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ActionName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="ControlID" Type="int" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AnswerMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="Answers" Type="varchar" MaxLength="900" Nullable="false" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+          <Property Name="ErrorMSG" Type="varchar" MaxLength="50" />
+          <Property Name="ErrorAction" Type="varchar" MaxLength="50" />
+          <Property Name="ControlID" Type="int" Nullable="false" />
+          <Property Name="ActionID" Type="int" />
+        </EntityType>
+        <EntityType Name="ConstraintMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ConstraintName" Type="varchar" MaxLength="900" Nullable="false" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ControlMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ControlName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="ControlType" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ControlValidation" Type="varchar" MaxLength="300" />
+          <Property Name="IsControlDisabled" Type="bit" Nullable="false" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoalMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GoalName" Type="varchar" MaxLength="900" Nullable="false" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GoalTarget">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="GoalID" />
+            <PropertyRef Name="TargetID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="GoalID" Type="int" Nullable="false" />
+          <Property Name="TargetID" Type="int" Nullable="false" />
+          <Property Name="Deavtive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LevelMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LevelName" Type="varchar" MaxLength="900" Nullable="false" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MemberMaster">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberUserName" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="NoOfEmployed" Type="int" Nullable="false" />
+          <Property Name="AnnualRevenue" Type="money" />
+          <Property Name="BusinessEnvironment" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcessGoalMapping">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="ProcessID" />
+            <PropertyRef Name="GoalID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="ProcessID" Type="int" Nullable="false" />
+          <Property Name="GoalID" Type="int" Nullable="false" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcessTemplateMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProcessTemplateName" Type="varchar" MaxLength="900" Nullable="false" />
+          <Property Name="Steps" Type="int" Nullable="false" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProcessTemplateSteps">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProcessID" Type="int" Nullable="false" />
+          <Property Name="ProcessOrder" Type="int" />
+          <Property Name="StepDescription" Type="varchar(max)" Nullable="false" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Introduction" Type="varchar(max)" Nullable="false" />
+          <Property Name="Question" Type="varchar" MaxLength="900" Nullable="false" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+          <Property Name="QuestionOrder" Type="int" Nullable="false" />
+          <Property Name="LevelID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TargetMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TargetName" Type="varchar" MaxLength="900" Nullable="false" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TransactionMaster">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="QuestionID" />
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="AnswerID" Type="int" Nullable="false" />
+          <Property Name="ControlValue" Type="varchar(max)" />
+          <Property Name="Deactive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__AnswerMas__Actio__55009F39">
+          <End Role="ActionMaster" Type="Self.ActionMaster" Multiplicity="0..1" />
+          <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActionMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AnswerMaster">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AnswerMas__Contr__2DE6D218">
+          <End Role="ControlMaster" Type="Self.ControlMaster" Multiplicity="1" />
+          <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ControlMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AnswerMaster">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AnswerMas__Quest__797309D9">
+          <End Role="QuestionMaster" Type="Self.QuestionMaster" Multiplicity="1" />
+          <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AnswerMaster">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GoalTarge__GoalI__267ABA7A">
+          <End Role="GoalMaster" Type="Self.GoalMaster" Multiplicity="1" />
+          <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoalMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GoalTarget">
+              <PropertyRef Name="GoalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GoalTarge__Membe__5441852A">
+          <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
+          <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="GoalTarget">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GoalTarge__Targe__276EDEB3">
+          <End Role="TargetMaster" Type="Self.TargetMaster" Multiplicity="1" />
+          <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TargetMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GoalTarget">
+              <PropertyRef Name="TargetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProcessGo__GoalI__2A4B4B5E">
+          <End Role="GoalMaster" Type="Self.GoalMaster" Multiplicity="1" />
+          <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoalMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessGoalMapping">
+              <PropertyRef Name="GoalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProcessGo__Membe__5535A963">
+          <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
+          <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="ProcessGoalMapping">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProcessGo__Proce__29572725">
+          <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="1" />
+          <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessTemplateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessGoalMapping">
+              <PropertyRef Name="ProcessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProcessTe__Proce__59C55456">
+          <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="1" />
+          <End Role="ProcessTemplateSteps" Type="Self.ProcessTemplateSteps" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessTemplateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessTemplateSteps">
+              <PropertyRef Name="ProcessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionM__Level__5070F446">
+          <End Role="LevelMaster" Type="Self.LevelMaster" Multiplicity="1" />
+          <End Role="QuestionMaster" Type="Self.QuestionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LevelMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionMaster">
+              <PropertyRef Name="LevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Answe__68487DD7">
+          <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="1" />
+          <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="AnswerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Membe__5629CD9C">
+          <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
+          <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Quest__1ED998B2">
+          <End Role="QuestionMaster" Type="Self.QuestionMaster" Multiplicity="1" />
+          <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TOCICOModelStoreContainer">
+          <EntitySet Name="ActionMaster" EntityType="Self.ActionMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AnswerMaster" EntityType="Self.AnswerMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ConstraintMaster" EntityType="Self.ConstraintMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ControlMaster" EntityType="Self.ControlMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoalMaster" EntityType="Self.GoalMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GoalTarget" EntityType="Self.GoalTarget" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LevelMaster" EntityType="Self.LevelMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MemberMaster" EntityType="Self.MemberMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessGoalMapping" EntityType="Self.ProcessGoalMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessTemplateMaster" EntityType="Self.ProcessTemplateMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProcessTemplateSteps" EntityType="Self.ProcessTemplateSteps" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionMaster" EntityType="Self.QuestionMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TargetMaster" EntityType="Self.TargetMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TransactionMaster" EntityType="Self.TransactionMaster" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__AnswerMas__Actio__55009F39" Association="Self.FK__AnswerMas__Actio__55009F39">
+            <End Role="ActionMaster" EntitySet="ActionMaster" />
+            <End Role="AnswerMaster" EntitySet="AnswerMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AnswerMas__Contr__2DE6D218" Association="Self.FK__AnswerMas__Contr__2DE6D218">
+            <End Role="ControlMaster" EntitySet="ControlMaster" />
+            <End Role="AnswerMaster" EntitySet="AnswerMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AnswerMas__Quest__797309D9" Association="Self.FK__AnswerMas__Quest__797309D9">
+            <End Role="QuestionMaster" EntitySet="QuestionMaster" />
+            <End Role="AnswerMaster" EntitySet="AnswerMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GoalTarge__GoalI__267ABA7A" Association="Self.FK__GoalTarge__GoalI__267ABA7A">
+            <End Role="GoalMaster" EntitySet="GoalMaster" />
+            <End Role="GoalTarget" EntitySet="GoalTarget" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GoalTarge__Membe__5441852A" Association="Self.FK__GoalTarge__Membe__5441852A">
+            <End Role="MemberMaster" EntitySet="MemberMaster" />
+            <End Role="GoalTarget" EntitySet="GoalTarget" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GoalTarge__Targe__276EDEB3" Association="Self.FK__GoalTarge__Targe__276EDEB3">
+            <End Role="TargetMaster" EntitySet="TargetMaster" />
+            <End Role="GoalTarget" EntitySet="GoalTarget" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessGo__GoalI__2A4B4B5E" Association="Self.FK__ProcessGo__GoalI__2A4B4B5E">
+            <End Role="GoalMaster" EntitySet="GoalMaster" />
+            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessGo__Membe__5535A963" Association="Self.FK__ProcessGo__Membe__5535A963">
+            <End Role="MemberMaster" EntitySet="MemberMaster" />
+            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessGo__Proce__29572725" Association="Self.FK__ProcessGo__Proce__29572725">
+            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMaster" />
+            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessTe__Proce__59C55456" Association="Self.FK__ProcessTe__Proce__59C55456">
+            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMaster" />
+            <End Role="ProcessTemplateSteps" EntitySet="ProcessTemplateSteps" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionM__Level__5070F446" Association="Self.FK__QuestionM__Level__5070F446">
+            <End Role="LevelMaster" EntitySet="LevelMaster" />
+            <End Role="QuestionMaster" EntitySet="QuestionMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Answe__68487DD7" Association="Self.FK__Transacti__Answe__68487DD7">
+            <End Role="AnswerMaster" EntitySet="AnswerMaster" />
+            <End Role="TransactionMaster" EntitySet="TransactionMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Membe__5629CD9C" Association="Self.FK__Transacti__Membe__5629CD9C">
+            <End Role="MemberMaster" EntitySet="MemberMaster" />
+            <End Role="TransactionMaster" EntitySet="TransactionMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Quest__1ED998B2" Association="Self.FK__Transacti__Quest__1ED998B2">
+            <End Role="QuestionMaster" EntitySet="QuestionMaster" />
+            <End Role="TransactionMaster" EntitySet="TransactionMaster" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TOCICOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AnswerMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="Answers" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <Property Name="ErrorMSG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ErrorAction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ControlID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="ControlMaster" Relationship="Self.FK__AnswerMas__Contr__2DE6D218" FromRole="AnswerMaster" ToRole="ControlMaster" />
+          <NavigationProperty Name="QuestionMaster" Relationship="Self.FK__AnswerMas__Quest__797309D9" FromRole="AnswerMaster" ToRole="QuestionMaster" />
+          <NavigationProperty Name="TransactionMasters" Relationship="Self.FK__Transacti__Answe__68487DD7" FromRole="AnswerMaster" ToRole="TransactionMaster" />
+          <Property Name="ActionID" Type="Int32" />
+          <NavigationProperty Name="ActionMaster" Relationship="TOCICOModel.FK__AnswerMas__Actio__540C7B00" FromRole="AnswerMaster" ToRole="ActionMaster" />
+        </EntityType>
+        <EntityType Name="ConstraintMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ConstraintName" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ControlMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ControlName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ControlType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ControlValidation" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="IsControlDisabled" Type="Boolean" Nullable="false" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AnswerMasters" Relationship="Self.FK__AnswerMas__Contr__2DE6D218" FromRole="ControlMaster" ToRole="AnswerMaster" />
+        </EntityType>
+        <EntityType Name="GoalMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GoalName" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GoalTargets" Relationship="Self.FK__GoalTarge__GoalI__267ABA7A" FromRole="GoalMaster" ToRole="GoalTarget" />
+          <NavigationProperty Name="ProcessGoalMappings" Relationship="Self.FK__ProcessGo__GoalI__2A4B4B5E" FromRole="GoalMaster" ToRole="ProcessGoalMapping" />
+        </EntityType>
+        <EntityType Name="GoalTarget">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="GoalID" />
+            <PropertyRef Name="TargetID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="GoalID" Type="Int32" Nullable="false" />
+          <Property Name="TargetID" Type="Int32" Nullable="false" />
+          <Property Name="Deavtive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GoalMaster" Relationship="Self.FK__GoalTarge__GoalI__267ABA7A" FromRole="GoalTarget" ToRole="GoalMaster" />
+          <NavigationProperty Name="MemberMaster" Relationship="Self.FK__GoalTarge__Membe__5441852A" FromRole="GoalTarget" ToRole="MemberMaster" />
+          <NavigationProperty Name="TargetMaster" Relationship="Self.FK__GoalTarge__Targe__276EDEB3" FromRole="GoalTarget" ToRole="TargetMaster" />
+        </EntityType>
+        <EntityType Name="LevelMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LevelName" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="QuestionMasters" Relationship="Self.FK__QuestionM__Level__5070F446" FromRole="LevelMaster" ToRole="QuestionMaster" />
+        </EntityType>
+        <EntityType Name="MemberMaster">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberUserName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Company" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NoOfEmployed" Type="Int32" Nullable="false" />
+          <Property Name="AnnualRevenue" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="BusinessEnvironment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="GoalTargets" Relationship="Self.FK__GoalTarge__Membe__5441852A" FromRole="MemberMaster" ToRole="GoalTarget" />
+          <NavigationProperty Name="ProcessGoalMappings" Relationship="Self.FK__ProcessGo__Membe__5535A963" FromRole="MemberMaster" ToRole="ProcessGoalMapping" />
+          <NavigationProperty Name="TransactionMasters" Relationship="Self.FK__Transacti__Membe__5629CD9C" FromRole="MemberMaster" ToRole="TransactionMaster" />
+        </EntityType>
+        <EntityType Name="ProcessGoalMapping">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="ProcessID" />
+            <PropertyRef Name="GoalID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="ProcessID" Type="Int32" Nullable="false" />
+          <Property Name="GoalID" Type="Int32" Nullable="false" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GoalMaster" Relationship="Self.FK__ProcessGo__GoalI__2A4B4B5E" FromRole="ProcessGoalMapping" ToRole="GoalMaster" />
+          <NavigationProperty Name="MemberMaster" Relationship="Self.FK__ProcessGo__Membe__5535A963" FromRole="ProcessGoalMapping" ToRole="MemberMaster" />
+          <NavigationProperty Name="ProcessTemplateMaster" Relationship="Self.FK__ProcessGo__Proce__29572725" FromRole="ProcessGoalMapping" ToRole="ProcessTemplateMaster" />
+        </EntityType>
+        <EntityType Name="ProcessTemplateMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessTemplateName" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Steps" Type="Int32" Nullable="false" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProcessGoalMappings" Relationship="Self.FK__ProcessGo__Proce__29572725" FromRole="ProcessTemplateMaster" ToRole="ProcessGoalMapping" />
+          <NavigationProperty Name="ProcessTemplateSteps" Relationship="TOCICOModel.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateMaster" ToRole="ProcessTemplateStep" />
+        </EntityType>
+        <EntityType Name="QuestionMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Question" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <Property Name="QuestionOrder" Type="Int32" Nullable="false" />
+          <Property Name="LevelID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AnswerMasters" Relationship="Self.FK__AnswerMas__Quest__797309D9" FromRole="QuestionMaster" ToRole="AnswerMaster" />
+          <NavigationProperty Name="LevelMaster" Relationship="Self.FK__QuestionM__Level__5070F446" FromRole="QuestionMaster" ToRole="LevelMaster" />
+          <NavigationProperty Name="TransactionMasters" Relationship="Self.FK__Transacti__Quest__1ED998B2" FromRole="QuestionMaster" ToRole="TransactionMaster" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TargetMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TargetName" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GoalTargets" Relationship="Self.FK__GoalTarge__Targe__276EDEB3" FromRole="TargetMaster" ToRole="GoalTarget" />
+        </EntityType>
+        <EntityType Name="TransactionMaster">
+          <Key>
+            <PropertyRef Name="MemberID" />
+            <PropertyRef Name="QuestionID" />
+            <PropertyRef Name="AnswerID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="AnswerID" Type="Int32" Nullable="false" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AnswerMaster" Relationship="Self.FK__Transacti__Answe__68487DD7" FromRole="TransactionMaster" ToRole="AnswerMaster" />
+          <NavigationProperty Name="MemberMaster" Relationship="Self.FK__Transacti__Membe__5629CD9C" FromRole="TransactionMaster" ToRole="MemberMaster" />
+          <NavigationProperty Name="QuestionMaster" Relationship="Self.FK__Transacti__Quest__1ED998B2" FromRole="TransactionMaster" ToRole="QuestionMaster" />
+          <Property Name="ControlValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK__AnswerMas__Contr__2DE6D218">
+          <End Role="ControlMaster" Type="Self.ControlMaster" Multiplicity="1" />
+          <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ControlMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AnswerMaster">
+              <PropertyRef Name="ControlID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__AnswerMas__Quest__797309D9">
+          <End Role="QuestionMaster" Type="Self.QuestionMaster" Multiplicity="1" />
+          <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AnswerMaster">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Answe__68487DD7">
+          <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="1" />
+          <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="AnswerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GoalTarge__GoalI__267ABA7A">
+          <End Role="GoalMaster" Type="Self.GoalMaster" Multiplicity="1" />
+          <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoalMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GoalTarget">
+              <PropertyRef Name="GoalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProcessGo__GoalI__2A4B4B5E">
+          <End Role="GoalMaster" Type="Self.GoalMaster" Multiplicity="1" />
+          <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GoalMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessGoalMapping">
+              <PropertyRef Name="GoalID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GoalTarge__Membe__5441852A">
+          <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
+          <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="GoalTarget">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__GoalTarge__Targe__276EDEB3">
+          <End Role="TargetMaster" Type="Self.TargetMaster" Multiplicity="1" />
+          <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TargetMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="GoalTarget">
+              <PropertyRef Name="TargetID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__QuestionM__Level__5070F446">
+          <End Role="LevelMaster" Type="Self.LevelMaster" Multiplicity="1" />
+          <End Role="QuestionMaster" Type="Self.QuestionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LevelMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionMaster">
+              <PropertyRef Name="LevelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProcessGo__Membe__5535A963">
+          <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
+          <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="ProcessGoalMapping">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Membe__5629CD9C">
+          <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
+          <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProcessGo__Proce__29572725">
+          <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="1" />
+          <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessTemplateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessGoalMapping">
+              <PropertyRef Name="ProcessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Quest__1ED998B2">
+          <End Role="QuestionMaster" Type="Self.QuestionMaster" Multiplicity="1" />
+          <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TOCICOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AnswerMasters" EntityType="Self.AnswerMaster" />
+          <EntitySet Name="ConstraintMasters" EntityType="Self.ConstraintMaster" />
+          <EntitySet Name="ControlMasters" EntityType="Self.ControlMaster" />
+          <EntitySet Name="GoalMasters" EntityType="Self.GoalMaster" />
+          <EntitySet Name="GoalTargets" EntityType="Self.GoalTarget" />
+          <EntitySet Name="LevelMasters" EntityType="Self.LevelMaster" />
+          <EntitySet Name="MemberMasters" EntityType="Self.MemberMaster" />
+          <EntitySet Name="ProcessGoalMappings" EntityType="Self.ProcessGoalMapping" />
+          <EntitySet Name="ProcessTemplateMasters" EntityType="Self.ProcessTemplateMaster" />
+          <EntitySet Name="QuestionMasters" EntityType="Self.QuestionMaster" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="TargetMasters" EntityType="Self.TargetMaster" />
+          <EntitySet Name="TransactionMasters" EntityType="Self.TransactionMaster" />
+          <AssociationSet Name="FK__AnswerMas__Contr__2DE6D218" Association="Self.FK__AnswerMas__Contr__2DE6D218">
+            <End Role="ControlMaster" EntitySet="ControlMasters" />
+            <End Role="AnswerMaster" EntitySet="AnswerMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__AnswerMas__Quest__797309D9" Association="Self.FK__AnswerMas__Quest__797309D9">
+            <End Role="QuestionMaster" EntitySet="QuestionMasters" />
+            <End Role="AnswerMaster" EntitySet="AnswerMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Answe__68487DD7" Association="Self.FK__Transacti__Answe__68487DD7">
+            <End Role="AnswerMaster" EntitySet="AnswerMasters" />
+            <End Role="TransactionMaster" EntitySet="TransactionMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GoalTarge__GoalI__267ABA7A" Association="Self.FK__GoalTarge__GoalI__267ABA7A">
+            <End Role="GoalMaster" EntitySet="GoalMasters" />
+            <End Role="GoalTarget" EntitySet="GoalTargets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessGo__GoalI__2A4B4B5E" Association="Self.FK__ProcessGo__GoalI__2A4B4B5E">
+            <End Role="GoalMaster" EntitySet="GoalMasters" />
+            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GoalTarge__Membe__5441852A" Association="Self.FK__GoalTarge__Membe__5441852A">
+            <End Role="MemberMaster" EntitySet="MemberMasters" />
+            <End Role="GoalTarget" EntitySet="GoalTargets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__GoalTarge__Targe__276EDEB3" Association="Self.FK__GoalTarge__Targe__276EDEB3">
+            <End Role="TargetMaster" EntitySet="TargetMasters" />
+            <End Role="GoalTarget" EntitySet="GoalTargets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__QuestionM__Level__5070F446" Association="Self.FK__QuestionM__Level__5070F446">
+            <End Role="LevelMaster" EntitySet="LevelMasters" />
+            <End Role="QuestionMaster" EntitySet="QuestionMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessGo__Membe__5535A963" Association="Self.FK__ProcessGo__Membe__5535A963">
+            <End Role="MemberMaster" EntitySet="MemberMasters" />
+            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Membe__5629CD9C" Association="Self.FK__Transacti__Membe__5629CD9C">
+            <End Role="MemberMaster" EntitySet="MemberMasters" />
+            <End Role="TransactionMaster" EntitySet="TransactionMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessGo__Proce__29572725" Association="Self.FK__ProcessGo__Proce__29572725">
+            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
+            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Quest__1ED998B2" Association="Self.FK__Transacti__Quest__1ED998B2">
+            <End Role="QuestionMaster" EntitySet="QuestionMasters" />
+            <End Role="TransactionMaster" EntitySet="TransactionMasters" />
+          </AssociationSet>
+          <EntitySet Name="ActionMasters" EntityType="TOCICOModel.ActionMaster" />
+          <AssociationSet Name="FK__AnswerMas__Actio__540C7B00" Association="TOCICOModel.FK__AnswerMas__Actio__540C7B00">
+            <End Role="ActionMaster" EntitySet="ActionMasters" />
+            <End Role="AnswerMaster" EntitySet="AnswerMasters" />
+          </AssociationSet>
+          <EntitySet Name="ProcessTemplateSteps" EntityType="TOCICOModel.ProcessTemplateStep" />
+          <AssociationSet Name="FK__ProcessTe__Proce__59C55456" Association="TOCICOModel.FK__ProcessTe__Proce__59C55456">
+            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
+            <End Role="ProcessTemplateStep" EntitySet="ProcessTemplateSteps" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="ActionMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ActionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ControlID" Type="Int32" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AnswerMasters" Relationship="TOCICOModel.FK__AnswerMas__Actio__540C7B00" FromRole="ActionMaster" ToRole="AnswerMaster" />
+        </EntityType>
+        <Association Name="FK__AnswerMas__Actio__540C7B00">
+          <End Type="TOCICOModel.ActionMaster" Role="ActionMaster" Multiplicity="0..1" />
+          <End Type="TOCICOModel.AnswerMaster" Role="AnswerMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ActionMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AnswerMaster">
+              <PropertyRef Name="ActionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProcessTemplateStep">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessID" Type="Int32" Nullable="false" />
+          <Property Name="ProcessOrder" Type="Int32" />
+          <Property Name="StepDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProcessTemplateMaster" Relationship="TOCICOModel.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateStep" ToRole="ProcessTemplateMaster" />
+        </EntityType>
+        <Association Name="FK__ProcessTe__Proce__59C55456">
+          <End Type="TOCICOModel.ProcessTemplateMaster" Role="ProcessTemplateMaster" Multiplicity="1" />
+          <End Type="TOCICOModel.ProcessTemplateStep" Role="ProcessTemplateStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessTemplateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessTemplateStep">
+              <PropertyRef Name="ProcessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TOCICOModelStoreContainer" CdmEntityContainer="TOCICOEntities">
+          <EntitySetMapping Name="AnswerMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.AnswerMaster">
+              <MappingFragment StoreEntitySet="AnswerMaster">
+                <ScalarProperty Name="ActionID" ColumnName="ActionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="Answers" ColumnName="Answers" />
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+                <ScalarProperty Name="ErrorMSG" ColumnName="ErrorMSG" />
+                <ScalarProperty Name="ErrorAction" ColumnName="ErrorAction" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ConstraintMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.ConstraintMaster">
+              <MappingFragment StoreEntitySet="ConstraintMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ConstraintName" ColumnName="ConstraintName" />
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ControlMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.ControlMaster">
+              <MappingFragment StoreEntitySet="ControlMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ControlName" ColumnName="ControlName" />
+                <ScalarProperty Name="ControlType" ColumnName="ControlType" />
+                <ScalarProperty Name="ControlValidation" ColumnName="ControlValidation" />
+                <ScalarProperty Name="IsControlDisabled" ColumnName="IsControlDisabled" />
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoalMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.GoalMaster">
+              <MappingFragment StoreEntitySet="GoalMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="GoalName" ColumnName="GoalName" />
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GoalTargets">
+            <EntityTypeMapping TypeName="TOCICOModel.GoalTarget">
+              <MappingFragment StoreEntitySet="GoalTarget">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="GoalID" ColumnName="GoalID" />
+                <ScalarProperty Name="TargetID" ColumnName="TargetID" />
+                <ScalarProperty Name="Deavtive" ColumnName="Deavtive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LevelMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.LevelMaster">
+              <MappingFragment StoreEntitySet="LevelMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="LevelName" ColumnName="LevelName" />
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.MemberMaster">
+              <MappingFragment StoreEntitySet="MemberMaster">
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="MemberUserName" ColumnName="MemberUserName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="NoOfEmployed" ColumnName="NoOfEmployed" />
+                <ScalarProperty Name="AnnualRevenue" ColumnName="AnnualRevenue" />
+                <ScalarProperty Name="BusinessEnvironment" ColumnName="BusinessEnvironment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessGoalMappings">
+            <EntityTypeMapping TypeName="TOCICOModel.ProcessGoalMapping">
+              <MappingFragment StoreEntitySet="ProcessGoalMapping">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
+                <ScalarProperty Name="GoalID" ColumnName="GoalID" />
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessTemplateMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateMaster">
+              <MappingFragment StoreEntitySet="ProcessTemplateMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProcessTemplateName" ColumnName="ProcessTemplateName" />
+                <ScalarProperty Name="Steps" ColumnName="Steps" />
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.QuestionMaster">
+              <MappingFragment StoreEntitySet="QuestionMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Introduction" ColumnName="Introduction" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+                <ScalarProperty Name="QuestionOrder" ColumnName="QuestionOrder" />
+                <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="TOCICOModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TargetMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.TargetMaster">
+              <MappingFragment StoreEntitySet="TargetMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TargetName" ColumnName="TargetName" />
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TransactionMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.TransactionMaster">
+              <MappingFragment StoreEntitySet="TransactionMaster">
+                <ScalarProperty Name="ControlValue" ColumnName="ControlValue" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActionMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.ActionMaster">
+              <MappingFragment StoreEntitySet="ActionMaster">
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+                <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+                <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessTemplateSteps">
+            <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateStep">
+              <MappingFragment StoreEntitySet="ProcessTemplateSteps">
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+                <ScalarProperty Name="StepDescription" ColumnName="StepDescription" />
+                <ScalarProperty Name="ProcessOrder" ColumnName="ProcessOrder" />
+                <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

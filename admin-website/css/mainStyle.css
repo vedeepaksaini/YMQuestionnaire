@@ -1,0 +1,48 @@
+body{margin:0;padding:0;font-family: 'Roboto', sans-serif; background:#ffffff; color:#585858;}
+.clearfix{clear:both;content:"";display:block}
+.clearfix:after{clear:both;content:".";display:block;height:0;visibility:hidden}
+.wraper{margin:0;padding:0;}
+.wraper:after{clear: both; content:""; display:block;}
+.container{width:100%!important;max-width:1920px!important;margin:0 auto}
+
+.new_header {
+    background-color: #f2f2f2;
+    box-shadow: 1px 0 3px 0 rgba(0,0,0,0.2);
+    left: 0;
+    position: fixed;
+    right: 0;
+    z-index: 1001;    
+}
+.after_login_wraper{transition:all .5s ease 0;padding-left:232px; color:#585858; position:relative;min-height:850px;margin-top:85px; z-index: 1;}
+.new_header .admin_brand{display:table;float:left;position:absolute;width:232px;height:83px!important;left:0;top:0;text-align:center;z-index:2; }
+.new_header .admin_brand img{max-width:172px}
+.new_header .admin_brand h1{font-size: 18px; text-align: left; padding-left: 15px;}
+.new_header .admin_nav{float:left;width:100%;position:relative;padding-left:242px}
+.page_title{font-size:22px;color:#585858;text-transform:uppercase;font-weight:700;display:table;float:left;margin-left:20px;margin-top:13px}
+/*Sidebar*/
+.left_sidebar{width: 232px; position: fixed; background-color: #333333; left:0; z-index: 999; top: 62px; height: 100vh;}
+/*Container*/
+.dash_wrap{margin-left: 242px; padding-right: 15px; padding-top: 72px; height: 100vh; background-color: #ffffff;}
+/*Form*/
+.form_element{width: 100%; margin-bottom: 15px;}
+.form_element:after{clear: both; content:""; display:block;}
+.form_element .form_label{max-width: 150px; width:30%;  float:left; line-height: 37px;}
+.form_element .form_field{width: 70%; float:left;}
+.form_element .form_field input[type=text]{height: 40px; border:2px solid #d9d9d9; padding-left: 10px; color:#585858; width: 100%; max-width: 300px;}
+.form_element .form_field input[type=password]{height: 40px; border:2px solid #d9d9d9; padding-left: 10px; color:#585858; width: 100%; max-width: 300px;}
+.form_element .form_field .error{position: absolute; color:#f44747; font-size: 10px; font-style: italic;}
+input[type=checkbox] {
+  transform: scale(1);
+	width: 20px;
+}
+.primaryLarge{background-color: #3799d1; border-radius:0px; padding: 15px 20px; font-size: 14px; color:#ffffff; transition: background-color 0.5s ease; text-decoration: none;}
+.primaryLarge:hover{background-color: #333333; text-decoration: none;}
+
+.secondaryLarge{background-color: #5d5d5d; border-radius:0px; padding: 15px 20px; font-size: 14px; color:#ffffff; transition: background-color 0.5s ease; text-decoration: none;}
+.secondaryLarge:hover{background-color: #585858; text-decoration: none;}
+
+.smallButton{font-size: 12px; color:#ffffff; padding: 5px 10px; background-color:#5d5d5d; }
+.smallButton:hover{font-size: 12px; color:#ffffff; background-color:#585858;}
+
+.footer{    background-color: #f2f2f2; padding:10px; font-size: 12px; text-align: center;
+    box-shadow: 1px 0 3px 0 rgba(0,0,0,0.2);}

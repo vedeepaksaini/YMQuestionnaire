@@ -1,0 +1,66 @@
+﻿@model AlexRogoBeltApp.Entities.QuestionMaster
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>QuestionMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Introduction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Introduction)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Question)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Question)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Deactive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Deactive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QuestionOrder)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QuestionOrder)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SelectionType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SelectionType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LevelMaster.LevelName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LevelMaster.LevelName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
