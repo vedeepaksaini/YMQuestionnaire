@@ -121,8 +121,6 @@
         padding-left: 80px;
         padding-right: 80px;
         margin-top: 20px;
-      
-       
     }
 
         .options ul li {
@@ -136,6 +134,7 @@
                 font-family: 'roboto', sans-serif;
                 position: relative;
                 width: 100%;
+                word-break: break-all;
             }
 
             .options ul li i {
@@ -191,10 +190,10 @@
 
 
 .steps-footer {
-    line-height: 6;
+    line-height: 4.8;
     text-align: center;
-    position: relative;
     left: -40px;
+    position: relative;
 }
 
 .icons {
@@ -222,3 +221,23 @@
 .fs-24 {
     font-size: 24px;
 }
+
+.question-area {
+    min-height: 670px;
+}
+
+
+.questionintro {
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
+.footer-copyright {
+    padding: 0 20px;
+    margin-top: 20px;
+}
+
+    .footer-copyright img {
+        width: 80px;
+        float: left;
+    }

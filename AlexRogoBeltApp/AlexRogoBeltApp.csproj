@@ -253,6 +253,7 @@
     <Content Include="Content\Images\logo_black.png" />
     <Content Include="Content\Images\steps-data.png" />
     <Content Include="Content\Images\steps.png" />
+    <Content Include="Content\responsive.css" />
     <Content Include="Content\style.css" />
     <Content Include="Entities\TocicoEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
