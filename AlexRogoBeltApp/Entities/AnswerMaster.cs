@@ -26,13 +26,13 @@ namespace AlexRogoBeltApp.Entities
         public bool Deactive { get; set; }
         public string ErrorMSG { get; set; }
         public string ErrorAction { get; set; }
-        public int ControlID { get; set; }
+        public Nullable<int> ControlID { get; set; }
         public Nullable<int> ActionID { get; set; }
     
+        public virtual ActionMaster ActionMaster { get; set; }
         public virtual ControlMaster ControlMaster { get; set; }
         public virtual QuestionMaster QuestionMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionMaster> TransactionMasters { get; set; }
-        public virtual ActionMaster ActionMaster { get; set; }
     }
 }

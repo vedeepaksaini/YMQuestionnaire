@@ -1,21 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TOCICOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+<Schema Namespace="TocicoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ActionMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ActionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ControlID" Type="Int32" />
+    <Property Name="Deactive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="AnswerMasters" Relationship="Self.FK__AnswerMas__Actio__55009F39" FromRole="ActionMaster" ToRole="AnswerMaster" />
+  </EntityType>
   <EntityType Name="AnswerMaster">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="QuestionID" Type="Int32" Nullable="false" />
-    <Property Name="Answers" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Answers" Type="String" MaxLength="900" FixedLength="false" Unicode="false" />
     <Property Name="Deactive" Type="Boolean" Nullable="false" />
     <Property Name="ErrorMSG" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="ErrorAction" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="ControlID" Type="Int32" Nullable="false" />
+    <Property Name="ControlID" Type="Int32" />
+    <Property Name="ActionID" Type="Int32" />
+    <NavigationProperty Name="ActionMaster" Relationship="Self.FK__AnswerMas__Actio__55009F39" FromRole="AnswerMaster" ToRole="ActionMaster" />
     <NavigationProperty Name="ControlMaster" Relationship="Self.FK__AnswerMas__Contr__2DE6D218" FromRole="AnswerMaster" ToRole="ControlMaster" />
     <NavigationProperty Name="QuestionMaster" Relationship="Self.FK__AnswerMas__Quest__797309D9" FromRole="AnswerMaster" ToRole="QuestionMaster" />
     <NavigationProperty Name="TransactionMasters" Relationship="Self.FK__Transacti__Answe__68487DD7" FromRole="AnswerMaster" ToRole="TransactionMaster" />
-    <Property Name="ActionID" Type="Int32" />
-    <NavigationProperty Name="ActionMaster" Relationship="TOCICOModel.FK__AnswerMas__Actio__540C7B00" FromRole="AnswerMaster" ToRole="ActionMaster" />
   </EntityType>
   <EntityType Name="ConstraintMaster">
     <Key>
@@ -112,15 +122,26 @@
     <Property Name="Steps" Type="Int32" Nullable="false" />
     <Property Name="Deactive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="ProcessGoalMappings" Relationship="Self.FK__ProcessGo__Proce__29572725" FromRole="ProcessTemplateMaster" ToRole="ProcessGoalMapping" />
-    <NavigationProperty Name="ProcessTemplateSteps" Relationship="TOCICOModel.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateMaster" ToRole="ProcessTemplateStep" />
+    <NavigationProperty Name="ProcessTemplateSteps" Relationship="Self.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateMaster" ToRole="ProcessTemplateSteps" />
+  </EntityType>
+  <EntityType Name="ProcessTemplateStep">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProcessID" Type="Int32" Nullable="false" />
+    <Property Name="ProcessOrder" Type="Int32" />
+    <Property Name="StepDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Deactive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ProcessTemplateMaster" Relationship="Self.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateSteps" ToRole="ProcessTemplateMaster" />
   </EntityType>
   <EntityType Name="QuestionMaster">
     <Key>
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="Question" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Introduction" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Question" Type="String" MaxLength="900" FixedLength="false" Unicode="false" />
     <Property Name="Deactive" Type="Boolean" Nullable="false" />
     <Property Name="QuestionOrder" Type="Int32" Nullable="false" />
     <Property Name="LevelID" Type="Int32" Nullable="false" />
@@ -157,14 +178,26 @@
     <Property Name="MemberID" Type="Int32" Nullable="false" />
     <Property Name="QuestionID" Type="Int32" Nullable="false" />
     <Property Name="AnswerID" Type="Int32" Nullable="false" />
+    <Property Name="ControlValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
     <Property Name="Deactive" Type="Boolean" Nullable="false" />
     <NavigationProperty Name="AnswerMaster" Relationship="Self.FK__Transacti__Answe__68487DD7" FromRole="TransactionMaster" ToRole="AnswerMaster" />
     <NavigationProperty Name="MemberMaster" Relationship="Self.FK__Transacti__Membe__5629CD9C" FromRole="TransactionMaster" ToRole="MemberMaster" />
     <NavigationProperty Name="QuestionMaster" Relationship="Self.FK__Transacti__Quest__1ED998B2" FromRole="TransactionMaster" ToRole="QuestionMaster" />
-    <Property Name="ControlValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
   </EntityType>
+  <Association Name="FK__AnswerMas__Actio__55009F39">
+    <End Role="ActionMaster" Type="Self.ActionMaster" Multiplicity="0..1" />
+    <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ActionMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="AnswerMaster">
+        <PropertyRef Name="ActionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__AnswerMas__Contr__2DE6D218">
-    <End Role="ControlMaster" Type="Self.ControlMaster" Multiplicity="1" />
+    <End Role="ControlMaster" Type="Self.ControlMaster" Multiplicity="0..1" />
     <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ControlMaster">
@@ -295,6 +328,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__ProcessTe__Proce__59C55456">
+    <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="1" />
+    <End Role="ProcessTemplateSteps" Type="Self.ProcessTemplateStep" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProcessTemplateMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ProcessTemplateSteps">
+        <PropertyRef Name="ProcessID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK__Transacti__Quest__1ED998B2">
     <End Role="QuestionMaster" Type="Self.QuestionMaster" Multiplicity="1" />
     <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
@@ -307,7 +352,8 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="TOCICOEntities" annotation:LazyLoadingEnabled="true">
+  <EntityContainer Name="TocicoEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ActionMasters" EntityType="Self.ActionMaster" />
     <EntitySet Name="AnswerMasters" EntityType="Self.AnswerMaster" />
     <EntitySet Name="ConstraintMasters" EntityType="Self.ConstraintMaster" />
     <EntitySet Name="ControlMasters" EntityType="Self.ControlMaster" />
@@ -317,10 +363,15 @@
     <EntitySet Name="MemberMasters" EntityType="Self.MemberMaster" />
     <EntitySet Name="ProcessGoalMappings" EntityType="Self.ProcessGoalMapping" />
     <EntitySet Name="ProcessTemplateMasters" EntityType="Self.ProcessTemplateMaster" />
+    <EntitySet Name="ProcessTemplateSteps" EntityType="Self.ProcessTemplateStep" />
     <EntitySet Name="QuestionMasters" EntityType="Self.QuestionMaster" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
     <EntitySet Name="TargetMasters" EntityType="Self.TargetMaster" />
     <EntitySet Name="TransactionMasters" EntityType="Self.TransactionMaster" />
+    <AssociationSet Name="FK__AnswerMas__Actio__55009F39" Association="Self.FK__AnswerMas__Actio__55009F39">
+      <End Role="ActionMaster" EntitySet="ActionMasters" />
+      <End Role="AnswerMaster" EntitySet="AnswerMasters" />
+    </AssociationSet>
     <AssociationSet Name="FK__AnswerMas__Contr__2DE6D218" Association="Self.FK__AnswerMas__Contr__2DE6D218">
       <End Role="ControlMaster" EntitySet="ControlMasters" />
       <End Role="AnswerMaster" EntitySet="AnswerMasters" />
@@ -365,64 +416,13 @@
       <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
       <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMappings" />
     </AssociationSet>
+    <AssociationSet Name="FK__ProcessTe__Proce__59C55456" Association="Self.FK__ProcessTe__Proce__59C55456">
+      <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
+      <End Role="ProcessTemplateSteps" EntitySet="ProcessTemplateSteps" />
+    </AssociationSet>
     <AssociationSet Name="FK__Transacti__Quest__1ED998B2" Association="Self.FK__Transacti__Quest__1ED998B2">
       <End Role="QuestionMaster" EntitySet="QuestionMasters" />
       <End Role="TransactionMaster" EntitySet="TransactionMasters" />
     </AssociationSet>
-    <EntitySet Name="ActionMasters" EntityType="TOCICOModel.ActionMaster" />
-    <AssociationSet Name="FK__AnswerMas__Actio__540C7B00" Association="TOCICOModel.FK__AnswerMas__Actio__540C7B00">
-      <End Role="ActionMaster" EntitySet="ActionMasters" />
-      <End Role="AnswerMaster" EntitySet="AnswerMasters" />
-    </AssociationSet>
-    <EntitySet Name="ProcessTemplateSteps" EntityType="TOCICOModel.ProcessTemplateStep" />
-    <AssociationSet Name="FK__ProcessTe__Proce__59C55456" Association="TOCICOModel.FK__ProcessTe__Proce__59C55456">
-      <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
-      <End Role="ProcessTemplateStep" EntitySet="ProcessTemplateSteps" />
-    </AssociationSet>
   </EntityContainer>
-  <EntityType Name="ActionMaster">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ActionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-    <Property Name="ControlID" Type="Int32" />
-    <Property Name="Deactive" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="AnswerMasters" Relationship="TOCICOModel.FK__AnswerMas__Actio__540C7B00" FromRole="ActionMaster" ToRole="AnswerMaster" />
-  </EntityType>
-  <Association Name="FK__AnswerMas__Actio__540C7B00">
-    <End Type="TOCICOModel.ActionMaster" Role="ActionMaster" Multiplicity="0..1" />
-    <End Type="TOCICOModel.AnswerMaster" Role="AnswerMaster" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ActionMaster">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="AnswerMaster">
-        <PropertyRef Name="ActionID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="ProcessTemplateStep">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ProcessID" Type="Int32" Nullable="false" />
-    <Property Name="ProcessOrder" Type="Int32" />
-    <Property Name="StepDescription" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="Deactive" Type="Boolean" Nullable="false" />
-    <NavigationProperty Name="ProcessTemplateMaster" Relationship="TOCICOModel.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateStep" ToRole="ProcessTemplateMaster" />
-  </EntityType>
-  <Association Name="FK__ProcessTe__Proce__59C55456">
-    <End Type="TOCICOModel.ProcessTemplateMaster" Role="ProcessTemplateMaster" Multiplicity="1" />
-    <End Type="TOCICOModel.ProcessTemplateStep" Role="ProcessTemplateStep" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProcessTemplateMaster">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ProcessTemplateStep">
-        <PropertyRef Name="ProcessID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
 </Schema>

@@ -12,7 +12,7 @@ namespace AlexRogoBeltApp.Controllers
 {
     public class QuestionMastersController : Controller
     {
-        private TOCICOEntities db = new TOCICOEntities();
+        private TocicoEntities db = new TocicoEntities();
 
         // GET: QuestionMasters
         public ActionResult Index()

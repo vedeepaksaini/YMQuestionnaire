@@ -13,7 +13,7 @@ namespace AlexRogoBeltApp.ViewModel
         public bool Deactive { get; set; }
         public string ErrorMSG { get; set; }
         public string ErrorAction { get; set; }
-        public int ControlID { get; set; }
+        public int? ControlID { get; set; }
         public bool IsSelected { get; set; }
         public string ControlValue { get; set; }
         public int? ActionID { get; set; }

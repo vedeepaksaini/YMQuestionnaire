@@ -47,7 +47,11 @@ namespace AlexRogoBeltApp.Controllers
             var selectedAnswers = model.Answers.Where(x => x.IsSelected || !string.IsNullOrEmpty(x.ControlValue));
 
             if (selectedAnswers.Count() == 0)
-                return View(model);
+            {
+                TempData["OrderId"] = model.QuestionOrder;
+                TempData["LevelId"] = model.LevelID;
+                return RedirectToAction("Questions");
+            }
 
             List<TransactionViewModel> transactions = selectedAnswers.Select(x => new TransactionViewModel
             {
