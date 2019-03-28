@@ -311,6 +311,7 @@
     <Content Include="Views\QuestionMasters\Details.cshtml" />
     <Content Include="Views\QuestionMasters\Edit.cshtml" />
     <Content Include="Views\QuestionMasters\Index.cshtml" />
+    <Content Include="Views\Shared\Popup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -13,10 +13,10 @@ namespace AlexRogoBeltApp.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TOCICOEntities : DbContext
+    public partial class TocicoEntities : DbContext
     {
-        public TOCICOEntities()
-            : base("name=TOCICOEntities")
+        public TocicoEntities()
+            : base("name=TocicoEntities")
         {
         }
     
@@ -25,6 +25,7 @@ namespace AlexRogoBeltApp.Entities
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<ActionMaster> ActionMasters { get; set; }
         public virtual DbSet<AnswerMaster> AnswerMasters { get; set; }
         public virtual DbSet<ConstraintMaster> ConstraintMasters { get; set; }
         public virtual DbSet<ControlMaster> ControlMasters { get; set; }
@@ -34,11 +35,10 @@ namespace AlexRogoBeltApp.Entities
         public virtual DbSet<MemberMaster> MemberMasters { get; set; }
         public virtual DbSet<ProcessGoalMapping> ProcessGoalMappings { get; set; }
         public virtual DbSet<ProcessTemplateMaster> ProcessTemplateMasters { get; set; }
+        public virtual DbSet<ProcessTemplateStep> ProcessTemplateSteps { get; set; }
         public virtual DbSet<QuestionMaster> QuestionMasters { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TargetMaster> TargetMasters { get; set; }
         public virtual DbSet<TransactionMaster> TransactionMasters { get; set; }
-        public virtual DbSet<ActionMaster> ActionMasters { get; set; }
-        public virtual DbSet<ProcessTemplateStep> ProcessTemplateSteps { get; set; }
     }
 }

@@ -18,8 +18,8 @@ namespace AlexRogoBeltApp.Entities
         public int MemberID { get; set; }
         public int QuestionID { get; set; }
         public int AnswerID { get; set; }
-        public bool Deactive { get; set; }
         public string ControlValue { get; set; }
+        public bool Deactive { get; set; }
     
         public virtual AnswerMaster AnswerMaster { get; set; }
         public virtual MemberMaster MemberMaster { get; set; }

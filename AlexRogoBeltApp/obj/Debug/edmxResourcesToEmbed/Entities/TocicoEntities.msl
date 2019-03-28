@@ -1,10 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="TOCICOModelStoreContainer" CdmEntityContainer="TOCICOEntities">
+  <EntityContainerMapping StorageEntityContainer="TocicoModelStoreContainer" CdmEntityContainer="TocicoEntities">
+    <EntitySetMapping Name="ActionMasters">
+      <EntityTypeMapping TypeName="TocicoModel.ActionMaster">
+        <MappingFragment StoreEntitySet="ActionMaster">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
+          <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+          <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="AnswerMasters">
-      <EntityTypeMapping TypeName="TOCICOModel.AnswerMaster">
+      <EntityTypeMapping TypeName="TocicoModel.AnswerMaster">
         <MappingFragment StoreEntitySet="AnswerMaster">
-          <ScalarProperty Name="ActionID" ColumnName="ActionID" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
           <ScalarProperty Name="Answers" ColumnName="Answers" />
@@ -12,11 +21,12 @@
           <ScalarProperty Name="ErrorMSG" ColumnName="ErrorMSG" />
           <ScalarProperty Name="ErrorAction" ColumnName="ErrorAction" />
           <ScalarProperty Name="ControlID" ColumnName="ControlID" />
+          <ScalarProperty Name="ActionID" ColumnName="ActionID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ConstraintMasters">
-      <EntityTypeMapping TypeName="TOCICOModel.ConstraintMaster">
+      <EntityTypeMapping TypeName="TocicoModel.ConstraintMaster">
         <MappingFragment StoreEntitySet="ConstraintMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ConstraintName" ColumnName="ConstraintName" />
@@ -25,7 +35,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ControlMasters">
-      <EntityTypeMapping TypeName="TOCICOModel.ControlMaster">
+      <EntityTypeMapping TypeName="TocicoModel.ControlMaster">
         <MappingFragment StoreEntitySet="ControlMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ControlName" ColumnName="ControlName" />
@@ -37,7 +47,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GoalMasters">
-      <EntityTypeMapping TypeName="TOCICOModel.GoalMaster">
+      <EntityTypeMapping TypeName="TocicoModel.GoalMaster">
         <MappingFragment StoreEntitySet="GoalMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="GoalName" ColumnName="GoalName" />
@@ -46,7 +56,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GoalTargets">
-      <EntityTypeMapping TypeName="TOCICOModel.GoalTarget">
+      <EntityTypeMapping TypeName="TocicoModel.GoalTarget">
         <MappingFragment StoreEntitySet="GoalTarget">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -57,7 +67,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LevelMasters">
-      <EntityTypeMapping TypeName="TOCICOModel.LevelMaster">
+      <EntityTypeMapping TypeName="TocicoModel.LevelMaster">
         <MappingFragment StoreEntitySet="LevelMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="LevelName" ColumnName="LevelName" />
@@ -66,7 +76,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MemberMasters">
-      <EntityTypeMapping TypeName="TOCICOModel.MemberMaster">
+      <EntityTypeMapping TypeName="TocicoModel.MemberMaster">
         <MappingFragment StoreEntitySet="MemberMaster">
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
           <ScalarProperty Name="MemberUserName" ColumnName="MemberUserName" />
@@ -81,7 +91,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProcessGoalMappings">
-      <EntityTypeMapping TypeName="TOCICOModel.ProcessGoalMapping">
+      <EntityTypeMapping TypeName="TocicoModel.ProcessGoalMapping">
         <MappingFragment StoreEntitySet="ProcessGoalMapping">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -92,7 +102,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProcessTemplateMasters">
-      <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateMaster">
+      <EntityTypeMapping TypeName="TocicoModel.ProcessTemplateMaster">
         <MappingFragment StoreEntitySet="ProcessTemplateMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ProcessTemplateName" ColumnName="ProcessTemplateName" />
@@ -101,8 +111,19 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ProcessTemplateSteps">
+      <EntityTypeMapping TypeName="TocicoModel.ProcessTemplateStep">
+        <MappingFragment StoreEntitySet="ProcessTemplateSteps">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
+          <ScalarProperty Name="ProcessOrder" ColumnName="ProcessOrder" />
+          <ScalarProperty Name="StepDescription" ColumnName="StepDescription" />
+          <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="QuestionMasters">
-      <EntityTypeMapping TypeName="TOCICOModel.QuestionMaster">
+      <EntityTypeMapping TypeName="TocicoModel.QuestionMaster">
         <MappingFragment StoreEntitySet="QuestionMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Introduction" ColumnName="Introduction" />
@@ -114,7 +135,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="TOCICOModel.sysdiagram">
+      <EntityTypeMapping TypeName="TocicoModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -125,7 +146,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TargetMasters">
-      <EntityTypeMapping TypeName="TOCICOModel.TargetMaster">
+      <EntityTypeMapping TypeName="TocicoModel.TargetMaster">
         <MappingFragment StoreEntitySet="TargetMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="TargetName" ColumnName="TargetName" />
@@ -134,35 +155,14 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TransactionMasters">
-      <EntityTypeMapping TypeName="TOCICOModel.TransactionMaster">
+      <EntityTypeMapping TypeName="TocicoModel.TransactionMaster">
         <MappingFragment StoreEntitySet="TransactionMaster">
-          <ScalarProperty Name="ControlValue" ColumnName="ControlValue" />
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
           <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
           <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
+          <ScalarProperty Name="ControlValue" ColumnName="ControlValue" />
           <ScalarProperty Name="Deactive" ColumnName="Deactive" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ActionMasters">
-      <EntityTypeMapping TypeName="TOCICOModel.ActionMaster">
-        <MappingFragment StoreEntitySet="ActionMaster">
-          <ScalarProperty Name="Deactive" ColumnName="Deactive" />
-          <ScalarProperty Name="ControlID" ColumnName="ControlID" />
-          <ScalarProperty Name="ActionName" ColumnName="ActionName" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ProcessTemplateSteps">
-      <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateStep">
-        <MappingFragment StoreEntitySet="ProcessTemplateSteps">
-          <ScalarProperty Name="Deactive" ColumnName="Deactive" />
-          <ScalarProperty Name="StepDescription" ColumnName="StepDescription" />
-          <ScalarProperty Name="ProcessOrder" ColumnName="ProcessOrder" />
-          <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
-          <ScalarProperty Name="ID" ColumnName="ID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

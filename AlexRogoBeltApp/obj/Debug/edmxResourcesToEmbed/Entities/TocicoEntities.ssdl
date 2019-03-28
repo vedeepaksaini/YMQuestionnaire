@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TOCICOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="TocicoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="ActionMaster">
     <Key>
       <PropertyRef Name="ID" />
@@ -15,11 +15,11 @@
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="QuestionID" Type="int" Nullable="false" />
-    <Property Name="Answers" Type="varchar" MaxLength="900" Nullable="false" />
+    <Property Name="Answers" Type="varchar" MaxLength="900" />
     <Property Name="Deactive" Type="bit" Nullable="false" />
     <Property Name="ErrorMSG" Type="varchar" MaxLength="50" />
     <Property Name="ErrorAction" Type="varchar" MaxLength="50" />
-    <Property Name="ControlID" Type="int" Nullable="false" />
+    <Property Name="ControlID" Type="int" />
     <Property Name="ActionID" Type="int" />
   </EntityType>
   <EntityType Name="ConstraintMaster">
@@ -119,8 +119,8 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Introduction" Type="varchar(max)" Nullable="false" />
-    <Property Name="Question" Type="varchar" MaxLength="900" Nullable="false" />
+    <Property Name="Introduction" Type="varchar(max)" />
+    <Property Name="Question" Type="varchar" MaxLength="900" />
     <Property Name="Deactive" Type="bit" Nullable="false" />
     <Property Name="QuestionOrder" Type="int" Nullable="false" />
     <Property Name="LevelID" Type="int" Nullable="false" />
@@ -149,7 +149,7 @@
       <PropertyRef Name="QuestionID" />
       <PropertyRef Name="AnswerID" />
     </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MemberID" Type="int" Nullable="false" />
     <Property Name="QuestionID" Type="int" Nullable="false" />
     <Property Name="AnswerID" Type="int" Nullable="false" />
@@ -169,7 +169,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK__AnswerMas__Contr__2DE6D218">
-    <End Role="ControlMaster" Type="Self.ControlMaster" Multiplicity="1" />
+    <End Role="ControlMaster" Type="Self.ControlMaster" Multiplicity="0..1" />
     <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ControlMaster">
@@ -324,7 +324,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="TOCICOModelStoreContainer">
+  <EntityContainer Name="TocicoModelStoreContainer">
     <EntitySet Name="ActionMaster" EntityType="Self.ActionMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AnswerMaster" EntityType="Self.AnswerMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConstraintMaster" EntityType="Self.ConstraintMaster" Schema="dbo" store:Type="Tables" />

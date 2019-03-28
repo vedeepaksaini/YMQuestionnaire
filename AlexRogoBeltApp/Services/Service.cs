@@ -9,7 +9,7 @@ namespace AlexRogoBeltApp.Services
 {
     public class Service
     {
-        private readonly TOCICOEntities db = new TOCICOEntities();
+        private readonly TocicoEntities db = new TocicoEntities();
 
         // Get all questions of yellow belt
         public QuestionViewModel GetQuestions(int? levelId, int? orderId)
@@ -60,39 +60,55 @@ namespace AlexRogoBeltApp.Services
 
         public void SetTransactions(List<TransactionViewModel> models)
         {
-            if (models.Count != 0)
+            var questionId = models.FirstOrDefault().QuestionID;
+            var existingTransactions = db.TransactionMasters.Where(x => x.MemberID == 1 && x.QuestionID == questionId);
+
+            db.TransactionMasters.RemoveRange(existingTransactions);
+            db.SaveChanges();
+
+            db.TransactionMasters.AddRange(models.Select(x => new TransactionMaster
             {
-                var questionId = models.FirstOrDefault().QuestionID;
-                var existingTransactions = db.TransactionMasters.Where(x => x.MemberID == 1 && x.QuestionID == questionId);
+                AnswerID = x.AnswerID,
+                Deactive = x.Deactive,
+                MemberID = x.MemberID,
+                QuestionID = x.QuestionID,
+                ControlValue = x.ControlValue
+            }));
+            db.SaveChanges();
 
-                //Update Existing records
-                foreach (var transaction in models)
-                {
-                    var record = existingTransactions.FirstOrDefault(x => x.AnswerID == transaction.AnswerID);
-                    if (record != null)
-                        record.ControlValue = transaction.ControlValue;
-                }
-                db.SaveChanges();
+            //if (models.Count != 0)
+            //{
+            //    var questionId = models.FirstOrDefault().QuestionID;
+            //    var existingTransactions = db.TransactionMasters.Where(x => x.MemberID == 1 && x.QuestionID == questionId);
 
-                //Remove existing record from models
-                foreach (var transaction in existingTransactions)
-                {
-                    var existing = models.FirstOrDefault(x => x.MemberID == transaction.MemberID && x.QuestionID == transaction.QuestionID && x.AnswerID == transaction.AnswerID);
-                    if (existing != null)
-                        models.Remove(existing);
-                }
+            //    //Update Existing records
+            //    foreach (var transaction in models)
+            //    {
+            //        var record = existingTransactions.FirstOrDefault(x => x.AnswerID == transaction.AnswerID);
+            //        if (record != null)
+            //            record.ControlValue = transaction.ControlValue;
+            //    }
+            //    db.SaveChanges();
 
-                //Insert fresh records
-                db.TransactionMasters.AddRange(models.Select(x => new TransactionMaster
-                {
-                    AnswerID = x.AnswerID,
-                    Deactive = x.Deactive,
-                    MemberID = x.MemberID,
-                    QuestionID = x.QuestionID,
-                    ControlValue = x.ControlValue
-                }));
-                db.SaveChanges();
-            }
+            //    //Remove existing record from models
+            //    foreach (var transaction in existingTransactions)
+            //    {
+            //        var existing = models.FirstOrDefault(x => x.MemberID == transaction.MemberID && x.QuestionID == transaction.QuestionID && x.AnswerID == transaction.AnswerID);
+            //        if (existing != null)
+            //            models.Remove(existing);
+            //    }
+
+            //    //Insert fresh records
+            //    db.TransactionMasters.AddRange(models.Select(x => new TransactionMaster
+            //    {
+            //        AnswerID = x.AnswerID,
+            //        Deactive = x.Deactive,
+            //        MemberID = x.MemberID,
+            //        QuestionID = x.QuestionID,
+            //        ControlValue = x.ControlValue
+            //    }));
+            //    db.SaveChanges();
+            //}
         }
 
         public List<ProcessTemplateViewModel> GetAllTemplates()
@@ -108,7 +124,7 @@ namespace AlexRogoBeltApp.Services
                 ProcessTemplateName = y.ProcessTemplateName,
                 Steps = y.Steps,
                 Deactive = y.Deactive,
-                ProcessTemplateSteps = y.ProcessTemplateSteps.OrderBy(x => x.ProcessOrder).Where(z => !z.Deactive && z.ProcessID == y.ID).Select(q => new ProcessTemplateStepsViewModel
+                ProcessTemplateSteps = y.ProcessTemplateSteps.OrderByDescending(x => x.ProcessOrder).Where(z => !z.Deactive && z.ProcessID == y.ID).Select(q => new ProcessTemplateStepsViewModel
                 {
                     ID = q.ID,
                     ProcessID = q.ProcessID,

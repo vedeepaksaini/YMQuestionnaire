@@ -31,19 +31,23 @@
             });
         }
         function ProcessSelectionChanged(id) {
+            debugger;
             var data = localStorage.getItem('TemplateResponse');
             var object = JSON.parse(data).find(item => item.ID == id);
             $("#steps").empty();
             $("#images").empty();
-            $.each(object, function (key, value) {
-                if (key == "ProcessTemplateSteps") {
-                    $.each(value, function (key, value) {
-                        debugger;
-                        $('#steps').prepend('<td align="center">' + value.StepDescription + '</td>')
-                        $('#images').prepend('<td align="center"><img id="theImg" src="../../Content/Images/circle.png" /></td>')
-                    });
-                }
+            $.each(object.ProcessTemplateSteps, function (key, value) {
+                debugger;
+                $('#steps').prepend('<td align="center">' + value.StepDescription + '</td>')
+                $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
             });
+        }
+        function RenderPopup(val) {
+            debugger;
+            $('#myModal').modal('show');
+            $('#myModalLabel').text(val);
+            $('#popupbody').text('This is ' + val + ' description.');
+
         }
     </script>
     <link href="~/Content/style.css" rel="stylesheet" />
@@ -71,114 +75,119 @@
                         @Html.DisplayFor(model => model.Question)
                     </h3>
                     <ul>
-                        @*@foreach (var x in Model.Answers)
-                            {
-                                <li>
-                                    <label>
-                                        @Html.CheckBoxFor(model => x.IsSelected)
-                                        @Html.DisplayFor(model => x.AnswerType)
-                                        @Html.HiddenFor(model => x.IsSelected)
-                                        <i class="glyphicon glyphicon-ok"></i>
-                                    </label>
-                                </li>
-                            }*@
                         @{
-                            for (var i = 0; i < Model.Answers.Count(); i++)
+                            if (Model != null)
                             {
-                                <li>
-                                    <label>
-                                        @*Assign existing transaction flag to answer flag*@
-                                        @{
-                                            var trans = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
-                                            if (trans != null)
-                                            {
-                                                Model.Answers[i].IsSelected = true;
-                                            }
-                                        }
-
-                                        @if (Model.Answers[i].ControlID == 12)
-                                        {
-                                            if (Model.Answers[i].ActionID != null)
-                                            {
-                                                if (Model.Answers[i].ActionID == 1)
+                                for (var i = 0; i < Model.Answers.Count(); i++)
+                                {
+                                    <li>
+                                        <label>
+                                            @*Assign existing transaction flag to answer flag*@
+                                            @{
+                                                var trans = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
+                                                if (trans != null)
                                                 {
-                                                    @Html.CheckBoxFor(model => Model.Answers[i].IsSelected, new { @onchange = "Other(this,'Answers_" + i + "__ControlValue');" })
+                                                    Model.Answers[i].IsSelected = true;
                                                 }
                                             }
-                                            else
+
+                                            @if (Model.Answers[i].ControlID == 12)
                                             {
-                                                @Html.CheckBoxFor(model => Model.Answers[i].IsSelected)
-                                            }
-                                            <i class="glyphicon glyphicon-ok"></i>
-                                        }
-
-                                        @if (Model.Answers[i].ControlID >= 12 && Model.Answers[i].ControlID <= 19)
-                                        {
-                                            @Html.DisplayFor(model => Model.Answers[i].Answers)
-                                        }
-                                        else
-                                        {
-                                            <span class="col-md-6">
-                                                @Html.DisplayFor(model => Model.Answers[i].Answers)
-                                            </span>
-                                        }
-
-                                        @*Assign existing transaction ControlValue to answer ControlValue*@
-                                        @{
-                                            var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
-                                            if (transaction != null)
-                                            {
-                                                Model.Answers[i].ControlValue = transaction.ControlValue;
-                                            }
-                                        }
-
-                                        @if (Model.Answers[i].ControlID == 10)
-                                        {
-                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", disabled = "disabled", @class = "col-md-6" })
-                                        }
-                                        else if (Model.Answers[i].ControlID == 6)
-                                        {
-                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", @class = "col-md-6" })
-                                        }
-                                        else if (Model.Answers[i].ControlID == 4)
-                                        {
-                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", @class = "col-md-6" })
-                                        }
-
-                                        @if (Model.Answers[i].ActionID != null)
-                                        {
-                                            if (Model.Answers[i].ActionID == 1)
-                                            {
-                                                if (string.IsNullOrEmpty(Model.Answers[i].ControlValue))
+                                                if (Model.Answers[i].ActionID != null)
                                                 {
-                                                    @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { style = "display:none" })
+                                                    if (Model.Answers[i].ActionID == 1)
+                                                    {
+                                                        @Html.CheckBoxFor(model => Model.Answers[i].IsSelected, new { @onchange = "Other(this,'Answers_" + i + "__ControlValue');" })
+                                                    }
                                                 }
                                                 else
                                                 {
-                                                    @Html.TextBoxFor(model => Model.Answers[i].ControlValue)
+                                                    @Html.CheckBoxFor(model => Model.Answers[i].IsSelected)
+                                                }
+                                                <i class="glyphicon glyphicon-ok"></i>
+                                            }
+
+                                            @if (Model.Answers[i].ActionID != null)
+                                            {
+                                                if (Model.Answers[i].ActionID == 3)
+                                                {
+                                                    <div class="text-center">
+                                                        <img src="../../Content/Images/Goal_movie.png" width="400px" />
+                                                    </div>
+                                                    Model.Answers.FirstOrDefault().IsSelected = true;
                                                 }
                                             }
-                                            else if (Model.Answers[i].ActionID == 2)
-                                            {
-                                                <script>GetProcesses()</script>
-                                                <select id="ProcessTemplateDropdown" class="form-control" onchange="ProcessSelectionChanged(this.value)"><option value="0">Select Process</option></select>
-                                                <div class="table-responsive">
-                                                    <table style="width:100%; margin-top:15px;">
-                                                        <tr id="steps"></tr>
-                                                        <tr><td></td></tr>
-                                                        <tr id="images"></tr>
-                                                    </table>
-                                                </div>
-                                            }
-                                        }
 
-                                        @Html.HiddenFor(model => Model.Answers[i].ID)
-                                        @Html.HiddenFor(model => Model.Answers[i].QuestionID)
-                                        @Html.HiddenFor(model => Model.Answers[i].Answers)
-                                        @Html.HiddenFor(model => Model.Answers[i].IsSelected)
-                                        @Html.HiddenFor(model => Model.Answers[i].ControlValue)
-                                    </label>
-                                </li>
+                                            @if (Model.Answers[i].ControlID >= 12 && Model.Answers[i].ControlID <= 19)
+                                            {
+                                                @Html.DisplayFor(model => Model.Answers[i].Answers)
+                                            }
+                                            else
+                                            {
+                                                <span class="col-md-6">
+                                                    @Html.DisplayFor(model => Model.Answers[i].Answers)
+                                                </span>
+                                            }
+
+                                            @*Assign existing transaction ControlValue to answer ControlValue*@
+                                            @{
+                                                var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
+                                                if (transaction != null)
+                                                {
+                                                    Model.Answers[i].ControlValue = transaction.ControlValue;
+                                                }
+                                            }
+
+                                            @if (Model.Answers[i].ControlID == 10)
+                                            {
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", disabled = "disabled", @class = "col-md-6" })
+                                            }
+                                            else if (Model.Answers[i].ControlID == 6)
+                                            {
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", @class = "col-md-6" })
+                                            }
+                                            else if (Model.Answers[i].ControlID == 4)
+                                            {
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", @class = "col-md-6" })
+                                            }
+
+                                            @if (Model.Answers[i].ActionID != null)
+                                            {
+                                                if (Model.Answers[i].ActionID == 1)
+                                                {
+                                                    if (string.IsNullOrEmpty(Model.Answers[i].ControlValue))
+                                                    {
+                                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { style = "display:none" })
+                                                    }
+                                                    else
+                                                    {
+                                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue)
+                                                    }
+                                                }
+                                                else if (Model.Answers[i].ActionID == 2)
+                                                {
+                                                    <script>GetProcesses()</script>
+                                                    <select id="ProcessTemplateDropdown" class="form-control" onchange="ProcessSelectionChanged(this.value)"><option value="0">Select Process</option></select>
+                                                    <div class="table-responsive">
+                                                        <table style="width:100%; margin-top:15px;">
+                                                            <tr id="steps"></tr>
+                                                            <tr><td></td></tr>
+                                                            <tr id="images"></tr>
+                                                        </table>
+                                                    </div>
+                                                    @Html.Partial("Popup")
+                                                    Model.Answers.FirstOrDefault().IsSelected = true;
+                                                }
+                                            }
+
+                                            @Html.HiddenFor(model => Model.Answers[i].ID)
+                                            @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                                            @Html.HiddenFor(model => Model.Answers[i].Answers)
+                                            @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                                            @Html.HiddenFor(model => Model.Answers[i].ControlValue)
+                                        </label>
+                                    </li>
+                                }
                             }
                         }
                     </ul>
@@ -186,6 +195,13 @@
 
             </div>
         </div>
+        @*<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                Launch demo modal
+            </button>
+            <script type="text/jscript">
+                $('#partialView').load('/shared/PartialViewExample’);
+            </script>*@
+
         <footer style="position: fixed;    width: 100%;
     bottom: 70px;">
             <div class="container">
@@ -226,9 +242,9 @@
                 }
             }
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    //$(document).ready(function () {
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                //$(document).ready(function () {
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    //})
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                //})
         </script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
