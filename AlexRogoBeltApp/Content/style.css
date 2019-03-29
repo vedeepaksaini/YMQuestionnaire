@@ -241,3 +241,8 @@
         width: 80px;
         float: left;
     }
+
+.modal-header {
+    background: #4782cb;
+    color: #ffffff;
+}

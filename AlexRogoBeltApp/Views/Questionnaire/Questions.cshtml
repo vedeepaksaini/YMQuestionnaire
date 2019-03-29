@@ -7,82 +7,82 @@
 @*@Html.AntiForgeryToken()*@
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-        function GetProcesses() {
-            $.ajax({
-                type: "POST", url: "GetAllTemplates", dataType: "json", contentType: "application/json", success: function (res) {
-                    localStorage.setItem('TemplateResponse', JSON.stringify(res));
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    function GetProcesses() {
+        $.ajax({
+            type: "POST", url: "GetAllTemplates", dataType: "json", contentType: "application/json", success: function (res) {
+                localStorage.setItem('TemplateResponse', JSON.stringify(res));
 
-                    $.each(res, function (data, value) {
-                        $("#ProcessTemplateDropdown").append($("<option></option>").val(value.ID).html(value.ProcessTemplateName));
-                    })
-                },
-                error: function (response) {
-                }
-            });
-        }
-        function ProcessSelectionChanged(id) {
+                $.each(res, function (data, value) {
+                    $("#ProcessTemplateDropdown").append($("<option></option>").val(value.ID).html(value.ProcessTemplateName));
+                })
+            },
+            error: function (response) {
+            }
+        });
+    }
+    function ProcessSelectionChanged(id) {
+        debugger;
+        var data = localStorage.getItem('TemplateResponse');
+        var object = JSON.parse(data).find(item => item.ID == id);
+        $("#steps").empty();
+        $("#images").empty();
+        $.each(object.ProcessTemplateSteps, function (key, value) {
             debugger;
-            var data = localStorage.getItem('TemplateResponse');
-            var object = JSON.parse(data).find(item => item.ID == id);
-            $("#steps").empty();
-            $("#images").empty();
-            $.each(object.ProcessTemplateSteps, function (key, value) {
-                debugger;
-                $('#steps').prepend('<td align="center">' + value.StepDescription + '</td>')
-                $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
-            });
-        }
-        function RenderPopup(val) {
-            debugger;
-            $('#myModal').modal('show');
-            $('#myModalLabel').text(val);
-            $('#popupbody').text('This is ' + val + ' description.');
+            $('#steps').prepend('<td align="center">' + value.StepDescription + '</td>')
+            $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
+        });
+    }
+    function RenderPopup(val) {
+        debugger;
+        $('#myModal').modal('show');
+        $('#myModalLabel').text(val);
+        $('#popupbody').text('This is ' + val + ' description.');
 
-        }
-    </script>
+    }
+</script>
 
 
 
-    @using (Html.BeginForm())
-    {
-        <div class="container">
-            <div class="box-wrapper" style="background-image: linear-gradient(to top,#ace0f9  0%,  #fff1eb 100%);">
-                <div class="question-area">
-                    <div class="step-page">
-                        <div class="text-center text-shadow text-white">The Alex Rogo Levels</div>
-                    </div>
-                    <h2 class="question">
-                        @Html.DisplayFor(model => model.Introduction)
-                        @Html.HiddenFor(model => model.ID)
-                        @Html.HiddenFor(model => model.Introduction)
-                        @Html.HiddenFor(model => model.LevelID)
-                        @Html.HiddenFor(model => model.Question)
-                        @Html.HiddenFor(model => model.QuestionOrder)
-                        @Html.HiddenFor(model => model.Deactive)
-                    </h2>
-                    <div class="options">
-                        <h3 class="questionintro">
-                            @Html.DisplayFor(model => model.Question)
-                        </h3>
-                        <ul>
-                            @*@foreach (var x in Model.Answers)
-                    {
-                        <li>
-                            <label>
-                                @Html.CheckBoxFor(model => x.IsSelected)
-                                @Html.DisplayFor(model => x.AnswerType)
-                                @Html.HiddenFor(model => x.IsSelected)
-                                <i class="glyphicon glyphicon-ok"></i>
-                            </label>
-                        </li>
-                    }*@
-                            @{
-                                if (Model != null)
+@using (Html.BeginForm())
+{
+    <div class="container">
+        <div class="box-wrapper" style="background-image: linear-gradient(to top,#ace0f9  0%,  #fff1eb 100%);">
+            <div class="question-area">
+                <div class="step-page">
+                    <div class="text-center text-shadow text-white">The Alex Rogo Levels</div>
+                </div>
+                <h2 class="question">
+                    @Html.DisplayFor(model => model.Introduction)
+                    @Html.HiddenFor(model => model.ID)
+                    @Html.HiddenFor(model => model.Introduction)
+                    @Html.HiddenFor(model => model.LevelID)
+                    @Html.HiddenFor(model => model.Question)
+                    @Html.HiddenFor(model => model.QuestionOrder)
+                    @Html.HiddenFor(model => model.Deactive)
+                </h2>
+                <div class="options">
+                    <h3 class="questionintro">
+                        @Html.DisplayFor(model => model.Question)
+                    </h3>
+                    <ul>
+                        @*@foreach (var x in Model.Answers)
                             {
-                            for (var i = 0; i < Model.Answers.Count(); i++)
+                                <li>
+                                    <label>
+                                        @Html.CheckBoxFor(model => x.IsSelected)
+                                        @Html.DisplayFor(model => x.AnswerType)
+                                        @Html.HiddenFor(model => x.IsSelected)
+                                        <i class="glyphicon glyphicon-ok"></i>
+                                    </label>
+                                </li>
+                            }*@
+                        @{
+                            if (Model != null)
                             {
+                                for (var i = 0; i < Model.Answers.Count(); i++)
+                                {
                                     <li>
                                         <label>
                                             @*Assign existing transaction flag to answer flag*@
@@ -115,7 +115,7 @@
                                                 if (Model.Answers[i].ActionID == 3)
                                                 {
                                                     <div class="text-center">
-                                                        <img src="../../Content/Images/Goal_movie.png" width="400px" />
+                                                        <img src="../../Content/Images/Goal_movie.png" width="400px" class="img-responsive center-block"/>
                                                     </div>
                                                     Model.Answers.FirstOrDefault().IsSelected = true;
                                                 }
@@ -143,15 +143,15 @@
 
                                             @if (Model.Answers[i].ControlID == 10)
                                             {
-                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", disabled = "disabled", @class = "col-md-6" })
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", disabled = "disabled", @class = "form-control" })
                                             }
                                             else if (Model.Answers[i].ControlID == 6)
                                             {
-                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", @class = "col-md-6" })
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", @class = "form-control" })
                                             }
                                             else if (Model.Answers[i].ControlID == 4)
                                             {
-                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", @class = "col-md-6" })
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", @class = "form-control" })
                                             }
 
                                             @if (Model.Answers[i].ActionID != null)
@@ -190,57 +190,58 @@
                                             @Html.HiddenFor(model => Model.Answers[i].ControlValue)
                                         </label>
                                     </li>
-                            }
-                            }
-                        </ul>
+                                                    }
+                                                }
+                        }
+                    </ul>
+                </div>
+            </div>
+            <footer>
+
+                <div class="questionintro">
+                    <a href="@Url.Action("Questions", "Questionnaire", new { QuestionOrder = Model.QuestionOrder })" class="mt-2 btn btn-primary btn-lg ">
+                        < Back
+                    </a>
+
+                    <input type="submit" value="Next >" class="mt-2 btn btn-success btn-lg pull-right" />
+
+                </div>
+                <div class="footer-copyright">
+                    <img src="~/Content/Images/logo.png" />
+                    <div class="steps-footer">
+                        &copy; 2019 TOCICO. All Rights Reserved.
                     </div>
                 </div>
-                <footer>
-                   
-                        <div class="questionintro">
-                            <a href="@Url.Action("Questions", "Questionnaire", new { QuestionOrder = Model.QuestionOrder })" class="mt-2 btn btn-primary btn-lg ">
-                                < Back
-                            </a>
 
-                            <input type="submit" value="Next >" class="mt-2 btn btn-success btn-lg pull-right" />
-
-                        </div>
-                        <div class="footer-copyright">
-                            <img src="~/Content/Images/logo.png"  />
-                            <div class="steps-footer">
-                                &copy; 2019 TOCICO. All Rights Reserved.
-                            </div>
-                        </div>
-                   
-                </footer>
-            </div>
+            </footer>
         </div>
-      
-        <script>
-            function Other(e, controlId) {
-                //$(".cb").change(function () {
-                //    debugger;
-                //    var val = $(this).is(':checked');
-                //    if (val)
-                //        $(".txt").css("display", "");
-                //    else
-                //        $(".txt").css("display", "none");
-                //});
-                var val = $(e).is(':checked');
-                if (val) {
-                    document.getElementById(controlId).style.display = '';
-                    document.getElementById(controlId).setAttribute("required", "required");
-                }
-                else {
-                    document.getElementById(controlId).style.display = 'none';
-                    document.getElementById(controlId).removeAttribute("required");
-                }
+    </div>
+
+    <script>
+        function Other(e, controlId) {
+            //$(".cb").change(function () {
+            //    debugger;
+            //    var val = $(this).is(':checked');
+            //    if (val)
+            //        $(".txt").css("display", "");
+            //    else
+            //        $(".txt").css("display", "none");
+            //});
+            var val = $(e).is(':checked');
+            if (val) {
+                document.getElementById(controlId).style.display = '';
+                document.getElementById(controlId).setAttribute("required", "required");
             }
+            else {
+                document.getElementById(controlId).style.display = 'none';
+                document.getElementById(controlId).removeAttribute("required");
+            }
+        }
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                //$(document).ready(function () {
+        //$(document).ready(function () {
 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                //})
-        </script>
+        //})
+    </script>
 
-     
-    }
+
+                                                }
