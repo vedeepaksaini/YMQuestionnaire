@@ -87,7 +87,7 @@
 }
 
 .intro-page {
-    background-image: url('Images/bg-intro.jpg');
+    background-image: url('Images/bg.jpg');
     background-position: center center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -95,6 +95,9 @@
     border-bottom: 3px solid #f9973e;
 }
 
+.introLogo img{
+    height:380px;
+}
 
 .step-page {
     padding: 5px;

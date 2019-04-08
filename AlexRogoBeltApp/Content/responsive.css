@@ -2,7 +2,7 @@
     .options ul li label {
         font-size: 16px;
     }
-
+}
     @media(max-width:699px) {
         .intro-page {
             height: 420px;
@@ -27,6 +27,10 @@
 
         .introduction h3, .introduction1 h3 {
             font-size: 18px;
+        }
+
+        .introLogo img {
+            height: 280px;
         }
     }
 
@@ -108,4 +112,8 @@
                 padding-left: 25px;
                 padding-right: 25px;
             }
+            
+        .introLogo img {
+            height: 180px;
+        }
     }
