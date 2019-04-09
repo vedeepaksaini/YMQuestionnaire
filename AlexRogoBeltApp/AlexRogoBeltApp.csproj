@@ -248,6 +248,7 @@
     <Content Include="Content\Images\bg.jpg" />
     <Content Include="Content\Images\bottom-bg.jpg" />
     <Content Include="Content\Images\circle.png" />
+    <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\Goal_movie.png" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\logo_black.png" />
@@ -255,6 +256,7 @@
     <Content Include="Content\Images\steps.png" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\Videos\YellowBelt_Slide6_Video.mp4" />
     <Content Include="Entities\TocicoEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TocicoEntities.edmx</DependentUpon>
@@ -313,6 +315,10 @@
     <Content Include="Views\QuestionMasters\Edit.cshtml" />
     <Content Include="Views\QuestionMasters\Index.cshtml" />
     <Content Include="Views\Shared\Popup.cshtml" />
+    <Content Include="Views\YellowBelt\slide1.cshtml" />
+    <Content Include="Views\YellowBelt\slide2.cshtml" />
+    <Content Include="Views\YellowBelt\slide3.cshtml" />
+    <Content Include="Views\YellowBelt\slide4.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

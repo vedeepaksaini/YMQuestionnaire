@@ -1,0 +1,77 @@
+﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+
+<h2 class="question">
+    @Html.DisplayFor(model => model.Introduction)
+</h2>
+
+<div class="options radiobtn">
+    <h3 class="questionintro">
+        @Html.DisplayFor(model => model.Question)
+    </h3>
+    <ul>
+        @{
+            if (Model != null)
+            {
+                for (var i = 0; i < Model.Answers.Count(); i++)
+                {
+                    <li>
+                        <label>
+                            @{
+                                var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
+                                if (transaction != null)
+                                {
+                                    Model.Answers[i].IsSelected = true;
+                                    Model.Answers[i].ControlValue = transaction.ControlValue;
+                                }
+                            }
+
+                            @if (Model.Answers[i].ControlID == 18)
+                            {
+                                bool isSelected = Model.Answers[i].IsSelected;
+                                @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @disabled = "disabled", @title = Model.Answers[i].ErrorMSG, @onchange = "OtherRadio('Answers_" + i + "__ControlValue');" })
+                            }
+                            else
+                            {
+                                bool isSelected = Model.Answers[i].IsSelected;
+                                @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @onchange = "OtherRadio('Answers_" + i + "__ControlValue');" })
+                            }
+
+                            @Html.DisplayFor(model => Model.Answers[i].Answers)
+
+                            @{
+                                var show = Model.Answers[i].ControlValue == null ? "display:none" : "";
+                                <div id='other_@i' style="display:none">
+                                    @if (Model.Answers[i].ActionID != null)
+                                    {
+                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required" })
+                                        @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:red; font-size:14px;" })
+                                    }
+                                </div>
+                            }
+
+                            @Html.HiddenFor(model => Model.Answers[i].ID)
+                            @Html.HiddenFor(model => model.LevelID)
+                            @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                            @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                            @Html.HiddenFor(model => model.QuestionOrder)
+                        </label>
+                    </li>
+                }
+            }
+        }
+    </ul>
+</div>
+
+<script>
+    function OtherRadio(controlId) {
+        debugger;
+        if (controlId == "Answers_5__ControlValue") {
+            $('#other_5').css("display", "block");
+        }
+        else {
+            $('#other_5').css("display", "none");
+            $('#Answers_5__ControlValue').value == "";
+        }
+    }
+
+</script>

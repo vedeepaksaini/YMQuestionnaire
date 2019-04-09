@@ -1,0 +1,66 @@
+﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+
+<h2 class="question">
+    @Html.DisplayFor(model => model.Introduction)
+</h2>
+
+<div class="options radiobtn">
+    <h3 class="questionintro">
+        @Html.DisplayFor(model => model.Question)
+    </h3>
+    <ul>
+        @{
+            if (Model != null)
+            {
+                for (var i = 0; i < Model.Answers.Count(); i++)
+                {
+                    <li>
+                        <label>
+                            @{
+                                var trans = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
+                                if (trans != null)
+                                {
+                                    Model.Answers[i].IsSelected = true;
+                                }
+                            }
+
+                            @if (Model.Answers[i].ErrorMSG != null)
+                            {
+                                @Html.CheckBoxFor(model => Model.Answers[i].IsSelected, new { @onchange = "ShowError();" })
+                                <i class="glyphicon glyphicon-ok"></i>
+                                @Html.DisplayFor(model => Model.Answers[i].Answers)
+                                @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:red; display:none; font-size:14px;" })
+                            }
+                            else
+                            {
+                                @Html.CheckBoxFor(model => Model.Answers[i].IsSelected)
+                                <i class="glyphicon glyphicon-ok"></i>
+                                @Html.DisplayFor(model => Model.Answers[i].Answers)
+                            }
+
+                            @Html.HiddenFor(model => Model.Answers[i].ID)
+                            @Html.HiddenFor(model => model.LevelID)
+                            @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                            @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                            @Html.HiddenFor(model => model.QuestionOrder)
+                        </label>
+                    </li>
+                }
+            }
+        }
+    </ul>
+</div>
+
+<script>
+    function ShowError(e, labelId) {
+        debugger;
+        if ($('#Answers_0__IsSelected').is(":checked") == false
+            && $('#Answers_1__IsSelected').is(":checked") == false
+            && $('#Answers_2__IsSelected').is(":checked") == true) {
+            $('#lblError').css("display", "");
+        }
+        else {
+            $('#lblError').css("display", "none");
+        }
+    }
+</script>

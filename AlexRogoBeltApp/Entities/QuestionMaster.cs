@@ -27,6 +27,7 @@ namespace AlexRogoBeltApp.Entities
         public bool Deactive { get; set; }
         public int QuestionOrder { get; set; }
         public int LevelID { get; set; }
+        public string ViewName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnswerMaster> AnswerMasters { get; set; }

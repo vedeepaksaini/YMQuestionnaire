@@ -32,6 +32,7 @@ namespace AlexRogoBeltApp.Services
                 Deactive = model.Deactive,
                 LevelID = model.LevelID,
                 QuestionOrder = model.QuestionOrder,
+                ViewName = model.ViewName,
                 Answers = model.AnswerMasters.Where(p => !p.Deactive && p.QuestionID == model.ID).Select(y => new AnswerViewModel
                 {
                     ID = y.ID,
@@ -133,6 +134,30 @@ namespace AlexRogoBeltApp.Services
                     Deactive = q.Deactive
                 }).ToList()
             }).ToList();
+        }
+
+        public ProcessTemplateViewModel GetTemplate(int id)
+        {
+            var process = db.ProcessTemplateMasters.FirstOrDefault(x => !x.Deactive && x.ID == 2);
+
+            if (process == null)
+                return null;
+
+            return new ProcessTemplateViewModel
+            {
+                ID = process.ID,
+                ProcessTemplateName = process.ProcessTemplateName,
+                Steps = process.Steps,
+                Deactive = process.Deactive,
+                ProcessTemplateSteps = process.ProcessTemplateSteps.OrderByDescending(x => x.ProcessOrder).Where(z => !z.Deactive && z.ProcessID == process.ID).Select(q => new ProcessTemplateStepsViewModel
+                {
+                    ID = q.ID,
+                    ProcessID = q.ProcessID,
+                    ProcessOrder = q.ProcessOrder,
+                    StepDescription = q.StepDescription,
+                    Deactive = q.Deactive
+                }).ToList()
+            };
         }
     }
 }

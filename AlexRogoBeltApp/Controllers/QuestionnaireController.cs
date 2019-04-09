@@ -42,9 +42,22 @@ namespace AlexRogoBeltApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Questions(QuestionViewModel model)
+        public ActionResult Questions(QuestionViewModel model, FormCollection frm)
         {
-            var selectedAnswers = model.Answers.Where(x => x.IsSelected || !string.IsNullOrEmpty(x.ControlValue));
+            // For radio button 
+            var ansId = frm["grp"];
+            if (ansId != null)
+            {
+                var answer = model.Answers.FirstOrDefault(x => x.ID.ToString() == ansId);
+                foreach (var item in model.Answers)
+                {
+                    item.IsSelected = false;
+                }
+                answer.IsSelected = true;
+            }
+
+            var selectedAnswers = model.Answers.Where(x => x.IsSelected).ToList();
+            selectedAnswers.AddRange(model.Answers.Where(x => !string.IsNullOrEmpty(x.ControlValue)));
 
             if (selectedAnswers.Count() == 0)
             {
@@ -53,7 +66,7 @@ namespace AlexRogoBeltApp.Controllers
                 return RedirectToAction("Questions");
             }
 
-            List<TransactionViewModel> transactions = selectedAnswers.Select(x => new TransactionViewModel
+            List<TransactionViewModel> transactions = selectedAnswers.Distinct().Select(x => new TransactionViewModel
             {
                 AnswerID = x.ID,
                 MemberID = 1,
@@ -77,6 +90,12 @@ namespace AlexRogoBeltApp.Controllers
             //ViewData["Processes"] = processes;
             //ViewBag.Processes = processes;
             return Json(_service.GetAllTemplates());
+        }
+
+        [WebMethod]
+        public JsonResult GetTemplate(int id)
+        {
+            return Json(_service.GetTemplate(id));
         }
     }
 }

@@ -1,0 +1,64 @@
+﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+
+<h2 class="question">
+    @Html.DisplayFor(model => model.Introduction)
+</h2>
+
+<div class="options radiobtn">
+    <h3 class="questionintro">
+        @Html.DisplayFor(model => model.Question)
+    </h3>
+    <ul>
+        @{
+            if (Model != null)
+            {
+                for (var i = 0; i < Model.Answers.Count(); i++)
+                {
+                    <li>
+                        <label>
+                            @{
+                                var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
+                                if (transaction != null)
+                                {
+                                    Model.Answers[i].IsSelected = true;
+                                    Model.Answers[i].ControlValue = transaction.ControlValue;
+                                }
+                            }
+
+                            <span class="col-md-6" style="padding-left:0px;">
+                                @Html.DisplayFor(model => Model.Answers[i].Answers)
+                            </span>
+
+                            @if (Model.Answers[i].ControlID == 10)
+                            {
+                                <span class="companyName">
+                                    @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", disabled = "disabled", @class = "form-control" })
+                                </span>
+
+                                if (Model.Answers[i].ActionID == 4)
+                                {
+                                    <a href="javascript:void(0)" class="btn-sm changeBtn" onclick="$('#Answers_2__ControlValue').removeAttr('disabled')">Change</a>
+                                }
+
+                            }
+                            else if (Model.Answers[i].ControlID == 6)
+                            {
+                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", @class = "form-control" })
+                            }
+                            else if (Model.Answers[i].ControlID == 4)
+                            {
+                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", @class = "form-control" })
+                            }
+
+                            @Html.HiddenFor(model => Model.Answers[i].ID)
+                            @Html.HiddenFor(model => model.LevelID)
+                            @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                            @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                            @Html.HiddenFor(model => model.QuestionOrder)
+                        </label>
+                    </li>
+                }
+            }
+        }
+    </ul>
+</div>

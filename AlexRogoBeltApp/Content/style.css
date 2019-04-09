@@ -246,3 +246,9 @@
     background: #4782cb;
     color: #ffffff;
 }
+
+.companyName {
+    width: 280px;
+    float: left;
+    padding: 0;
+}
