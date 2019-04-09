@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>User Details Page</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.9/css/all.css" integrity="sha384-5SOiIsAziJl6AWe0HWRKTXlfcSHKmYV4RBF18PPJ173Kzn7jzMyFuTtk8JA7QQG1"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/left-nav.css">
+    <link href="css/admin-style.css" rel="stylesheet" />
+    <link href="css/responsive.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
+        crossorigin="anonymous">
+    <!-- jQuery library -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <!--<script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>-->
+
+    <script src="js/script.js"></script>
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('#toggleButton').on('click', function () {
+                $('#sideMenu').toggleClass('active');
+                $('.overlay').toggleClass('active');
+            });
+            $('.overlay').on('click', function () {
+                $('#sideMenu').removeClass('active');
+                $('.overlay').removeClass('active');
+            });
+        });
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
+
+
+    </script>
+</head>
+
+<body>
+    <div class="wraper userdetails-page">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+                <div class="navbar-header">
+
+                    <a class="navbar-brand center-block" href="/">
+                        <img src="images/TOCICOBannerLogoGoldHorizontal.gif" class="img-responsive logo-img" /> </a>
+                    <button type="button" id="toggleButton" class="navbar-toggle" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+
+                <div class="user-nav-right">
+
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle user-dropdown" data-toggle="dropdown" role="button"
+                                aria-haspopup="true" aria-expanded="false">
+                                <div class="profile-pic"> </div>
+                                <span class="user-name">Vineet Gupta</span>
+                                <span class="fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu user-dropdown-list">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-user"></i> My Account</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-bell"></i> Notifications</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-cog"></i> Setting</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-power-off"></i> Sign out</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+        </nav>
+
+
+        <aside class="side_nav" id="sideMenu">
+            <div>
+                <div id="leftnav">
+                    <ul>
+                        <li>
+                            <a href="dashboard.html">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="questionaire.html">
+                                <i class="fas fa-signal"></i>
+                                <span>Levels</span>
+                            </a>
+                        </li>
+
+                        <li class="has-sub account">
+                            <a href="#">
+                                <div class="profile-pic">
+                                </div>
+                                <span>John Doe</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href='#'>
+                                        <span>My Account</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href='#'>
+                                        <span>Notifications</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href='#'>
+                                        <span>Setting</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href='#'>
+                                        <span>Sign out</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </aside>
+        <div class="overlay"></div>
+        <section class="wrap-content">
+            <header>
+                <h3 class="text-uppercase">Dashboard</h3>
+                <!-- <div class="col-md-3">
+                    <select class="form-control" style="margin-top:15px;">
+
+                        <option>Yellow Belt</option>
+                    </select>
+                </div>
+                <div class="add-btn">
+                    <a href="#" class="btn btn-info btn-secondary" data-toggle="modal" data-target="#addCompany">
+                        <i class="fa fa-plus"></i>
+                        <span>Add</span> Question</a>
+                    <a href="#" class="btn btn-info btn-primry" data-toggle="modal" data-target="#addquestion">
+                        <i class="fa fa-plus"></i>
+                        <span>Add</span> Question</a>
+                </div> -->
+            </header>
+            <div class="app-content dashboard-content">
+
+                <div class="row beltbox">
+                    <div class="col-md-3 yellow">
+                        <h3 style="margin-top:0">Yellow Level</h3>
+                        <div class="overview-tiles">
+                            <div class="fll_wdth">
+                                <div class="pull-left">
+                                    Member Joined
+                                </div>
+                                <div class="pull-right">
+                                    100
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Level Clear
+                                </div>
+                                <div class="pull-right">
+                                    50
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Pending
+                                </div>
+                                <div class="pull-right">
+                                    20
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Upgrade to Green Belt
+                                </div>
+                                <div class="pull-right">
+                                    30
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 green">
+                        <h3 style="margin-top:0">Green Level</h3>
+                        <div class="overview-tiles">
+                            <div class="fll_wdth">
+                                <div class="pull-left">
+                                    Member Joined
+                                </div>
+                                <div class="pull-right">
+                                    100
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Level Clear
+                                </div>
+                                <div class="pull-right">
+                                    50
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Pending
+                                </div>
+                                <div class="pull-right">
+                                    20
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Upgrade to Black Belt
+                                </div>
+                                <div class="pull-right">
+                                    30
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 black">
+                        <h3 style="margin-top:0">Black Level</h3>
+                        <div class="overview-tiles">
+                            <div class="fll_wdth">
+                                <div class="pull-left">
+                                    Member Joined
+                                </div>
+                                <div class="pull-right">
+                                    100
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Level Clear
+                                </div>
+                                <div class="pull-right">
+                                    50
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Pending
+                                </div>
+                                <div class="pull-right">
+                                    20
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Upgrade to TOC Expert
+                                </div>
+                                <div class="pull-right">
+                                    30
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 tocexpert">
+                        <h3 style="margin-top:0">TOC Expert</h3>
+                        <div class="overview-tiles">
+                            <div class="fll_wdth">
+                                <div class="pull-left">
+                                    Member Joined
+                                </div>
+                                <div class="pull-right">
+                                    100
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Level Clear
+                                </div>
+                                <div class="pull-right">
+                                    50
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Pending
+                                </div>
+                                <div class="pull-right">
+                                    20
+                                </div>
+                            </div>
+                            <div class="fll_wdth mt-10">
+                                <div class="pull-left">
+                                    Completed
+                                </div>
+                                <div class="pull-right">
+                                    30
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="dashboard-content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- <h3 style="margin-top:0">Overview</h3> -->
+                        <!-- <div class="bg-white p-2">
+
+
+                            <ul class="nav nav-tabs beltLevels" role="tablist">
+                                <li role="presentation" class="active"><a href="#yellow" aria-controls="home" role="tab"
+                                        data-toggle="tab">Yellow Belt</a></li>
+                                <li role="presentation"><a href="#green" aria-controls="profile" role="tab" data-toggle="tab">Green
+                                        Belt</a></li>
+                                <li role="presentation"><a href="#black" aria-controls="messages" role="tab"
+                                        data-toggle="tab">Black
+                                        Belt</a></li>
+                                <li role="presentation"><a href="#tocexpert" aria-controls="settings" role="tab"
+                                        data-toggle="tab">TOC
+                                        Expert</a></li>
+                            </ul>
+
+
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="yellow">
+                                    <div class="row mt-20">
+                                        <div class="col-md-6">
+                                            <div class="overview-tiles tilePassed">
+                                                <div class="pull-left">
+                                                    <h1>102</h1>
+                                                    <h5>Passed</h5>
+                                                </div>
+                                                <div class="pull-right" style="margin-top: 10px;">
+                                                    <i class="fas fa-check fa-3x"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="overview-tiles tileinpro">
+                                                <div class="pull-left">
+                                                    <h1>3</h1>
+                                                    <h5>Inprogress</h5>
+                                                </div>
+                                                <div class="pull-right" style="margin-top: 10px;">
+                                                    <i class="fas fa-spinner fa-3x"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-20">
+                                        <div class="col-md-6">
+                                            <div class="overview-tiles tilewait">
+                                                <div class="pull-left">
+                                                    <h1>15</h1>
+                                                    <h5>Waiting</h5>
+                                                </div>
+                                                <div class="pull-right" style="margin-top: 10px;">
+                                                    <i class="fas fa-hourglass-half fa-3x"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="overview-tiles tilefailed">
+                                                <div class="pull-left">
+                                                    <h1>13</h1>
+                                                    <h5>Failed</h5>
+                                                </div>
+                                                <div class="pull-right" style="margin-top: 10px;">
+                                                    <i class="fas fa-times-circle fa-3x"></i>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="green">...</div>
+                                <div role="tabpanel" class="tab-pane" id="black">...</div>
+                                <div role="tabpanel" class="tab-pane" id="tocexpert">...</div>
+                            </div>
+
+                        </div> -->
+                        <div class="fll_wdth">
+                            <h3 style="margin-top:0" class="pull-left">Monthly Joining Growth</h3>
+                            <!-- <div class="form-group pull-right">
+                                <select class="form-control col-md-6" id="charts">
+                                    <option value="bar">Bar</option>
+                                    <option value="Line">Line</option>
+                                </select>
+                            </div> -->
+                        </div>
+                        <div class="bg-white p-2 fll_wdth">
+                            <canvas id="myChart" width="400" height="120"></canvas>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="dashboard-content">
+                <div class="row">
+                    <div class="col-md-6">
+
+                        <h3 style="margin-top:0">Level Clear</h3>
+                        <div class="bg-white p-2" style="max-height: 314px; min-height: 314px; overflow-y: auto;">
+                            <table class="table table-bordered table-hover" style="margin:0">
+                                <thead>
+                                    <tr class="info">
+                                        <th>Col1</th>
+                                        <th>Col2</th>
+                                        <th>Col3</th>
+                                        <th>Col4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>r1c1</td>
+                                        <td>r1c2</td>
+                                        <td>r1c3</td>
+                                        <td>r1c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r2c1</td>
+                                        <td>r2c2</td>
+                                        <td>r2c3</td>
+                                        <td>r2c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r3c1</td>
+                                        <td>r3c2</td>
+                                        <td>r3c3</td>
+                                        <td>r3c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r3c1</td>
+                                        <td>r3c2</td>
+                                        <td>r3c3</td>
+                                        <td>r3c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r3c1</td>
+                                        <td>r3c2</td>
+                                        <td>r3c3</td>
+                                        <td>r3c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r3c1</td>
+                                        <td>r3c2</td>
+                                        <td>r3c3</td>
+                                        <td>r3c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r3c1</td>
+                                        <td>r3c2</td>
+                                        <td>r3c3</td>
+                                        <td>r3c4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h3 style="margin-top:0">Upgrade to next level</h3>
+                        <div class="bg-white p-2" style="max-height: 314px; min-height: 314px; overflow-y: auto;">
+                            <table class="table table-bordered table-hover" style="margin:0; ">
+                                <thead>
+                                    <tr class="info">
+                                        <th>Col1</th>
+                                        <th>Col2</th>
+                                        <th>Col3</th>
+                                        <th>Col4</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>r1c1</td>
+                                        <td>r1c2</td>
+                                        <td>r1c3</td>
+                                        <td>r1c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r2c1</td>
+                                        <td>r2c2</td>
+                                        <td>r2c3</td>
+                                        <td>r2c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r3c1</td>
+                                        <td>r3c2</td>
+                                        <td>r3c3</td>
+                                        <td>r3c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r3c1</td>
+                                        <td>r3c2</td>
+                                        <td>r3c3</td>
+                                        <td>r3c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r3c1</td>
+                                        <td>r3c2</td>
+                                        <td>r3c3</td>
+                                        <td>r3c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r3c1</td>
+                                        <td>r3c2</td>
+                                        <td>r3c3</td>
+                                        <td>r3c4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>r3c1</td>
+                                        <td>r3c2</td>
+                                        <td>r3c3</td>
+                                        <td>r3c4</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+    </div>
+    </section>
+
+
+
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+
+    <script>
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var chart = new Chart(ctx, {
+            // The type of chart we want to create
+            type: 'bar',
+
+            // The data for our dataset
+            data: {
+                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+                datasets: [
+                    {
+                        type: 'line',
+                        label: 'Highest',
+                        backgroundColor: '#ff0000',
+                        borderColor: '#ff0000   ',
+                        borderWidth: 2,
+                        data: [25, 20, 15, 30, 50, 30, 45, 50, 35, 50, 35, 45],
+                        fill: false
+                    },
+                    {
+                        label: 'Yellow Level',
+                        backgroundColor: '#ffd000',
+                        borderColor: '#ffd000',
+                        data: [10, 20, 15, 30, 40, 25, 45, 40, 35, 25, 15, 45]
+
+                    }, {
+                        label: 'Green Level',
+                        backgroundColor: '#0ba360',
+                        borderColor: '#0ba360',
+                        data: [25, 10, 5, 25, 50, 30, 45, 23, 20, 5, 35, 15]
+
+                    }, {
+                        label: 'Black Level',
+                        backgroundColor: '#000000',
+                        borderColor: '#444444',
+                        data: [15, 10, 5, 2, 50, 30, 45, 25, 20, 50, 30, 45]
+
+                    }, {
+                        label: 'TOC Expert',
+                        backgroundColor: '#2984c4',
+                        borderColor: '#2984c4   ',
+                        data: [15, 10, 5, 2, 20, 30, 45, 50, 20, 10, 5, 30]
+
+                    },
+
+                ]
+            },
+            options: {
+                title: {
+                    display: true,
+                    text: 'Monthly Joining Growth'
+                }
+            }
+
+
+        });
+
+
+    </script>
+</body>
+
+</html>
