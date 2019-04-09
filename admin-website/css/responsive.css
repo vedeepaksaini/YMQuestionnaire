@@ -1,4 +1,10 @@
-﻿@media (min-width: 768px){
+﻿@media (max-width:991px){
+    .overview-tiles {
+        margin-bottom: 30px;
+    }
+}
+
+@media (min-width: 768px){
     .navbar-collapse.collapse{
         height:100vh !important;
     }
@@ -105,7 +111,7 @@
    .add-btn .btn-primry, .add-btn .btn-primry:focus {
     background: #1d70b7;
     border-color: #009ee2;
-    padding: 5px 10px;
+    padding: 9px 10px;
     font-size: 12px;
    
 }
@@ -115,6 +121,9 @@
     padding: 5px 10px;
     font-size: 12px;
    
+}
+.mt-xs-5{
+    margin-top: 5px;
 }
 }
 
@@ -171,6 +180,21 @@
         width: 36px;
         height: 36px;
         margin-top: 15px;
+    }
+    .logo-img {
+        width: 180px;
+    }
+
+    .wrap-content {
+      
+        margin-top: 72.5px;
+    }
+    .navbar{
+        margin-bottom: 0;
+    }
+    .navbar-toggle{
+        margin-top: 15px;
+        
     }
 }
 
