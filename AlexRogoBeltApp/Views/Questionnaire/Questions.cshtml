@@ -4,78 +4,37 @@
     ViewBag.Title = "Yellow Belt";
 }
 
-@*@Html.AntiForgeryToken()*@
-
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-    function GetProcesses() {
-        $.ajax({
-            type: "POST", url: "GetAllTemplates", dataType: "json", contentType: "application/json", success: function (res) {
-                localStorage.setItem('TemplateResponse', JSON.stringify(res));
-
-                $.each(res, function (data, value) {
-                    $("#ProcessTemplateDropdown").append($("<option></option>").val(value.ID).html(value.ProcessTemplateName));
-                })
-            },
-            error: function (response) {
-            }
-        });
+    function Other(e, controlId, labelId) {
+        var val = $(e).is(':checked');
+        if (val) {
+            document.getElementById(controlId).style.display = '';
+            document.getElementById(labelId).style.display = '';
+            document.getElementById(controlId).setAttribute("required", "required");
+        }
+        else {
+            document.getElementById(controlId).style.display = 'none';
+            document.getElementById(labelId).style.display = 'none';
+            document.getElementById(controlId).removeAttribute("required");
+            document.getElementById(controlId).value = "";
+        }
     }
-    function GetProcess(id) {
-        $.ajax({
-            type: "POST", url: "GetTemplate", data: JSON.stringify({ id: 8 }), dataType: "json", contentType: "application/json", success: function (res) {
-                localStorage.setItem('TemplateResponse', JSON.stringify(res));
-
-                $.each(res, function (data, value) {
-                    $("#ProcessTemplateDropdown").append($("<option></option>").val(value.ID).html(value.ProcessTemplateName));
-                });
-                debugger;
-                ProcessSelected();
-            },
-            error: function (response) {
-            }
-        });
-    }
-    function ProcessSelectionChanged(id) {
+    function MovieCheckboxError(e, labelId) {
         debugger;
-        var data = localStorage.getItem('TemplateResponse');
-        var object = JSON.parse(data).find(item => item.ID == id);
-
-        $("#steps").empty();
-        $("#images").empty();
-        $.each(object.ProcessTemplateSteps, function (key, value) {
-            debugger;
-            $('#steps').prepend('<td align="center">' + value.StepDescription + '</td>')
-            $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
-        });
-    }
-    function ProcessSelected() {
-        debugger;
-        var data = localStorage.getItem('TemplateResponse');
-        var object = JSON.parse(data);
-
-        $("#steps").empty();
-        $("#images").empty();
-        $.each(object.ProcessTemplateSteps, function (key, value) {
-            debugger;
-            $('#steps').prepend('<td align="center">' + value.StepDescription + '</td>')
-            $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
-        });
-    }
-    function RenderPopup(val) {
-        debugger;
-        $('#myModal').modal('show');
-        $('#myModalLabel').text(val);
-        $('#popupbody').text('This is ' + val + ' description.');
-
+        var val = $(e).is(':checked');
+        if (val) {
+            document.getElementById(labelId).style.display = '';
+        }
+        else {
+            document.getElementById(labelId).style.display = 'none';
+        }
     }
 </script>
 
-
-
 @using (Html.BeginForm())
 {
+    @*@Html.AntiForgeryToken()*@
+
     <div class="container">
         <div class="box-wrapper" style="background-image: linear-gradient(to top,#ace0f9  0%,  #fff1eb 100%);">
             <div class="question-area">
@@ -103,43 +62,4 @@
             </footer>
         </div>
     </div>
-
-    <script>
-        function Other(e, controlId, labelId) {
-            //$(".cb").change(function () {
-            //    debugger;
-            //    var val = $(this).is(':checked');
-            //    if (val)
-            //        $(".txt").css("display", "");
-            //    else
-            //        $(".txt").css("display", "none");
-            debugger;
-            //});
-            var val = $(e).is(':checked');
-            if (val) {
-                document.getElementById(controlId).style.display = '';
-                document.getElementById(labelId).style.display = '';
-                document.getElementById(controlId).setAttribute("required", "required");
-            }
-            else {
-                document.getElementById(controlId).style.display = 'none';
-                document.getElementById(labelId).style.display = 'none';
-                document.getElementById(controlId).removeAttribute("required");
-                document.getElementById(controlId).value = "";
-            }
-        }
-
-        function MovieCheckboxError(e, labelId) {
-            debugger;
-            var val = $(e).is(':checked');
-            if (val) {
-                document.getElementById(labelId).style.display = '';
-            }
-            else {
-                document.getElementById(labelId).style.display = 'none';
-            }
-        }
-    </script>
-
-
 }

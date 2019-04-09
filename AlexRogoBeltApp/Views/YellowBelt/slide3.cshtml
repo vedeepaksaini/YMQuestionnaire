@@ -40,10 +40,10 @@
 
                             @{
                                 var show = Model.Answers[i].ControlValue == null ? "display:none" : "";
-                                <div id='other_@i' style="display:none">
+                                <div id='other_@i' style="@show">
                                     @if (Model.Answers[i].ActionID != null)
                                     {
-                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required" })
+                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue)
                                         @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:red; font-size:14px;" })
                                     }
                                 </div>
@@ -64,14 +64,14 @@
 
 <script>
     function OtherRadio(controlId) {
-        debugger;
         if (controlId == "Answers_5__ControlValue") {
             $('#other_5').css("display", "block");
+            $('#Answers_5__ControlValue').attr("required", "required");
         }
         else {
             $('#other_5').css("display", "none");
-            $('#Answers_5__ControlValue').value == "";
+            $('#Answers_5__ControlValue').removeAttr("required");
+            $('#Answers_5__ControlValue').val("");
         }
     }
-
 </script>

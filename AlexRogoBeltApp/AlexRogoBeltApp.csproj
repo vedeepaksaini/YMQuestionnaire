@@ -306,7 +306,6 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Questionnaire\GetStarted.cshtml" />
-    <Content Include="Views\Questionnaire\StartLevel.cshtml" />
     <Content Include="Views\Questionnaire\Questions.cshtml" />
     <Content Include="Views\Questionnaire\Questiosdsdns.cshtml" />
     <Content Include="Views\QuestionMasters\Create.cshtml" />
@@ -319,6 +318,10 @@
     <Content Include="Views\YellowBelt\slide2.cshtml" />
     <Content Include="Views\YellowBelt\slide3.cshtml" />
     <Content Include="Views\YellowBelt\slide4.cshtml" />
+    <Content Include="Views\YellowBelt\slide5.cshtml" />
+    <Content Include="Views\YellowBelt\slide6.cshtml" />
+    <Content Include="Views\YellowBelt\slide7.cshtml" />
+    <Content Include="Views\YellowBelt\slide8.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

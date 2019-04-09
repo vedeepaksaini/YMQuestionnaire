@@ -18,11 +18,6 @@ namespace AlexRogoBeltApp.Controllers
             return View();
         }
 
-        public ActionResult StartLevel()
-        {
-            return View();
-        }
-
         public ActionResult Questions()
         {
             if (Request.QueryString["QuestionOrder"] == null)

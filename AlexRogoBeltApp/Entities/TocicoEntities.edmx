@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TocicoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TocicoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActionMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -403,7 +403,8 @@
             <End Role="TransactionMaster" EntitySet="TransactionMaster" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TocicoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -552,10 +553,10 @@
           <Property Name="Deactive" Type="Boolean" Nullable="false" />
           <Property Name="QuestionOrder" Type="Int32" Nullable="false" />
           <Property Name="LevelID" Type="Int32" Nullable="false" />
+          <Property Name="ViewName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="AnswerMasters" Relationship="Self.FK__AnswerMas__Quest__797309D9" FromRole="QuestionMaster" ToRole="AnswerMaster" />
           <NavigationProperty Name="LevelMaster" Relationship="Self.FK__QuestionM__Level__5070F446" FromRole="QuestionMaster" ToRole="LevelMaster" />
           <NavigationProperty Name="TransactionMasters" Relationship="Self.FK__Transacti__Quest__1ED998B2" FromRole="QuestionMaster" ToRole="TransactionMaster" />
-          <Property Name="ViewName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
@@ -582,7 +583,7 @@
             <PropertyRef Name="QuestionID" />
             <PropertyRef Name="AnswerID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
           <Property Name="QuestionID" Type="Int32" Nullable="false" />
           <Property Name="AnswerID" Type="Int32" Nullable="false" />
@@ -963,13 +964,13 @@
           <EntitySetMapping Name="QuestionMasters">
             <EntityTypeMapping TypeName="TocicoModel.QuestionMaster">
               <MappingFragment StoreEntitySet="QuestionMaster">
-                <ScalarProperty Name="ViewName" ColumnName="ViewName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Introduction" ColumnName="Introduction" />
                 <ScalarProperty Name="Question" ColumnName="Question" />
                 <ScalarProperty Name="Deactive" ColumnName="Deactive" />
                 <ScalarProperty Name="QuestionOrder" ColumnName="QuestionOrder" />
                 <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+                <ScalarProperty Name="ViewName" ColumnName="ViewName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

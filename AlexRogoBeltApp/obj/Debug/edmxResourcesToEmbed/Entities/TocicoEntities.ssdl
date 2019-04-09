@@ -17,7 +17,7 @@
     <Property Name="QuestionID" Type="int" Nullable="false" />
     <Property Name="Answers" Type="varchar" MaxLength="900" />
     <Property Name="Deactive" Type="bit" Nullable="false" />
-    <Property Name="ErrorMSG" Type="varchar" MaxLength="50" />
+    <Property Name="ErrorMSG" Type="varchar" MaxLength="900" />
     <Property Name="ErrorAction" Type="varchar" MaxLength="50" />
     <Property Name="ControlID" Type="int" />
     <Property Name="ActionID" Type="int" />
@@ -124,6 +124,7 @@
     <Property Name="Deactive" Type="bit" Nullable="false" />
     <Property Name="QuestionOrder" Type="int" Nullable="false" />
     <Property Name="LevelID" Type="int" Nullable="false" />
+    <Property Name="ViewName" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="sysdiagrams">
     <Key>

@@ -1,0 +1,22 @@
+﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+
+<h2 class="question">
+    @Html.DisplayFor(model => model.Introduction)
+</h2>
+<video width="400" controls="controls">
+    <source src="~/Content/Videos/YellowBelt_Slide6_Video.mp4" type="video/mp4" />
+    <source src="mov_bbb.ogg" type="video/ogg">
+    Your browser does not support HTML5 video.
+</video>
+
+From The Goal movie: available from Goldratt’s Marketing Group <a href="https://www.toc-goldratt.com/en/product/the-goal-movie-how-to-version" target="_blank">here</a>.
+
+@{
+    Model.Answers.FirstOrDefault().IsSelected = true;
+}
+
+@Html.HiddenFor(model => Model.Answers[0].ID)
+@Html.HiddenFor(model => model.LevelID)
+@Html.HiddenFor(model => Model.Answers[0].QuestionID)
+@Html.HiddenFor(model => Model.Answers[0].IsSelected)
+@Html.HiddenFor(model => model.QuestionOrder)

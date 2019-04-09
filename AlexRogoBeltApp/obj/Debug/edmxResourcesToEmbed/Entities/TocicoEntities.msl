@@ -131,6 +131,7 @@
           <ScalarProperty Name="Deactive" ColumnName="Deactive" />
           <ScalarProperty Name="QuestionOrder" ColumnName="QuestionOrder" />
           <ScalarProperty Name="LevelID" ColumnName="LevelID" />
+          <ScalarProperty Name="ViewName" ColumnName="ViewName" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

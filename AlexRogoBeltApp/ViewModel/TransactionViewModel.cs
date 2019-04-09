@@ -7,7 +7,7 @@ namespace AlexRogoBeltApp.ViewModel
 {
     public class TransactionViewModel
     {
-        public int ID { get; set; }
+        public long ID { get; set; }
         public int MemberID { get; set; }
         public int QuestionID { get; set; }
         public int AnswerID { get; set; }
