@@ -4,33 +4,22 @@
     ViewBag.Title = "Yellow Belt";
 }
 
-<script>
-    function Other(e, controlId, labelId) {
-        var val = $(e).is(':checked');
-        if (val) {
-            document.getElementById(controlId).style.display = '';
-            document.getElementById(labelId).style.display = '';
-            document.getElementById(controlId).setAttribute("required", "required");
-        }
-        else {
-            document.getElementById(controlId).style.display = 'none';
-            document.getElementById(labelId).style.display = 'none';
-            document.getElementById(controlId).removeAttribute("required");
-            document.getElementById(controlId).value = "";
-        }
-    }
-    function MovieCheckboxError(e, labelId) {
-        debugger;
-        var val = $(e).is(':checked');
-        if (val) {
-            document.getElementById(labelId).style.display = '';
-        }
-        else {
-            document.getElementById(labelId).style.display = 'none';
-        }
-    }
-</script>
+@*<script>
+    $(document).ready(function () {
+        $('#saveButton').click(function () {
+            debugger;
+            $(this).prop("disabled", true);
+            if (!$('form').valid()) {
+                $(this).prop("disabled", false);
+                return false;
+            }
+            $('form').submit();
+        });
+    });
+</script>*@
 
+@{ Html.EnableClientValidation(true); }
+@{ Html.EnableUnobtrusiveJavaScript(); }
 @using (Html.BeginForm())
 {
     @*@Html.AntiForgeryToken()*@
@@ -51,7 +40,7 @@
                         < Back
                     </a>
 
-                    <input type="submit" value="Next >" class="mt-2 btn btn-success btn-lg pull-right" />
+                    <input type="submit" id="saveButton" value="Next >" class="mt-2 btn btn-success btn-lg pull-right" />
                 </div>
                 <div class="footer-copyright">
                     <img src="~/Content/Images/logo_black.png" />
