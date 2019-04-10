@@ -62,12 +62,14 @@
                                         Model.Answers[i].ControlValue = transaction.ControlValue;
                                     }
                                 }*@
-
-                            @Html.DisplayFor(model => Model.Answers[i].Answers)
-
-                            <script>GetProcesses()</script>
-                            <select id="ProcessTemplateDropdown" class="form-control" onchange="ProcessSelectionChanged(this.value)"><option value="0">Select Process</option></select>
-                            <div class="table-responsive">
+                            <div class="row">
+                                <span class="col-md-4">
+                                    @Html.DisplayFor(model => Model.Answers[i].Answers)
+                                </span>
+                                <script>GetProcesses()</script>
+                                <select id="ProcessTemplateDropdown" class="form-control" onchange="ProcessSelectionChanged(this.value)"><option value="0">Select Process</option></select>
+                            </div>
+                                 <div class="table-responsive">
                                 <table style="width:100%; margin-top:15px;">
                                     <tr id="steps"></tr>
                                     <tr><td></td></tr>
