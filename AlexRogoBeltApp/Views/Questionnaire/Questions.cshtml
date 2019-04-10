@@ -5,18 +5,18 @@
 }
 
 @*<script>
-    $(document).ready(function () {
-        $('#saveButton').click(function () {
-            debugger;
-            $(this).prop("disabled", true);
-            if (!$('form').valid()) {
-                $(this).prop("disabled", false);
-                return false;
-            }
-            $('form').submit();
+        $(document).ready(function () {
+            $('#saveButton').click(function () {
+                debugger;
+                $(this).prop("disabled", true);
+                if (!$('form').valid()) {
+                    $(this).prop("disabled", false);
+                    return false;
+                }
+                $('form').submit();
+            });
         });
-    });
-</script>*@
+    </script>*@
 
 @{ Html.EnableClientValidation(true); }
 @{ Html.EnableUnobtrusiveJavaScript(); }

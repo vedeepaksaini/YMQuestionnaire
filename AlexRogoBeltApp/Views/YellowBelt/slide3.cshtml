@@ -15,7 +15,7 @@
                 for (var i = 0; i < Model.Answers.Count(); i++)
                 {
                     <li>
-                        <label  title="@Model.Answers[i].ErrorMSG">
+                        <label title="@Model.Answers[i].ErrorMSG">
                             <span class="pull-left">
                                 @{
                                     var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
@@ -39,12 +39,13 @@
 
                                 @Html.DisplayFor(model => Model.Answers[i].Answers)
                             </span>
+
                             @{
                                 var show = Model.Answers[i].ControlValue == null ? "display:none" : "";
                                 <span id='other_@i' style="@show">
                                     @if (Model.Answers[i].ActionID != null)
                                     {
-                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { style= "margin-left:10px;" })
+                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { style = "margin-left:10px;" })
                                         @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:red; font-size:14px;" })
                                     }
                                 </span>

@@ -29,8 +29,6 @@
 
                             @Html.DisplayFor(model => Model.Answers[i].Answers)
 
-
-
                             @Html.HiddenFor(model => Model.Answers[i].ID)
                             @Html.HiddenFor(model => model.LevelID)
                             @Html.HiddenFor(model => Model.Answers[i].QuestionID)
@@ -44,7 +42,7 @@
                 {
                     if (Model.Answers[i].ErrorMSG != null)
                     {
-                       @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError" + i, style = "display:none;color:red; font-size:14px;" })
+                        @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError" + i, style = "display:none;color:red; font-size:14px;" })
                     }
                 }
             }
