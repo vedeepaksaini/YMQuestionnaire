@@ -3,13 +3,23 @@
 <h2 class="question">
     @Html.DisplayFor(model => model.Introduction)
 </h2>
-<video width="400" controls="controls">
-    <source src="~/Content/Videos/YellowBelt_Slide6_Video.mp4" type="video/mp4" />
-    <source src="mov_bbb.ogg" type="video/ogg">
-    Your browser does not support HTML5 video.
-</video>
 
-From The Goal movie: available from Goldratt’s Marketing Group <a href="https://www.toc-goldratt.com/en/product/the-goal-movie-how-to-version" target="_blank">here</a>.
+<div class="center-block">
+    <div class="row mt-3">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="embed-responsive embed-responsive-16by9">
+                <video width="600" controls="controls" class="center-block">
+                    <source src="~/Content/Videos/YellowBelt_Slide6_Video.mp4" type="video/mp4" />
+                    Your browser does not support HTML5 video.
+                </video>
+            </div>
+        </div>
+        
+    </div>
+    <div class="text-center mt-1">
+        From The Goal movie: available from Goldratt’s Marketing Group <a href="https://www.toc-goldratt.com/en/product/the-goal-movie-how-to-version" target="_blank">here</a>.
+    </div>
+</div>
 
 @{
     Model.Answers.FirstOrDefault().IsSelected = true;

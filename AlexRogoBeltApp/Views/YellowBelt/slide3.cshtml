@@ -15,38 +15,39 @@
                 for (var i = 0; i < Model.Answers.Count(); i++)
                 {
                     <li>
-                        <label title="@Model.Answers[i].ErrorMSG">
-                            @{
-                                var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
-                                if (transaction != null)
-                                {
-                                    Model.Answers[i].IsSelected = true;
-                                    Model.Answers[i].ControlValue = transaction.ControlValue;
+                        <label  title="@Model.Answers[i].ErrorMSG">
+                            <span class="pull-left">
+                                @{
+                                    var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
+                                    if (transaction != null)
+                                    {
+                                        Model.Answers[i].IsSelected = true;
+                                        Model.Answers[i].ControlValue = transaction.ControlValue;
+                                    }
                                 }
-                            }
 
-                            @if (Model.Answers[i].ControlID == 18)
-                            {
-                                bool isSelected = Model.Answers[i].IsSelected;
-                                @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @disabled = "disabled", @onchange = "OtherRadio('Answers_" + i + "__ControlValue');" })
-                            }
-                            else
-                            {
-                                bool isSelected = Model.Answers[i].IsSelected;
-                                @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @onchange = "OtherRadio('Answers_" + i + "__ControlValue');" })
-                            }
+                                @if (Model.Answers[i].ControlID == 18)
+                                {
+                                    bool isSelected = Model.Answers[i].IsSelected;
+                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @disabled = "disabled", @onchange = "OtherRadio('Answers_" + i + "__ControlValue');" })
+                                }
+                                else
+                                {
+                                    bool isSelected = Model.Answers[i].IsSelected;
+                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @onchange = "OtherRadio('Answers_" + i + "__ControlValue');" })
+                                }
 
-                            @Html.DisplayFor(model => Model.Answers[i].Answers)
-
+                                @Html.DisplayFor(model => Model.Answers[i].Answers)
+                            </span>
                             @{
                                 var show = Model.Answers[i].ControlValue == null ? "display:none" : "";
-                                <div id='other_@i' style="@show">
+                                <span id='other_@i' style="@show">
                                     @if (Model.Answers[i].ActionID != null)
                                     {
-                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue)
+                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { style= "margin-left:10px;" })
                                         @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:red; font-size:14px;" })
                                     }
-                                </div>
+                                </span>
                             }
 
                             @Html.HiddenFor(model => Model.Answers[i].ID)
@@ -74,4 +75,5 @@
             $('#Answers_5__ControlValue').val("");
         }
     }
+
 </script>

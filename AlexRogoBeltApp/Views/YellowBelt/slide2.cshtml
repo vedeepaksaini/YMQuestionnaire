@@ -26,7 +26,9 @@
                             }
 
                             <span class="col-md-6" style="padding-left:0px;">
-                                @Html.DisplayFor(model => Model.Answers[i].Answers)
+                                @Html.DisplayFor(model => Model.Answers[i].Answers) 
+                                
+                                <span class="text-danger">*</span>
                             </span>
 
                             @if (Model.Answers[i].ControlID == 10)
