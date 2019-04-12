@@ -4,37 +4,80 @@
     function GetProcesses() {
         $.ajax({
             type: "POST", url: "GetAllTemplates", dataType: "json", contentType: "application/json", success: function (res) {
-                debugger;
                 localStorage.setItem('TemplateResponse', JSON.stringify(res));
-
                 $.each(res, function (data, value) {
-                    debugger;
                     $("#ProcessTemplateDropdown").append($("<option></option>").val(value.ID).html(value.ProcessTemplateName));
-                })
+                });
+                $("#ProcessTemplateDropdown").append($("<option></option>").val("Custom").html("Custom"));
             },
             error: function (response) {
             }
         });
     }
-    function ProcessSelectionChanged(id) {
-        debugger;
-        var data = localStorage.getItem('TemplateResponse');
-        var object = JSON.parse(data).find(item => item.ID == id);
 
+    function ProcessSelectionChanged(id) {
         $("#steps").empty();
         $("#images").empty();
-        $.each(object.ProcessTemplateSteps, function (key, value) {
-            debugger;
-            $('#steps').prepend('<td align="center">' + value.StepDescription + '</td>')
-            $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
-        });
-    }
-    function RenderPopup(val) {
-        debugger;
-        $('#myModal').modal('show');
-        $('#myModalLabel').text(val);
-        $('#popupbody').text('This is ' + val + ' description.');
 
+        if (id == "Custom") {
+            $('#btnAddStep').css("display", "block");
+        } else {
+            $('#btnAddStep').css("display", "none");
+            var data = localStorage.getItem('TemplateResponse');
+            var object = JSON.parse(data).find(item => item.ID == id);
+            $.each(object.ProcessTemplateSteps, function (key, value) {
+                $('#steps').append('<td id="td_' + value.StepDescription + '" align="center">' + value.StepDescription + '</td>')
+                $('#images').append('<td align="center"><a id="a_' + value.StepDescription + '" href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
+            });
+        }
+    }
+
+    function RenderPopup(val) {
+        $('#myModal').modal('show');
+        $('#TextboxProcessName').val(val);
+        $('#myModalLabel').text(val);
+        localStorage.setItem("StepName", val);
+    }
+
+    function SavePopupChanges() {
+        debugger;
+        if ($('#TextboxProcessName').val() == "") {
+            $('#errorExist').hide();
+            $('#errorRequired').show();
+        } else {
+            if (localStorage.getItem("StepName") === null) {
+                var stepName = $('#TextboxProcessName').val();
+                if ($('#td_' + stepName.replace(/ /g, "_")).length) {
+                    $('#errorRequired').hide();
+                    $('#errorExist').show();
+                    return;
+                }
+                $('#steps').append('<td id="td_' + stepName + '" align="center">' + stepName + '</td>')
+                $('#images').append('<td align="center"><a id="a_' + stepName + '" href="javascript:void(0)" onclick="RenderPopup(' + "'" + stepName + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
+            } else {
+                var oldValue = localStorage.getItem("StepName").replace(/ /g, "_");
+                var newValue = $('#TextboxProcessName').val();
+                if ($('#td_' + newValue.replace(/ /g, "_")).length) {
+                    $('#errorRequired').hide();
+                    $('#errorExist').show();
+                    return;
+                }
+                $('#td_' + oldValue).html(newValue);
+                $('#td_' + oldValue).attr("id", "td_" + newValue.replace(/ /g, "_"));
+                $('#a_' + oldValue).attr("onclick", "RenderPopup('" + newValue + "')");
+                $('#a_' + oldValue).attr("id", "a_" + newValue.replace(/ /g, "_"));
+            }
+            ClearPopup();
+        }
+    }
+
+    function ClearPopup() {
+        $('#errorRequired').hide();
+        $('#errorExist').hide();
+        $('#myModal').modal('hide');
+        $('#myModalLabel').text("");
+        $('#TextboxProcessName').val("");
+        localStorage.removeItem("StepName");
     }
 </script>
 
@@ -68,10 +111,12 @@
                                     @Html.DisplayFor(model => Model.Answers[i].Answers)
                                 </span>
                                 <script>GetProcesses()</script>
-                                <select id="ProcessTemplateDropdown" class="form-control" onchange="ProcessSelectionChanged(this.value)"><option value="0">Select Process</option></select>
+
+                                <select id="ProcessTemplateDropdown" class="form-control pull-left" style="margin-right:15px;" onchange="ProcessSelectionChanged(this.value)"><option value="0">Select Process</option></select>
+                                <button type="button" id="btnAddStep" class="btn btn-info" style="display:none;" onclick="$('#myModal').modal('show')"><b>+</b> Add</button>
                             </div>
                             <div class="table-responsive">
-                                <table style="width:100%; margin-top:15px;">
+                                <table id="tblProcess" style="width:100%; margin-top:15px;">
                                     <tr id="steps"></tr>
                                     <tr><td></td></tr>
                                     <tr id="images"></tr>

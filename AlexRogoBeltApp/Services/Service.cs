@@ -125,7 +125,7 @@ namespace AlexRogoBeltApp.Services
                 ProcessTemplateName = y.ProcessTemplateName,
                 Steps = y.Steps,
                 Deactive = y.Deactive,
-                ProcessTemplateSteps = y.ProcessTemplateSteps.OrderByDescending(x => x.ProcessOrder).Where(z => !z.Deactive && z.ProcessID == y.ID).Select(q => new ProcessTemplateStepsViewModel
+                ProcessTemplateSteps = y.ProcessTemplateSteps.OrderBy(x => x.ProcessOrder).Where(z => !z.Deactive && z.ProcessID == y.ID).Select(q => new ProcessTemplateStepsViewModel
                 {
                     ID = q.ID,
                     ProcessID = q.ProcessID,

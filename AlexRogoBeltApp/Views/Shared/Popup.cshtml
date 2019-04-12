@@ -1,16 +1,28 @@
-﻿<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+﻿<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-backdrop="static">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <div class="row">
+                    <span class="col-md-5">
+                        <strong>Business Process Step:</strong>
+                    </span>
+                    <span class="col-md-5" style="margin-left: -35px">
+                        <h4 class="modal-title" id="myModalLabel"></h4>
+                    </span>
+                </div>
+
             </div>
             <div id="popupbody" class="modal-body">
-                
+                <div class="alert alert-danger fade in" id="errorRequired" role="alert" style="display:none; font-size:14px;"> <button type="button" class="close" onclick="$('#errorRequired').hide()" id="close_err_msg"><span aria-hidden="true">×</span></button> Process Step Name is <strong>required!</strong> </div>
+                <div class="alert alert-danger fade in" id="errorExist" role="alert" style="display:none; font-size:14px;"> <button type="button" class="close" onclick="$('#errorExist').hide()" id="close_err_msg"><span aria-hidden="true">×</span></button> Process Step Name <strong>already exists!</strong> </div>
+                <input type="text" id="TextboxProcessName" placeholder="Enter Process Step Name" class="form-control" />
+                @*data-toggle="popover" title="Popover title" data-content="your custom message"*@
+
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                <button type="button" onclick="ClearPopup()" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" onclick="SavePopupChanges()" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
