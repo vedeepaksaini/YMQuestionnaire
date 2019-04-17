@@ -16,7 +16,7 @@
                 {
                     <li>
                         <label title="@Model.Answers[i].ErrorMSG">
-                            <span class="pull-left">
+                            <span class="pull-left ">
                                 @{
                                     var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
                                     if (transaction != null)
@@ -29,16 +29,25 @@
                                 @if (Model.Answers[i].ControlID == 18)
                                 {
                                     bool isSelected = Model.Answers[i].IsSelected;
-                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @disabled = "disabled", @onchange = "OtherRadio('Answers_" + i + "__ControlValue');" })
+                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @disabled = "disabled", @onchange = "OtherRadio('Answers_" + i + "__ControlValue');", @class = "disabled", style="margin-right:5px;" })
                                 }
                                 else
                                 {
                                     bool isSelected = Model.Answers[i].IsSelected;
-                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @onchange = "OtherRadio('Answers_" + i + "__ControlValue');" })
+                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @onchange = "OtherRadio('Answers_" + i + "__ControlValue');", style = "margin-right:5px;" })
                                 }
-
+                            </span>
+                          
+                                @if (Model.Answers[i].ControlID == 18)
+                                {  <span class="pull-left disabled">
                                 @Html.DisplayFor(model => Model.Answers[i].Answers)
                             </span>
+                                }
+                                else
+                                {
+                                @Html.DisplayFor(model => Model.Answers[i].Answers)
+                                }
+                           
 
                             @{
                                 var show = Model.Answers[i].ControlValue == null ? "display:none" : "";
@@ -46,7 +55,7 @@
                                     @if (Model.Answers[i].ActionID != null)
                                     {
                                         @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { style = "margin-left:10px;" })
-                                        @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:red; font-size:14px;" })
+                                        @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:#a94442; font-size:14px;" })
                                     }
                                 </span>
                             }
@@ -58,8 +67,8 @@
                             @Html.HiddenFor(model => model.QuestionOrder)
                         </label>
                     </li>
-                }
-            }
+                                    }
+                                }
         }
     </ul>
 </div>
