@@ -52,7 +52,7 @@
             <div class="container-fluid">
                 <div class="navbar-header">
 
-                    <a class="navbar-brand center-block" href="/">
+                    <a class="navbar-brand center-block" href="#">
                         <img src="images/TOCICOBannerLogoGoldHorizontal.gif" class="img-responsive logo-img" /> </a>
                     <button type="button" id="toggleButton" class="navbar-toggle" aria-expanded="false">
                         <span class="sr-only">Toggle navigation</span>
@@ -411,7 +411,91 @@
                             </div> -->
                         </div>
                         <div class="bg-white p-2 fll_wdth">
-                            <canvas id="myChart" width="400" height="120"></canvas>
+                            <!-- <canvas id="myChart" height="100%"></canvas> -->
+
+                            <script src="https://code.highcharts.com/highcharts.js"></script>
+                            <script src="https://code.highcharts.com/modules/series-label.js"></script>
+                            <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+                            <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+                            <script>
+                                Highcharts.chart('container', {
+                                    title: {
+                                        text: 'Member level charts'
+                                    },
+                                    xAxis: {
+                                        categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                                    },
+                                    // labels: {
+                                    //     items: [{
+                                    //         html: 'Total Member per level',
+                                    //         style: {
+                                    //             left: '50px',
+                                    //             top: '18px',
+                                    //             color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                                    //         }
+                                    //     }]
+                                    // },
+                                    series: [{
+                                        type: 'column',
+                                        name: 'Yellow',
+                                        data: [2, 3, 5, 7, 6, 8, 9, 7.5, 2, 5, 10, 3],
+                                        color: Highcharts.getOptions().colors[6],
+                                    }, {
+                                        type: 'column',
+                                        name: 'Green',
+                                        data: [2, 3, 5, 7, 6, 8, 9, 7.5, 2, 5, 10, 3],
+                                        color: Highcharts.getOptions().colors[2],
+                                    }, {
+                                        type: 'column',
+                                        name: 'Black',
+                                        data: [4, 3, 3, 9, 0, 3, 5, 7, 6, 8, 2, 6],
+                                        color: Highcharts.getOptions().colors[1],
+                                    }, {
+                                        type: 'column',
+                                        name: 'TOC Expert',
+                                        data: [3, 2, 1, 3, 4, 3, 3, 9, 0, 3, 5, 7],
+                                        color: Highcharts.getOptions().colors[0],
+                                    },
+
+                                    {
+                                        type: 'spline',
+                                        name: 'Average',
+                                        data: [3, 2.67, 3, 6.33, 3.33, 3, 2, 1, 3, 4, 9, 5],
+                                        marker: {
+                                            lineWidth: 2,
+                                            lineColor: Highcharts.getOptions().colors[5],
+                                            fillColor: 'white'
+                                        }
+                                    }
+                                        ,
+                                        //{
+                                        //    type: 'pie',
+                                        //    name: 'Total consumption',
+                                        //    data: [{
+                                        //        name: 'Jane',
+                                        //        y: 13,
+                                        //        color: Highcharts.getOptions().colors[0] // Jane's color
+                                        //    }, {
+                                        //        name: 'John',
+                                        //        y: 23,
+                                        //        color: Highcharts.getOptions().colors[1] // John's color
+                                        //    }, {
+                                        //        name: 'Joe',
+                                        //        y: 19,
+                                        //        color: Highcharts.getOptions().colors[2] // Joe's color
+                                        //    }],
+                                        //    center: [100, 80],
+                                        //    size: 100,
+                                        //    showInLegend: false,
+                                        //    dataLabels: {
+                                        //        enabled: false
+                                        //    }
+                                        //}
+
+                                    ]
+                                });
+                            </script>
                         </div>
                     </div>
 
@@ -606,7 +690,8 @@
                 title: {
                     display: true,
                     text: 'Monthly Joining Growth'
-                }
+                },
+                responsive: true,
             }
 
 

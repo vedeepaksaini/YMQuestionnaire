@@ -29,7 +29,7 @@
                                 @Html.CheckBoxFor(model => Model.Answers[i].IsSelected, new { @onchange = "ShowError();" })
                                 <i class="glyphicon glyphicon-ok"></i>
                                 @Html.DisplayFor(model => Model.Answers[i].Answers)
-                                @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:red; display:none; font-size:14px;" })
+                                @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:#a94442; display:none; font-size:14px;" })
                             }
                             else
                             {

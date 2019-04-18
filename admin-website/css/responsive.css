@@ -2,26 +2,9 @@
     .overview-tiles {
         margin-bottom: 30px;
     }
-}
-
-@media (min-width: 768px){
     .navbar-collapse.collapse{
         height:100vh !important;
     }
-}
-
-
-@media(max-width:767px){
-    .userdetails-page .navbar-header {
-        padding: 0 15px;
-    }
-    #leftnav > ul > li > a > i {
-    margin-right: 20px;
-}
-    .wrap-content header h3 {
-        font-size: 16px;
-    }
-
     .side_nav{
         margin-left: -268px;
         left: 0px;
@@ -94,6 +77,38 @@
     #dataTable_wrapper .table-responsive{
         border:none;
     }
+    .navbar-toggle {
+        display: block;
+        position: relative;
+        float: right;
+        padding: 9px 10px;
+        margin-top: 25px;
+        margin-right: 15px;
+        background: #333333;
+    }
+    .userdetails-page .navbar-header {
+        padding: 0 15px;
+    }
+
+    .navbar-header{
+        width: 100%;
+    }
+}
+
+
+
+
+@media(max-width:767px){
+
+
+    #leftnav > ul > li > a > i {
+    margin-right: 20px;
+}
+    .wrap-content header h3 {
+        font-size: 16px;
+    }
+
+   
 
     div.dataTables_wrapper div.dataTables_length, div.dataTables_wrapper div.dataTables_filter, div.dataTables_wrapper div.dataTables_info, div.dataTables_wrapper div.dataTables_paginate{
         text-align:left;
