@@ -19,20 +19,27 @@
         $("#steps").empty();
         $("#images").empty();
 
-        if (id == "Custom") {
-            $('#btnAddStep').css("display", "block");
-        } else {
+        if (id == "0") {
             $('#btnAddStep').css("display", "none");
+        } else {
+            $('#btnAddStep').css("display", "block");
             var data = localStorage.getItem('TemplateResponse');
             var object = JSON.parse(data).find(item => item.ID == id);
             $.each(object.ProcessTemplateSteps, function (key, value) {
                 $('#steps').append('<td id="td_' + value.StepDescription + '" align="center">' + value.StepDescription + '</td>')
-                $('#images').append('<td align="center"><a id="a_' + value.StepDescription + '" href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
+                $('#images').append('<td id="a_' + value.StepDescription + '" align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
             });
         }
     }
 
     function RenderPopup(val) {
+        debugger;
+        if (val == '') {
+            $("#btnDel").attr("disabled", true);
+        }
+        else {
+            $("#btnDel").attr("disabled", false);
+        }
         $('#myModal').modal('show');
         $('#TextboxProcessName').val(val);
         $('#myModalLabel').text(val);
@@ -53,7 +60,7 @@
                     return;
                 }
                 $('#steps').append('<td id="td_' + stepName + '" align="center">' + stepName + '</td>')
-                $('#images').append('<td align="center"><a id="a_' + stepName + '" href="javascript:void(0)" onclick="RenderPopup(' + "'" + stepName + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
+                $('#images').append('<td id="a_' + stepName + '" align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + stepName + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
             } else {
                 var oldValue = localStorage.getItem("StepName").replace(/ /g, "_");
                 var newValue = $('#TextboxProcessName').val();
@@ -78,6 +85,12 @@
         $('#myModalLabel').text("");
         $('#TextboxProcessName').val("");
         localStorage.removeItem("StepName");
+    }
+
+    function DeleteStep(id) {
+        $('#td_' + id.replace(/ /g, "_")).remove();
+        $('#a_' + id.replace(/ /g, "_")).remove();
+        $('#myModal').modal('hide');
     }
 </script>
 
@@ -113,7 +126,7 @@
                                 <script>GetProcesses()</script>
 
                                 <select id="ProcessTemplateDropdown" class="form-control pull-left" style="margin-right:15px;" onchange="ProcessSelectionChanged(this.value)"><option value="0">Select Process</option></select>
-                                <button type="button" id="btnAddStep" class="btn btn-info" style="display:none;" onclick="$('#myModal').modal('show')"><b>+</b> Add</button>
+                                <button type="button" id="btnAddStep" class="btn btn-info" style="display:none;" onclick="$('#btnDel').attr('disabled', true);$('#myModal').modal('show');"><b>+</b> Add</button>
                             </div>
                             <div class="table-responsive">
                                 <table id="tblProcess" style="width:100%; margin-top:15px;">
