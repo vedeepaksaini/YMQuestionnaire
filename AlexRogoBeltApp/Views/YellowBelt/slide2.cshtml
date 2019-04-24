@@ -48,11 +48,25 @@
                             }
                             else if (Model.Answers[i].ControlID == 6)
                             {
-                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", @class = "form-control" })
+                                <span class="col-md-6" style="padding-left:0px;">
+                                    <div style="width:240px;">
+                                        <div class="input-group pull-left" style="width:180px;">
+                                            <span class="input-group-addon">$</span>
+                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", @class = "form-control", style = "width: 248px;" })
+                                        </div>
+                                    </div>
+                                </span>
                             }
                             else if (Model.Answers[i].ControlID == 4)
                             {
-                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", @class = "form-control" })
+                                <span class="col-md-6" style="padding-left:0px;">
+                                    <div style="width:240px;">
+                                        <div class="input-group pull-left" style="width:180px;">
+                                            <span class="input-group-addon">$</span>
+                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", @class = "form-control", style = "width: 248px;" })
+                                        </div>
+                                    </div>
+                                </span>
                             }
 
                             @Html.HiddenFor(model => Model.Answers[i].ID)

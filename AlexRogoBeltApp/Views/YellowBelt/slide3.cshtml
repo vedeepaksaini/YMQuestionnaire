@@ -29,7 +29,7 @@
                                 @if (Model.Answers[i].ControlID == 18)
                                 {
                                     bool isSelected = Model.Answers[i].IsSelected;
-                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @disabled = "disabled", @onchange = "OtherRadio('Answers_" + i + "__ControlValue');", @class = "disabled", style="margin-right:5px;" })
+                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @disabled = "disabled", @onchange = "OtherRadio('Answers_" + i + "__ControlValue');", @class = "disabled", style = "margin-right:5px;" })
                                 }
                                 else
                                 {
@@ -37,20 +37,20 @@
                                     @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @onchange = "OtherRadio('Answers_" + i + "__ControlValue');", style = "margin-right:5px;" })
                                 }
                             </span>
-                          
-                                @if (Model.Answers[i].ControlID == 18)
-                                {  <span class="pull-left disabled">
+
+                            @if (Model.Answers[i].ControlID == 18)
+                            {<span class="pull-left disabled">
+                                    @Html.DisplayFor(model => Model.Answers[i].Answers)
+                                </span>
+                            }
+                            else
+                            {
                                 @Html.DisplayFor(model => Model.Answers[i].Answers)
-                            </span>
-                                }
-                                else
-                                {
-                                @Html.DisplayFor(model => Model.Answers[i].Answers)
-                                }
-                           
+                            }
+
 
                             @{
-                                var show = Model.Answers[i].ControlValue == null ? "display:none" : "";
+                                var show = Model.Answers[i].ControlValue == null ? "display:none" : "display:inline";
                                 <span id='other_@i' style="@show">
                                     @if (Model.Answers[i].ActionID != null)
                                     {
@@ -67,8 +67,8 @@
                             @Html.HiddenFor(model => model.QuestionOrder)
                         </label>
                     </li>
-                                    }
-                                }
+                }
+            }
         }
     </ul>
 </div>
@@ -76,7 +76,7 @@
 <script>
     function OtherRadio(controlId) {
         if (controlId == "Answers_5__ControlValue") {
-            $('#other_5').css("display", "block");
+            $('#other_5').css("display", "inline");
             $('#Answers_5__ControlValue').attr("required", "required");
         }
         else {
@@ -85,5 +85,4 @@
             $('#Answers_5__ControlValue').val("");
         }
     }
-
 </script>

@@ -54,6 +54,10 @@
         } else {
             if (localStorage.getItem("StepName") === null) {
                 var stepName = $('#TextboxProcessName').val();
+                if (document.getElementsByTagName("table")[0].rows[0].cells.length > 10) {
+                    alert('Maximum 10 steps can be added.');
+                    return;
+                }
                 if ($('#td_' + stepName.replace(/ /g, "_")).length) {
                     $('#errorRequired').hide();
                     $('#errorExist').show();

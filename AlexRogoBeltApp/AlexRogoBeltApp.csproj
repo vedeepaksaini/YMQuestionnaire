@@ -322,6 +322,9 @@
     <Content Include="Views\YellowBelt\slide6.cshtml" />
     <Content Include="Views\YellowBelt\slide7.cshtml" />
     <Content Include="Views\YellowBelt\slide8.cshtml" />
+    <Content Include="Views\YellowBelt\slide10.cshtml" />
+    <Content Include="Views\YellowBelt\slide11.cshtml" />
+    <Content Include="Views\YellowBelt\slide9.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
