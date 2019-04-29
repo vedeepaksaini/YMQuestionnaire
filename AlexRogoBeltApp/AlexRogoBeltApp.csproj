@@ -179,6 +179,9 @@
     <Compile Include="Entities\ControlMaster.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\EnvironmentMaster.cs">
+      <DependentUpon>TocicoEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\GoalMaster.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>

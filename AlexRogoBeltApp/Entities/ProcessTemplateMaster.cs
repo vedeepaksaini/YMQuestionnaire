@@ -19,16 +19,21 @@ namespace AlexRogoBeltApp.Entities
         {
             this.ProcessGoalMappings = new HashSet<ProcessGoalMapping>();
             this.ProcessTemplateSteps = new HashSet<ProcessTemplateStep>();
+            this.EnvironmentMasters = new HashSet<EnvironmentMaster>();
         }
     
         public int ID { get; set; }
         public string ProcessTemplateName { get; set; }
         public int Steps { get; set; }
         public bool Deactive { get; set; }
+        public bool IsCustom { get; set; }
+        public Nullable<int> MemberID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProcessGoalMapping> ProcessGoalMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProcessTemplateStep> ProcessTemplateSteps { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EnvironmentMaster> EnvironmentMasters { get; set; }
     }
 }

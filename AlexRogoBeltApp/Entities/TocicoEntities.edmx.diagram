@@ -34,6 +34,8 @@
         <AssociationConnector Association="TocicoModel.FK__ProcessGo__Proce__29572725" ManuallyRouted="false" />
         <AssociationConnector Association="TocicoModel.FK__ProcessTe__Proce__59C55456" ManuallyRouted="false" />
         <AssociationConnector Association="TocicoModel.FK__Transacti__Quest__1ED998B2" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="TocicoModel.EnvironmentMaster" Width="1.5" PointX="10.5" PointY="14.875" />
+        <AssociationConnector Association="TocicoModel.FK__Environme__Proce__756D6ECB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

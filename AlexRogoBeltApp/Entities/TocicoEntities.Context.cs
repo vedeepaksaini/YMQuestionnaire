@@ -40,5 +40,6 @@ namespace AlexRogoBeltApp.Entities
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TargetMaster> TargetMasters { get; set; }
         public virtual DbSet<TransactionMaster> TransactionMasters { get; set; }
+        public virtual DbSet<EnvironmentMaster> EnvironmentMasters { get; set; }
     }
 }

@@ -12,15 +12,14 @@ namespace AlexRogoBeltApp.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class ProcessTemplateStep
+    public partial class EnvironmentMaster
     {
         public int ID { get; set; }
-        public int ProcessID { get; set; }
-        public Nullable<int> ProcessOrder { get; set; }
-        public string StepDescription { get; set; }
-        public bool Deactive { get; set; }
+        public string EnvironmentName { get; set; }
+        public Nullable<int> ProcessTemplateID { get; set; }
         public bool IsCustom { get; set; }
         public Nullable<int> MemberID { get; set; }
+        public bool Deactive { get; set; }
     
         public virtual ProcessTemplateMaster ProcessTemplateMaster { get; set; }
     }
