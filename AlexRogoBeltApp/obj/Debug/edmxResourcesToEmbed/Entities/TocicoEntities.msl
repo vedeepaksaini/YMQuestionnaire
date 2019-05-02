@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="TocicoModelStoreContainer" CdmEntityContainer="TocicoEntities">
+  <EntityContainerMapping StorageEntityContainer="TOCICOModelStoreContainer" CdmEntityContainer="TOCICOEntities">
     <EntitySetMapping Name="ActionMasters">
-      <EntityTypeMapping TypeName="TocicoModel.ActionMaster">
+      <EntityTypeMapping TypeName="TOCICOModel.ActionMaster">
         <MappingFragment StoreEntitySet="ActionMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ActionName" ColumnName="ActionName" />
@@ -12,7 +12,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="AnswerMasters">
-      <EntityTypeMapping TypeName="TocicoModel.AnswerMaster">
+      <EntityTypeMapping TypeName="TOCICOModel.AnswerMaster">
         <MappingFragment StoreEntitySet="AnswerMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
@@ -26,7 +26,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ConstraintMasters">
-      <EntityTypeMapping TypeName="TocicoModel.ConstraintMaster">
+      <EntityTypeMapping TypeName="TOCICOModel.ConstraintMaster">
         <MappingFragment StoreEntitySet="ConstraintMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ConstraintName" ColumnName="ConstraintName" />
@@ -35,7 +35,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ControlMasters">
-      <EntityTypeMapping TypeName="TocicoModel.ControlMaster">
+      <EntityTypeMapping TypeName="TOCICOModel.ControlMaster">
         <MappingFragment StoreEntitySet="ControlMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ControlName" ColumnName="ControlName" />
@@ -46,8 +46,20 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="EnvironmentMasters">
+      <EntityTypeMapping TypeName="TOCICOModel.EnvironmentMaster">
+        <MappingFragment StoreEntitySet="EnvironmentMaster">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="EnvironmentName" ColumnName="EnvironmentName" />
+          <ScalarProperty Name="ProcessTemplateID" ColumnName="ProcessTemplateID" />
+          <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+          <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="GoalMasters">
-      <EntityTypeMapping TypeName="TocicoModel.GoalMaster">
+      <EntityTypeMapping TypeName="TOCICOModel.GoalMaster">
         <MappingFragment StoreEntitySet="GoalMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="GoalName" ColumnName="GoalName" />
@@ -56,7 +68,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="GoalTargets">
-      <EntityTypeMapping TypeName="TocicoModel.GoalTarget">
+      <EntityTypeMapping TypeName="TOCICOModel.GoalTarget">
         <MappingFragment StoreEntitySet="GoalTarget">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -67,7 +79,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="LevelMasters">
-      <EntityTypeMapping TypeName="TocicoModel.LevelMaster">
+      <EntityTypeMapping TypeName="TOCICOModel.LevelMaster">
         <MappingFragment StoreEntitySet="LevelMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="LevelName" ColumnName="LevelName" />
@@ -76,7 +88,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="MemberMasters">
-      <EntityTypeMapping TypeName="TocicoModel.MemberMaster">
+      <EntityTypeMapping TypeName="TOCICOModel.MemberMaster">
         <MappingFragment StoreEntitySet="MemberMaster">
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
           <ScalarProperty Name="MemberUserName" ColumnName="MemberUserName" />
@@ -91,7 +103,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProcessGoalMappings">
-      <EntityTypeMapping TypeName="TocicoModel.ProcessGoalMapping">
+      <EntityTypeMapping TypeName="TOCICOModel.ProcessGoalMapping">
         <MappingFragment StoreEntitySet="ProcessGoalMapping">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -102,28 +114,32 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProcessTemplateMasters">
-      <EntityTypeMapping TypeName="TocicoModel.ProcessTemplateMaster">
+      <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateMaster">
         <MappingFragment StoreEntitySet="ProcessTemplateMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ProcessTemplateName" ColumnName="ProcessTemplateName" />
           <ScalarProperty Name="Steps" ColumnName="Steps" />
+          <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
           <ScalarProperty Name="Deactive" ColumnName="Deactive" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ProcessTemplateSteps">
-      <EntityTypeMapping TypeName="TocicoModel.ProcessTemplateStep">
+      <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateStep">
         <MappingFragment StoreEntitySet="ProcessTemplateSteps">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
           <ScalarProperty Name="ProcessOrder" ColumnName="ProcessOrder" />
           <ScalarProperty Name="StepDescription" ColumnName="StepDescription" />
+          <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
+          <ScalarProperty Name="MemberID" ColumnName="MemberID" />
           <ScalarProperty Name="Deactive" ColumnName="Deactive" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="QuestionMasters">
-      <EntityTypeMapping TypeName="TocicoModel.QuestionMaster">
+      <EntityTypeMapping TypeName="TOCICOModel.QuestionMaster">
         <MappingFragment StoreEntitySet="QuestionMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="Introduction" ColumnName="Introduction" />
@@ -136,7 +152,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="TocicoModel.sysdiagram">
+      <EntityTypeMapping TypeName="TOCICOModel.sysdiagram">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -147,7 +163,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TargetMasters">
-      <EntityTypeMapping TypeName="TocicoModel.TargetMaster">
+      <EntityTypeMapping TypeName="TOCICOModel.TargetMaster">
         <MappingFragment StoreEntitySet="TargetMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="TargetName" ColumnName="TargetName" />
@@ -156,7 +172,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="TransactionMasters">
-      <EntityTypeMapping TypeName="TocicoModel.TransactionMaster">
+      <EntityTypeMapping TypeName="TOCICOModel.TransactionMaster">
         <MappingFragment StoreEntitySet="TransactionMaster">
           <ScalarProperty Name="ID" ColumnName="ID" />
           <ScalarProperty Name="MemberID" ColumnName="MemberID" />

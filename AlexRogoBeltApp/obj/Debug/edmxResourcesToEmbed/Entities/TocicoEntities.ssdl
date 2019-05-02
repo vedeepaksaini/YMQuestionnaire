@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Schema Namespace="TocicoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+<Schema Namespace="TOCICOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
   <EntityType Name="ActionMaster">
     <Key>
       <PropertyRef Name="ID" />
@@ -39,6 +39,17 @@
     <Property Name="ControlType" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="ControlValidation" Type="varchar" MaxLength="300" />
     <Property Name="IsControlDisabled" Type="bit" Nullable="false" />
+    <Property Name="Deactive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EnvironmentMaster">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EnvironmentName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ProcessTemplateID" Type="int" />
+    <Property Name="IsCustom" Type="bit" Nullable="false" />
+    <Property Name="MemberID" Type="int" />
     <Property Name="Deactive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="GoalMaster">
@@ -102,6 +113,8 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ProcessTemplateName" Type="varchar" MaxLength="900" Nullable="false" />
     <Property Name="Steps" Type="int" Nullable="false" />
+    <Property Name="IsCustom" Type="bit" Nullable="false" />
+    <Property Name="MemberID" Type="int" />
     <Property Name="Deactive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ProcessTemplateSteps">
@@ -112,6 +125,8 @@
     <Property Name="ProcessID" Type="int" Nullable="false" />
     <Property Name="ProcessOrder" Type="int" />
     <Property Name="StepDescription" Type="varchar(max)" Nullable="false" />
+    <Property Name="IsCustom" Type="bit" Nullable="false" />
+    <Property Name="MemberID" Type="int" />
     <Property Name="Deactive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="QuestionMaster">
@@ -146,9 +161,7 @@
   </EntityType>
   <EntityType Name="TransactionMaster">
     <Key>
-      <PropertyRef Name="MemberID" />
-      <PropertyRef Name="QuestionID" />
-      <PropertyRef Name="AnswerID" />
+      <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="MemberID" Type="int" Nullable="false" />
@@ -190,6 +203,18 @@
       </Principal>
       <Dependent Role="AnswerMaster">
         <PropertyRef Name="QuestionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Environme__Proce__756D6ECB">
+    <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="0..1" />
+    <End Role="EnvironmentMaster" Type="Self.EnvironmentMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProcessTemplateMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="EnvironmentMaster">
+        <PropertyRef Name="ProcessTemplateID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -325,11 +350,12 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <EntityContainer Name="TocicoModelStoreContainer">
+  <EntityContainer Name="TOCICOModelStoreContainer">
     <EntitySet Name="ActionMaster" EntityType="Self.ActionMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AnswerMaster" EntityType="Self.AnswerMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ConstraintMaster" EntityType="Self.ConstraintMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ControlMaster" EntityType="Self.ControlMaster" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EnvironmentMaster" EntityType="Self.EnvironmentMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GoalMaster" EntityType="Self.GoalMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="GoalTarget" EntityType="Self.GoalTarget" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LevelMaster" EntityType="Self.LevelMaster" Schema="dbo" store:Type="Tables" />
@@ -352,6 +378,10 @@
     <AssociationSet Name="FK__AnswerMas__Quest__797309D9" Association="Self.FK__AnswerMas__Quest__797309D9">
       <End Role="QuestionMaster" EntitySet="QuestionMaster" />
       <End Role="AnswerMaster" EntitySet="AnswerMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Environme__Proce__756D6ECB" Association="Self.FK__Environme__Proce__756D6ECB">
+      <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMaster" />
+      <End Role="EnvironmentMaster" EntitySet="EnvironmentMaster" />
     </AssociationSet>
     <AssociationSet Name="FK__GoalTarge__GoalI__267ABA7A" Association="Self.FK__GoalTarge__GoalI__267ABA7A">
       <End Role="GoalMaster" EntitySet="GoalMaster" />

@@ -18,9 +18,9 @@ namespace AlexRogoBeltApp.Entities
         public int ProcessID { get; set; }
         public Nullable<int> ProcessOrder { get; set; }
         public string StepDescription { get; set; }
-        public bool Deactive { get; set; }
         public bool IsCustom { get; set; }
         public Nullable<int> MemberID { get; set; }
+        public bool Deactive { get; set; }
     
         public virtual ProcessTemplateMaster ProcessTemplateMaster { get; set; }
     }

@@ -1,6 +1,11 @@
 ﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
 
 <script>
+    //$(document).ready(function () {
+    //    $('#btnSubmit').css("display", "none");
+    //    $('#btnSubmitProcess').css("display", "block");
+    //});
+
     function GetProcesses() {
         $.ajax({
             type: "POST", url: "GetAllTemplates", dataType: "json", contentType: "application/json", success: function (res) {
@@ -23,6 +28,7 @@
             $('#btnAddStep').css("display", "none");
         } else {
             $('#btnAddStep').css("display", "block");
+            if (id == "Custom") { return; }
             var data = localStorage.getItem('TemplateResponse');
             var object = JSON.parse(data).find(item => item.ID == id);
             $.each(object.ProcessTemplateSteps, function (key, value) {
@@ -95,6 +101,33 @@
         $('#td_' + id.replace(/ /g, "_")).remove();
         $('#a_' + id.replace(/ /g, "_")).remove();
         $('#myModal').modal('hide');
+    }
+
+    function submitBusinessProcess() {
+        debugger;
+        var data = GetCellValues();
+        $.ajax({
+            type: "GET",
+            url: "SubmitTemplate",
+            data: { data: data },
+            dataType: "json",
+            contentType: "application/json",
+            success: function (res) {
+
+            },
+            error: function (response) {
+            }
+        });
+    }
+
+    function GetCellValues() {
+        debugger;
+        var steps = [];
+        var table = document.getElementsByTagName("table")[0].rows[0];
+        for (var r = 0, n = table.cells.length; r < n; r++) {
+            steps.push(table.cells[r].innerHTML);
+        }
+        return JSON.stringify(steps);
     }
 </script>
 

@@ -17,23 +17,23 @@ namespace AlexRogoBeltApp.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ProcessTemplateMaster()
         {
+            this.EnvironmentMasters = new HashSet<EnvironmentMaster>();
             this.ProcessGoalMappings = new HashSet<ProcessGoalMapping>();
             this.ProcessTemplateSteps = new HashSet<ProcessTemplateStep>();
-            this.EnvironmentMasters = new HashSet<EnvironmentMaster>();
         }
     
         public int ID { get; set; }
         public string ProcessTemplateName { get; set; }
         public int Steps { get; set; }
-        public bool Deactive { get; set; }
         public bool IsCustom { get; set; }
         public Nullable<int> MemberID { get; set; }
+        public bool Deactive { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EnvironmentMaster> EnvironmentMasters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProcessGoalMapping> ProcessGoalMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ProcessTemplateStep> ProcessTemplateSteps { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EnvironmentMaster> EnvironmentMasters { get; set; }
     }
 }

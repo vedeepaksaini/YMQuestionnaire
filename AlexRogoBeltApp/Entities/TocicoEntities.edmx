@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="TocicoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="TOCICOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActionMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -166,9 +166,7 @@
         </EntityType>
         <EntityType Name="TransactionMaster">
           <Key>
-            <PropertyRef Name="MemberID" />
-            <PropertyRef Name="QuestionID" />
-            <PropertyRef Name="AnswerID" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="MemberID" Type="int" Nullable="false" />
@@ -357,7 +355,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TocicoModelStoreContainer">
+        <EntityContainer Name="TOCICOModelStoreContainer">
           <EntitySet Name="ActionMaster" EntityType="Self.ActionMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AnswerMaster" EntityType="Self.AnswerMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ConstraintMaster" EntityType="Self.ConstraintMaster" Schema="dbo" store:Type="Tables" />
@@ -435,10 +433,11 @@
             <End Role="TransactionMaster" EntitySet="TransactionMaster" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="TocicoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="TOCICOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="ActionMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -485,6 +484,18 @@
           <Property Name="IsControlDisabled" Type="Boolean" Nullable="false" />
           <Property Name="Deactive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AnswerMasters" Relationship="Self.FK__AnswerMas__Contr__2DE6D218" FromRole="ControlMaster" ToRole="AnswerMaster" />
+        </EntityType>
+        <EntityType Name="EnvironmentMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnvironmentName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProcessTemplateID" Type="Int32" />
+          <Property Name="IsCustom" Type="Boolean" Nullable="false" />
+          <Property Name="MemberID" Type="Int32" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProcessTemplateMaster" Relationship="Self.FK__Environme__Proce__756D6ECB" FromRole="EnvironmentMaster" ToRole="ProcessTemplateMaster" />
         </EntityType>
         <EntityType Name="GoalMaster">
           <Key>
@@ -559,12 +570,12 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ProcessTemplateName" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Steps" Type="Int32" Nullable="false" />
-          <Property Name="Deactive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ProcessGoalMappings" Relationship="Self.FK__ProcessGo__Proce__29572725" FromRole="ProcessTemplateMaster" ToRole="ProcessGoalMapping" />
-          <NavigationProperty Name="ProcessTemplateSteps" Relationship="Self.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateMaster" ToRole="ProcessTemplateSteps" />
           <Property Name="IsCustom" Type="Boolean" Nullable="false" />
           <Property Name="MemberID" Type="Int32" />
-          <NavigationProperty Name="EnvironmentMasters" Relationship="TocicoModel.FK__Environme__Proce__756D6ECB" FromRole="ProcessTemplateMaster" ToRole="EnvironmentMaster" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EnvironmentMasters" Relationship="Self.FK__Environme__Proce__756D6ECB" FromRole="ProcessTemplateMaster" ToRole="EnvironmentMaster" />
+          <NavigationProperty Name="ProcessGoalMappings" Relationship="Self.FK__ProcessGo__Proce__29572725" FromRole="ProcessTemplateMaster" ToRole="ProcessGoalMapping" />
+          <NavigationProperty Name="ProcessTemplateSteps" Relationship="Self.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateMaster" ToRole="ProcessTemplateSteps" />
         </EntityType>
         <EntityType Name="ProcessTemplateStep">
           <Key>
@@ -574,10 +585,10 @@
           <Property Name="ProcessID" Type="Int32" Nullable="false" />
           <Property Name="ProcessOrder" Type="Int32" />
           <Property Name="StepDescription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Deactive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ProcessTemplateMaster" Relationship="Self.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateSteps" ToRole="ProcessTemplateMaster" />
           <Property Name="IsCustom" Type="Boolean" Nullable="false" />
           <Property Name="MemberID" Type="Int32" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProcessTemplateMaster" Relationship="Self.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateSteps" ToRole="ProcessTemplateMaster" />
         </EntityType>
         <EntityType Name="QuestionMaster">
           <Key>
@@ -615,9 +626,7 @@
         </EntityType>
         <EntityType Name="TransactionMaster">
           <Key>
-            <PropertyRef Name="MemberID" />
-            <PropertyRef Name="QuestionID" />
-            <PropertyRef Name="AnswerID" />
+            <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="MemberID" Type="Int32" Nullable="false" />
@@ -674,6 +683,18 @@
             </Principal>
             <Dependent Role="TransactionMaster">
               <PropertyRef Name="AnswerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Environme__Proce__756D6ECB">
+          <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="0..1" />
+          <End Role="EnvironmentMaster" Type="Self.EnvironmentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessTemplateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EnvironmentMaster">
+              <PropertyRef Name="ProcessTemplateID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -797,11 +818,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="TocicoEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="TOCICOEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="ActionMasters" EntityType="Self.ActionMaster" />
           <EntitySet Name="AnswerMasters" EntityType="Self.AnswerMaster" />
           <EntitySet Name="ConstraintMasters" EntityType="Self.ConstraintMaster" />
           <EntitySet Name="ControlMasters" EntityType="Self.ControlMaster" />
+          <EntitySet Name="EnvironmentMasters" EntityType="Self.EnvironmentMaster" />
           <EntitySet Name="GoalMasters" EntityType="Self.GoalMaster" />
           <EntitySet Name="GoalTargets" EntityType="Self.GoalTarget" />
           <EntitySet Name="LevelMasters" EntityType="Self.LevelMaster" />
@@ -828,6 +850,10 @@
           <AssociationSet Name="FK__Transacti__Answe__68487DD7" Association="Self.FK__Transacti__Answe__68487DD7">
             <End Role="AnswerMaster" EntitySet="AnswerMasters" />
             <End Role="TransactionMaster" EntitySet="TransactionMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Environme__Proce__756D6ECB" Association="Self.FK__Environme__Proce__756D6ECB">
+            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
+            <End Role="EnvironmentMaster" EntitySet="EnvironmentMasters" />
           </AssociationSet>
           <AssociationSet Name="FK__GoalTarge__GoalI__267ABA7A" Association="Self.FK__GoalTarge__GoalI__267ABA7A">
             <End Role="GoalMaster" EntitySet="GoalMasters" />
@@ -869,44 +895,15 @@
             <End Role="QuestionMaster" EntitySet="QuestionMasters" />
             <End Role="TransactionMaster" EntitySet="TransactionMasters" />
           </AssociationSet>
-          <EntitySet Name="EnvironmentMasters" EntityType="TocicoModel.EnvironmentMaster" />
-          <AssociationSet Name="FK__Environme__Proce__756D6ECB" Association="TocicoModel.FK__Environme__Proce__756D6ECB">
-            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
-            <End Role="EnvironmentMaster" EntitySet="EnvironmentMasters" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="EnvironmentMaster">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EnvironmentName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ProcessTemplateID" Type="Int32" />
-          <Property Name="IsCustom" Type="Boolean" Nullable="false" />
-          <Property Name="MemberID" Type="Int32" />
-          <Property Name="Deactive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ProcessTemplateMaster" Relationship="TocicoModel.FK__Environme__Proce__756D6ECB" FromRole="EnvironmentMaster" ToRole="ProcessTemplateMaster" />
-        </EntityType>
-        <Association Name="FK__Environme__Proce__756D6ECB">
-          <End Type="TocicoModel.ProcessTemplateMaster" Role="ProcessTemplateMaster" Multiplicity="0..1" />
-          <End Type="TocicoModel.EnvironmentMaster" Role="EnvironmentMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProcessTemplateMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="EnvironmentMaster">
-              <PropertyRef Name="ProcessTemplateID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="TocicoModelStoreContainer" CdmEntityContainer="TocicoEntities">
+        <EntityContainerMapping StorageEntityContainer="TOCICOModelStoreContainer" CdmEntityContainer="TOCICOEntities">
           <EntitySetMapping Name="ActionMasters">
-            <EntityTypeMapping TypeName="TocicoModel.ActionMaster">
+            <EntityTypeMapping TypeName="TOCICOModel.ActionMaster">
               <MappingFragment StoreEntitySet="ActionMaster">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ActionName" ColumnName="ActionName" />
@@ -916,7 +913,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="AnswerMasters">
-            <EntityTypeMapping TypeName="TocicoModel.AnswerMaster">
+            <EntityTypeMapping TypeName="TOCICOModel.AnswerMaster">
               <MappingFragment StoreEntitySet="AnswerMaster">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
@@ -930,7 +927,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ConstraintMasters">
-            <EntityTypeMapping TypeName="TocicoModel.ConstraintMaster">
+            <EntityTypeMapping TypeName="TOCICOModel.ConstraintMaster">
               <MappingFragment StoreEntitySet="ConstraintMaster">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ConstraintName" ColumnName="ConstraintName" />
@@ -939,7 +936,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ControlMasters">
-            <EntityTypeMapping TypeName="TocicoModel.ControlMaster">
+            <EntityTypeMapping TypeName="TOCICOModel.ControlMaster">
               <MappingFragment StoreEntitySet="ControlMaster">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ControlName" ColumnName="ControlName" />
@@ -950,8 +947,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="EnvironmentMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.EnvironmentMaster">
+              <MappingFragment StoreEntitySet="EnvironmentMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="EnvironmentName" ColumnName="EnvironmentName" />
+                <ScalarProperty Name="ProcessTemplateID" ColumnName="ProcessTemplateID" />
+                <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="GoalMasters">
-            <EntityTypeMapping TypeName="TocicoModel.GoalMaster">
+            <EntityTypeMapping TypeName="TOCICOModel.GoalMaster">
               <MappingFragment StoreEntitySet="GoalMaster">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="GoalName" ColumnName="GoalName" />
@@ -960,7 +969,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="GoalTargets">
-            <EntityTypeMapping TypeName="TocicoModel.GoalTarget">
+            <EntityTypeMapping TypeName="TOCICOModel.GoalTarget">
               <MappingFragment StoreEntitySet="GoalTarget">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -971,7 +980,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="LevelMasters">
-            <EntityTypeMapping TypeName="TocicoModel.LevelMaster">
+            <EntityTypeMapping TypeName="TOCICOModel.LevelMaster">
               <MappingFragment StoreEntitySet="LevelMaster">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="LevelName" ColumnName="LevelName" />
@@ -980,7 +989,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="MemberMasters">
-            <EntityTypeMapping TypeName="TocicoModel.MemberMaster">
+            <EntityTypeMapping TypeName="TOCICOModel.MemberMaster">
               <MappingFragment StoreEntitySet="MemberMaster">
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="MemberUserName" ColumnName="MemberUserName" />
@@ -995,7 +1004,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProcessGoalMappings">
-            <EntityTypeMapping TypeName="TocicoModel.ProcessGoalMapping">
+            <EntityTypeMapping TypeName="TOCICOModel.ProcessGoalMapping">
               <MappingFragment StoreEntitySet="ProcessGoalMapping">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -1006,32 +1015,32 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProcessTemplateMasters">
-            <EntityTypeMapping TypeName="TocicoModel.ProcessTemplateMaster">
+            <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateMaster">
               <MappingFragment StoreEntitySet="ProcessTemplateMaster">
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ProcessTemplateName" ColumnName="ProcessTemplateName" />
                 <ScalarProperty Name="Steps" ColumnName="Steps" />
+                <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="Deactive" ColumnName="Deactive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ProcessTemplateSteps">
-            <EntityTypeMapping TypeName="TocicoModel.ProcessTemplateStep">
+            <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateStep">
               <MappingFragment StoreEntitySet="ProcessTemplateSteps">
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="ProcessID" ColumnName="ProcessID" />
                 <ScalarProperty Name="ProcessOrder" ColumnName="ProcessOrder" />
                 <ScalarProperty Name="StepDescription" ColumnName="StepDescription" />
+                <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="Deactive" ColumnName="Deactive" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuestionMasters">
-            <EntityTypeMapping TypeName="TocicoModel.QuestionMaster">
+            <EntityTypeMapping TypeName="TOCICOModel.QuestionMaster">
               <MappingFragment StoreEntitySet="QuestionMaster">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Introduction" ColumnName="Introduction" />
@@ -1044,7 +1053,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="TocicoModel.sysdiagram">
+            <EntityTypeMapping TypeName="TOCICOModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -1055,7 +1064,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TargetMasters">
-            <EntityTypeMapping TypeName="TocicoModel.TargetMaster">
+            <EntityTypeMapping TypeName="TOCICOModel.TargetMaster">
               <MappingFragment StoreEntitySet="TargetMaster">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="TargetName" ColumnName="TargetName" />
@@ -1064,7 +1073,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="TransactionMasters">
-            <EntityTypeMapping TypeName="TocicoModel.TransactionMaster">
+            <EntityTypeMapping TypeName="TOCICOModel.TransactionMaster">
               <MappingFragment StoreEntitySet="TransactionMaster">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
@@ -1072,18 +1081,6 @@
                 <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
                 <ScalarProperty Name="ControlValue" ColumnName="ControlValue" />
                 <ScalarProperty Name="Deactive" ColumnName="Deactive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="EnvironmentMasters">
-            <EntityTypeMapping TypeName="TocicoModel.EnvironmentMaster">
-              <MappingFragment StoreEntitySet="EnvironmentMaster">
-                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
-                <ScalarProperty Name="ProcessTemplateID" ColumnName="ProcessTemplateID" />
-                <ScalarProperty Name="EnvironmentName" ColumnName="EnvironmentName" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

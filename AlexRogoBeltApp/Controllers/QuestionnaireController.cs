@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Services;
 using AlexRogoBeltApp.Services;
 using AlexRogoBeltApp.ViewModel;
+using Newtonsoft.Json;
 
 namespace AlexRogoBeltApp.Controllers
 {
@@ -91,6 +92,35 @@ namespace AlexRogoBeltApp.Controllers
         public JsonResult GetTemplate(int id)
         {
             return Json(_service.GetTemplate(id));
+        }
+
+        [WebMethod]
+        public ActionResult SubmitTemplate(string data)
+        {
+            if (string.IsNullOrEmpty(data))
+            {
+                TempData["OrderId"] = 4;
+                TempData["LevelId"] = 1;
+                return RedirectToAction("Questions");
+            }
+
+            var steps = JsonConvert.DeserializeObject<string[]>(data);
+
+            List<TransactionViewModel> transactions = steps.Select(x => new TransactionViewModel
+            {
+                AnswerID = 21,
+                MemberID = 1,
+                Deactive = false,
+                QuestionID = 8,
+                ControlValue = x
+            }).ToList();
+
+            _service.SetTransactions(transactions);
+
+            TempData["LevelId"] = 1;
+            TempData["OrderId"] = 4 + 1;
+
+            return RedirectToAction("Questions");
         }
     }
 }

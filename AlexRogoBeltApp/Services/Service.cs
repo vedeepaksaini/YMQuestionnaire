@@ -9,7 +9,7 @@ namespace AlexRogoBeltApp.Services
 {
     public class Service
     {
-        private readonly TocicoEntities db = new TocicoEntities();
+        private readonly TOCICOEntities db = new TOCICOEntities();
 
         // Get all questions of yellow belt
         public QuestionViewModel GetQuestions(int? levelId, int? orderId)

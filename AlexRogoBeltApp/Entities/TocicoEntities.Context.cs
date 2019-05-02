@@ -13,10 +13,10 @@ namespace AlexRogoBeltApp.Entities
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class TocicoEntities : DbContext
+    public partial class TOCICOEntities : DbContext
     {
-        public TocicoEntities()
-            : base("name=TocicoEntities")
+        public TOCICOEntities()
+            : base("name=TOCICOEntities")
         {
         }
     
@@ -29,6 +29,7 @@ namespace AlexRogoBeltApp.Entities
         public virtual DbSet<AnswerMaster> AnswerMasters { get; set; }
         public virtual DbSet<ConstraintMaster> ConstraintMasters { get; set; }
         public virtual DbSet<ControlMaster> ControlMasters { get; set; }
+        public virtual DbSet<EnvironmentMaster> EnvironmentMasters { get; set; }
         public virtual DbSet<GoalMaster> GoalMasters { get; set; }
         public virtual DbSet<GoalTarget> GoalTargets { get; set; }
         public virtual DbSet<LevelMaster> LevelMasters { get; set; }
@@ -40,6 +41,5 @@ namespace AlexRogoBeltApp.Entities
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<TargetMaster> TargetMasters { get; set; }
         public virtual DbSet<TransactionMaster> TransactionMasters { get; set; }
-        public virtual DbSet<EnvironmentMaster> EnvironmentMasters { get; set; }
     }
 }
