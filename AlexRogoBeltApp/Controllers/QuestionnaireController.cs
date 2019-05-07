@@ -76,7 +76,10 @@ namespace AlexRogoBeltApp.Controllers
             TempData["LevelId"] = model.LevelID;
             TempData["OrderId"] = model.QuestionOrder + 1;
 
-            return RedirectToAction("Questions");
+            if (TempData["OrderId"].ToString() == "10")
+                return PartialView("~/Views/YellowBelt/slide10.cshtml");
+            else
+                return RedirectToAction("Questions");
         }
 
         [WebMethod]

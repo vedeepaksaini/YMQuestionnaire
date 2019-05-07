@@ -1,12 +1,7 @@
 ﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
 
 <script>
-    $(document).ready(function () {
-        $("#btnSubmit").attr('value', 'Finish');
-        $("#btnSubmit").click(function () {
-            window.location.href = "http://localhost:57469/YellowBelt/slide10";
-        });
-    });
+
 
     function GetProcess(id) {
         $.ajax({
@@ -45,6 +40,10 @@
         $('#myModalLabel').text(val);
         $('#myModal').modal('show');
     }
+
+    $(document).ready(function () {
+        $("#btnSubmit").attr('value', 'Finish');
+    });
 </script>
 
 <h2 class="question">

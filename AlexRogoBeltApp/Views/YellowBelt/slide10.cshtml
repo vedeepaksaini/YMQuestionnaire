@@ -1,8 +1,41 @@
-﻿
-<div class="col-md-6 col-md-offset-3">
-    <img src="~/Content/Images/Check_Circle.png" style="width:128px; "/>
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/Content/Images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
-    <h3>Thank you!</h3>
+    <title>TOCICO</title>
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
+</head>
+<body class="body-wrapper">
+    <div class="body-content">
+        <div class="container">
+            <div class="box-wrapper" style="background-image: linear-gradient(to top,#ace0f9  0%,  #fff1eb 100%);">
+                <div class="question-area">
+                    <div class="text-center" style="padding-top:220px;">
+                        <img src="~/Content/Images/Check_Circle.png" style="width:128px; " />
 
-    <p>you have successfully completed yellow level Belt.</p>
-</div>
+                        <h3>Thank you!</h3>
+                        <br />
+                        <h4>You have successfully completed Alex Rogo Yellow Belt.</h4>
+                        <br />
+                        <a href="https://www.tocico.org/mpage/AlexRogoQuestionnaire" class="btn btn-success">Go to Dashboard</a>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+</body>
+</html>
