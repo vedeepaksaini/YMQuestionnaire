@@ -40,6 +40,21 @@ namespace AlexRogoBeltApp.Controllers
         [HttpPost]
         public ActionResult Questions(QuestionViewModel model, FormCollection frm)
         {
+            if (Convert.ToString(TempData["Slide"]) == "slide4")
+            {
+                TempData.Remove("Slide");
+                TempData["LevelId"] = model.LevelID;
+                TempData["OrderId"] = model.QuestionOrder + 1;
+                return RedirectToAction("Questions");
+            }
+            if (Convert.ToString(TempData["Slide"]) == "empty")
+            {
+                TempData.Remove("Slide");
+                TempData["LevelId"] = model.LevelID;
+                TempData["OrderId"] = model.QuestionOrder;
+                return RedirectToAction("Questions");
+            }
+
             // For radio button 
             var ansId = frm["grp"];
             if (ansId != null)
@@ -100,10 +115,11 @@ namespace AlexRogoBeltApp.Controllers
         [WebMethod]
         public ActionResult SubmitTemplate(string data)
         {
-            if (string.IsNullOrEmpty(data))
+            if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
             {
                 TempData["OrderId"] = 4;
                 TempData["LevelId"] = 1;
+                TempData["Slide"] = "empty";
                 return RedirectToAction("Questions");
             }
 
@@ -120,8 +136,9 @@ namespace AlexRogoBeltApp.Controllers
 
             _service.SetTransactions(transactions);
 
-            TempData["LevelId"] = 1;
             TempData["OrderId"] = 4 + 1;
+            TempData["LevelId"] = 1;
+            TempData["Slide"] = "slide4";
 
             return RedirectToAction("Questions");
         }

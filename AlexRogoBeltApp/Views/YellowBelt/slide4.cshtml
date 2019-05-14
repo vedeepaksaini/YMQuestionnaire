@@ -3,6 +3,8 @@
 <script>
     $(document).ready(function () {
         $('#btnSubmit').css("display", "none");
+        //$('#btnSubmit').attr("type", "button");
+        //$('#btnSubmit').attr("disabled", "disabled");
         $('#btnSubmitProcess').css("display", "block");
     });
 
@@ -32,8 +34,8 @@
             var data = localStorage.getItem('TemplateResponse');
             var object = JSON.parse(data).find(item => item.ID == id);
             $.each(object.ProcessTemplateSteps, function (key, value) {
-                $('#steps').append('<td id="td_' + value.StepDescription + '" align="center">' + value.StepDescription + '</td>')
-                $('#images').append('<td id="a_' + value.StepDescription + '" align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
+                $('#steps').append('<td id="td_' + value.StepDescription.replace(/ /g, "_") + '" align="center">' + value.StepDescription + '</td>')
+                $('#images').append('<td id="a_' + value.StepDescription.replace(/ /g, "_") + '" align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
             });
         }
     }
@@ -60,7 +62,7 @@
         } else {
             if (localStorage.getItem("StepName") === null) {
                 var stepName = $('#TextboxProcessName').val();
-                if (document.getElementsByTagName("table")[0].rows[0].cells.length > 10) {
+                if (document.getElementsByTagName("table")[0].rows[0].cells.length > 9) {
                     alert('Maximum 10 steps can be added.');
                     return;
                 }
@@ -69,8 +71,8 @@
                     $('#errorExist').show();
                     return;
                 }
-                $('#steps').append('<td id="td_' + stepName + '" align="center">' + stepName + '</td>')
-                $('#images').append('<td id="a_' + stepName + '" align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + stepName + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
+                $('#steps').append('<td id="td_' + stepName.replace(/ /g, "_") + '" align="center">' + stepName + '</td>')
+                $('#images').append('<td id="a_' + stepName.replace(/ /g, "_") + '" align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + stepName + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
             } else {
                 var oldValue = localStorage.getItem("StepName").replace(/ /g, "_");
                 var newValue = $('#TextboxProcessName').val();

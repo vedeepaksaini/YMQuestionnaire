@@ -130,34 +130,36 @@ namespace AlexRogoBeltApp.Services
                     ID = q.ID,
                     ProcessID = q.ProcessID,
                     ProcessOrder = q.ProcessOrder,
-                    StepDescription = q.StepDescription,
+                    StepDescription = q.StepDescription.Trim(),
                     Deactive = q.Deactive
                 }).ToList()
             }).ToList();
         }
 
-        public ProcessTemplateViewModel GetTemplate(int id)
+        public List<string> GetTemplate(int id)
         {
-            var process = db.ProcessTemplateMasters.FirstOrDefault(x => !x.Deactive && x.ID == 2);
+            return db.TransactionMasters.Where(x => x.QuestionID == id).OrderByDescending(x => x.ID).Select(x => x.ControlValue).ToList();
 
-            if (process == null)
-                return null;
+            //var process = db.ProcessTemplateMasters.FirstOrDefault(x => !x.Deactive && x.ID == 2);
 
-            return new ProcessTemplateViewModel
-            {
-                ID = process.ID,
-                ProcessTemplateName = process.ProcessTemplateName,
-                Steps = process.Steps,
-                Deactive = process.Deactive,
-                ProcessTemplateSteps = process.ProcessTemplateSteps.OrderByDescending(x => x.ProcessOrder).Where(z => !z.Deactive && z.ProcessID == process.ID).Select(q => new ProcessTemplateStepsViewModel
-                {
-                    ID = q.ID,
-                    ProcessID = q.ProcessID,
-                    ProcessOrder = q.ProcessOrder,
-                    StepDescription = q.StepDescription,
-                    Deactive = q.Deactive
-                }).ToList()
-            };
+            //if (process == null)
+            //    return null;
+
+            //return new ProcessTemplateViewModel
+            //{
+            //    ID = process.ID,
+            //    ProcessTemplateName = process.ProcessTemplateName,
+            //    Steps = process.Steps,
+            //    Deactive = process.Deactive,
+            //    ProcessTemplateSteps = process.ProcessTemplateSteps.OrderByDescending(x => x.ProcessOrder).Where(z => !z.Deactive && z.ProcessID == process.ID).Select(q => new ProcessTemplateStepsViewModel
+            //    {
+            //        ID = q.ID,
+            //        ProcessID = q.ProcessID,
+            //        ProcessOrder = q.ProcessOrder,
+            //        StepDescription = q.StepDescription.Trim(),
+            //        Deactive = q.Deactive
+            //    }).ToList()
+            //};
         }
     }
 }

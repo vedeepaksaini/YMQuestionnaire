@@ -1,34 +1,24 @@
 ﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
 
 <script>
-
-
     function GetProcess(id) {
         $.ajax({
             type: "POST", url: "GetTemplate", data: JSON.stringify({ id: 8 }), dataType: "json", contentType: "application/json", success: function (res) {
-                localStorage.setItem('TemplateResponse', JSON.stringify(res));
-
-                $.each(res, function (data, value) {
-                    $("#ProcessTemplateDropdown").append($("<option></option>").val(value.ID).html(value.ProcessTemplateName));
-                });
                 debugger;
-                ProcessSelected();
+                localStorage.setItem('TemplateResponse', JSON.stringify(res));
+                var data = localStorage.getItem('TemplateResponse');
+                var object = JSON.parse(data);
+
+                $("#steps").empty();
+                $("#images").empty();
+                $.each(object, function (key, value) {
+                    debugger;
+                    $('#steps').prepend('<td align="center">' + value + '</td>')
+                    $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
+                });
             },
             error: function (response) {
             }
-        });
-    }
-    function ProcessSelected() {
-        debugger;
-        var data = localStorage.getItem('TemplateResponse');
-        var object = JSON.parse(data);
-
-        $("#steps").empty();
-        $("#images").empty();
-        $.each(object.ProcessTemplateSteps, function (key, value) {
-            debugger;
-            $('#steps').prepend('<td align="center">' + value.StepDescription + '</td>')
-            $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
         });
     }
     function RenderPopup(val) {
