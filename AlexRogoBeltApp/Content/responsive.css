@@ -66,6 +66,8 @@ margin-left:300px
         .introLogo img {
             height: 280px;
         }
+
+
     }
 
 
@@ -103,7 +105,9 @@ margin-left:300px
         .steps-footer {
             position: initial;
         }
-   
+        .inpt-form {
+            width:100%;
+        }
     }
 
 

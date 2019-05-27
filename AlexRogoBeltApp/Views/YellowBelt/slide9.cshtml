@@ -4,7 +4,6 @@
     function GetProcess(id) {
         $.ajax({
             type: "POST", url: "GetTemplate", data: JSON.stringify({ id: 8 }), dataType: "json", contentType: "application/json", success: function (res) {
-                debugger;
                 localStorage.setItem('TemplateResponse', JSON.stringify(res));
                 var data = localStorage.getItem('TemplateResponse');
                 var object = JSON.parse(data);
@@ -12,9 +11,26 @@
                 $("#steps").empty();
                 $("#images").empty();
                 $.each(object, function (key, value) {
-                    debugger;
                     $('#steps').prepend('<td align="center">' + value + '</td>')
                     $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
+                });
+            },
+            error: function (response) {
+            }
+        });
+    }
+    function GetCalculation() {
+        $.ajax({
+            type: "POST", url: "GetCalculations", dataType: "json", contentType: "application/json", success: function (res) {
+                var currency = "$";
+                $.each(res, function (key, value) {
+                    if (value.Answers == "Throughput") {
+                        $('#throughput').text(currency + value.Calculations);
+                    } else if (value.Answers == "Inventory") {
+                        $('#inventory').text(currency + value.Calculations);
+                    } else if (value.Answers == "Operating Expense") {
+                        $('#expense').text(currency + value.Calculations);
+                    }
                 });
             },
             error: function (response) {
@@ -64,12 +80,13 @@
                             @Html.DisplayFor(model => Model.Answers[i].Answers)
 
                             <script>GetProcess(8)</script>
+                            <script>GetProcess(8); GetCalculation();</script>
                             <div class="throughput">
                                 <div class="text-blue">Throughput</div>
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6 col-sm-6">
                                         <div class="input-group">
-                                            <label>$123456</label>
+                                            <label id="throughput"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -88,7 +105,7 @@
                                         <div class="text-danger">Inventory</div>
                                         <div style="width:240px;">
                                             <div class="input-group pull-left" style="width:180px;">
-                                                <label>$123456</label>
+                                                <label id="inventory"></label>
                                             </div>
                                         </div>
                                     </div>
@@ -98,7 +115,7 @@
                                         <div>Operating Expense</div>
                                         <div style="width:240px;">
                                             <div class="input-group pull-left" style="width:180px;">
-                                                <label>$123456</label>
+                                                <label id="expense"></label>
                                             </div>
                                         </div>
                                     </div>

@@ -161,5 +161,21 @@ namespace AlexRogoBeltApp.Services
             //    }).ToList()
             //};
         }
+
+        public List<CalculationsViewModel> GetCalculation()
+        {
+            var ans = new string[] { "Throughput", "Inventory", "Operating Expense" };
+
+            var data = (from answers in db.AnswerMasters
+                        join transaction in db.TransactionMasters on answers.ID equals transaction.AnswerID
+                        where ans.Contains(answers.Answers)
+                        select new CalculationsViewModel
+                        {
+                            Answers = answers.Answers,
+                            Calculations = transaction.ControlValue
+                        }).ToList();
+
+            return data;
+        }
     }
 }

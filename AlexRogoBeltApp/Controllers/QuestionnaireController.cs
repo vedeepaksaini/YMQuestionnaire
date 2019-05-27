@@ -109,7 +109,8 @@ namespace AlexRogoBeltApp.Controllers
         [WebMethod]
         public JsonResult GetTemplate(int id)
         {
-            return Json(_service.GetTemplate(id));
+            var data = _service.GetTemplate(id);
+            return Json(data);
         }
 
         [WebMethod]
@@ -141,6 +142,12 @@ namespace AlexRogoBeltApp.Controllers
             TempData["Slide"] = "slide4";
 
             return RedirectToAction("Questions");
+        }
+
+        [WebMethod]
+        public JsonResult GetCalculations()
+        {
+            return Json(_service.GetCalculation());
         }
     }
 }

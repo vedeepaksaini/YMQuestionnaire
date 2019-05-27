@@ -131,6 +131,25 @@
         }
         return JSON.stringify(steps);
     }
+
+    function GetProcess(id) {
+        $.ajax({
+            type: "POST", url: "GetTemplate", data: JSON.stringify({ id: 8 }), dataType: "json", contentType: "application/json", success: function (res) {
+                localStorage.setItem('TemplateResponse', JSON.stringify(res));
+                var data = localStorage.getItem('TemplateResponse');
+                var object = JSON.parse(data);
+
+                $("#steps").empty();
+                $("#images").empty();
+                $.each(object, function (key, value) {
+                    $('#steps').prepend('<td align="center">' + value + '</td>')
+                    $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
+                });
+            },
+            error: function (response) {
+            }
+        });
+    }
 </script>
 
 <h2 class="question">
@@ -162,7 +181,7 @@
                                 <span class="col-md-3">
                                     @Html.DisplayFor(model => Model.Answers[i].Answers) <span class="text-danger">*</span>
                                 </span>
-                                <script>GetProcesses()</script>
+                                <script>GetProcess(8); GetProcesses();</script>
 
                                 <select id="ProcessTemplateDropdown" class="form-control pull-left" style="margin-right:15px;" onchange="ProcessSelectionChanged(this.value)"><option value="0">Select Process</option></select>
                                 <button type="button" id="btnAddStep" class="btn btn-info" style="display:none;" onclick="$('#btnDel').attr('disabled', true);$('#myModal').modal('show');"><b>+</b> Add</button>

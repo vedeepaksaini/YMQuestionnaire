@@ -1,5 +1,26 @@
 ﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
 
+<script>
+    function CalcAlgo() {
+        debugger;
+        ClearCalc();
+       /*Annual Revenue*/ $('#Answers_4__ControlValue').val($('#Answers_3__ControlValue').val() * ($('#Answers_6__ControlValue').val() == "" ? 150000 : $('#Answers_6__ControlValue').val()));
+       /*Margin*/ $('#Answers_5__ControlValue').val($('#Answers_5__ControlValue').val() == "" ? 40 : $('#Answers_5__ControlValue').val());
+       /*Throughput*/ $('#Answers_6__ControlValue').val(Math.round($('#Answers_4__ControlValue').val() * $('#Answers_5__ControlValue').val() / 100));
+       /*Inventory*/ $('#Answers_7__ControlValue').val(Math.round((8 / 52) * ($('#Answers_4__ControlValue').val() - $('#Answers_6__ControlValue').val())));
+       /*Operating Expense*/ $('#Answers_8__ControlValue').val(Math.round((100 - 5) / 100 * $('#Answers_4__ControlValue').val() - $('#Answers_6__ControlValue').val()));
+        // Assumed net profit is 5%. Thst's why 100 - 5 = 95%
+    }
+    function ClearCalc() {
+        $('#Answers_4__ControlValue').val("");
+        $('#Answers_5__ControlValue').val("");
+        $('#Answers_6__ControlValue').val("");
+        $('#Answers_7__ControlValue').val("");
+        $('#Answers_8__ControlValue').val("");
+    }
+</script>
+
+
 <h2 class="question">
     @Html.DisplayFor(model => model.Introduction)
 </h2>
@@ -49,21 +70,32 @@
                             else if (Model.Answers[i].ControlID == 6)
                             {
                                 <span class="col-md-6" style="padding-left:0px;">
-                                    <div style="width:240px;">
-                                        <div class="input-group pull-left" style="width:180px;">
-                                            <span class="input-group-addon">$</span>
-                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", @class = "form-control", style = "width: 248px;" })
-                                        </div>
+                                    <div>
+
+                                        @*<span class="input-group-addon">$</span>*@
+                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", required = "required", type = "number", @class = "form-control" })
+
                                     </div>
                                 </span>
                             }
                             else if (Model.Answers[i].ControlID == 4)
                             {
                                 <span class="col-md-6" style="padding-left:0px;">
-                                    <div style="width:240px;">
-                                        <div class="input-group pull-left" style="width:180px;">
+                                    <div class="inpt-form">
+                                        <div class="input-group pull-left">
                                             <span class="input-group-addon">$</span>
-                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", @class = "form-control", style = "width: 248px;" })
+                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", @class = "form-control" })
+                                        </div>
+                                    </div>
+                                </span>
+                            }
+                            else if (Model.Answers[i].ControlID == 1)
+                            {
+                                <span class="col-md-6" style="padding-left:0px;">
+                                    <div class="inpt-form">
+                                        <div class="input-group pull-left">
+                                            <span class="input-group-addon" style="padding:6px 10px">%</span>
+                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", min = 0, max = 100, @class = "form-control" })
                                         </div>
                                     </div>
                                 </span>
