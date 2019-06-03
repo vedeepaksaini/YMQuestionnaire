@@ -21,7 +21,7 @@ namespace AlexRogoBeltApp.Entities
         public bool Deavtive { get; set; }
     
         public virtual GoalMaster GoalMaster { get; set; }
-        public virtual MemberMaster MemberMaster { get; set; }
         public virtual TargetMaster TargetMaster { get; set; }
+        public virtual MemberMaster MemberMaster { get; set; }
     }
 }

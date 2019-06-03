@@ -9,7 +9,7 @@
         <div class="col-md-6 col-md-offset-3">
             <div class="embed-responsive embed-responsive-16by9">
                 <video width="600" controls="controls" class="center-block">
-                    <source src="~/Content/Videos/Eli_Goldratt_Finding_Bottleneck.mp4" type="video/mp4" />
+                    <source src="~/Content/Videos/Eli_Protective_Capacity.mp4" type="video/mp4" />
                     Your browser does not support HTML5 video.
                 </video>
             </div>
@@ -17,14 +17,14 @@
 
     </div>
     <div class="text-center mt-1" style="color: #17de17; font-weight:600;">
-        From Goldratt Satellite Series available from Goldratt’s Marketing Group: Purchase full video  <a href="https://www.toc-goldratt.com/en/product/gsp-on-operations-dbr-and-buffer-management" target="_blank">here</a>.
+        From Goldratt Satellite Series available from Goldratt’s Marketing Group: Purchase full video <a href="https://www.toc-goldratt.com/en/product/gsp-on-operations-dbr-and-buffer-management." target="_blank">here</a>.
     </div>
 </div>
 
 @{Model.Answers.FirstOrDefault().IsSelected = true;}
 
 @Html.HiddenFor(model => Model.Answers[0].ID)
-@Html.HiddenFor(model => model.LevelID)
-@Html.HiddenFor(model => Model.Answers[0].QuestionID)
-@Html.HiddenFor(model => Model.Answers[0].IsSelected)
-@Html.HiddenFor(model => model.QuestionOrder)
+    @Html.HiddenFor(model => model.LevelID)
+    @Html.HiddenFor(model => Model.Answers[0].QuestionID)
+    @Html.HiddenFor(model => Model.Answers[0].IsSelected)
+    @Html.HiddenFor(model => model.QuestionOrder)

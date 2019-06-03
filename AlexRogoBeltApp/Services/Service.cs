@@ -62,8 +62,9 @@ namespace AlexRogoBeltApp.Services
         public void SetTransactions(List<TransactionViewModel> models)
         {
             var questionId = models.FirstOrDefault().QuestionID;
-            var existingTransactions = db.TransactionMasters.Where(x => x.MemberID == 1 && x.QuestionID == questionId);
-
+          //  var tet = db.TransactionMasters.Select(x => x.MemberID == Convert.ToInt32(models[0].MemberID) && x.QuestionID == questionId).ToList();
+            int MemberID = Convert.ToInt32(models[0].MemberID);
+            var existingTransactions = db.TransactionMasters.Where(x => x.MemberID ==MemberID && x.QuestionID == questionId);
             db.TransactionMasters.RemoveRange(existingTransactions);
             db.SaveChanges();
 
@@ -111,7 +112,14 @@ namespace AlexRogoBeltApp.Services
             //    db.SaveChanges();
             //}
         }
-
+        public int IsMemberExist(int MemberId)
+        {
+           var MemberCredentials= db.MemberMasters.Where(x => x.MemberID == MemberId).FirstOrDefault();
+            if (MemberCredentials != null)
+            
+                return MemberCredentials.MemberID;
+                return 0;
+        }
         public List<ProcessTemplateViewModel> GetAllTemplates()
         {
             var processes = db.ProcessTemplateMasters.Where(x => !x.Deactive);

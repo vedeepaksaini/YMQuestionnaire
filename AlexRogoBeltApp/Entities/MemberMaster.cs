@@ -20,17 +20,27 @@ namespace AlexRogoBeltApp.Entities
             this.GoalTargets = new HashSet<GoalTarget>();
             this.ProcessGoalMappings = new HashSet<ProcessGoalMapping>();
             this.TransactionMasters = new HashSet<TransactionMaster>();
+            this.TransactionMasters1 = new HashSet<TransactionMaster>();
         }
     
+        public int ID { get; set; }
         public int MemberID { get; set; }
         public string MemberUserName { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Company { get; set; }
-        public int NoOfEmployed { get; set; }
-        public Nullable<decimal> AnnualRevenue { get; set; }
-        public string BusinessEnvironment { get; set; }
+        public string ApiGuid { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string MemberType { get; set; }
+        public string HomeAddress1 { get; set; }
+        public string City { get; set; }
+        public string Location { get; set; }
+        public string Country { get; set; }
+        public string Phone { get; set; }
+        public string EmployeeName { get; set; }
+        public string MemberSuspended { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoalTarget> GoalTargets { get; set; }
@@ -38,5 +48,7 @@ namespace AlexRogoBeltApp.Entities
         public virtual ICollection<ProcessGoalMapping> ProcessGoalMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionMaster> TransactionMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionMaster> TransactionMasters1 { get; set; }
     }
 }

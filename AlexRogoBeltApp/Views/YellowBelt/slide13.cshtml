@@ -1,0 +1,100 @@
+﻿<script>
+    $(document).ready(function () {
+        $('#btnSubmitProcess').css("display", "none");
+        $('#btnSubmit').css("display", "none");
+        $('#btnSubmitMarketProcess').css("display", "block");
+
+        $("#btnSubmit").attr('value', 'Finish');
+    });
+    var steps = [];
+
+    function RecoreStep(step)
+    {
+        debugger;
+       // var table = document.getElementsByTagName("table")[0].rows[0];
+        //for (var r = 0, n = table.cells.length; r < n; r++) {
+        steps.push(step);
+        //}
+        
+        return JSON.stringify(steps);
+
+
+    }
+
+    function submitMarketStep() {
+        debugger;
+        var data = steps.toString();
+       // var data = 'ste';
+        $.ajax({
+            type: "GET",
+            url: "SubmitMarketSteps",
+            //data: JSON.stringify({ data: data }),
+            data: { data: data },
+            dataType: "json",
+            contentType: "application/json",
+            success: function (res) {
+
+            },
+            error: function (response) {
+            }
+        });
+    }
+
+    function GetCellValues() {
+        debugger;
+        var steps = [];
+        var table = document.getElementsByTagName("table")[0].rows[0];
+        for (var r = 0, n = table.cells.length; r < n; r++) {
+            steps.push(table.cells[r].innerHTML);
+        }
+        return JSON.stringify(steps);
+    }
+    
+</script>
+
+@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+
+<h2 class="question">
+    @Html.DisplayFor(model => model.Introduction)
+</h2>
+
+<div class="center-block">
+    <div class="row mt-3">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="embed-responsive embed-responsive-16by9">
+                <div class="table-responsive">
+                    <table id="tblProcess" style="width:100%; margin-top:15px;">
+                        <tbody>
+                            
+                            <tr><td></td></tr>
+                            
+                            <tr id="images">
+
+                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 1')">Step 1<img id="step1"src="../../Content/Images/circle.png"></a></td>
+                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 2')">Step 2<img id="step2"src="../../Content/Images/circle.png"></a></td>
+                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 3')">Step 3<img id="step3"src="../../Content/Images/circle.png"></a></td>
+                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 4')">Step 4<img id="step4"src="../../Content/Images/circle.png"></a></td>
+                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 5')">Step 5<img id="step5"src="../../Content/Images/circle.png"></a></td>
+                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 6')">Step 6<img id="step6"src="../../Content/Images/circle.png"></a></td>
+                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 7')">Stpe 7<img id="step7"src="../../Content/Images/circle.png"></a></td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="text-center mt-1" style="color: #17de17; font-weight:600;">
+        From Goldratt Satellite Series available from Goldratt’s Marketing Group: Purchase full video <a href="https://www.toc-goldratt.com/en/product/gsp-on-operations-dbr-and-buffer-management." target="_blank">here</a>.
+    </div>
+</div>
+
+@{Model.Answers.FirstOrDefault().IsSelected = true;}
+
+@Html.HiddenFor(model => Model.Answers[0].ID)
+@Html.HiddenFor(model => model.LevelID)
+@Html.HiddenFor(model => Model.Answers[0].QuestionID)
+@Html.HiddenFor(model => Model.Answers[0].IsSelected)
+@Html.HiddenFor(model => model.QuestionOrder)

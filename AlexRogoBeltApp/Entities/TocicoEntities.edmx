@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TOCICOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TOCICOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="ActionMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -89,15 +89,24 @@
           <Key>
             <PropertyRef Name="MemberID" />
           </Key>
-          <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberID" Type="int" Nullable="false" />
           <Property Name="MemberUserName" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Company" Type="varchar" MaxLength="500" Nullable="false" />
-          <Property Name="NoOfEmployed" Type="int" Nullable="false" />
-          <Property Name="AnnualRevenue" Type="money" />
-          <Property Name="BusinessEnvironment" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Company" Type="varchar" MaxLength="500" />
+          <Property Name="ApiGuid" Type="varchar" MaxLength="200" />
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="200" />
+          <Property Name="MemberType" Type="varchar" MaxLength="20" />
+          <Property Name="HomeAddress1" Type="varchar" MaxLength="300" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
+          <Property Name="Location" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="30" />
+          <Property Name="EmployeeName" Type="varchar" MaxLength="100" />
+          <Property Name="MemberSuspended" Type="varchar" MaxLength="10" />
         </EntityType>
         <EntityType Name="ProcessGoalMapping">
           <Key>
@@ -235,7 +244,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GoalTarge__Membe__5441852A">
+        <Association Name="FK__GoalTarge__Membe__4959E263">
           <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
           <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
           <ReferentialConstraint>
@@ -271,7 +280,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProcessGo__Membe__5535A963">
+        <Association Name="FK__ProcessGo__Membe__4A4E069C">
           <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
           <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -319,7 +328,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Answe__68487DD7">
+        <Association Name="FK__Transacti__Answe__477199F1">
           <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="1" />
           <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -331,7 +340,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Membe__5629CD9C">
+        <Association Name="FK__Transacti__Answe__4B422AD5">
+          <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="1" />
+          <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AnswerMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="AnswerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Membe__467D75B8">
           <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
           <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -343,7 +364,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Transacti__Quest__1ED998B2">
+        <Association Name="FK__Transacti__Membe__4865BE2A">
+          <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
+          <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Quest__43A1090D">
           <End Role="QuestionMaster" Type="Self.QuestionMaster" Multiplicity="1" />
           <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -392,7 +425,7 @@
             <End Role="GoalMaster" EntitySet="GoalMaster" />
             <End Role="GoalTarget" EntitySet="GoalTarget" />
           </AssociationSet>
-          <AssociationSet Name="FK__GoalTarge__Membe__5441852A" Association="Self.FK__GoalTarge__Membe__5441852A">
+          <AssociationSet Name="FK__GoalTarge__Membe__4959E263" Association="Self.FK__GoalTarge__Membe__4959E263">
             <End Role="MemberMaster" EntitySet="MemberMaster" />
             <End Role="GoalTarget" EntitySet="GoalTarget" />
           </AssociationSet>
@@ -404,7 +437,7 @@
             <End Role="GoalMaster" EntitySet="GoalMaster" />
             <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProcessGo__Membe__5535A963" Association="Self.FK__ProcessGo__Membe__5535A963">
+          <AssociationSet Name="FK__ProcessGo__Membe__4A4E069C" Association="Self.FK__ProcessGo__Membe__4A4E069C">
             <End Role="MemberMaster" EntitySet="MemberMaster" />
             <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMapping" />
           </AssociationSet>
@@ -420,21 +453,28 @@
             <End Role="LevelMaster" EntitySet="LevelMaster" />
             <End Role="QuestionMaster" EntitySet="QuestionMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Answe__68487DD7" Association="Self.FK__Transacti__Answe__68487DD7">
+          <AssociationSet Name="FK__Transacti__Answe__477199F1" Association="Self.FK__Transacti__Answe__477199F1">
             <End Role="AnswerMaster" EntitySet="AnswerMaster" />
             <End Role="TransactionMaster" EntitySet="TransactionMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Membe__5629CD9C" Association="Self.FK__Transacti__Membe__5629CD9C">
+          <AssociationSet Name="FK__Transacti__Answe__4B422AD5" Association="Self.FK__Transacti__Answe__4B422AD5">
+            <End Role="AnswerMaster" EntitySet="AnswerMaster" />
+            <End Role="TransactionMaster" EntitySet="TransactionMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Membe__467D75B8" Association="Self.FK__Transacti__Membe__467D75B8">
             <End Role="MemberMaster" EntitySet="MemberMaster" />
             <End Role="TransactionMaster" EntitySet="TransactionMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Quest__1ED998B2" Association="Self.FK__Transacti__Quest__1ED998B2">
+          <AssociationSet Name="FK__Transacti__Membe__4865BE2A" Association="Self.FK__Transacti__Membe__4865BE2A">
+            <End Role="MemberMaster" EntitySet="MemberMaster" />
+            <End Role="TransactionMaster" EntitySet="TransactionMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Quest__43A1090D" Association="Self.FK__Transacti__Quest__43A1090D">
             <End Role="QuestionMaster" EntitySet="QuestionMaster" />
             <End Role="TransactionMaster" EntitySet="TransactionMaster" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TOCICOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -519,8 +559,8 @@
           <Property Name="TargetID" Type="Int32" Nullable="false" />
           <Property Name="Deavtive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="GoalMaster" Relationship="Self.FK__GoalTarge__GoalI__267ABA7A" FromRole="GoalTarget" ToRole="GoalMaster" />
-          <NavigationProperty Name="MemberMaster" Relationship="Self.FK__GoalTarge__Membe__5441852A" FromRole="GoalTarget" ToRole="MemberMaster" />
           <NavigationProperty Name="TargetMaster" Relationship="Self.FK__GoalTarge__Targe__276EDEB3" FromRole="GoalTarget" ToRole="TargetMaster" />
+          <NavigationProperty Name="MemberMaster" Relationship="TOCICOModel.FK__GoalTarge__Membe__4959E263" FromRole="GoalTarget" ToRole="MemberMaster" />
         </EntityType>
         <EntityType Name="LevelMaster">
           <Key>
@@ -530,23 +570,6 @@
           <Property Name="LevelName" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Deactive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="QuestionMasters" Relationship="Self.FK__QuestionM__Level__5070F446" FromRole="LevelMaster" ToRole="QuestionMaster" />
-        </EntityType>
-        <EntityType Name="MemberMaster">
-          <Key>
-            <PropertyRef Name="MemberID" />
-          </Key>
-          <Property Name="MemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberUserName" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Company" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="NoOfEmployed" Type="Int32" Nullable="false" />
-          <Property Name="AnnualRevenue" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="BusinessEnvironment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="GoalTargets" Relationship="Self.FK__GoalTarge__Membe__5441852A" FromRole="MemberMaster" ToRole="GoalTarget" />
-          <NavigationProperty Name="ProcessGoalMappings" Relationship="Self.FK__ProcessGo__Membe__5535A963" FromRole="MemberMaster" ToRole="ProcessGoalMapping" />
-          <NavigationProperty Name="TransactionMasters" Relationship="Self.FK__Transacti__Membe__5629CD9C" FromRole="MemberMaster" ToRole="TransactionMaster" />
         </EntityType>
         <EntityType Name="ProcessGoalMapping">
           <Key>
@@ -560,8 +583,8 @@
           <Property Name="GoalID" Type="Int32" Nullable="false" />
           <Property Name="Deactive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="GoalMaster" Relationship="Self.FK__ProcessGo__GoalI__2A4B4B5E" FromRole="ProcessGoalMapping" ToRole="GoalMaster" />
-          <NavigationProperty Name="MemberMaster" Relationship="Self.FK__ProcessGo__Membe__5535A963" FromRole="ProcessGoalMapping" ToRole="MemberMaster" />
           <NavigationProperty Name="ProcessTemplateMaster" Relationship="Self.FK__ProcessGo__Proce__29572725" FromRole="ProcessGoalMapping" ToRole="ProcessTemplateMaster" />
+          <NavigationProperty Name="MemberMaster" Relationship="TOCICOModel.FK__ProcessGo__Membe__4A4E069C" FromRole="ProcessGoalMapping" ToRole="MemberMaster" />
         </EntityType>
         <EntityType Name="ProcessTemplateMaster">
           <Key>
@@ -635,8 +658,9 @@
           <Property Name="ControlValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Deactive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AnswerMaster" Relationship="Self.FK__Transacti__Answe__68487DD7" FromRole="TransactionMaster" ToRole="AnswerMaster" />
-          <NavigationProperty Name="MemberMaster" Relationship="Self.FK__Transacti__Membe__5629CD9C" FromRole="TransactionMaster" ToRole="MemberMaster" />
           <NavigationProperty Name="QuestionMaster" Relationship="Self.FK__Transacti__Quest__1ED998B2" FromRole="TransactionMaster" ToRole="QuestionMaster" />
+          <NavigationProperty Name="MemberMaster" Relationship="TOCICOModel.FK__Transacti__Membe__467D75B8" FromRole="TransactionMaster" ToRole="MemberMaster" />
+          <NavigationProperty Name="MemberMaster1" Relationship="TOCICOModel.FK__Transacti__Membe__4865BE2A" FromRole="TransactionMaster" ToRole="MemberMaster" />
         </EntityType>
         <Association Name="FK__AnswerMas__Actio__55009F39">
           <End Role="ActionMaster" Type="Self.ActionMaster" Multiplicity="0..1" />
@@ -722,18 +746,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GoalTarge__Membe__5441852A">
-          <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
-          <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MemberMaster">
-              <PropertyRef Name="MemberID" />
-            </Principal>
-            <Dependent Role="GoalTarget">
-              <PropertyRef Name="MemberID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__GoalTarge__Targe__276EDEB3">
           <End Role="TargetMaster" Type="Self.TargetMaster" Multiplicity="1" />
           <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
@@ -755,30 +767,6 @@
             </Principal>
             <Dependent Role="QuestionMaster">
               <PropertyRef Name="LevelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProcessGo__Membe__5535A963">
-          <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
-          <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MemberMaster">
-              <PropertyRef Name="MemberID" />
-            </Principal>
-            <Dependent Role="ProcessGoalMapping">
-              <PropertyRef Name="MemberID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Transacti__Membe__5629CD9C">
-          <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
-          <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MemberMaster">
-              <PropertyRef Name="MemberID" />
-            </Principal>
-            <Dependent Role="TransactionMaster">
-              <PropertyRef Name="MemberID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -827,7 +815,6 @@
           <EntitySet Name="GoalMasters" EntityType="Self.GoalMaster" />
           <EntitySet Name="GoalTargets" EntityType="Self.GoalTarget" />
           <EntitySet Name="LevelMasters" EntityType="Self.LevelMaster" />
-          <EntitySet Name="MemberMasters" EntityType="Self.MemberMaster" />
           <EntitySet Name="ProcessGoalMappings" EntityType="Self.ProcessGoalMapping" />
           <EntitySet Name="ProcessTemplateMasters" EntityType="Self.ProcessTemplateMaster" />
           <EntitySet Name="ProcessTemplateSteps" EntityType="Self.ProcessTemplateStep" />
@@ -863,10 +850,6 @@
             <End Role="GoalMaster" EntitySet="GoalMasters" />
             <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMappings" />
           </AssociationSet>
-          <AssociationSet Name="FK__GoalTarge__Membe__5441852A" Association="Self.FK__GoalTarge__Membe__5441852A">
-            <End Role="MemberMaster" EntitySet="MemberMasters" />
-            <End Role="GoalTarget" EntitySet="GoalTargets" />
-          </AssociationSet>
           <AssociationSet Name="FK__GoalTarge__Targe__276EDEB3" Association="Self.FK__GoalTarge__Targe__276EDEB3">
             <End Role="TargetMaster" EntitySet="TargetMasters" />
             <End Role="GoalTarget" EntitySet="GoalTargets" />
@@ -874,14 +857,6 @@
           <AssociationSet Name="FK__QuestionM__Level__5070F446" Association="Self.FK__QuestionM__Level__5070F446">
             <End Role="LevelMaster" EntitySet="LevelMasters" />
             <End Role="QuestionMaster" EntitySet="QuestionMasters" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProcessGo__Membe__5535A963" Association="Self.FK__ProcessGo__Membe__5535A963">
-            <End Role="MemberMaster" EntitySet="MemberMasters" />
-            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMappings" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Transacti__Membe__5629CD9C" Association="Self.FK__Transacti__Membe__5629CD9C">
-            <End Role="MemberMaster" EntitySet="MemberMasters" />
-            <End Role="TransactionMaster" EntitySet="TransactionMasters" />
           </AssociationSet>
           <AssociationSet Name="FK__ProcessGo__Proce__29572725" Association="Self.FK__ProcessGo__Proce__29572725">
             <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
@@ -895,7 +870,99 @@
             <End Role="QuestionMaster" EntitySet="QuestionMasters" />
             <End Role="TransactionMaster" EntitySet="TransactionMasters" />
           </AssociationSet>
+          <EntitySet Name="MemberMasters" EntityType="TOCICOModel.MemberMaster" />
+          <AssociationSet Name="FK__GoalTarge__Membe__4959E263" Association="TOCICOModel.FK__GoalTarge__Membe__4959E263">
+            <End Role="MemberMaster" EntitySet="MemberMasters" />
+            <End Role="GoalTarget" EntitySet="GoalTargets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessGo__Membe__4A4E069C" Association="TOCICOModel.FK__ProcessGo__Membe__4A4E069C">
+            <End Role="MemberMaster" EntitySet="MemberMasters" />
+            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Membe__467D75B8" Association="TOCICOModel.FK__Transacti__Membe__467D75B8">
+            <End Role="MemberMaster" EntitySet="MemberMasters" />
+            <End Role="TransactionMaster" EntitySet="TransactionMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Transacti__Membe__4865BE2A" Association="TOCICOModel.FK__Transacti__Membe__4865BE2A">
+            <End Role="MemberMaster" EntitySet="MemberMasters" />
+            <End Role="TransactionMaster" EntitySet="TransactionMasters" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="MemberMaster">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="MemberUserName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="ApiGuid" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="MemberType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HomeAddress1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MemberSuspended" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="GoalTargets" Relationship="TOCICOModel.FK__GoalTarge__Membe__4959E263" FromRole="MemberMaster" ToRole="GoalTarget" />
+          <NavigationProperty Name="ProcessGoalMappings" Relationship="TOCICOModel.FK__ProcessGo__Membe__4A4E069C" FromRole="MemberMaster" ToRole="ProcessGoalMapping" />
+          <NavigationProperty Name="TransactionMasters" Relationship="TOCICOModel.FK__Transacti__Membe__467D75B8" FromRole="MemberMaster" ToRole="TransactionMaster" />
+          <NavigationProperty Name="TransactionMasters1" Relationship="TOCICOModel.FK__Transacti__Membe__4865BE2A" FromRole="MemberMaster" ToRole="TransactionMaster" />
+        </EntityType>
+        <Association Name="FK__GoalTarge__Membe__4959E263">
+          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
+          <End Type="TOCICOModel.GoalTarget" Role="GoalTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="GoalTarget">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProcessGo__Membe__4A4E069C">
+          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
+          <End Type="TOCICOModel.ProcessGoalMapping" Role="ProcessGoalMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="ProcessGoalMapping">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Membe__467D75B8">
+          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
+          <End Type="TOCICOModel.TransactionMaster" Role="TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Membe__4865BE2A">
+          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
+          <End Type="TOCICOModel.TransactionMaster" Role="TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -988,21 +1055,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MemberMasters">
-            <EntityTypeMapping TypeName="TOCICOModel.MemberMaster">
-              <MappingFragment StoreEntitySet="MemberMaster">
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="MemberUserName" ColumnName="MemberUserName" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Company" ColumnName="Company" />
-                <ScalarProperty Name="NoOfEmployed" ColumnName="NoOfEmployed" />
-                <ScalarProperty Name="AnnualRevenue" ColumnName="AnnualRevenue" />
-                <ScalarProperty Name="BusinessEnvironment" ColumnName="BusinessEnvironment" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProcessGoalMappings">
             <EntityTypeMapping TypeName="TOCICOModel.ProcessGoalMapping">
               <MappingFragment StoreEntitySet="ProcessGoalMapping">
@@ -1081,6 +1133,30 @@
                 <ScalarProperty Name="AnswerID" ColumnName="AnswerID" />
                 <ScalarProperty Name="ControlValue" ColumnName="ControlValue" />
                 <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MemberMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.MemberMaster">
+              <MappingFragment StoreEntitySet="MemberMaster">
+                <ScalarProperty Name="MemberSuspended" ColumnName="MemberSuspended" />
+                <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Country" ColumnName="Country" />
+                <ScalarProperty Name="Location" ColumnName="Location" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="HomeAddress1" ColumnName="HomeAddress1" />
+                <ScalarProperty Name="MemberType" ColumnName="MemberType" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="ApiGuid" ColumnName="ApiGuid" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="MemberUserName" ColumnName="MemberUserName" />
+                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

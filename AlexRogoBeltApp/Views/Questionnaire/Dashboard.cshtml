@@ -1,0 +1,169 @@
+﻿
+@{
+    ViewBag.Title = "Dashboard";
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>TOCICO</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
+    <link href="css/Memberstyle.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    @*<nav class="navbar navbar-default">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                        aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#"><img src="images/TOCICOBannerLogoGoldHorizontal.gif" style="height:70px;"></a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right mt-1">
+                    <li><a href="#"><i class="far fa-bell"></i></a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">Vineet Gupta<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                            <li><a href="#"><i class="fas fa-comment-alt"></i> Message</a></li>
+                            <li><a href="#"><i class="fas fa-cog"></i> Setting</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#"><i class="fas fa-power-off"></i> Logout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>*@
+
+    <div class="container " style="margin-top:180px;">
+        <div class="fll_wdth ">
+            <!-- <h4 class="pull-left mt-25">You are on yellow belt levels.</h4> -->
+            @if(TempData["ErrorMsg"]!=null)
+            {
+            <h3 class="pull-left">@TempData["ErrorMsg"]</h3>
+            }
+        </div>
+        <div class="box-wrapper" style="min-height:480px;background: #ffffff; border: 1px solid #e1e1e1; box-shadow: 0 0 6px rgba(0, 0, 0, 0.14); padding: 15px; float: left;
+    width: 100%; ">
+            <ul class="nav nav-tabs nav-justified beltlevels" role="tablist">
+                <li role="presentation" class="active">
+                    <a href="#yellow" class="yellow" role="tab" data-toggle="tab">
+                        <label class="label label-warning">1</label> Yellow Belt
+                    </a>
+                </li>
+
+                <li role="presentation" class="disabled">
+                    <a href="#green" class="green" role="tab">
+                        <label class="label label-success">2</label> Green Belt
+                    </a>
+                </li>
+                <li role="presentation" class="disabled">
+                    <a href="#black" class="black" role="tab">
+                        <label class="label label-default">3</label> Black Belt
+                    </a>
+                </li>
+
+                <li role="presentation" class="disabled">
+                    <a href="#tocexpert" class="expert" role="tab">
+                        <label class="label label-primary">4</label> TOC Expert
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="yellow">
+                    <br/>
+                    <h4 class="mt-25">Yellow Belt Level</h4>
+                    <p class="mt-10">
+                        For many years TOCICO’s certification program was at the Jonah level - only within
+                        reach of a
+                        few of your top talent, leaving most of your people without a practical development ladder
+                        during their TOC journey. More importantly, it was focused on testing TOC knowledge, not
+                        implementation skill.
+                    </p>
+
+                    <h4 class="mt-25">The Alex Rogo Belt Levels will:</h4>
+                    <ul>
+                        <li>
+                            Contain the minimum knowledge and video materials required to guide a person who has read
+                            The Goal to complete a TOC implementation using the five focusing steps.
+                        </li>
+                        <li>
+                            Have interactive content to allow a manager to enter their implementation details to be
+                            guided as they progress through the five focusing steps.
+                        </li>
+                        <li>
+                            Provide results based criteria for each step and set financial improvements which are
+                            simple to understand for people at all levels in your organization.
+                        </li>
+                    </ul>
+                </div>
+
+                <div role="tabpanel" class="tab-pane" id="green">
+                    2
+                </div>
+                <div role="tabpanel" class="tab-pane" id="black">3</div>
+                <div role="tabpanel" class="tab-pane" id="tocexpert">4</div>
+            </div>
+            <div>
+
+                <hr />
+                <h3 class="text-center">You're on yellow level belts</h3>
+                <br>
+                <div class="text-center">
+                    @{
+                        int Memberid = Convert.ToInt32(Request.QueryString["id"]);
+                    }
+                    <a href="/Questionnaire/GetStarted?MemberId=@Memberid" class="mt-2 btn btn-success btn-lg">Get Started</a>
+
+                    @*<a href="@Url.Action("GetStarted", "Questionnaire")" class="mt-2 btn btn-success btn-lg">
+                        Get
+                        Started
+                    </a>*@
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <footer class="text-center mt-25">
+        2019 &copy; TOCICO. All rights reserved.
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>

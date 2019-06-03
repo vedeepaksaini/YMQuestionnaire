@@ -22,7 +22,8 @@ namespace AlexRogoBeltApp.Entities
         public bool Deactive { get; set; }
     
         public virtual AnswerMaster AnswerMaster { get; set; }
-        public virtual MemberMaster MemberMaster { get; set; }
         public virtual QuestionMaster QuestionMaster { get; set; }
+        public virtual MemberMaster MemberMaster { get; set; }
+        public virtual MemberMaster MemberMaster1 { get; set; }
     }
 }
