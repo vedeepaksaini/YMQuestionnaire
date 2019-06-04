@@ -173,7 +173,7 @@ namespace AlexRogoBeltApp.Controllers
                     List<TransactionViewModel> transactions = selectedAnswers.Distinct().Select(x => new TransactionViewModel
                     {
                         AnswerID = x.ID,
-                        MemberID = Convert.ToInt32(HttpContext.Session["MemberId"]),
+                        MemberID = MemberDetails.MemberID,//Convert.ToInt32(HttpContext.Session["MemberId"]),
                         Deactive = x.Deactive,
                         QuestionID = x.QuestionID,
                         ControlValue = x.ControlValue
@@ -188,7 +188,7 @@ namespace AlexRogoBeltApp.Controllers
 
                     {
                         //Mark yellow belt completed
-                        _service.MarkYellowBeltCompleted(Convert.ToInt32(HttpContext.Session["MemberId"]));
+                        _service.MarkYellowBeltCompleted(MemberDetails.MemberID);
                         return PartialView("~/Views/YellowBelt/slide14.cshtml");
                     }
                     else
@@ -235,11 +235,11 @@ namespace AlexRogoBeltApp.Controllers
             }
 
             var steps = JsonConvert.DeserializeObject<string[]>(data);
-
+            var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
             List<TransactionViewModel> transactions = steps.Select(x => new TransactionViewModel
             {
                 AnswerID = 21,
-                MemberID = Convert.ToInt32(HttpContext.Session["MemberId"]),
+                MemberID = MemberDetails.MemberID,
                 Deactive = false,
                 QuestionID = 8,
                 ControlValue = x
