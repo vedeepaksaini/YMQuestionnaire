@@ -107,6 +107,8 @@
           <Property Name="Phone" Type="nvarchar" MaxLength="30" />
           <Property Name="EmployeeName" Type="varchar" MaxLength="100" />
           <Property Name="MemberSuspended" Type="varchar" MaxLength="10" />
+          <Property Name="IsYBpaymentCompleted" Type="bit" Nullable="false" />
+          <Property Name="IsYBStepsCompleted" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProcessGoalMapping">
           <Key>
@@ -914,6 +916,8 @@
           <NavigationProperty Name="ProcessGoalMappings" Relationship="TOCICOModel.FK__ProcessGo__Membe__4A4E069C" FromRole="MemberMaster" ToRole="ProcessGoalMapping" />
           <NavigationProperty Name="TransactionMasters" Relationship="TOCICOModel.FK__Transacti__Membe__467D75B8" FromRole="MemberMaster" ToRole="TransactionMaster" />
           <NavigationProperty Name="TransactionMasters1" Relationship="TOCICOModel.FK__Transacti__Membe__4865BE2A" FromRole="MemberMaster" ToRole="TransactionMaster" />
+          <Property Name="IsYBpaymentCompleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsYBStepsCompleted" Type="Boolean" Nullable="false" />
         </EntityType>
         <Association Name="FK__GoalTarge__Membe__4959E263">
           <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
@@ -1139,6 +1143,8 @@
           <EntitySetMapping Name="MemberMasters">
             <EntityTypeMapping TypeName="TOCICOModel.MemberMaster">
               <MappingFragment StoreEntitySet="MemberMaster">
+                <ScalarProperty Name="IsYBStepsCompleted" ColumnName="IsYBStepsCompleted" />
+                <ScalarProperty Name="IsYBpaymentCompleted" ColumnName="IsYBpaymentCompleted" />
                 <ScalarProperty Name="MemberSuspended" ColumnName="MemberSuspended" />
                 <ScalarProperty Name="EmployeeName" ColumnName="EmployeeName" />
                 <ScalarProperty Name="Phone" ColumnName="Phone" />

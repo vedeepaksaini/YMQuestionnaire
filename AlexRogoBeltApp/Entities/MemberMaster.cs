@@ -41,6 +41,8 @@ namespace AlexRogoBeltApp.Entities
         public string Phone { get; set; }
         public string EmployeeName { get; set; }
         public string MemberSuspended { get; set; }
+        public bool IsYBpaymentCompleted { get; set; }
+        public bool IsYBStepsCompleted { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GoalTarget> GoalTargets { get; set; }

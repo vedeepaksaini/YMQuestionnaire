@@ -112,13 +112,14 @@ namespace AlexRogoBeltApp.Services
             //    db.SaveChanges();
             //}
         }
-        public int IsMemberExist(int MemberId)
+        public MemberMaster IsMemberExist(int MemberId)
         {
            var MemberCredentials= db.MemberMasters.Where(x => x.MemberID == MemberId).FirstOrDefault();
-            if (MemberCredentials != null)
+            return MemberCredentials;
+            //if (MemberCredentials != null)
             
-                return MemberCredentials.MemberID;
-                return 0;
+            //    return MemberCredentials.MemberID;
+            //    return 0;
         }
         public List<ProcessTemplateViewModel> GetAllTemplates()
         {
@@ -184,6 +185,13 @@ namespace AlexRogoBeltApp.Services
                         }).ToList();
 
             return data;
+        }
+        public void MarkYellowBeltCompleted(int MemberId)
+        {
+            MemberMaster ObjMemberMaster = db.MemberMasters.First(c => c.MemberID == MemberId);
+            ObjMemberMaster.IsYBStepsCompleted = true;
+            db.SaveChanges();
+
         }
     }
 }

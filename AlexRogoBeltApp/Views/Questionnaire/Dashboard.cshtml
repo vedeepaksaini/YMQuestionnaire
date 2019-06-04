@@ -32,45 +32,45 @@
 
 <body>
     @*<nav class="navbar navbar-default">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-                        aria-expanded="false">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#"><img src="images/TOCICOBannerLogoGoldHorizontal.gif" style="height:70px;"></a>
-            </div>
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                            aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#"><img src="images/TOCICOBannerLogoGoldHorizontal.gif" style="height:70px;"></a>
+                </div>
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right mt-1">
-                    <li><a href="#"><i class="far fa-bell"></i></a></li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                           aria-expanded="false">Vineet Gupta<span class="caret"></span></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
-                            <li><a href="#"><i class="fas fa-comment-alt"></i> Message</a></li>
-                            <li><a href="#"><i class="fas fa-cog"></i> Setting</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#"><i class="fas fa-power-off"></i> Logout</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>*@
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right mt-1">
+                        <li><a href="#"><i class="far fa-bell"></i></a></li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                               aria-expanded="false">Vineet Gupta<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+                                <li><a href="#"><i class="fas fa-comment-alt"></i> Message</a></li>
+                                <li><a href="#"><i class="fas fa-cog"></i> Setting</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#"><i class="fas fa-power-off"></i> Logout</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav>*@
 
     <div class="container " style="margin-top:180px;">
         <div class="fll_wdth ">
             <!-- <h4 class="pull-left mt-25">You are on yellow belt levels.</h4> -->
-            @if(TempData["ErrorMsg"]!=null)
+            @if (TempData["ErrorMsg"] != null)
             {
-            <h3 class="pull-left">@TempData["ErrorMsg"]</h3>
+                <h3 class="pull-left">@TempData["ErrorMsg"]</h3>
             }
         </div>
         <div class="box-wrapper" style="min-height:480px;background: #ffffff; border: 1px solid #e1e1e1; box-shadow: 0 0 6px rgba(0, 0, 0, 0.14); padding: 15px; float: left;
@@ -101,7 +101,7 @@
             </ul>
             <div class="tab-content">
                 <div role="tabpanel" class="tab-pane active" id="yellow">
-                    <br/>
+                    <br />
                     <h4 class="mt-25">Yellow Belt Level</h4>
                     <p class="mt-10">
                         For many years TOCICO’s certification program was at the Jonah level - only within
@@ -139,16 +139,17 @@
                 <hr />
                 <h3 class="text-center">You're on yellow level belts</h3>
                 <br>
-                <div class="text-center">
+                <div class="text-center">                 
                     @{
-                        int Memberid = Convert.ToInt32(Request.QueryString["id"]);
+                        int Memberid = Convert.ToInt32(Request.QueryString["MemberId"]);                      
+
                     }
-                    <a href="/Questionnaire/GetStarted?MemberId=@Memberid" class="mt-2 btn btn-success btn-lg">Get Started</a>
+                        <a href="/Questionnaire/GetStarted?id=@Memberid" class="mt-2 btn btn-success btn-lg">Get Started</a>
 
                     @*<a href="@Url.Action("GetStarted", "Questionnaire")" class="mt-2 btn btn-success btn-lg">
-                        Get
-                        Started
-                    </a>*@
+                            Get
+                            Started
+                        </a>*@
 
                 </div>
             </div>
