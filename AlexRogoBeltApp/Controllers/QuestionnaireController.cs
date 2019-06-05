@@ -264,33 +264,37 @@ namespace AlexRogoBeltApp.Controllers
         // [HttpPost]
         public ActionResult SubmitMarketSteps(string data)
         {
-            //string[] data="";
-            //if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
-            //{
-            //    TempData["OrderId"] = 4;
-            //    TempData["LevelId"] = 1;
-            //    TempData["Slide"] = "empty";
-            //    return RedirectToAction("Questions");
-            //}
+            string[] MarketSteps=data.Split(',');
+            var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
+            if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
+            {
+                TempData["OrderId"] = 20;
+                TempData["LevelId"] = 1;
+                TempData["Slide"] = "empty";
+                return RedirectToAction("Questions");
+            }
 
-            //var steps = JsonConvert.DeserializeObject<string[]>(data);
+           // var steps = JsonConvert.DeserializeObject<string[]>(data);
+           
+                List<TransactionViewModel> transactions = MarketSteps.Select(x => new TransactionViewModel
+                {
+                    AnswerID = 38,
+                    MemberID = MemberDetails.MemberID,
+                    Deactive = false,
+                    QuestionID = 20,
+                    ControlValue = x
+                }).ToList();
 
-            //List<TransactionViewModel> transactions = steps.Select(x => new TransactionViewModel
-            //{
-            //    AnswerID = 21,
-            //    MemberID = 1,
-            //    Deactive = false,
-            //    QuestionID = 8,
-            //    ControlValue = x
-            //}).ToList();
+                _service.SetTransactions(transactions);
+           
 
-            //_service.SetTransactions(transactions);
-
-            //TempData["OrderId"] = 4 + 1;
-            //TempData["LevelId"] = 1;
-            //TempData["Slide"] = "slide4";
+            TempData["OrderId"] =20 + 1;
+            TempData["LevelId"] = 1;
+            TempData["Slide"] = "slide4";
 
             return RedirectToAction("Questions");
         }
+
+        
     }
 }

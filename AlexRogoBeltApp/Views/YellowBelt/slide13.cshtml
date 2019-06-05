@@ -1,21 +1,56 @@
 ﻿<script>
+    function GetProcess(id) {
+        $.ajax({
+            type: "POST", url: "GetTemplate", data: JSON.stringify({ id: 8 }), dataType: "json", contentType: "application/json", success: function (res) {
+                localStorage.setItem('TemplateResponse', JSON.stringify(res));
+                var data = localStorage.getItem('TemplateResponse');
+                var object = JSON.parse(data);
+
+                $("#steps").empty();
+                $("#images").empty();
+                $.each(object, function (key, value) {
+                    $('#steps').prepend('<td align="center">' + value + '</td>')
+                    $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
+                });
+            },
+            error: function (response) {
+            }
+        });
+    }
+    var steps = [];
+
     $(document).ready(function () {
         $('#btnSubmitProcess').css("display", "none");
         $('#btnSubmit').css("display", "none");
         $('#btnSubmitMarketProcess').css("display", "block");
 
         $("#btnSubmit").attr('value', 'Finish');
-    });
-    var steps = [];
 
-    function RecoreStep(step)
-    {
+
+
         debugger;
-       // var table = document.getElementsByTagName("table")[0].rows[0];
-        //for (var r = 0, n = table.cells.length; r < n; r++) {
+      
+        for (var i = 1; i <= 7; i++) {
+            if ($('#step' + i).attr('src').split('/')[4] == "circle-RED.png") {
+
+                steps.push('step'+i);
+            }
+        }
+
+    });
+  
+    function RecordStep(step) {
+        debugger;
+        stepId = '#' + step
+        alert(step);
+        if ($(stepId).attr('src').split('/')[4] == "circle.png") {
+            $(stepId).attr("src", "../../Content/Images/circle-RED.png");
+        }
+        else {
+            $(stepId).attr("src", "../../Content/Images/circle.png");
+        }
         steps.push(step);
-        //}
-        
+
         return JSON.stringify(steps);
 
 
@@ -24,7 +59,7 @@
     function submitMarketStep() {
         debugger;
         var data = steps.toString();
-       // var data = 'ste';
+        // var data = 'ste';
         $.ajax({
             type: "GET",
             url: "SubmitMarketSteps",
@@ -49,7 +84,7 @@
         }
         return JSON.stringify(steps);
     }
-    
+
 </script>
 
 @model AlexRogoBeltApp.ViewModel.QuestionViewModel
@@ -57,27 +92,57 @@
 <h2 class="question">
     @Html.DisplayFor(model => model.Introduction)
 </h2>
+@{
+    int Imagecount = Model.Transactions.Count();
+    string[] ImageName = new string[7];
+    for (int i = 0; i < Imagecount; i++)
+    {
+        if (Model.Transactions[i].ControlValue != null)
+        {
+            ImageName[i] = "circle-RED.png";
+        }
+        else
+        {
+            ImageName[i] = "circle.png";
+
+        }
+
+    }
+    for (int i = Imagecount; i <7; i++)
+    {
+        ImageName[i] = "circle.png";
+    }
+
+}
 
 <div class="center-block">
     <div class="row mt-3">
         <div class="col-md-6 col-md-offset-3">
             <div class="embed-responsive embed-responsive-16by9">
                 <div class="table-responsive">
+                    <script>GetProcess(8)</script>
+                    <div class="table-responsive">
+                        <table style="width:100%; margin-top:15px;">
+                            <tr id="steps"></tr>
+                            <tr><td></td></tr>
+                            <tr id="images"></tr>
+                        </table>
+                    </div>
                     <table id="tblProcess" style="width:100%; margin-top:15px;">
                         <tbody>
-                            
+
                             <tr><td></td></tr>
-                            
+
                             <tr id="images">
 
-                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 1')">Step 1<img id="step1"src="../../Content/Images/circle.png"></a></td>
-                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 2')">Step 2<img id="step2"src="../../Content/Images/circle.png"></a></td>
-                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 3')">Step 3<img id="step3"src="../../Content/Images/circle.png"></a></td>
-                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 4')">Step 4<img id="step4"src="../../Content/Images/circle.png"></a></td>
-                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 5')">Step 5<img id="step5"src="../../Content/Images/circle.png"></a></td>
-                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 6')">Step 6<img id="step6"src="../../Content/Images/circle.png"></a></td>
-                                <td align="center"><a href="javascript:void(0)" onclick="RecoreStep('Step 7')">Stpe 7<img id="step7"src="../../Content/Images/circle.png"></a></td>
-                                
+                                <td id="td1" align="center"><a href="javascript:void(0)" onclick="RecordStep('step1')">Step 1<img id="step1" src="../../Content/Images/@ImageName[0]"></a></td>
+                                <td id="td2" align="center"><a href="javascript:void(0)" onclick="RecordStep('step2')">Step 2<img id="step2" src="../../Content/Images/@ImageName[1]"></a></td>
+                                <td id="td3" align="center"><a href="javascript:void(0)" onclick="RecordStep('step3')">Step 3<img id="step3" src="../../Content/Images/@ImageName[2]"></a></td>
+                                <td id="td4" align="center"><a href="javascript:void(0)" onclick="RecordStep('step4')">Step 4<img id="step4" src="../../Content/Images/@ImageName[3]"></a></td>
+                                <td id="td5" align="center"><a href="javascript:void(0)" onclick="RecordStep('step5')">Step 5<img id="step5" src="../../Content/Images/@ImageName[4]"></a></td>
+                                <td id="td6" align="center"><a href="javascript:void(0)" onclick="RecordStep('step6')">Step 6<img id="step6" src="../../Content/Images/@ImageName[5]"></a></td>
+                                <td id="td7" align="center"><a href="javascript:void(0)" onclick="RecordStep('step7')">Stpe 7<img id="step7" src="../../Content/Images/@ImageName[6]"></a></td>
+
                             </tr>
                         </tbody>
                     </table>
