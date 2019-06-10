@@ -137,14 +137,18 @@
             <div>
 
                 <hr />
-                <h3 class="text-center">You're on yellow level belts</h3>
+                @*<h3 class="text-center">You're on yellow belt</h3>*@
                 <br>
-                <div class="text-center">                 
+                <div class="text-center">
                     @{
-                        int Memberid = Convert.ToInt32(Request.QueryString["MemberId"]);                      
+                        int Memberid = Convert.ToInt32(Request.QueryString["MemberId"]);
 
                     }
-                        <a href="/Questionnaire/GetStarted?id=@Memberid" class="mt-2 btn btn-success btn-lg">Get Started</a>
+                    <a id="startButton" href="/Questionnaire/GetStarted?id=@Memberid" class="mt-2 btn btn-success btn-lg"
+                       @{ if (TempData["ErrorMsg"] != null) { @: style="display:none"
+                       } else { @: style="display:inline"
+                       } }>Get Started</a>
+
 
                     @*<a href="@Url.Action("GetStarted", "Questionnaire")" class="mt-2 btn btn-success btn-lg">
                             Get

@@ -44,6 +44,21 @@
                                     Model.Answers[i].IsSelected = true;
                                     Model.Answers[i].ControlValue = transaction.ControlValue;
                                 }
+                                else
+                                {
+                                    if (Model.Answers[i].Answers == "First Name")
+                                    {
+                                        Model.Answers[i].ControlValue = Model.Member.FirstName;
+                                    }
+                                    if (Model.Answers[i].Answers == "Last Name")
+                                    {
+                                        Model.Answers[i].ControlValue = Model.Member.LastName;
+                                    }
+                                    if (Model.Answers[i].Answers == "Company")
+                                    {
+                                        Model.Answers[i].ControlValue = Model.Member.Company;
+                                    }
+                                }
                             }
 
                             <span class="col-md-6" style="padding-left:0px;">

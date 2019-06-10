@@ -12,7 +12,7 @@ namespace AlexRogoBeltApp.Services
         private readonly TOCICOEntities db = new TOCICOEntities();
 
         // Get all questions of yellow belt
-        public QuestionViewModel GetQuestions(int? levelId, int? orderId)
+        public QuestionViewModel GetQuestions(int? levelId, int? orderId, int? MemberId)
         {
             QuestionMaster model = null;
 
@@ -24,7 +24,7 @@ namespace AlexRogoBeltApp.Services
             if (model == null)
                 return null;
 
-            return new QuestionViewModel
+            var data = new QuestionViewModel
             {
                 ID = model.ID,
                 Introduction = model.Introduction,
@@ -57,14 +57,33 @@ namespace AlexRogoBeltApp.Services
                ).ToList()
 
             };
+
+            if (data != null && orderId == 2)
+            {
+                var member = db.MemberMasters.FirstOrDefault(x => x.MemberID == MemberId);
+                if (member != null)
+                {
+                    data.Member = new MemberViewModel
+                    {
+                        MemberID = member.MemberID,
+                        Email = member.Email,
+                        FirstName = member.FirstName,
+                        LastName = member.LastName,
+                        Company = member.Company
+                    };
+                }
+
+            }
+
+            return data;
         }
 
         public void SetTransactions(List<TransactionViewModel> models)
         {
             var questionId = models.FirstOrDefault().QuestionID;
-          //  var tet = db.TransactionMasters.Select(x => x.MemberID == Convert.ToInt32(models[0].MemberID) && x.QuestionID == questionId).ToList();
+            //  var tet = db.TransactionMasters.Select(x => x.MemberID == Convert.ToInt32(models[0].MemberID) && x.QuestionID == questionId).ToList();
             int MemberID = Convert.ToInt32(models[0].MemberID);
-            var existingTransactions = db.TransactionMasters.Where(x => x.MemberID ==MemberID && x.QuestionID == questionId);
+            var existingTransactions = db.TransactionMasters.Where(x => x.MemberID == MemberID && x.QuestionID == questionId);
             db.TransactionMasters.RemoveRange(existingTransactions);
             db.SaveChanges();
 
@@ -114,10 +133,10 @@ namespace AlexRogoBeltApp.Services
         }
         public MemberMaster IsMemberExist(int MemberId)
         {
-           var MemberCredentials= db.MemberMasters.Where(x => x.MemberID == MemberId).FirstOrDefault();
+            var MemberCredentials = db.MemberMasters.Where(x => x.MemberID == MemberId).FirstOrDefault();
             return MemberCredentials;
             //if (MemberCredentials != null)
-            
+
             //    return MemberCredentials.MemberID;
             //    return 0;
         }

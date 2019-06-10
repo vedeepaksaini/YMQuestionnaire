@@ -237,6 +237,7 @@
     <Compile Include="Services\Service.cs" />
     <Compile Include="ViewModel\AnswerViewModel.cs" />
     <Compile Include="ViewModel\CalculationsViewModel.cs" />
+    <Compile Include="ViewModel\MemberViewModel.cs" />
     <Compile Include="ViewModel\ProcessTemplateStepsViewModel.cs" />
     <Compile Include="ViewModel\ProcessTemplateViewModel.cs" />
     <Compile Include="ViewModel\Questionnaire.cs" />
@@ -329,6 +330,10 @@
     <Content Include="Views\YellowBelt\slide10.cshtml" />
     <Content Include="Views\YellowBelt\slide11.cshtml" />
     <Content Include="Views\YellowBelt\slide9.cshtml" />
+    <Content Include="Views\Questionnaire\Dashboard.cshtml" />
+    <Content Include="Views\YellowBelt\slide12.cshtml" />
+    <Content Include="Views\YellowBelt\slide13.cshtml" />
+    <Content Include="Views\YellowBelt\slide14.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
