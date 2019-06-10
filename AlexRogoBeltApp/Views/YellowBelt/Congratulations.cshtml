@@ -26,7 +26,7 @@
                         <br />
                         <h4>You have successfully completed Alex Rogo Yellow Belt.</h4>
                         <br />
-                        <a href="https://www.tocico.org/mpage/AlexRogoQuestionnaire" class="btn btn-success">Go to Dashboard</a>
+                        <a href="@Url.Action("Dashboard", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })" class="btn btn-success">Go to Dashboard</a>
                     </div>
                 </div>
 

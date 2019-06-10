@@ -343,6 +343,7 @@
     <Content Include="Views\YellowBelt\slide14.cshtml" />
     <Content Include="Views\Questionnaire\Dashboard.cshtml" />
     <Content Include="Views\YellowBelt\Congratulations.cshtml" />
+    <Content Include="Views\Shared\ErrorPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

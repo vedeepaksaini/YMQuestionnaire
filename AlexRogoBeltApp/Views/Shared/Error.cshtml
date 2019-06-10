@@ -24,9 +24,9 @@
                         <img src="~/Content/Images/cancel.png" style="width:128px; " />
                         <h3> Error</h3>
                         <br />
-                        <h4>An error occurred while processing your request. Please contact your system administrator</h4>
+                        <h4>An error occurred while processing your request. Please contact your system administrator.</h4>
                         <br />
-                        <a href="https://www.tocico.org/mpage/AlexRogoQuestionnaire" class="btn btn-success">Go to Dashboard</a>
+                        <a href="@Url.Action("Dashboard", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })" class="btn btn-success">Go to Dashboard</a>
                     </div>
                 </div>
 </body>
