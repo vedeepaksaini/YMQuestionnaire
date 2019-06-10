@@ -13,6 +13,7 @@
             type: "POST", url: "GetAllTemplates", dataType: "json", contentType: "application/json", success: function (res) {
                 localStorage.setItem('TemplateResponse', JSON.stringify(res));
                 $.each(res, function (data, value) {
+                    debugger;
                     $("#ProcessTemplateDropdown").append($("<option></option>").val(value.ID).html(value.ProcessTemplateName));
                 });
                 $("#ProcessTemplateDropdown").append($("<option></option>").val("Custom").html("Custom"));
@@ -23,6 +24,7 @@
     }
 
     function ProcessSelectionChanged(id) {
+
         $("#steps").empty();
         $("#images").empty();
 
@@ -34,6 +36,7 @@
             var data = localStorage.getItem('TemplateResponse');
             var object = JSON.parse(data).find(item => item.ID == id);
             $.each(object.ProcessTemplateSteps, function (key, value) {
+                 debugger;
                 $('#steps').append('<td id="td_' + value.StepDescription.replace(/ /g, "_") + '" align="center">' + value.StepDescription + '</td>')
                 $('#images').append('<td id="a_' + value.StepDescription.replace(/ /g, "_") + '" align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
             });
@@ -126,8 +129,9 @@
         debugger;
         var steps = [];
         var table = document.getElementsByTagName("table")[0].rows[0];
+        var processStep = $("#ProcessTemplateDropdown").val();
         for (var r = 0, n = table.cells.length; r < n; r++) {
-            steps.push(table.cells[r].innerHTML);
+            steps.push(table.cells[r].innerHTML + ',' + processStep);
         }
         return JSON.stringify(steps);
     }
@@ -142,6 +146,12 @@
                 $("#steps").empty();
                 $("#images").empty();
                 $.each(object, function (key, value) {
+                    debugger;
+                    if (value.split(',').length > 1) {
+                        value = value.split(',')[0];
+                        $('#ProcessTemplateDropdown').val(2);
+                        //$('[name=options]').val(3);
+                    }
                     $('#steps').prepend('<td align="center">' + value + '</td>')
                     $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
                 });

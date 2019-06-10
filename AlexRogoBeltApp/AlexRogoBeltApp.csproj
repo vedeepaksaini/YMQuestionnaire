@@ -258,6 +258,8 @@
     <Content Include="Content\Images\Goal_movie.png" />
     <Content Include="Content\Images\logo.png" />
     <Content Include="Content\Images\logo_black.png" />
+    <Content Include="Content\Images\markert-gold.png" />
+    <Content Include="Content\Images\markert-red.png" />
     <Content Include="Content\Images\steps-data.png" />
     <Content Include="Content\Images\steps.png" />
     <Content Include="Content\Images\TOCICOBannerLogoGoldHorizontal.gif" />

@@ -9,6 +9,10 @@
                 $("#images").empty();
                 $.each(object, function (key, value) {
                     debugger;
+
+                    if (value.split(',').length > 1) {
+                        value = value.split(',')[0];                     
+                    }
                     $('#steps').prepend('<td align="center">' + value + '</td>')
                     key = key + 1;
                     //$('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RecordStep(' + "'" + 'step' + key + "'" + ')"><img id="step'+key+'" src="../../Content/Images/circle.png" /></a ></td>')
@@ -27,14 +31,14 @@
         $('#btnSubmitProcess').css("display", "none");
         $('#btnSubmit').css("display", "none");
         $('#btnSubmitMarketProcess').css("display", "block");
-        $("#btnSubmit").attr('value', 'Finish');
+        $("#btnSubmitMarketProcess").attr('value', 'Finish');
         for (var i = 1; i <= 7; i++) {
             if ($('#step' + i).attr('src').split('/')[4] == "circle-RED.png") {
                 steps.push('step' + i);
             }
         }
     });
-  
+    
     function RecordStep(step) {
         debugger;
         stepId = '#' + step
@@ -49,9 +53,31 @@
             $(stepId).attr("src", "../../Content/Images/circle.png");
             steps.pop(step);
         }
+        
+
+
         return JSON.stringify(steps);
     }
 
+
+    function RecordMarket() {
+        
+        debugger;
+        
+        if ($("#marketImg").attr('src').split('/')[$("#marketImg").attr('src').split('/').length - 1] == "markert-gold.png") {
+            $("#marketImg").attr("src", "../../Content/Images/markert-red.png");  
+            steps.push("markert-gold.png")
+        }
+        else {
+            $("#marketImg").attr("src", "../../Content/Images/markert-gold.png");  
+            steps.pop("markert-red.png")
+        }
+    }
+    $('#marketImg').click(function () {
+        alert();    
+        $("#bg").attr('src', "img/picture1.jpg");
+        return false;
+    });
     function submitMarketStep() {
         debugger;
         var data = steps.toString();
@@ -96,7 +122,7 @@
             <ul>
                 <li>
                     <label>
-                        <div class="embed-responsive embed-responsive-16by9">
+                        <div>
                             <div class="table-responsive">
                                 <script>GetProcess(8)</script>
                                 <div class="table-responsive">
@@ -106,17 +132,21 @@
                                         <tr id="images"></tr>
                                     </table>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </label>
                 </li>
             </ul>
-            
+
         </div>
 
     </div>
-   
+    <div class="pull-right" style="margin-right:100px; margin-top:40px;">
+        
+        <img id="marketImg" onclick="RecordMarket()" src="~/Content/Images/markert-gold.png" />
+
+    </div>
 </div>
 
 @{Model.Answers.FirstOrDefault().IsSelected = true;}
