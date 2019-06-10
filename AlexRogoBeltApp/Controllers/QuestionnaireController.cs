@@ -97,11 +97,20 @@ namespace AlexRogoBeltApp.Controllers
                         TempData["ErrorMsg"] = "You have completed Yellow Belt.";
                         return RedirectToAction("Dashboard", "Questionnaire", new { MemberId = MemberDetails.MemberID });
                     }
+
                     if (Request.QueryString["QuestionOrder"] == null)
                     {
                         if (TempData["LevelId"] == null || TempData["OrderId"] == null)
+                        {
                             TempData["LevelId"] = TempData["OrderId"] = 0;
+                        }
+                        else if (Convert.ToString(TempData["slideno"]) == "slide14")
+                        {
+
+                            TempData["OrderId"] = Convert.ToInt32(TempData["OrderId"]) - 1;
+                        }
                     }
+
                     else
                     {
                         TempData["OrderId"] = Convert.ToInt32(TempData["OrderId"]) - 1;
@@ -205,7 +214,8 @@ namespace AlexRogoBeltApp.Controllers
                     {
                         //Mark yellow belt completed
                         _service.MarkYellowBeltCompleted(MemberDetails.MemberID);
-                        return PartialView("~/Views/YellowBelt/slide14.cshtml");
+                        return PartialView("~/Views/YellowBelt/Congratulations.cshtml");
+
                     }
                     else
                         return RedirectToAction("Questions");
@@ -284,7 +294,7 @@ namespace AlexRogoBeltApp.Controllers
             var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
             if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
             {
-                TempData["OrderId"] = 20;
+                TempData["OrderId"] = 13;
                 TempData["LevelId"] = 1;
                 TempData["Slide"] = "empty";
                 return RedirectToAction("Questions");
@@ -304,9 +314,9 @@ namespace AlexRogoBeltApp.Controllers
             _service.SetTransactions(transactions);
 
 
-            TempData["OrderId"] = 20 + 1;
+            TempData["OrderId"] = 14;
             TempData["LevelId"] = 1;
-            TempData["Slide"] = "slide4";
+            TempData["Slideno"] = "slide14";
 
             return RedirectToAction("Questions");
         }

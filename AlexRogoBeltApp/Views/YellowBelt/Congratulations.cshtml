@@ -9,7 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    ﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+
     <title>TOCICO</title>
     <link href="~/Content/animate.css" rel="stylesheet" />
     <link href="~/Content/style.css" rel="stylesheet" />
@@ -18,16 +18,23 @@
 <body class="body-wrapper">
     <div class="body-content">
         <div class="container">
-            <div class="box-wrapper" style="background-image: linear-gradient(to top,#ace0f9  0%,  #fff1eb 100%);">
+            <div class="box-wrapper" style="background-image: linear-gradient(to top,#ace0f9 0%, #fff1eb 100%);">
                 <div class="question-area">
                     <div class="text-center" style="padding-top:220px;">
-                        <img src="~/Content/Images/cancel.png" style="width:128px; " />
-                        <h3> Error</h3>
+                        <img src="~/Content/Images/Check_Circle.png" style="width:128px; " />
+                        <h3>Thank you!</h3>
                         <br />
-                        <h4>An error occurred while processing your request. Please contact your system administrator</h4>
+                        <h4>You have successfully completed Alex Rogo Yellow Belt.</h4>
                         <br />
                         <a href="https://www.tocico.org/mpage/AlexRogoQuestionnaire" class="btn btn-success">Go to Dashboard</a>
                     </div>
                 </div>
+
+            </div>
+        </div>
+    </div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
 </body>
 </html>

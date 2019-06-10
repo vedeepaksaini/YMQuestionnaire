@@ -234,6 +234,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Authentication.cs" />
     <Compile Include="Services\Service.cs" />
     <Compile Include="ViewModel\AnswerViewModel.cs" />
     <Compile Include="ViewModel\CalculationsViewModel.cs" />
@@ -252,6 +253,7 @@
     <Content Include="Content\Images\bg-intro.jpg" />
     <Content Include="Content\Images\bg.jpg" />
     <Content Include="Content\Images\bottom-bg.jpg" />
+    <Content Include="Content\Images\circle-RED.png" />
     <Content Include="Content\Images\circle.png" />
     <Content Include="Content\Images\favicon.ico" />
     <Content Include="Content\Images\Goal_movie.png" />
@@ -259,8 +261,14 @@
     <Content Include="Content\Images\logo_black.png" />
     <Content Include="Content\Images\steps-data.png" />
     <Content Include="Content\Images\steps.png" />
+    <Content Include="Content\Images\TOCICOBannerLogoGoldHorizontal.gif" />
+    <Content Include="Content\Images\yellow-level.png" />
+    <Content Include="Content\Meberstyle.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\Videos\Bill_Peach_and_Alex_Rogo.mp4" />
+    <Content Include="Content\Videos\Eli_Goldratt_Finding_Bottleneck.mp4" />
+    <Content Include="Content\Videos\Eli_Protective_Capacity.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide6_Video.mp4" />
     <Content Include="Entities\TocicoEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -330,10 +338,11 @@
     <Content Include="Views\YellowBelt\slide10.cshtml" />
     <Content Include="Views\YellowBelt\slide11.cshtml" />
     <Content Include="Views\YellowBelt\slide9.cshtml" />
-    <Content Include="Views\Questionnaire\Dashboard.cshtml" />
     <Content Include="Views\YellowBelt\slide12.cshtml" />
     <Content Include="Views\YellowBelt\slide13.cshtml" />
     <Content Include="Views\YellowBelt\slide14.cshtml" />
+    <Content Include="Views\Questionnaire\Dashboard.cshtml" />
+    <Content Include="Views\YellowBelt\Congratulations.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
