@@ -1,13 +1,33 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Error</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>@ViewBag.Title</title>
+    <link rel="shortcut icon" href="~/Content/Images/favicon.ico" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    ﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+    <title>TOCICO</title>
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/responsive.css" rel="stylesheet" />
 </head>
-<body>
-    <hgroup>
-        <h1>Error.</h1>
-        <h2>An error occurred while processing your request.</h2>
-    </hgroup>
+<body class="body-wrapper">
+    <div class="body-content">
+        <div class="container">
+            <div class="box-wrapper" style="background-image: linear-gradient(to top,#ace0f9  0%,  #fff1eb 100%);">
+                <div class="question-area">
+                    <div class="text-center" style="padding-top:220px;">
+                        <img src="~/Content/Images/cancel.png" style="width:128px; " />
+                        <h3> Error</h3>
+                        <br />
+                        <h4>An error occurred while processing your request. Please contact your system administrator</h4>
+                        <br />
+                        <a href="https://www.tocico.org/mpage/AlexRogoQuestionnaire" class="btn btn-success">Go to Dashboard</a>
+                    </div>
+                </div>
 </body>
 </html>
