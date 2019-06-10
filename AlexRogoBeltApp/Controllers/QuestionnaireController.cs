@@ -118,7 +118,6 @@ namespace AlexRogoBeltApp.Controllers
 
                     TempData.Keep("OrderId");
                     TempData.Keep("LevelId");
-
                     return View(_service.GetQuestions(Convert.ToInt32(TempData["LevelId"]), Convert.ToInt32(TempData["OrderId"]), Convert.ToInt32(MemberDetails.MemberID)));
                 }
                 else
@@ -126,6 +125,7 @@ namespace AlexRogoBeltApp.Controllers
                     HttpContext.Session["MemberId"] = null;
                     TempData["ErrorMsg"] = "You are not authenticated Member.";
                     return RedirectToAction("Dashboard", new { MemberId = Convert.ToInt32(Request.QueryString["id"]) });
+                    
                 }
 
             }
@@ -214,6 +214,7 @@ namespace AlexRogoBeltApp.Controllers
                     {
                         //Mark yellow belt completed
                         _service.MarkYellowBeltCompleted(MemberDetails.MemberID);
+                        HttpContext.Session["MemberId"] = null;
                         return PartialView("~/Views/YellowBelt/Congratulations.cshtml");
 
                     }
