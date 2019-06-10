@@ -17,5 +17,6 @@ namespace AlexRogoBeltApp.ViewModel
         public string ViewName { get; set; }
         public List<AnswerViewModel> Answers { get; set; }
         public List<TransactionViewModel> Transactions { get; set; }
+        public MemberViewModel Member { get; set; }
     }
 }

@@ -238,6 +238,7 @@
     <Compile Include="Services\Service.cs" />
     <Compile Include="ViewModel\AnswerViewModel.cs" />
     <Compile Include="ViewModel\CalculationsViewModel.cs" />
+    <Compile Include="ViewModel\MemberViewModel.cs" />
     <Compile Include="ViewModel\ProcessTemplateStepsViewModel.cs" />
     <Compile Include="ViewModel\ProcessTemplateViewModel.cs" />
     <Compile Include="ViewModel\Questionnaire.cs" />

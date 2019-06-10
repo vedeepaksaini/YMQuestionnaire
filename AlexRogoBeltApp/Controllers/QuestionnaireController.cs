@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Services;
@@ -20,36 +21,22 @@ namespace AlexRogoBeltApp.Controllers
         {
             try
             {
-                var MemberDetails = _service.IsMemberExist(Convert.ToInt32(Request.QueryString["id"]));
+                var MemberDetails = _service.IsMemberExist(Convert.ToInt32(TempData["MemberId"]));
                 if (MemberDetails != null)
                 //if (MemberId > 0)
                 {
                     HttpContext.Session["MemberId"] = MemberDetails;// MemberDetails.MemberID;
-                    if (!MemberDetails.IsYBpaymentCompleted)
-                    {
-                        TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
-                        return RedirectToAction("Dashboard", "Questionnaire", new { MemberId = MemberDetails.MemberID });
-
-
-                    }
-                    if (MemberDetails.IsYBStepsCompleted)
-                    {
-                        TempData["ErrorMsg"] = "You have completed Yellow Belt.";
-                        return RedirectToAction("Dashboard", "Questionnaire", new { MemberId = MemberDetails.MemberID });
-                    }
-
                     return View();
                 }
                 else
                 {
-                    HttpContext.Session["MemberId"] = null;
                     TempData["ErrorMsg"] = "You are not authenticated Member.";
-                    return RedirectToAction("Dashboard", new { MemberId = Convert.ToInt32(Request.QueryString["id"]) });
+                    return RedirectToAction("Dashboard");
                 }
             }
             catch (Exception e)
             {
-                return RedirectToAction("Dashboard");
+                return PartialView(@"~\Views\Shared\Error.cshtml");
             }
 
 
@@ -58,8 +45,37 @@ namespace AlexRogoBeltApp.Controllers
 
         public ActionResult Dashboard()
         {
+            try
+            {
+                var id = Request.QueryString["MemberId"];
 
-            return View();
+                //PropertyInfo isreadonly = typeof(System.Collections.Specialized.NameValueCollection).GetProperty("IsReadOnly", BindingFlags.Instance | BindingFlags.NonPublic);
+                //// make collection editable
+                //isreadonly.SetValue(this.Request.QueryString, false, null);
+                //// remove
+                //Request.QueryString.Remove("MemberId");
+
+                var MemberDetails = _service.IsMemberExist(Convert.ToInt32(id));
+
+                if (MemberDetails != null)
+                {
+                    if (!MemberDetails.IsYBpaymentCompleted)
+                        TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
+                    else if (MemberDetails.IsYBStepsCompleted)
+                        TempData["ErrorMsg"] = "You have completed Yellow Belt.";
+                    else
+                        TempData["MemberId"] = id;
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "You are not authenticated Member.";
+                }
+                return View();
+            }
+            catch (Exception e)
+            {
+                return PartialView(@"~\Views\Shared\Error.cshtml");
+            }
         }
         public ActionResult Questions()
         {
@@ -102,9 +118,7 @@ namespace AlexRogoBeltApp.Controllers
 
                     TempData.Keep("OrderId");
                     TempData.Keep("LevelId");
-                   
-                    return View(_service.GetQuestions(Convert.ToInt32(TempData["LevelId"]), Convert.ToInt32(TempData["OrderId"])));
-
+                    return View(_service.GetQuestions(Convert.ToInt32(TempData["LevelId"]), Convert.ToInt32(TempData["OrderId"]), Convert.ToInt32(MemberDetails.MemberID)));
                 }
                 else
                 {
@@ -117,8 +131,8 @@ namespace AlexRogoBeltApp.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMsg"] = "We are facing some issue at this time.";
-                return RedirectToAction("Dashboard");
+                //TempData["ErrorMsg"] = "We are facing some issue at this time.";
+                return PartialView(@"~\Views\Shared\Error.cshtml");
             }
         }
 
@@ -215,8 +229,8 @@ namespace AlexRogoBeltApp.Controllers
             }
             catch (Exception ex)
             {
-                TempData["ErrorMsg"] = "We are facing some issue at this time.";
-                return RedirectToAction("Dashboard");
+                //TempData["ErrorMsg"] = "We are facing some issue at this time.";
+                return PartialView(@"~\Views\Shared\Error.cshtml");
             }
         }
 
