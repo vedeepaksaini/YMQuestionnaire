@@ -30,16 +30,14 @@ namespace AlexRogoBeltApp.Controllers
                 }
                 else
                 {
-                    TempData["ErrorMsg"] = "You are not authenticated Member.";
-                    return RedirectToAction("Dashboard");
+                    TempData["ErrorMsg"] = "You are not an authenticated Member.";
+                    return RedirectToAction("Dashboard", new { MemberId = TempData["MemberId"] });
                 }
             }
             catch (Exception e)
             {
                 return PartialView(@"~\Views\Shared\Error.cshtml");
             }
-
-
         }
 
 
@@ -47,6 +45,7 @@ namespace AlexRogoBeltApp.Controllers
         {
             try
             {
+                TempData.Remove("ErrorMsg");
                 var id = Request.QueryString["MemberId"];
 
                 //PropertyInfo isreadonly = typeof(System.Collections.Specialized.NameValueCollection).GetProperty("IsReadOnly", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -57,19 +56,16 @@ namespace AlexRogoBeltApp.Controllers
 
                 var MemberDetails = _service.IsMemberExist(Convert.ToInt32(id));
 
-                if (MemberDetails != null)
-                {
-                    if (!MemberDetails.IsYBpaymentCompleted)
-                        TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
-                    else if (MemberDetails.IsYBStepsCompleted)
-                        TempData["ErrorMsg"] = "You have completed Yellow Belt.";
-                    else
-                        TempData["MemberId"] = id;
-                }
+                if (MemberDetails == null)
+                    return UnauthorizedRequest(MemberDetails);
+
+                if (!MemberDetails.IsYBpaymentCompleted)
+                    TempData["ErrorMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
+                else if (MemberDetails.IsYBStepsCompleted)
+                    TempData["ErrorMsg"] = "You have completed the Yellow Belt.";
                 else
-                {
-                    TempData["ErrorMsg"] = "You are not authenticated Member.";
-                }
+                    TempData["MemberId"] = id;
+
                 return View();
             }
             catch (Exception e)
@@ -81,52 +77,42 @@ namespace AlexRogoBeltApp.Controllers
         {
             try
             {
+                var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
 
-                if (HttpContext.Session["MemberId"] != null)
+                if (MemberDetails == null)
+                    return UnauthorizedRequest(MemberDetails);
+
+                if (!MemberDetails.IsYBpaymentCompleted)
                 {
-                    var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
-                    if (!MemberDetails.IsYBpaymentCompleted)
+                    TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
+                    return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
+                }
+
+                if (MemberDetails.IsYBStepsCompleted)
+                {
+                    TempData["ErrorMsg"] = "You have completed Yellow Belt.";
+                    return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
+                }
+
+                if (Request.QueryString["QuestionOrder"] == null)
+                {
+                    if (TempData["LevelId"] == null || TempData["OrderId"] == null)
                     {
-                        TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
-                        return RedirectToAction("Dashboard", "Questionnaire", new { MemberId = MemberDetails.MemberID });
-
-
+                        TempData["LevelId"] = TempData["OrderId"] = 0;
                     }
-                    if (MemberDetails.IsYBStepsCompleted)
-                    {
-                        TempData["ErrorMsg"] = "You have completed Yellow Belt.";
-                        return RedirectToAction("Dashboard", "Questionnaire", new { MemberId = MemberDetails.MemberID });
-                    }
-
-                    if (Request.QueryString["QuestionOrder"] == null)
-                    {
-                        if (TempData["LevelId"] == null || TempData["OrderId"] == null)
-                        {
-                            TempData["LevelId"] = TempData["OrderId"] = 0;
-                        }
-                        else if (Convert.ToString(TempData["slideno"]) == "slide14")
-                        {
-
-                            TempData["OrderId"] = Convert.ToInt32(TempData["OrderId"]) - 1;
-                        }
-                    }
-
-                    else
+                    else if (Convert.ToString(TempData["slideno"]) == "slide14")
                     {
                         TempData["OrderId"] = Convert.ToInt32(TempData["OrderId"]) - 1;
                     }
-
-                    TempData.Keep("OrderId");
-                    TempData.Keep("LevelId");
-                    return View(_service.GetQuestions(Convert.ToInt32(TempData["LevelId"]), Convert.ToInt32(TempData["OrderId"]), Convert.ToInt32(MemberDetails.MemberID)));
                 }
                 else
                 {
-                    HttpContext.Session["MemberId"] = null;
-                    TempData["ErrorMsg"] = "You are not authenticated Member.";
-                    return RedirectToAction("Dashboard", new { MemberId = Convert.ToInt32(Request.QueryString["id"]) });
-                    
+                    TempData["OrderId"] = Convert.ToInt32(TempData["OrderId"]) - 1;
                 }
+
+                TempData.Keep("OrderId");
+                TempData.Keep("LevelId");
+                return View(_service.GetQuestions(Convert.ToInt32(TempData["LevelId"]), Convert.ToInt32(TempData["OrderId"]), Convert.ToInt32(MemberDetails.MemberID)));
 
             }
             catch (Exception ex)
@@ -141,91 +127,84 @@ namespace AlexRogoBeltApp.Controllers
         {
             try
             {
-                if (HttpContext.Session["MemberId"] != null)
+                var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
+
+                if (MemberDetails == null)
+                    return UnauthorizedRequest(MemberDetails);
+
+                if (!MemberDetails.IsYBpaymentCompleted)
                 {
+                    TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
+                    return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
+                }
 
-                    var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
+                if (MemberDetails.IsYBStepsCompleted)
+                {
+                    TempData["ErrorMsg"] = "You have completed Yellow Belt.";
+                    return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
+                }
 
-                    if (!MemberDetails.IsYBpaymentCompleted)
-                    {
-                        TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
-                        return RedirectToAction("Dashboard", "Questionnaire", new { MemberId = MemberDetails.MemberID });
-
-
-                    }
-                    if (MemberDetails.IsYBStepsCompleted)
-                    {
-                        TempData["ErrorMsg"] = "You have completed Yellow Belt.";
-                        return RedirectToAction("Dashboard", "Questionnaire", new { MemberId = MemberDetails.MemberID });
-                    }
-                    if (Convert.ToString(TempData["Slide"]) == "slide4")
-                    {
-                        TempData.Remove("Slide");
-                        TempData["LevelId"] = model.LevelID;
-                        TempData["OrderId"] = model.QuestionOrder + 1;
-                        return RedirectToAction("Questions");
-                    }
-                    if (Convert.ToString(TempData["Slide"]) == "empty")
-                    {
-                        TempData.Remove("Slide");
-                        TempData["LevelId"] = model.LevelID;
-                        TempData["OrderId"] = model.QuestionOrder;
-                        return RedirectToAction("Questions");
-                    }
-
-                    // For radio button 
-                    var ansId = frm["grp"];
-                    if (ansId != null)
-                    {
-                        var answer = model.Answers.FirstOrDefault(x => x.ID.ToString() == ansId);
-                        foreach (var item in model.Answers)
-                        {
-                            item.IsSelected = false;
-                        }
-                        answer.IsSelected = true;
-                    }
-
-                    var selectedAnswers = model.Answers.Where(x => x.IsSelected).ToList();
-                    selectedAnswers.AddRange(model.Answers.Where(x => !string.IsNullOrEmpty(x.ControlValue)));
-
-                    if (selectedAnswers.Count() == 0)
-                    {
-                        TempData["OrderId"] = model.QuestionOrder;
-                        TempData["LevelId"] = model.LevelID;
-                        return RedirectToAction("Questions");
-                    }
-
-                    List<TransactionViewModel> transactions = selectedAnswers.Distinct().Select(x => new TransactionViewModel
-                    {
-                        AnswerID = x.ID,
-                        MemberID = MemberDetails.MemberID,//Convert.ToInt32(HttpContext.Session["MemberId"]),
-                        Deactive = x.Deactive,
-                        QuestionID = x.QuestionID,
-                        ControlValue = x.ControlValue
-                    }).ToList();
-
-                    _service.SetTransactions(transactions);
-
+                if (Convert.ToString(TempData["Slide"]) == "slide4")
+                {
+                    TempData.Remove("Slide");
                     TempData["LevelId"] = model.LevelID;
                     TempData["OrderId"] = model.QuestionOrder + 1;
+                    return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
+                }
 
-                    if (TempData["OrderId"].ToString() == "14")
+                if (Convert.ToString(TempData["Slide"]) == "empty")
+                {
+                    TempData.Remove("Slide");
+                    TempData["LevelId"] = model.LevelID;
+                    TempData["OrderId"] = model.QuestionOrder;
+                    return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
+                }
 
+                // For radio button 
+                var ansId = frm["grp"];
+                if (ansId != null)
+                {
+                    var answer = model.Answers.FirstOrDefault(x => x.ID.ToString() == ansId);
+                    foreach (var item in model.Answers)
                     {
-                        //Mark yellow belt completed
-                        _service.MarkYellowBeltCompleted(MemberDetails.MemberID);
-                        HttpContext.Session["MemberId"] = null;
-                        return PartialView("~/Views/YellowBelt/Congratulations.cshtml");
-
+                        item.IsSelected = false;
                     }
-                    else
-                        return RedirectToAction("Questions");
+                    answer.IsSelected = true;
+                }
+
+                var selectedAnswers = model.Answers.Where(x => x.IsSelected).ToList();
+                selectedAnswers.AddRange(model.Answers.Where(x => !string.IsNullOrEmpty(x.ControlValue)));
+
+                if (selectedAnswers.Count() == 0)
+                {
+                    TempData["OrderId"] = model.QuestionOrder;
+                    TempData["LevelId"] = model.LevelID;
+                    return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
+                }
+
+                List<TransactionViewModel> transactions = selectedAnswers.Distinct().Select(x => new TransactionViewModel
+                {
+                    AnswerID = x.ID,
+                    MemberID = MemberDetails.MemberID,//Convert.ToInt32(HttpContext.Session["MemberId"]),
+                    Deactive = x.Deactive,
+                    QuestionID = x.QuestionID,
+                    ControlValue = x.ControlValue
+                }).ToList();
+
+                _service.SetTransactions(transactions);
+
+                TempData["LevelId"] = model.LevelID;
+                TempData["OrderId"] = model.QuestionOrder + 1;
+
+                if (TempData["OrderId"].ToString() == "14")
+                {
+                    //Mark yellow belt completed
+                    _service.MarkYellowBeltCompleted(MemberDetails.MemberID);
+                    HttpContext.Session["MemberId"] = null;
+                    return PartialView("~/Views/YellowBelt/Congratulations.cshtml");
                 }
                 else
-                {
-                    TempData["ErrorMsg"] = "You are not authenticated Member.";
-                    return RedirectToAction("Dashboard");
-                }
+                    return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
             }
             catch (Exception ex)
             {
@@ -253,32 +232,50 @@ namespace AlexRogoBeltApp.Controllers
         [WebMethod]
         public ActionResult SubmitTemplate(string data)
         {
-            if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
+            try
             {
-                TempData["OrderId"] = 4;
+                var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
+
+                if (MemberDetails == null)
+                    return UnauthorizedRequest(MemberDetails);
+
+                if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
+                {
+                    TempData["OrderId"] = 4;
+                    TempData["LevelId"] = 1;
+                    TempData["Slide"] = "empty";
+                    return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
+                }
+
+                var steps = JsonConvert.DeserializeObject<string[]>(data);
+                List<TransactionViewModel> transactions = steps.Select(x => new TransactionViewModel
+                {
+                    AnswerID = 21,
+                    MemberID = MemberDetails.MemberID,
+                    Deactive = false,
+                    QuestionID = 8,
+                    ControlValue = x
+                }).ToList();
+
+                _service.SetTransactions(transactions);
+
+                TempData["OrderId"] = 4 + 1;
                 TempData["LevelId"] = 1;
-                TempData["Slide"] = "empty";
+                TempData["Slide"] = "slide4";
+
                 return RedirectToAction("Questions");
             }
-
-            var steps = JsonConvert.DeserializeObject<string[]>(data);
-            var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
-            List<TransactionViewModel> transactions = steps.Select(x => new TransactionViewModel
+            catch (Exception ex)
             {
-                AnswerID = 21,
-                MemberID = MemberDetails.MemberID,
-                Deactive = false,
-                QuestionID = 8,
-                ControlValue = x
-            }).ToList();
+                //TempData["ErrorMsg"] = "We are facing some issue at this time.";
+                return PartialView(@"~\Views\Shared\Error.cshtml");
+            }
+        }
 
-            _service.SetTransactions(transactions);
-
-            TempData["OrderId"] = 4 + 1;
-            TempData["LevelId"] = 1;
-            TempData["Slide"] = "slide4";
-
-            return RedirectToAction("Questions");
+        private ActionResult UnauthorizedRequest(MemberMaster MemberDetails)
+        {
+            TempData["ErrorMsg"] = "You are not an authenticated Member.";
+            return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
         }
 
         [WebMethod]
@@ -293,16 +290,19 @@ namespace AlexRogoBeltApp.Controllers
         {
             string[] MarketSteps = data.Split(',');
             var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
+
+            if (MemberDetails == null)
+                return UnauthorizedRequest(MemberDetails);
+
             if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
             {
                 TempData["OrderId"] = 13;
                 TempData["LevelId"] = 1;
                 TempData["Slide"] = "empty";
-                return RedirectToAction("Questions");
+                return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
             }
 
             // var steps = JsonConvert.DeserializeObject<string[]>(data);
-
             List<TransactionViewModel> transactions = MarketSteps.Select(x => new TransactionViewModel
             {
                 AnswerID = 38,
@@ -314,14 +314,11 @@ namespace AlexRogoBeltApp.Controllers
 
             _service.SetTransactions(transactions);
 
-
             TempData["OrderId"] = 14;
             TempData["LevelId"] = 1;
             TempData["Slideno"] = "slide14";
 
-            return RedirectToAction("Questions");
+            return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
         }
-
-
     }
 }

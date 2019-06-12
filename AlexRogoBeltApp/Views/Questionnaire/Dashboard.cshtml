@@ -28,9 +28,20 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
           crossorigin="anonymous">
     <link href="css/Memberstyle.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    <script>
+        function RenderErrorPopup() {
+            $('#myModal').modal('show');
+            $('#errMsg').text('@TempData["ErrorMsg"]');
+        };
+    </script>
 </head>
 
 <body>
+    @Html.Partial("~/Views/Shared/ErrorPopup.cshtml")
     @*<nav class="navbar navbar-default">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -64,27 +75,13 @@
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>*@
-
     <div class="container " style="margin-top:180px;">
         <div class="fll_wdth ">
-            <!-- <h4 class="pull-left mt-25">You are on yellow belt levels.</h4> -->
             @if (TempData["ErrorMsg"] != null)
             {
-                <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
-                    <div class="modal-dialog modal-sm" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 class="modal-title text-left"><i class="glyphicon glyphicon-warning-sign text-danger"></i> Error</h4>
-                            </div>
-                            <div class="modal-body text-left">
-                                @TempData["ErrorMsg"]
-                            </div>
-
-                        </div><!-- /.modal-content -->
-                    </div>
-                </div>
+                <script>RenderErrorPopup();</script>
             }
+            <!-- <h4 class="pull-left mt-25">You are on yellow belt levels.</h4> -->
         </div>
         <div class="box-wrapper" style="min-height:480px;background: #ffffff; border: 1px solid #e1e1e1; box-shadow: 0 0 6px rgba(0, 0, 0, 0.14); padding: 15px; float: left;
     width: 100%; ">
@@ -141,9 +138,7 @@
                     </ul>
                 </div>
 
-                <div role="tabpanel" class="tab-pane" id="green">
-                    2
-                </div>
+                <div role="tabpanel" class="tab-pane" id="green">2</div>
                 <div role="tabpanel" class="tab-pane" id="black">3</div>
                 <div role="tabpanel" class="tab-pane" id="tocexpert">4</div>
             </div>
@@ -157,7 +152,7 @@
                         int Memberid = Convert.ToInt32(Request.QueryString["MemberId"]);
 
                     }
-                    <a id="startButton" href="/Questionnaire/GetStarted?id=@Memberid" class="mt-2 btn btn-success btn-lg"
+                    <a id="startButton" href="/Questionnaire/GetStarted?MemberId=@Memberid" class="mt-2 btn btn-success btn-lg"
                        @{ if (TempData["ErrorMsg"] != null) { @: style="display:none"
                        } else { @: style="display:inline"
                        } }>Get Started</a>
