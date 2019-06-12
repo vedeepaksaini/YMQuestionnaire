@@ -11,6 +11,11 @@
                 $("#steps").empty();
                 $("#images").empty();
                 $.each(object, function (key, value) {
+                    if (value.split(',').length > 1) {
+                        value = value.split(',')[0];
+                        $('#ProcessTemplateDropdown').val(2);
+                        //$('[name=options]').val(3);
+                    }
                     $('#steps').prepend('<td align="center">' + value + '</td>')
                     $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
                 });

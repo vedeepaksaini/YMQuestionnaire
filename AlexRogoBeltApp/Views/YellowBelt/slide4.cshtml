@@ -6,6 +6,7 @@
         //$('#btnSubmit').attr("type", "button");
         //$('#btnSubmit').attr("disabled", "disabled");
         $('#btnSubmitProcess').css("display", "block");
+        
     });
 
     function GetProcesses() {
@@ -16,6 +17,12 @@
                     debugger;
                     $("#ProcessTemplateDropdown").append($("<option></option>").val(value.ID).html(value.ProcessTemplateName));
                 });
+                var SelectedProcessId = localStorage.getItem('ProcessId');
+                if (SelectedProcessId != "undefined") {
+                    $('#ProcessTemplateDropdown [value="' + parseInt(SelectedProcessId) + '"]').attr('selected', 'true');
+                }
+                else { $('#btnSubmitMarketProcess').prop('disabled', true);}
+
                 $("#ProcessTemplateDropdown").append($("<option></option>").val("Custom").html("Custom"));
             },
             error: function (response) {
@@ -30,6 +37,7 @@
 
         if (id == "0") {
             $('#btnAddStep').css("display", "none");
+            $('#btnSubmitMarketProcess').prop('disabled', false);
         } else {
             $('#btnAddStep').css("display", "block");
             if (id == "Custom") { return; }
@@ -148,9 +156,9 @@
                 $.each(object, function (key, value) {
                     debugger;
                     if (value.split(',').length > 1) {
+                        PId = parseInt(value.split(',')[1]);
                         value = value.split(',')[0];
-                        $('#ProcessTemplateDropdown').val(2);
-                        //$('[name=options]').val(3);
+                        localStorage.setItem('ProcessId', JSON.stringify(PId));
                     }
                     $('#steps').prepend('<td align="center">' + value + '</td>')
                     $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')

@@ -52,6 +52,38 @@
 </div>
 
 <script>
+
+    $(document).ready(function () {
+        //set initial state.
+        $('#btnSubmit').prop('disabled', true);
+        debugger;
+        
+        if ($('#Answers_0__IsSelected').is(":checked") || $('#Answers_1__IsSelected').is(":checked") || $('#Answers_2__IsSelected').is(":checked")) {
+            $('#btnSubmit').prop('disabled', false);
+        }
+        $('#Answers_0__IsSelected').change(function () {
+            debugger;
+            if (this.checked) {
+                $('#btnSubmit').prop('disabled', false);
+            } else {
+                $('#btnSubmit').prop('disabled', true);
+            }         
+        });
+        $('#Answers_1__IsSelected').change(function () {
+            if (this.checked) {
+                $('#btnSubmit').prop('disabled', false);
+            } else {
+                $('#btnSubmit').prop('disabled', true);
+            }         
+        });
+        $('#Answers_2__IsSelected').change(function () {
+            if (this.checked) {
+                $('#btnSubmit').prop('disabled', false);
+            } else {
+                $('#btnSubmit').prop('disabled', true);
+            }         
+        });
+    });
     function ShowError(e, labelId) {
         if ($('#Answers_0__IsSelected').is(":checked") == false
             && $('#Answers_1__IsSelected').is(":checked") == false

@@ -32,6 +32,8 @@
         $('#btnSubmit').css("display", "none");
         $('#btnSubmitMarketProcess').css("display", "block");
         $("#btnSubmitMarketProcess").attr('value', 'Finish');
+        //$("#btnSubmitMarketProcess").attr('disable', 'True');
+        $('#btnSubmitMarketProcess').prop('disabled', true);
         for (var i = 1; i <= 7; i++) {
             if ($('#step' + i).attr('src').split('/')[4] == "circle-RED.png") {
                 steps.push('step' + i);
@@ -42,7 +44,7 @@
     function RecordStep(step) {
         debugger;
         stepId = '#' + step
-        alert(step);
+       
         step = step.replace(/___/g, ' ');//for removing ___
         step = step.replace(/__/g, '/');// for removing __  and placing /
         if ($(stepId).attr('src').split('/')[4] == "circle.png") {
@@ -53,7 +55,12 @@
             $(stepId).attr("src", "../../Content/Images/circle.png");
             steps.pop(step);
         }
-        
+        if (steps.length>0) {
+            $('#btnSubmitMarketProcess').prop('disabled', false);
+        }
+        else {
+            $('#btnSubmitMarketProcess').prop('disabled', true);
+        }
 
 
         return JSON.stringify(steps);
