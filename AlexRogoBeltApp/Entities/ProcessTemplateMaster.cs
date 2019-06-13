@@ -26,7 +26,7 @@ namespace AlexRogoBeltApp.Entities
         public string ProcessTemplateName { get; set; }
         public int Steps { get; set; }
         public bool IsCustom { get; set; }
-        public Nullable<int> MemberID { get; set; }
+        public Nullable<int> EnvironmentID { get; set; }
         public bool Deactive { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -26,14 +26,14 @@
 
                             @if (Model.Answers[i].ErrorMSG != null)
                             {
-                                @Html.CheckBoxFor(model => Model.Answers[i].IsSelected, new { @onchange = "ShowError();" })
+                                @Html.CheckBoxFor(model => Model.Answers[i].IsSelected, new { @class = "chk", @onchange = "ShowError();" })
                                 <i class="glyphicon glyphicon-ok"></i>
                                 @Html.DisplayFor(model => Model.Answers[i].Answers)
                                 @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:#a94442; display:none; font-size:14px;" })
                             }
                             else
                             {
-                                @Html.CheckBoxFor(model => Model.Answers[i].IsSelected)
+                                @Html.CheckBoxFor(model => Model.Answers[i].IsSelected, new { @class = "chk" })
                                 <i class="glyphicon glyphicon-ok"></i>
                                 @Html.DisplayFor(model => Model.Answers[i].Answers)
                             }
@@ -54,36 +54,27 @@
 <script>
 
     $(document).ready(function () {
-        //set initial state.
-        $('#btnSubmit').prop('disabled', true);
         debugger;
-        
-        if ($('#Answers_0__IsSelected').is(":checked") || $('#Answers_1__IsSelected').is(":checked") || $('#Answers_2__IsSelected').is(":checked")) {
-            $('#btnSubmit').prop('disabled', false);
-        }
+        SetButtonProp()
         $('#Answers_0__IsSelected').change(function () {
             debugger;
-            if (this.checked) {
-                $('#btnSubmit').prop('disabled', false);
-            } else {
-                $('#btnSubmit').prop('disabled', true);
-            }         
+            SetButtonProp();
         });
         $('#Answers_1__IsSelected').change(function () {
-            if (this.checked) {
-                $('#btnSubmit').prop('disabled', false);
-            } else {
-                $('#btnSubmit').prop('disabled', true);
-            }         
+            SetButtonProp();
         });
         $('#Answers_2__IsSelected').change(function () {
-            if (this.checked) {
-                $('#btnSubmit').prop('disabled', false);
-            } else {
-                $('#btnSubmit').prop('disabled', true);
-            }         
+            SetButtonProp();
         });
     });
+    function SetButtonProp() {
+        if ($('.chk:checkbox:checked').length > 0) {
+            $('#btnSubmit').prop('disabled', false);
+        }
+        else {
+            $('#btnSubmit').prop('disabled', true);
+        }
+    }
     function ShowError(e, labelId) {
         if ($('#Answers_0__IsSelected').is(":checked") == false
             && $('#Answers_1__IsSelected').is(":checked") == false

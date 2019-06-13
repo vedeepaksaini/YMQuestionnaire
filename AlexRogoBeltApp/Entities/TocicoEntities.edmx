@@ -130,7 +130,7 @@
           <Property Name="ProcessTemplateName" Type="varchar" MaxLength="900" Nullable="false" />
           <Property Name="Steps" Type="int" Nullable="false" />
           <Property Name="IsCustom" Type="bit" Nullable="false" />
-          <Property Name="MemberID" Type="int" />
+          <Property Name="EnvironmentID" Type="int" />
           <Property Name="Deactive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProcessTemplateSteps">
@@ -537,7 +537,7 @@
           <Property Name="IsCustom" Type="Boolean" Nullable="false" />
           <Property Name="MemberID" Type="Int32" />
           <Property Name="Deactive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ProcessTemplateMaster" Relationship="Self.FK__Environme__Proce__756D6ECB" FromRole="EnvironmentMaster" ToRole="ProcessTemplateMaster" />
+          <NavigationProperty Name="ProcessTemplateMaster" Relationship="TOCICOModel.FK__Environme__Proce__756D6ECB" FromRole="EnvironmentMaster" ToRole="ProcessTemplateMaster" />
         </EntityType>
         <EntityType Name="GoalMaster">
           <Key>
@@ -585,22 +585,8 @@
           <Property Name="GoalID" Type="Int32" Nullable="false" />
           <Property Name="Deactive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="GoalMaster" Relationship="Self.FK__ProcessGo__GoalI__2A4B4B5E" FromRole="ProcessGoalMapping" ToRole="GoalMaster" />
-          <NavigationProperty Name="ProcessTemplateMaster" Relationship="Self.FK__ProcessGo__Proce__29572725" FromRole="ProcessGoalMapping" ToRole="ProcessTemplateMaster" />
           <NavigationProperty Name="MemberMaster" Relationship="TOCICOModel.FK__ProcessGo__Membe__4A4E069C" FromRole="ProcessGoalMapping" ToRole="MemberMaster" />
-        </EntityType>
-        <EntityType Name="ProcessTemplateMaster">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProcessTemplateName" Type="String" MaxLength="900" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Steps" Type="Int32" Nullable="false" />
-          <Property Name="IsCustom" Type="Boolean" Nullable="false" />
-          <Property Name="MemberID" Type="Int32" />
-          <Property Name="Deactive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="EnvironmentMasters" Relationship="Self.FK__Environme__Proce__756D6ECB" FromRole="ProcessTemplateMaster" ToRole="EnvironmentMaster" />
-          <NavigationProperty Name="ProcessGoalMappings" Relationship="Self.FK__ProcessGo__Proce__29572725" FromRole="ProcessTemplateMaster" ToRole="ProcessGoalMapping" />
-          <NavigationProperty Name="ProcessTemplateSteps" Relationship="Self.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateMaster" ToRole="ProcessTemplateSteps" />
+          <NavigationProperty Name="ProcessTemplateMaster" Relationship="TOCICOModel.FK__ProcessGo__Proce__29572725" FromRole="ProcessGoalMapping" ToRole="ProcessTemplateMaster" />
         </EntityType>
         <EntityType Name="ProcessTemplateStep">
           <Key>
@@ -613,7 +599,7 @@
           <Property Name="IsCustom" Type="Boolean" Nullable="false" />
           <Property Name="MemberID" Type="Int32" />
           <Property Name="Deactive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="ProcessTemplateMaster" Relationship="Self.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateSteps" ToRole="ProcessTemplateMaster" />
+          <NavigationProperty Name="ProcessTemplateMaster" Relationship="TOCICOModel.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateStep" ToRole="ProcessTemplateMaster" />
         </EntityType>
         <EntityType Name="QuestionMaster">
           <Key>
@@ -712,18 +698,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Environme__Proce__756D6ECB">
-          <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="0..1" />
-          <End Role="EnvironmentMaster" Type="Self.EnvironmentMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProcessTemplateMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="EnvironmentMaster">
-              <PropertyRef Name="ProcessTemplateID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__GoalTarge__GoalI__267ABA7A">
           <End Role="GoalMaster" Type="Self.GoalMaster" Multiplicity="1" />
           <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
@@ -772,30 +746,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProcessGo__Proce__29572725">
-          <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="1" />
-          <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProcessTemplateMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProcessGoalMapping">
-              <PropertyRef Name="ProcessID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProcessTe__Proce__59C55456">
-          <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="1" />
-          <End Role="ProcessTemplateSteps" Type="Self.ProcessTemplateStep" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ProcessTemplateMaster">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="ProcessTemplateSteps">
-              <PropertyRef Name="ProcessID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Transacti__Quest__1ED998B2">
           <End Role="QuestionMaster" Type="Self.QuestionMaster" Multiplicity="1" />
           <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
@@ -818,7 +768,6 @@
           <EntitySet Name="GoalTargets" EntityType="Self.GoalTarget" />
           <EntitySet Name="LevelMasters" EntityType="Self.LevelMaster" />
           <EntitySet Name="ProcessGoalMappings" EntityType="Self.ProcessGoalMapping" />
-          <EntitySet Name="ProcessTemplateMasters" EntityType="Self.ProcessTemplateMaster" />
           <EntitySet Name="ProcessTemplateSteps" EntityType="Self.ProcessTemplateStep" />
           <EntitySet Name="QuestionMasters" EntityType="Self.QuestionMaster" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
@@ -840,10 +789,6 @@
             <End Role="AnswerMaster" EntitySet="AnswerMasters" />
             <End Role="TransactionMaster" EntitySet="TransactionMasters" />
           </AssociationSet>
-          <AssociationSet Name="FK__Environme__Proce__756D6ECB" Association="Self.FK__Environme__Proce__756D6ECB">
-            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
-            <End Role="EnvironmentMaster" EntitySet="EnvironmentMasters" />
-          </AssociationSet>
           <AssociationSet Name="FK__GoalTarge__GoalI__267ABA7A" Association="Self.FK__GoalTarge__GoalI__267ABA7A">
             <End Role="GoalMaster" EntitySet="GoalMasters" />
             <End Role="GoalTarget" EntitySet="GoalTargets" />
@@ -859,14 +804,6 @@
           <AssociationSet Name="FK__QuestionM__Level__5070F446" Association="Self.FK__QuestionM__Level__5070F446">
             <End Role="LevelMaster" EntitySet="LevelMasters" />
             <End Role="QuestionMaster" EntitySet="QuestionMasters" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProcessGo__Proce__29572725" Association="Self.FK__ProcessGo__Proce__29572725">
-            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
-            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMappings" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProcessTe__Proce__59C55456" Association="Self.FK__ProcessTe__Proce__59C55456">
-            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
-            <End Role="ProcessTemplateSteps" EntitySet="ProcessTemplateSteps" />
           </AssociationSet>
           <AssociationSet Name="FK__Transacti__Quest__1ED998B2" Association="Self.FK__Transacti__Quest__1ED998B2">
             <End Role="QuestionMaster" EntitySet="QuestionMasters" />
@@ -888,6 +825,19 @@
           <AssociationSet Name="FK__Transacti__Membe__4865BE2A" Association="TOCICOModel.FK__Transacti__Membe__4865BE2A">
             <End Role="MemberMaster" EntitySet="MemberMasters" />
             <End Role="TransactionMaster" EntitySet="TransactionMasters" />
+          </AssociationSet>
+          <EntitySet Name="ProcessTemplateMasters" EntityType="TOCICOModel.ProcessTemplateMaster" />
+          <AssociationSet Name="FK__Environme__Proce__756D6ECB" Association="TOCICOModel.FK__Environme__Proce__756D6ECB">
+            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
+            <End Role="EnvironmentMaster" EntitySet="EnvironmentMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessGo__Proce__29572725" Association="TOCICOModel.FK__ProcessGo__Proce__29572725">
+            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
+            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessTe__Proce__59C55456" Association="TOCICOModel.FK__ProcessTe__Proce__59C55456">
+            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
+            <End Role="ProcessTemplateStep" EntitySet="ProcessTemplateSteps" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="MemberMaster">
@@ -964,6 +914,56 @@
             </Principal>
             <Dependent Role="TransactionMaster">
               <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ProcessTemplateMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProcessTemplateName" Type="String" Nullable="false" MaxLength="900" FixedLength="false" Unicode="false" />
+          <Property Name="Steps" Type="Int32" Nullable="false" />
+          <Property Name="IsCustom" Type="Boolean" Nullable="false" />
+          <Property Name="EnvironmentID" Type="Int32" />
+          <Property Name="Deactive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="EnvironmentMasters" Relationship="TOCICOModel.FK__Environme__Proce__756D6ECB" FromRole="ProcessTemplateMaster" ToRole="EnvironmentMaster" />
+          <NavigationProperty Name="ProcessGoalMappings" Relationship="TOCICOModel.FK__ProcessGo__Proce__29572725" FromRole="ProcessTemplateMaster" ToRole="ProcessGoalMapping" />
+          <NavigationProperty Name="ProcessTemplateSteps" Relationship="TOCICOModel.FK__ProcessTe__Proce__59C55456" FromRole="ProcessTemplateMaster" ToRole="ProcessTemplateStep" />
+        </EntityType>
+        <Association Name="FK__Environme__Proce__756D6ECB">
+          <End Type="TOCICOModel.ProcessTemplateMaster" Role="ProcessTemplateMaster" Multiplicity="0..1" />
+          <End Type="TOCICOModel.EnvironmentMaster" Role="EnvironmentMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessTemplateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="EnvironmentMaster">
+              <PropertyRef Name="ProcessTemplateID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProcessGo__Proce__29572725">
+          <End Type="TOCICOModel.ProcessTemplateMaster" Role="ProcessTemplateMaster" Multiplicity="1" />
+          <End Type="TOCICOModel.ProcessGoalMapping" Role="ProcessGoalMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessTemplateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessGoalMapping">
+              <PropertyRef Name="ProcessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProcessTe__Proce__59C55456">
+          <End Type="TOCICOModel.ProcessTemplateMaster" Role="ProcessTemplateMaster" Multiplicity="1" />
+          <End Type="TOCICOModel.ProcessTemplateStep" Role="ProcessTemplateStep" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProcessTemplateMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ProcessTemplateStep">
+              <PropertyRef Name="ProcessID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1070,18 +1070,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ProcessTemplateMasters">
-            <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateMaster">
-              <MappingFragment StoreEntitySet="ProcessTemplateMaster">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="ProcessTemplateName" ColumnName="ProcessTemplateName" />
-                <ScalarProperty Name="Steps" ColumnName="Steps" />
-                <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
-                <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="ProcessTemplateSteps">
             <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateStep">
               <MappingFragment StoreEntitySet="ProcessTemplateSteps">
@@ -1162,6 +1150,18 @@
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="MemberUserName" ColumnName="MemberUserName" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProcessTemplateMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateMaster">
+              <MappingFragment StoreEntitySet="ProcessTemplateMaster">
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+                <ScalarProperty Name="EnvironmentID" ColumnName="EnvironmentID" />
+                <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
+                <ScalarProperty Name="Steps" ColumnName="Steps" />
+                <ScalarProperty Name="ProcessTemplateName" ColumnName="ProcessTemplateName" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

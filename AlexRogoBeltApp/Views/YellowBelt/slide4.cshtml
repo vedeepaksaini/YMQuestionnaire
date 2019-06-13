@@ -11,7 +11,8 @@
 
     function GetProcesses() {
         $.ajax({
-            type: "POST", url: "GetAllTemplates", dataType: "json", contentType: "application/json", success: function (res) {
+            type: "POST", url: "GetAllTemplates", data: JSON.stringify({ id: localStorage.getItem("EnvId") }), dataType: "json", contentType: "application/json", success: function (res) {
+               
                 localStorage.setItem('TemplateResponse', JSON.stringify(res));
                 $.each(res, function (data, value) {
                     debugger;
@@ -146,7 +147,7 @@
 
     function GetProcess(id) {
         $.ajax({
-            type: "POST", url: "GetTemplate", data: JSON.stringify({ id: 8 }), dataType: "json", contentType: "application/json", success: function (res) {
+            type: "POST", url: "GetTemplate", data: JSON.stringify({ id:8 }), dataType: "json", contentType: "application/json", success: function (res) {
                 localStorage.setItem('TemplateResponse', JSON.stringify(res));
                 var data = localStorage.getItem('TemplateResponse');
                 var object = JSON.parse(data);
@@ -155,10 +156,12 @@
                 $("#images").empty();
                 $.each(object, function (key, value) {
                     debugger;
-                    if (value.split(',').length > 1) {
-                        PId = parseInt(value.split(',')[1]);
-                        value = value.split(',')[0];
-                        localStorage.setItem('ProcessId', JSON.stringify(PId));
+                    if (value != null) {
+                        if (value.split(',').length > 1) {
+                            PId = parseInt(value.split(',')[1]);
+                            value = value.split(',')[0];
+                            localStorage.setItem('ProcessId', JSON.stringify(PId));
+                        }
                     }
                     $('#steps').prepend('<td align="center">' + value + '</td>')
                     $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')

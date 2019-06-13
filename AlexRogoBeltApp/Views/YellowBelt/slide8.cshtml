@@ -30,7 +30,7 @@
                                 }
                             }
 
-                            @Html.RadioButton("grp", Model.Answers[i].ID, Model.Answers[i].IsSelected, new { @onchange = "ShowError('Answers_" + i + "__IsSelected');" })
+                            @Html.RadioButton("grp", Model.Answers[i].ID, Model.Answers[i].IsSelected, new {@class="rdbtn", @onchange = "ShowError('Answers_" + i + "__IsSelected');" })
 
                             @Html.DisplayFor(model => Model.Answers[i].Answers)
 
@@ -53,8 +53,24 @@
 </div>
 
 <script>
+
+    $(document).ready(function () {
+        debugger;
+        SetButtonProp()
+    });
+
+    function SetButtonProp() {
+        debugger;
+        if ($("input:radio.rdbtn:checked").length > 0) {
+            $('#btnSubmit').prop('disabled', false);
+        }
+        else {
+            $('#btnSubmit').prop('disabled', true);
+        }
+    }
     function ShowError(controlId) {
         debugger;
+        SetButtonProp()
         if (controlId == "Answers_1__IsSelected") {
             $('#lblError1').css("display", "block");
             $('#lblError2').css("display", "none");
