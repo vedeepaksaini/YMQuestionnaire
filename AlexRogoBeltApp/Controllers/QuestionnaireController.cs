@@ -45,7 +45,7 @@ namespace AlexRogoBeltApp.Controllers
         {
             try
             {
-                TempData.Remove("ErrorMsg");
+                //TempData.Remove("ErrorMsg");
                 var id = Request.QueryString["MemberId"];
 
                 //PropertyInfo isreadonly = typeof(System.Collections.Specialized.NameValueCollection).GetProperty("IsReadOnly", BindingFlags.Instance | BindingFlags.NonPublic);
@@ -274,7 +274,7 @@ namespace AlexRogoBeltApp.Controllers
 
         private ActionResult UnauthorizedRequest(MemberMaster MemberDetails)
         {
-            TempData["ErrorMsg"] = "You are not an authenticated Member.";
+            //TempData["ErrorMsg"] = "You are not an authenticated Member.";
             return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
         }
 
