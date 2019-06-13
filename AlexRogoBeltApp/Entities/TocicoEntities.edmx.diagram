@@ -14,8 +14,7 @@
         <EntityTypeShape EntityType="TOCICOModel.GoalTarget" Width="1.5" PointX="13" PointY="3.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TOCICOModel.LevelMaster" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TOCICOModel.ProcessGoalMapping" Width="1.5" PointX="13" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.ProcessTemplateMaster" Width="1.5" PointX="7.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.ProcessTemplateStep" Width="1.5" PointX="10" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOCICOModel.ProcessTemplateStep" Width="2.875" PointX="11.125" PointY="14.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TOCICOModel.QuestionMaster" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="TOCICOModel.sysdiagram" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TOCICOModel.TargetMaster" Width="1.5" PointX="10.75" PointY="2.25" IsExpanded="true" />
@@ -24,19 +23,20 @@
         <AssociationConnector Association="TOCICOModel.FK__AnswerMas__Contr__2DE6D218" ManuallyRouted="false" />
         <AssociationConnector Association="TOCICOModel.FK__AnswerMas__Quest__797309D9" ManuallyRouted="false" />
         <AssociationConnector Association="TOCICOModel.FK__Transacti__Answe__68487DD7" ManuallyRouted="false" />
-        <AssociationConnector Association="TOCICOModel.FK__Environme__Proce__756D6ECB" ManuallyRouted="false" />
         <AssociationConnector Association="TOCICOModel.FK__GoalTarge__GoalI__267ABA7A" ManuallyRouted="false" />
         <AssociationConnector Association="TOCICOModel.FK__ProcessGo__GoalI__2A4B4B5E" ManuallyRouted="false" />
         <AssociationConnector Association="TOCICOModel.FK__GoalTarge__Targe__276EDEB3" ManuallyRouted="false" />
         <AssociationConnector Association="TOCICOModel.FK__QuestionM__Level__5070F446" ManuallyRouted="false" />
-        <AssociationConnector Association="TOCICOModel.FK__ProcessGo__Proce__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="TOCICOModel.FK__ProcessTe__Proce__59C55456" ManuallyRouted="false" />
         <AssociationConnector Association="TOCICOModel.FK__Transacti__Quest__1ED998B2" ManuallyRouted="false" />
         <EntityTypeShape EntityType="TOCICOModel.MemberMaster" Width="1.5" PointX="5.25" PointY="5.125" />
         <AssociationConnector Association="TOCICOModel.FK__GoalTarge__Membe__4959E263" />
         <AssociationConnector Association="TOCICOModel.FK__ProcessGo__Membe__4A4E069C" />
         <AssociationConnector Association="TOCICOModel.FK__Transacti__Membe__467D75B8" />
         <AssociationConnector Association="TOCICOModel.FK__Transacti__Membe__4865BE2A" />
+        <EntityTypeShape EntityType="TOCICOModel.ProcessTemplateMaster" Width="2.375" PointX="8.125" PointY="11" />
+        <AssociationConnector Association="TOCICOModel.FK__Environme__Proce__756D6ECB" />
+        <AssociationConnector Association="TOCICOModel.FK__ProcessGo__Proce__29572725" />
+        <AssociationConnector Association="TOCICOModel.FK__ProcessTe__Proce__59C55456" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

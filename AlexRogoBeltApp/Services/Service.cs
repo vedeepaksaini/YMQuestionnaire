@@ -140,9 +140,9 @@ namespace AlexRogoBeltApp.Services
             //    return MemberCredentials.MemberID;
             //    return 0;
         }
-        public List<ProcessTemplateViewModel> GetAllTemplates()
+        public List<ProcessTemplateViewModel> GetAllTemplates(int id)
         {
-            var processes = db.ProcessTemplateMasters.Where(x => !x.Deactive);
+            var processes = db.ProcessTemplateMasters.Where(x => !x.Deactive && x.EnvironmentID==id);
 
             if (processes == null || processes.Count() == 0)
                 return null;

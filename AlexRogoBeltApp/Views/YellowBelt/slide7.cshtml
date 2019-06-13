@@ -11,6 +11,11 @@
                 $("#steps").empty();
                 $("#images").empty();
                 $.each(object, function (key, value) {
+                    if (value.split(',').length > 1) {
+                        value = value.split(',')[0];
+                        $('#ProcessTemplateDropdown').val(2);
+                        //$('[name=options]').val(3);
+                    }
                     $('#steps').prepend('<td align="center">' + value + '</td>')
                     $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
                 });
@@ -83,7 +88,7 @@
                                     <div class="col-lg-4 col-md-6 col-sm-6 ">
                                         <div class="input-group">
                                             <span class="input-group-addon">$</span>
-                                            <input id="throughput" type="number" step=".01" class="form-control" onclick="$('#throughput').removeAttr('readonly')" readonly required />
+                                            <input id="throughput" type="number" step=".01" class="form-control"  readonly  />
                                         </div>
                                     </div>
                                     @*<a href="#" class="pull-left" style="font-size:16px; margin-top:5px;">Change</a>*@
@@ -104,7 +109,7 @@
                                         <div style="width:240px;">
                                             <div class="input-group pull-left" style="width:180px;">
                                                 <span class="input-group-addon">$</span>
-                                                <input id="inventory" type="number" step=".01" class="form-control" onclick="$('#inventory').removeAttr('readonly')" readonly required>
+                                                <input id="inventory" type="number" step=".01" class="form-control" readonly>
 
                                             </div>
                                             @*<a href="#" class="pull-left" style="font-size:16px; margin-left:5px; margin-top:5px;">Change</a>*@
@@ -117,7 +122,7 @@
                                         <div style="width:240px;">
                                             <div class="input-group pull-left" style="width:180px;">
                                                 <span class="input-group-addon">$</span>
-                                                <input id="expense" type="number" step=".01" class="form-control" onclick="$('#expense').removeAttr('readonly')" readonly required>
+                                                <input id="expense" type="number" step=".01" class="form-control" readonly>
 
                                             </div>
                                             @*<a href="#" class="pull-left" style="font-size:16px; margin-left:5px; margin-top:5px;">Change</a>*@

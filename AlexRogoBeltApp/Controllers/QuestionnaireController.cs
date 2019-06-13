@@ -44,6 +44,7 @@ namespace AlexRogoBeltApp.Controllers
         public ActionResult Dashboard()
         {
             try
+
             {
                 //TempData.Remove("ErrorMsg");
                 var id = Request.QueryString["MemberId"];
@@ -214,18 +215,20 @@ namespace AlexRogoBeltApp.Controllers
         }
 
         [WebMethod]
-        public JsonResult GetAllTemplates()
+        public JsonResult GetAllTemplates(int id)
         {
             //var processes = _service.GetAllTemplates();
             //ViewData["Processes"] = processes;
             //ViewBag.Processes = processes;
-            return Json(_service.GetAllTemplates());
+            return Json(_service.GetAllTemplates(id));
         }
 
         [WebMethod]
         public JsonResult GetTemplate(int id)
         {
             var data = _service.GetTemplate(id);
+            if (data[0] == null)
+                data.Clear();
             return Json(data);
         }
 
