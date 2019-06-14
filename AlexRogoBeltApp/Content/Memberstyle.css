@@ -1,0 +1,163 @@
+.navbar-brand {
+    height: auto;
+    padding: 0;
+}
+
+.mt-1 {
+    margin-top: 10px;
+}
+
+.mt-25 {
+    margin-top: 25px;
+}
+
+.fll_wdth {
+    float: left;
+    width: 100%;
+}
+
+.box-wrapper {
+    background: #ffffff;
+    border: 1px solid #e1e1e1;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    padding: 15px;
+    float: left;
+    width: 100%;
+}
+
+.beltlevels li.active a.yellow {
+    background: #f0ad4e;
+    color: #fff;
+}
+
+    .beltlevels li.active a.yellow label {
+        background: #ffffff;
+        color: #f0ad4e;
+    }
+
+.beltlevels li.active a.green {
+    background: #5cb85c;
+    color: #fff;
+}
+
+    .beltlevels li.active a.green label {
+        background: #ffffff;
+        color: #5cb85c;
+    }
+
+.beltlevels li.active a.black {
+    background: #777;
+    color: #fff;
+}
+
+    .beltlevels li.active a.black label {
+        background: #ffffff;
+        color: #777;
+    }
+
+.beltlevels li.active a.expert {
+    background: #337ab7;
+    color: #fff;
+}
+
+    .beltlevels li.active a.expert label {
+        background: #ffffff;
+        color: #337ab7;
+    }
+/* 
+.disabled{
+    opacity: 0.6;
+} */
+
+     .logo img {
+            width: 500px;
+        }
+
+        .head-sub {
+            color: #555;
+    float: left;
+    font-family: Georgia,Times,"Times New Roman",serif;
+    font-size: 13px;
+    font-style: italic;
+    letter-spacing: 0.2px;
+    position: absolute;
+    left: 157px;
+    top: 107px;
+        }
+        #itoolbar a {
+    color: #333;
+    white-space: nowrap;
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 33px;
+    text-decoration: none;
+    padding: 0 4px;
+}
+        #itoolbar a:hover {
+    color: #006599;
+}
+
+
+        #header {
+    height: 143px;
+    background-color: #f1f1f1;
+    background: url(/Content/Images/header-bg.jpg) no-repeat center right transparent;
+    position: relative;
+}
+
+        #social {
+    float: right;
+    position: relative;
+    right: 20px;
+    top: 46px;
+}
+
+
+        #footer {
+    color: #fff;
+    font-size: 13px;
+    padding: 0px 0 0 !important;
+}
+        #foot-social {
+    margin-bottom: 0px; 
+    text-align:center;
+            height: 0;
+            position: relative;
+    top: 10px;
+}
+
+        #foot-social a {
+    -webkit-transition: all 250ms ease-in 0s;
+    -moz-transition: all 250ms ease-in 0s;
+    -o-transition: all 250ms ease-in 0s;
+    transition: all 250ms ease-in 0s;
+}
+
+        #FooterContentArea {
+    background-color: #006599;
+    height: auto;
+    min-height: 35px;
+   
+}
+
+        .foot-copy {
+    padding-left: 420px;
+        margin-top: 65px;
+    margin-bottom: 5px;
+
+}
+
+        #footer {
+    color: #fff;
+    font-size: 13px;
+    padding: 20px 0 0;
+}
+        #icopyright {
+    background-color: #006599;
+    padding: 0 0 10px;
+    font-size: 13px;
+}
+
+        #icopyright a {
+    color: #FFF !important;
+}
