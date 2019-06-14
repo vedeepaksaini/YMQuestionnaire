@@ -32,10 +32,10 @@
     }
 
     function ProcessSelectionChanged(id) {
-
+        alert(id);
         $("#steps").empty();
         $("#images").empty();
-
+        debugger;
         if (id == "0") {
             $('#btnAddStep').css("display", "none");
             $('#btnSubmitMarketProcess').prop('disabled', false);
@@ -43,6 +43,8 @@
             $('#btnAddStep').css("display", "block");
             if (id == "Custom") { return; }
             var data = localStorage.getItem('TemplateResponse');
+            alert(data);
+         
             var object = JSON.parse(data).find(item => item.ID == id);
             $.each(object.ProcessTemplateSteps, function (key, value) {
                  debugger;

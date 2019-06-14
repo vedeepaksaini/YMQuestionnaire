@@ -1,4 +1,22 @@
 ﻿<script>
+    function GetCalculation() {
+        $.ajax({
+            type: "POST", url: "GetCalculations", dataType: "json", contentType: "application/json", success: function (res) {
+                var currency = "$";
+                $.each(res, function (key, value) {
+                    if (value.Answers == "Throughput") {
+                        $('#throughput').text(currency + value.Calculations);
+                    } else if (value.Answers == "Inventory") {
+                        $('#inventory').text(currency + value.Calculations);
+                    } else if (value.Answers == "Operating Expense") {
+                        $('#expense').text(currency + value.Calculations);
+                    }
+                });
+            },
+            error: function (response) {
+            }
+        });
+    }
     function GetProcess(id) {
         $.ajax({
             type: "POST", url: "GetTemplate", data: JSON.stringify({ id: 8 }), dataType: "json", contentType: "application/json", success: function (res) {
@@ -129,6 +147,19 @@
             <ul>
                 <li>
                     <label>
+                      
+                        <script>GetCalculation();</script>
+                        <div class="throughput">
+
+                            <div class="text-blue">Throughput</div>
+                            <div class="row">
+                                <div class="col-lg-4 col-md-6 col-sm-6">
+                                    <div class="input-group">
+                                        <label id="throughput"></label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div>
                             <div class="table-responsive">
                                 <script>GetProcess(8)</script>
@@ -140,6 +171,28 @@
                                     </table>
                                 </div>
 
+                            </div>
+                        </div>
+                        <div class="row mt-3">
+                            <div class="col-md-5 col-xs-12">
+                                <div class="pull-right pull-none-sm">
+                                    <div class="text-danger">Inventory</div>
+                                    <div style="width:240px;">
+                                        <div class="input-group pull-left" style="width:180px;">
+                                            <label id="inventory"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5 col-md-offset-2">
+                                <div class="mt-sm-2">
+                                    <div>Operating Expense</div>
+                                    <div style="width:240px;">
+                                        <div class="input-group pull-left" style="width:180px;">
+                                            <label id="expense"></label>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </label>

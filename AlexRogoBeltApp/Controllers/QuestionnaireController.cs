@@ -56,6 +56,8 @@ namespace AlexRogoBeltApp.Controllers
                 //isreadonly.SetValue(this.Request.QueryString, false, null);
                 //// remove
                 //Request.QueryString.Remove("MemberId");
+                //if (id == null)
+                //    return UnauthorizedRequest(MemberDetails);
 
                 var MemberDetails = _service.IsMemberExist(Convert.ToInt32(id));
 
