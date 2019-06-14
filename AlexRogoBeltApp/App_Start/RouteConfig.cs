@@ -16,7 +16,7 @@ namespace AlexRogoBeltApp
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Questionnaire", action = "GetStarted", id = UrlParameter.Optional }
+                defaults: new { controller = "Questionnaire", action = "Dashboard", id = UrlParameter.Optional }
             );
         }
     }

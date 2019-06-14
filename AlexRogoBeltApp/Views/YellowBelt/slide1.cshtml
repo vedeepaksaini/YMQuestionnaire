@@ -1,5 +1,11 @@
 ﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
 
+<script>
+    $(document).ready(function () {
+        $('#btnBack').css("display", "none");
+    });
+</script>
+
 <h2 class="question">
     @Html.DisplayFor(model => model.Introduction)
 </h2>
