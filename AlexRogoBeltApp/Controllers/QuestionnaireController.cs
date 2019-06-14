@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.Services;
 using AlexRogoBeltApp.Entities;
 using AlexRogoBeltApp.Services;
@@ -109,7 +110,9 @@ namespace AlexRogoBeltApp.Controllers
                 }
                 else
                 {
-                    TempData["OrderId"] = Convert.ToInt32(TempData["OrderId"]) - 1;
+                    if (Convert.ToInt32(TempData["OrderId"]) == Convert.ToInt32(Request.QueryString["QuestionOrder"]))
+                        TempData["OrderId"] = Convert.ToInt32(TempData["OrderId"]) - 1;
+                    else { }
                 }
 
                 TempData.Keep("OrderId");
@@ -279,7 +282,7 @@ namespace AlexRogoBeltApp.Controllers
         private ActionResult UnauthorizedRequest(MemberMaster MemberDetails)
         {
             //TempData["ErrorMsg"] = "You are not an authenticated Member.";
-            return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
+            return RedirectToAction("Dashboard", new { MemberId = MemberDetails == null ? Convert.ToInt32(Request.QueryString["MemberId"]) : MemberDetails.MemberID });
         }
 
         [WebMethod]
@@ -323,6 +326,18 @@ namespace AlexRogoBeltApp.Controllers
             TempData["Slideno"] = "slide14";
 
             return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
+        }
+
+        public ActionResult Logout()
+        {
+            var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
+            if (MemberDetails == null)
+            {
+                MemberDetails = _service.IsMemberExist(Convert.ToInt32(Request.QueryString["MemberId"]));
+            }
+            FormsAuthentication.SignOut();
+            Session.Abandon(); // it will clear the session at the end of request
+            return RedirectToAction("Dashboard", new { MemberId = MemberDetails == null ? Convert.ToInt32(Request.QueryString["MemberId"]) : MemberDetails.MemberID });
         }
     }
 }

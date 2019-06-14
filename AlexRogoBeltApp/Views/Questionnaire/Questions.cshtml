@@ -1,7 +1,9 @@
 ﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
 
 @{
-    ViewBag.Title = "Yellow Belt";
+                /**/
+
+                ViewBag.Title = "Yellow Belt";
 }
 
 @*<script>
@@ -32,7 +34,7 @@
                 <div id="itoolbar_bg">
                     <div id="itoolbar" class="col-md-12  text-right">
 
-                        <a href="/Logout.aspx">Sign Out</a>
+                        <a href="@Url.Action("Logout", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })">Sign Out</a>
                     </div>
 
                 </div>
@@ -42,17 +44,17 @@
             <div class="container">
                 <div id="header">
                     <script type="text/javascript">
-                    WebFontConfig = {
-                        google: { families: ['Open+Sans:400,300,600,700,800:latin', 'Roboto+Condensed:400,300,700:latin'] }
-                    };
-                    (function () {
-                        var wf = document.createElement('script');
-                        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-                        wf.type = 'text/javascript';
-                        wf.async = 'true';
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(wf, s);
-                    })(); </script>
+                        WebFontConfig = {
+                            google: { families: ['Open+Sans:400,300,600,700,800:latin', 'Roboto+Condensed:400,300,700:latin'] }
+                        };
+                        (function () {
+                            var wf = document.createElement('script');
+                            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                            wf.type = 'text/javascript';
+                            wf.async = 'true';
+                            var s = document.getElementsByTagName('script')[0];
+                            s.parentNode.insertBefore(wf, s);
+                        })();</script>
 
                     <a class="logo" href="/" target="_parent" style="color:#000; float:left">
                         <img src="~/Content/Images/TOCICOBannerLogoGoldHorizontal.gif" />
@@ -73,13 +75,13 @@
         </div>
 
     </div>
-
+    <div class="step-page" >
+        <div class="text-center " style="padding:15px;">The Alex Rogo Levels</div>
+    </div>
     <div class="container">
-        <div class="box-wrapper" style="margin-top:20px; background-image: linear-gradient(to top,#ace0f9  0%,  #fff1eb 100%);">
-            <div class="question-area">
-                <div class="step-page" style="    background: #ffe600;">
-                    <div class="text-center ">The Alex Rogo Levels</div>
-                </div>
+        <div class="box-wrapper" style=" background-image: linear-gradient(to top,#ace0f9  0%,  #fff1eb 100%);">
+            <div class="question-area" >
+
                 @Html.Partial("~/Views/YellowBelt/" + Model.ViewName, Model)
             </div>
 
@@ -95,16 +97,16 @@
                     <input type="submit" id="btnSubmitMarketProcess" style="display:none" onclick="submitMarketStep()" value="Next >" class="mt-2 btn btn-success btn-lg pull-right " />
                 </div>
                 @*<div class="footer-copyright">
-                    <img src="~/Content/Images/logo_black.png" />
-                    <div class="steps-footer">
-                        &copy; 2019 TOCICO. All Rights Reserved.
-                    </div>
-                </div>*@
+                        <img src="~/Content/Images/logo_black.png" />
+                        <div class="steps-footer">
+                            &copy; 2019 TOCICO. All Rights Reserved.
+                        </div>
+                    </div>*@
             </footer>
         </div>
     </div>
 
-    <br />
+
     <div id="footer">
         <div id="foot-social">
             <span style="background-color: #ffffff00;">

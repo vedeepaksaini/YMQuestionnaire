@@ -275,9 +275,9 @@
     <Content Include="Content\Memberstyle.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\style.css" />
-    <Content Include="Content\Videos\Bill_Peach_and_Alex_Rogo.mp4" />
-    <Content Include="Content\Videos\Eli_Goldratt_Finding_Bottleneck.mp4" />
-    <Content Include="Content\Videos\Eli_Protective_Capacity.mp4" />
+    <Content Include="Content\Videos\YellowBelt_Slide10_Video.mp4" />
+    <Content Include="Content\Videos\YellowBelt_Slide11_Video.mp4" />
+    <Content Include="Content\Videos\YellowBelt_Slide12_Video.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide6_Video.mp4" />
     <Content Include="Entities\TocicoEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

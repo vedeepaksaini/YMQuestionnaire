@@ -84,7 +84,7 @@
     bottom: 0;
     margin: auto;
     width: 1170px;*/
-    min-height: 850px;
+    min-height: 770px;
 }
 
 .intro-page {
@@ -101,9 +101,12 @@
 }
 
 .step-page {
-    padding: 5px;
-    background: #355f93;
-    font-size: 18px;
+    /*padding: 5px;*/
+    background-color: #006599;
+    color: #fff;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 700;
 }
 
 .question {
@@ -117,7 +120,10 @@
     color: #333;
     text-shadow: 0 1px 0 #f3f3f3;
     font-size: 16px;
-    font-family:'Open Sans', sans-serif !important; 
+    font-family: 'Open Sans', sans-serif !important;
+    margin: 0;
+    padding-top: 48px;
+    border-top: 5px solid #ffb600;
 }
 
 .options {
@@ -288,6 +294,11 @@
 
 .logo img {
     width: 500px;
+    height: auto;
+    float: left;
+    position: absolute;
+    top: -22px;
+    left: 20px;
 }
 
 .head-sub {
@@ -298,8 +309,8 @@
     font-style: italic;
     letter-spacing: 0.2px;
     position: absolute;
-    left: 157px;
-    top: 107px;
+    left: 177px;
+    top: 85px;
 }
 
 #itoolbar a {
@@ -335,12 +346,16 @@
 #footer {
     color: #fff;
     font-size: 13px;
-    padding: 20px 0 0;
+    padding: 0px 0 0;
 }
 
 #foot-social {
-    margin-bottom: 10px;
+    /*margin-bottom: 10px;*/
     text-align: center;
+    /*text-align: center;*/
+    height: 0;
+    position: relative;
+    top: 15px;
 }
 
     #foot-social a {
@@ -358,12 +373,13 @@
 
 .foot-copy {
     padding-left: 420px;
+    margin-top: 65px;
 }
 
 #footer {
     color: #fff;
     font-size: 13px;
-    padding: 20px 0 0;
+    /*padding: 20px 0 0;*/
 }
 
 #icopyright {
