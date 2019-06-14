@@ -18,6 +18,7 @@
         });
     </script>*@
 
+
 @{ Html.EnableClientValidation(true); }
 @{ Html.EnableUnobtrusiveJavaScript(); }
 @using (Html.BeginForm())
@@ -85,7 +86,7 @@
             <footer>
 
                 <div class="questionintro">
-                    <a href="@Url.Action("Questions", "Questionnaire", new { QuestionOrder = Model.QuestionOrder })" class="mt-2 btn btn-primary btn-lg ">
+                    <a id="btnBack" href="@Url.Action("Questions", "Questionnaire", new { QuestionOrder = Model.QuestionOrder })" class="mt-2 btn btn-primary btn-lg ">
                         < Back
                     </a>
 

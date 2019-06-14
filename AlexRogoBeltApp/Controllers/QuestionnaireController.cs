@@ -21,7 +21,8 @@ namespace AlexRogoBeltApp.Controllers
         {
             try
             {
-                var MemberDetails = _service.IsMemberExist(Convert.ToInt32(TempData["MemberId"]));
+                int id = Convert.ToInt32(TempData["MemberId"] == null ? Request.QueryString["MemberId"] : TempData["MemberId"]);
+                var MemberDetails = _service.IsMemberExist(id);
                 if (MemberDetails != null)
                 //if (MemberId > 0)
                 {
@@ -227,8 +228,8 @@ namespace AlexRogoBeltApp.Controllers
         public JsonResult GetTemplate(int id)
         {
             var data = _service.GetTemplate(id);
-            if (data[0] == null)
-                data.Clear();
+            //if (data[0] == null)
+            //    data.Clear();
             return Json(data);
         }
 
