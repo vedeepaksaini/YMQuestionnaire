@@ -93,7 +93,7 @@
                 <div id="itoolbar_bg">
                     <div id="itoolbar" class="col-md-12  text-right">
 
-                        <a href="/Logout.aspx">Sign Out</a>
+                        <a href="@Url.Action("Logout", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })">Sign Out</a>
                     </div>
 
                 </div>
@@ -134,8 +134,7 @@
         </div>
         <div style="background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(80, 80, 80, 1) 0%, rgba(0, 0, 0, 1) 100%) repeat fixed 0 0;">
             <div class="container ">
-                <div class="box-wrapper" style="min-height:480px;background: #ffffff; border: 1px solid #e1e1e1; box-shadow: 0 0 6px rgba(0, 0, 0, 0.14); padding: 15px; float: left;
-    width: 100%; margin-top:30px;     margin-bottom: 50px;">
+                <div class="box-wrapper" style="padding-top:100px;padding-bottom: 114px;">
 
                     <ul class="nav nav-tabs nav-justified beltlevels" role="tablist">
                         <li role="presentation" class="active">

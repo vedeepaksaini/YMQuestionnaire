@@ -18,8 +18,8 @@
 
 .box-wrapper {
     background: #ffffff;
-    border: 1px solid #e1e1e1;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);
+    /*border: 1px solid #e1e1e1;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.14);*/
     padding: 15px;
     float: left;
     width: 100%;
@@ -69,21 +69,26 @@
     opacity: 0.6;
 } */
 
-     .logo img {
-            width: 500px;
-        }
+.logo img {
+    width: 500px;
+    height: auto;
+    float: left;
+    position: absolute;
+    top: -22px;
+    left: 20px;
+}
 
-        .head-sub {
-            color: #555;
+.head-sub {
+    color: #555;
     float: left;
     font-family: Georgia,Times,"Times New Roman",serif;
     font-size: 13px;
     font-style: italic;
     letter-spacing: 0.2px;
     position: absolute;
-    left: 157px;
-    top: 107px;
-        }
+    left: 177px;
+    top: 85px;
+}
         #itoolbar a {
     color: #333;
     white-space: nowrap;
@@ -160,4 +165,10 @@
 
         #icopyright a {
     color: #FFF !important;
+}
+
+
+
+.beltlevels li{
+    border-right:1px solid #e1e1e1;
 }

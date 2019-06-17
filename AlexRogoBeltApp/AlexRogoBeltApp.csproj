@@ -246,6 +246,7 @@
     <Compile Include="ViewModel\TransactionViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\animate.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -253,6 +254,8 @@
     <Content Include="Content\Images\bg-intro.jpg" />
     <Content Include="Content\Images\bg.jpg" />
     <Content Include="Content\Images\bottom-bg.jpg" />
+    <Content Include="Content\Images\cancel.png" />
+    <Content Include="Content\Images\Check_Circle.png" />
     <Content Include="Content\Images\circle-RED.png" />
     <Content Include="Content\Images\circle.png" />
     <Content Include="Content\Images\facebook-w.png" />
@@ -275,9 +278,9 @@
     <Content Include="Content\Memberstyle.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\style.css" />
-    <Content Include="Content\Videos\Bill_Peach_and_Alex_Rogo.mp4" />
-    <Content Include="Content\Videos\Eli_Goldratt_Finding_Bottleneck.mp4" />
-    <Content Include="Content\Videos\Eli_Protective_Capacity.mp4" />
+    <Content Include="Content\Videos\YellowBelt_Slide10_Video.mp4" />
+    <Content Include="Content\Videos\YellowBelt_Slide11_Video.mp4" />
+    <Content Include="Content\Videos\YellowBelt_Slide12_Video.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide6_Video.mp4" />
     <Content Include="Entities\TocicoEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
