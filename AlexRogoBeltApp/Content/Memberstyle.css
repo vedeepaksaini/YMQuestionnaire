@@ -166,3 +166,9 @@
         #icopyright a {
     color: #FFF !important;
 }
+
+
+
+.beltlevels li{
+    border-right:1px solid #e1e1e1;
+}

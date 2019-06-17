@@ -24,7 +24,7 @@
                     <div id="itoolbar_bg">
                         <div id="itoolbar" class="col-md-12  text-right">
 
-                            <a href="/Logout.aspx">Sign Out</a>
+                            <a href="@Url.Action("Logout", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })">Sign Out</a>
                         </div>
 
                     </div>
@@ -71,7 +71,7 @@
                 <div class="question-area">
                     <div class="text-center" style="padding-top:220px;">
                         <img src="~/Content/Images/cancel.png" style="width:64px; " />
-                        <h1> Error !!!</h1>
+                        <h1>Oops! Error has occured.</h1>
                         <br />
                         <h3>An error occurred while processing your request.<br />
                         <br />Please contact your system administrator.</h3>
