@@ -57,7 +57,7 @@ namespace AlexRogoBeltApp.Controllers
                 //// remove
                 //Request.QueryString.Remove("MemberId");
                 //if (id == null)
-                //    return UnauthorizedRequest(MemberDetails);
+                //    return SeesionExpired(MemberDetails);
 
                 var MemberDetails = _service.IsMemberExist(Convert.ToInt32(id));
 
@@ -85,7 +85,7 @@ namespace AlexRogoBeltApp.Controllers
                 var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
 
                 if (MemberDetails == null)
-                    return UnauthorizedRequest(MemberDetails);
+                    return SeesionExpired(MemberDetails);
 
                 if (!MemberDetails.IsYBpaymentCompleted)
                 {
@@ -137,7 +137,7 @@ namespace AlexRogoBeltApp.Controllers
                 var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
 
                 if (MemberDetails == null)
-                    return UnauthorizedRequest(MemberDetails);
+                    return SeesionExpired(MemberDetails);
 
                 if (!MemberDetails.IsYBpaymentCompleted)
                 {
@@ -189,16 +189,19 @@ namespace AlexRogoBeltApp.Controllers
                     return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
                 }
 
-                List<TransactionViewModel> transactions = selectedAnswers.Distinct().Select(x => new TransactionViewModel
+                if (model.QuestionOrder != 13)
                 {
-                    AnswerID = x.ID,
-                    MemberID = MemberDetails.MemberID,//Convert.ToInt32(HttpContext.Session["MemberId"]),
-                    Deactive = x.Deactive,
-                    QuestionID = x.QuestionID,
-                    ControlValue = x.ControlValue
-                }).ToList();
+                    List<TransactionViewModel> transactions = selectedAnswers.Distinct().Select(x => new TransactionViewModel
+                    {
+                        AnswerID = x.ID,
+                        MemberID = MemberDetails.MemberID,//Convert.ToInt32(HttpContext.Session["MemberId"]),
+                        Deactive = x.Deactive,
+                        QuestionID = x.QuestionID,
+                        ControlValue = x.ControlValue
+                    }).ToList();
 
-                _service.SetTransactions(transactions);
+                    _service.SetTransactions(transactions);
+                }
 
                 TempData["LevelId"] = model.LevelID;
                 TempData["OrderId"] = model.QuestionOrder + 1;
@@ -246,7 +249,7 @@ namespace AlexRogoBeltApp.Controllers
                 var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
 
                 if (MemberDetails == null)
-                    return UnauthorizedRequest(MemberDetails);
+                    return SeesionExpired(MemberDetails);
 
                 if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
                 {
@@ -283,8 +286,15 @@ namespace AlexRogoBeltApp.Controllers
 
         private ActionResult UnauthorizedRequest(MemberMaster MemberDetails)
         {
-            //TempData["ErrorMsg"] = "You are not an authenticated Member.";
+            TempData["ErrorMsg"] = "You are not an authenticated Member.";
+            //return RedirectToAction("Dashboard", new { MemberId = MemberDetails == null ? Convert.ToInt32(Request.QueryString["MemberId"]) : MemberDetails.MemberID });
+            return View("Dashboard");
+        }
+        private ActionResult SeesionExpired(MemberMaster MemberDetails)
+        {
+            TempData["ErrorMsg"] = "Session has been expired.";
             return RedirectToAction("Dashboard", new { MemberId = MemberDetails == null ? Convert.ToInt32(Request.QueryString["MemberId"]) : MemberDetails.MemberID });
+           // return View("Dashboard");
         }
 
         [WebMethod]
@@ -301,7 +311,7 @@ namespace AlexRogoBeltApp.Controllers
             var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
 
             if (MemberDetails == null)
-                return UnauthorizedRequest(MemberDetails);
+                return SeesionExpired(MemberDetails);
 
             if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
             {
@@ -326,8 +336,8 @@ namespace AlexRogoBeltApp.Controllers
             TempData["OrderId"] = 14;
             TempData["LevelId"] = 1;
             TempData["Slideno"] = "slide14";
-
-            return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
+            return RedirectToAction("Questions");
+            //return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
         }
 
         public ActionResult Logout()

@@ -61,6 +61,7 @@ namespace AlexRogoBeltApp.Services
             if (data != null && orderId == 2)
             {
                 var member = db.MemberMasters.FirstOrDefault(x => x.MemberID == MemberId);
+                
                 if (member != null)
                 {
                     data.Member = new MemberViewModel
@@ -78,7 +79,8 @@ namespace AlexRogoBeltApp.Services
             {
 
             }
-
+            data.SetpsCompleted = db.TransactionMasters.Select(x => new { x.QuestionID }).Distinct().Count();
+            data.TotalSetps = db.QuestionMasters.Select(x => new { x.ID }).Distinct().Count();
             return data;
         }
 

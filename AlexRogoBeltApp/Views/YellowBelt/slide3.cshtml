@@ -37,13 +37,22 @@
                                 {
                                     bool isSelected = Model.Answers[i].IsSelected;
                                     var EnvId = Model.Answers[i].ID;
-                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @disabled = "disabled", @onchange = "OtherRadio('Answers_" + i + "__ControlValue',"+EnvId+");", @class = "disabled rdbtnchk rdbtn" + Model.Answers[i].ID + "", style = "margin-right:5px;" })
+                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @disabled = "disabled", @onchange = "OtherRadio('Answers_" + i + "__ControlValue'," + EnvId + ");", @class = "disabled rdbtnchk rdbtn" + Model.Answers[i].ID + "", style = "margin-right:5px;" })
                                 }
                                 else
                                 {
-                                    var EnvId = Model.Answers[i].ID;  
+                                    var EnvId = Model.Answers[i].ID;
                                     bool isSelected = Model.Answers[i].IsSelected;
-                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new {  @onchange = "OtherRadio('Answers_" + i + "__ControlValue'," + EnvId + ");", style = "margin-right:5px;", @class = "rdbtnchk rdbtn" + Model.Answers[i].ID + "" })
+                                    if (isSelected)
+                                    {
+
+                                       
+                                        @Html.Hidden("EnvId", EnvId);
+                                        @*<input type="hidden" id="hdfEnvId" name="zyx" value="bar" />*@
+                                        
+
+                                    }
+                                    @Html.RadioButton("grp", Model.Answers[i].ID, isSelected, new { @onchange = "OtherRadio('Answers_" + i + "__ControlValue'," + EnvId + ");", style = "margin-right:5px;", @class = "rdbtnchk rdbtn" + Model.Answers[i].ID + "" })
                                 }
                             </span>
 
@@ -84,8 +93,12 @@
 
 <script>
     $(document).ready(function () {
-        debugger;
+        
         SetButtonProp();
+        if ($('#EnvId').val() != undefined || $('#EnvId').val() != "") { 
+            debugger;    
+            localStorage.setItem("EnvId", $('#EnvId').val());
+        }
     });
 
     function SetButtonProp() {

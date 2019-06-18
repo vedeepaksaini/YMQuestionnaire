@@ -29,15 +29,38 @@
                     debugger;
 
                     if (value.split(',').length > 1) {
-                        value = value.split(',')[0];                     
+                        value = value.split(',')[0];
                     }
                     $('#steps').prepend('<td align="center">' + value + '</td>')
                     key = key + 1;
                     //$('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RecordStep(' + "'" + 'step' + key + "'" + ')"><img id="step'+key+'" src="../../Content/Images/circle.png" /></a ></td>')
                     value = value.replace(/ /g, "___");
                     value = value.replace("/", "__");
-                    
-                    $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RecordStep(' + "'" + value + "'" + ')"><img id="' +value + '" src="../../Content/Images/circle.png" /></a ></td>')
+
+                    $('#images').prepend('<td align="center"><a href="javascript:void(0)"  onclick="RecordStep(' + "'" + value + "'" + ')"><img id="' + value + '" class="imgcircle" src="../../Content/Images/circle.png" /></a ></td>')
+                });
+            },
+            error: function (response) {
+            }
+        });
+    }
+
+    function GetSelectedProcess(id) {
+        $.ajax({
+            type: "POST", url: "GetTemplate", data: JSON.stringify({ id: 20 }), dataType: "json", contentType: "application/json", success: function (res) {
+                debugger;
+                $.each(res, function (key, value) {
+                    debugger;
+                    if (value == "markert-gold.png") {
+                        $("#marketImg").attr("src", "../../Content/Images/markert-red.png");
+                    }
+                    else {
+                        value = value.replace(/ /g, "___");
+                        value = value.replace("/", "__");
+                        $('#' + value).attr("src", "../../Content/Images/circle-RED.png");
+
+                    }
+                    $('#btnSubmitMarketProcess').prop('disabled', false);
                 });
             },
             error: function (response) {
@@ -52,28 +75,46 @@
         $("#btnSubmitMarketProcess").attr('value', 'Finish');
         //$("#btnSubmitMarketProcess").attr('disable', 'True');
         $('#btnSubmitMarketProcess').prop('disabled', true);
-        for (var i = 1; i <= 7; i++) {
-            if ($('#step' + i).attr('src').split('/')[4] == "circle-RED.png") {
-                steps.push('step' + i);
+        GetSelectedProcess();
+    });
+
+    function ManageSelection() {
+        for (var index = 0; index < steps.length; ++index) {
+
+            var Value = steps[index];
+
+            if (Value == "markert-gold.png") {
+                steps.splice(index, 1);
+                $("#marketImg").attr("src", "../../Content/Images/markert-gold.png");
+                break;
             }
         }
-    });
-    
+    }
+
+
     function RecordStep(step) {
         debugger;
+
+        // ManageSelection();
+
+        //delete steps
         stepId = '#' + step
-       
+        steps = [];
         step = step.replace(/___/g, ' ');//for removing ___
         step = step.replace(/__/g, '/');// for removing __  and placing /
         if ($(stepId).attr('src').split('/')[4] == "circle.png") {
-            $(stepId).attr("src", "../../Content/Images/circle-RED.png");         
-            steps.push(step);
+            $(".imgcircle").attr("src", "../../Content/Images/circle.png");
+            $("#marketImg").attr("src", "../../Content/Images/markert-gold.png");
+            $(stepId).attr("src", "../../Content/Images/circle-RED.png");
+            //steps.push(step);
         }
         else {
             $(stepId).attr("src", "../../Content/Images/circle.png");
-            steps.pop(step);
+            // steps.pop(step);
         }
-        if (steps.length>0) {
+
+        steps.push(step);
+        if (steps.length > 0) {
             $('#btnSubmitMarketProcess').prop('disabled', false);
         }
         else {
@@ -86,20 +127,29 @@
 
 
     function RecordMarket() {
-        
+
         debugger;
-        
+
         if ($("#marketImg").attr('src').split('/')[$("#marketImg").attr('src').split('/').length - 1] == "markert-gold.png") {
-            $("#marketImg").attr("src", "../../Content/Images/markert-red.png");  
-            steps.push("markert-gold.png")
+            $("#marketImg").attr("src", "../../Content/Images/markert-red.png");
+            steps = [];
+
+            $(".imgcircle").attr("src", "../../Content/Images/circle.png");
+            steps.push("markert-gold.png");
         }
         else {
-            $("#marketImg").attr("src", "../../Content/Images/markert-gold.png");  
-            steps.pop("markert-red.png")
+            $("#marketImg").attr("src", "../../Content/Images/markert-gold.png");
+            steps.pop("markert-red.png");
+        }
+        if (steps.length > 0) {
+            $('#btnSubmitMarketProcess').prop('disabled', false);
+        }
+        else {
+            $('#btnSubmitMarketProcess').prop('disabled', true);
         }
     }
     $('#marketImg').click(function () {
-        alert();    
+        alert();
         $("#bg").attr('src', "img/picture1.jpg");
         return false;
     });
@@ -147,7 +197,7 @@
             <ul>
                 <li>
                     <label>
-                      
+
                         <script>GetCalculation();</script>
                         <div class="throughput">
 
@@ -162,7 +212,7 @@
                         </div>
                         <div>
                             <div class="table-responsive">
-                                <script>GetProcess(8)</script>
+                                <script>GetProcess(8); GetSelectedProcess();</script>
                                 <div class="table-responsive">
                                     <table style="width:100%; margin-top:15px;">
                                         <tr id="steps"></tr>
@@ -203,7 +253,7 @@
 
     </div>
     <div class="pull-right" style="margin-right:100px; margin-top:40px;">
-        
+
         <img id="marketImg" onclick="RecordMarket()" src="~/Content/Images/markert-gold.png" />
 
     </div>

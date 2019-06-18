@@ -6,27 +6,34 @@
         //$('#btnSubmit').attr("type", "button");
         //$('#btnSubmit').attr("disabled", "disabled");
         $('#btnSubmitProcess').css("display", "block");
-        
+      
     });
 
     function GetProcesses() {
         $.ajax({
             type: "POST", url: "GetAllTemplates", data: JSON.stringify({ id: localStorage.getItem("EnvId") }), dataType: "json", contentType: "application/json", success: function (res) {
-               
+
                 localStorage.setItem('TemplateResponse', JSON.stringify(res));
                 $.each(res, function (data, value) {
                     debugger;
                     $("#ProcessTemplateDropdown").append($("<option></option>").val(value.ID).html(value.ProcessTemplateName));
                 });
+
                 var SelectedProcessId = localStorage.getItem('ProcessId');
                 if (SelectedProcessId != "undefined") {
-                    $('#ProcessTemplateDropdown [value="' + parseInt(SelectedProcessId) + '"]').attr('selected', 'true');
+                    function bindprocess() {
+                        $('#ProcessTemplateDropdown [value="' + parseInt(SelectedProcessId) + '"]').attr('selected', 'true');
+                    };
+                    window.setTimeout(bindprocess, 100);
                 }
-                else { $('#btnSubmitMarketProcess').prop('disabled', true);}
+                else { $('#btnSubmitMarketProcess').prop('disabled', true); }
 
                 $("#ProcessTemplateDropdown").append($("<option></option>").val("Custom").html("Custom"));
             },
-            error: function (response) {
+            error: function (response, c, d) {
+                //var err = eval("(" + response.responseText + ")");
+                //alert(err.Message);
+                debugger;
             }
         });
     }
@@ -44,10 +51,10 @@
             if (id == "Custom") { return; }
             var data = localStorage.getItem('TemplateResponse');
             //alert(data);
-         
+
             var object = JSON.parse(data).find(item => item.ID == id);
             $.each(object.ProcessTemplateSteps, function (key, value) {
-                 debugger;
+                debugger;
                 $('#steps').append('<td id="td_' + value.StepDescription.replace(/ /g, "_") + '" align="center">' + value.StepDescription + '</td>')
                 $('#images').append('<td id="a_' + value.StepDescription.replace(/ /g, "_") + '" align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value.StepDescription + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
             });
@@ -149,7 +156,7 @@
 
     function GetProcess(id) {
         $.ajax({
-            type: "POST", url: "GetTemplate", data: JSON.stringify({ id:8 }), dataType: "json", contentType: "application/json", success: function (res) {
+            type: "POST", url: "GetTemplate", data: JSON.stringify({id:8}), dataType: "json", contentType: "application/json", success: function (res) {
                 localStorage.setItem('TemplateResponse1', JSON.stringify(res));
                 var data = localStorage.getItem('TemplateResponse1');
                 var object = JSON.parse(data);
@@ -170,14 +177,17 @@
                     $('#images').prepend('<td align="center"><a href="javascript:void(0)" onclick="RenderPopup(' + "'" + value + "'" + ')"><img src="../../Content/Images/circle.png" /></a ></td>')
                 });
             },
-            error: function (response) {
+            error: function (response,c,d) {
+                debugger;
+                //var err = eval("(" + response.responseText + ")");
+                //alert(err.Message);
             }
         });
     }
 </script>
 
 <h2 class="question">
-     @Html.DisplayFor(model => model.Introduction)
+    @Html.DisplayFor(model => model.Introduction)
 </h2>
 
 <div class="options radiobtn">
@@ -205,7 +215,12 @@
                                 <span class="col-md-3">
                                     @Html.DisplayFor(model => Model.Answers[i].Answers) <span class="text-danger">*</span>
                                 </span>
-                                <script>GetProcesses(); GetProcess(8); </script>
+                                <script>
+
+                                    GetProcesses();
+
+                                    GetProcess(8);
+                                </script>
 
                                 <select id="ProcessTemplateDropdown" class="form-control pull-left" style="margin-right:15px;" onchange="ProcessSelectionChanged(this.value)"><option value="0">Select Process</option></select>
                                 <button type="button" id="btnAddStep" class="btn btn-info" style="display:none;" onclick="$('#btnDel').attr('disabled', true);$('#myModal').modal('show');"><b>+</b> Add</button>
@@ -235,3 +250,9 @@
         }
     </ul>
 </div>
+
+<script>
+
+    //    GetProcesses();
+ 
+    //GetProcess(8);</script>

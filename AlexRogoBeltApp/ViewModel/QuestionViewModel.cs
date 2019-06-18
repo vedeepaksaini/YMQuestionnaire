@@ -15,6 +15,9 @@ namespace AlexRogoBeltApp.ViewModel
         public int LevelID { get; set; }
         public int SelectedValue { get; set; }
         public string ViewName { get; set; }
+        public int  SetpsCompleted { get; set; }
+        public int TotalSetps { get; set; }
+        
         public List<AnswerViewModel> Answers { get; set; }
         public List<TransactionViewModel> Transactions { get; set; }
         public MemberViewModel Member { get; set; }

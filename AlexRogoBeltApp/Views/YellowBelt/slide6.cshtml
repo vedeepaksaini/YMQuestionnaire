@@ -52,13 +52,11 @@
 
 <script>
 
-    $(document).ready(function () {
-        debugger;
+    $(document).ready(function () {       
         SetButtonProp()
     });
 
-    function SetButtonProp() {
-        debugger;
+    function SetButtonProp() {      
         if ($("input:radio.rdbtn:checked").length > 0) {
             $('#btnSubmit').prop('disabled', false);
         }
@@ -69,16 +67,28 @@
     function ShowError(controlId) {
         SetButtonProp();
         debugger;
+        if (controlId == "Answers_0__IsSelected") {
+            $('#btnSubmit').removeAttr('disabled'); 
+            alert(0)
+        }
+
         if (controlId == "Answers_1__IsSelected") {
+            $('#btnSubmit').prop('disabled', true);
             $('#lblError1').css("display", "block");
             $('#lblError2').css("display", "none");
+          
+            alert(1)
         }
         else if (controlId == "Answers_2__IsSelected") {
+            $('#btnSubmit').prop('disabled', true);
             $('#lblError2').css("display", "block");
             $('#lblError1').css("display", "none");
+           
+            alert(2)
         } else {
             $('#lblError1').css("display", "none");
             $('#lblError2').css("display", "none");
+            
         }
     }
 </script>
