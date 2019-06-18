@@ -36,6 +36,14 @@ margin-left:300px
      .mt-sm-2{
          margin-top:20px;
      }
+    #tblProcess td{
+        white-space:nowrap;
+        padding:10px 5px 10px 10px;
+    }
+    .table-responsive td {
+        white-space: nowrap;
+        padding: 10px 5px 10px 10px;
+    }
 }
     @media(max-width:699px) {
         .intro-page {
@@ -126,7 +134,7 @@ margin-left:300px
         }
 
         .box-wrapper {
-            min-height: 635px;
+            min-height: 685px;
         }
 
         .question {
@@ -156,3 +164,186 @@ margin-left:300px
             height: 180px;
         }
     }
+
+/*Header Responsive*/
+@media only screen and (max-width: 445px) {
+    #header{
+        width:100%;
+        height:auto;
+    }
+    .logo {
+        width: 300px;
+        height: auto;
+        float: left;
+        position: relative;
+    }
+    .logo img{
+        width:100%;
+    }
+    .logo img {        
+        height: auto;
+        float: left;
+        position: relative;
+        top: -22px;
+        left: 0px;
+    }
+    .head_sub_new {
+        color: #555;
+        float: left;
+        font-family: Georgia,Times,"Times New Roman",serif;
+        font-size: 7px;
+        font-style: italic;
+        letter-spacing: 0.2px;
+        position: absolute;
+        left: 110px;
+        top: 42px;
+    }
+    #social {
+        float: right;
+        position: relative;
+        right: 0px;
+        top: -24px;
+    }
+    .foot-copy {
+        padding-left: 0px !important;
+    }
+    #copyright-inner {
+        padding-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 0px;
+        text-align:center;
+    }
+    .question-area {
+        min-height: auto !important;
+    }
+    .footer_text {
+        width: 300px;
+        margin: 0 auto;
+    }
+}
+@media only screen and (min-width: 446px) and (max-width:591px) {
+    #header {
+        width: 100%;
+        height: auto;
+    }
+
+    .logo {
+        width: 446px;
+        height: auto;
+        float: left;
+        position: relative;
+    }
+
+    .logo img {
+        width: 100%;
+    }
+
+    .logo img {
+        height: auto;
+        float: left;
+        position: relative;
+        top: -22px;
+        left: 0px;
+    }
+
+    .head_sub_new {
+        color: #555;
+        float: left;
+        font-family: Georgia,Times,"Times New Roman",serif;
+        font-size: 0.8em;
+        font-style: italic;
+        letter-spacing: 0.2px;
+        position: absolute;
+        left: 153px;
+        top: 70px;
+    }
+
+    #social {
+        float: right;
+        position: relative;
+        right: 0px;
+        top: -24px;
+    }
+
+    .foot-copy {
+        padding-left: 0px !important;
+    }
+
+    #copyright-inner {
+        padding-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 0px;
+        text-align: center;
+    }
+
+    .question-area {
+        min-height: auto !important;
+    }
+    .footer_text {
+        width:354px;
+        margin:0 auto;
+    }
+}
+@media only screen and (min-width: 592px) and (max-width:767px) {
+    #header {
+        width: 100%;
+        height: auto;
+    }
+
+    .logo {
+        width: 446px;
+        height: auto;
+        float: left;
+        position: relative;
+    }
+
+        .logo img {
+            width: 100%;
+        }
+
+        .logo img {
+            height: auto;
+            float: left;
+            position: relative;
+            top: -22px;
+            left: 0px;
+        }
+
+    .head_sub_new {
+        color: #555;
+        float: left;
+        font-family: Georgia,Times,"Times New Roman",serif;
+        font-size: 0.8em;
+        font-style: italic;
+        letter-spacing: 0.2px;
+        position: absolute;
+        left: 153px;
+        top: 70px;
+    }
+
+    #social {
+        float: right;
+        position: relative;
+        right: 0px;
+        top: 45px;
+    }
+
+    .foot-copy {
+        padding-left: 0px !important;
+    }
+
+    #copyright-inner {
+        padding-left: 0px !important;
+        margin-right: 0px !important;
+        margin-top: 0px;
+        text-align: center;
+    }
+
+    .question-area {
+        min-height: auto !important;
+    }
+    .footer_text {
+        width: 354px;
+        margin: 0 auto;
+    }
+}
