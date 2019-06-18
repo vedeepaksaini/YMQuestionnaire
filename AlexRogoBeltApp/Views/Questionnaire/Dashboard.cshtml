@@ -93,7 +93,7 @@
                 <div id="itoolbar_bg">
                     <div id="itoolbar" class="col-md-12  text-right">
 
-                        <a href="/Logout.aspx">Sign Out</a>
+                        <a href="@Url.Action("Logout", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })">Sign Out</a>
                     </div>
 
                 </div>

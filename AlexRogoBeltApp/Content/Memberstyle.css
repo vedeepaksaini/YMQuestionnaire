@@ -172,6 +172,7 @@ img{
         #icopyright a {
     color: #FFF !important;
 }
+
 /*New*/
 .header {
     width: 100%;
@@ -204,4 +205,8 @@ img{
 .footer_text {
     width: 354px;
     margin: 0 auto;
+}
+
+.beltlevels li{
+    border-right:1px solid #e1e1e1;
 }
