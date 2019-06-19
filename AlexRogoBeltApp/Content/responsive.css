@@ -1,192 +1,233 @@
-﻿@media(max-width:1199px){
+﻿@media(max-width:1199px) {
     .throughput {
-margin-left:300px
-}
+        margin-left: 300px
+    }
 }
 
-@media(max-width:991px){
+@media(max-width:991px) {
     .companyName {
         float: none;
     }
 
-    .changeBtn{
-        padding-left:0;
+    .changeBtn {
+        padding-left: 0;
     }
+
     .throughput {
-    margin-left: 180px;
-}
+        margin-left: 180px;
+    }
 }
 
 @media(max-width:767px) {
-    .table-responsive{
-        border:none;
+    .table-responsive {
+        border: none;
     }
 
     .options ul li label {
         font-size: 16px;
     }
-     .throughput {
-    margin-left: 0px;
-}
 
-     .pull-none-sm{
-         float:none !important;
-     }
-
-     .mt-sm-2{
-         margin-top:20px;
-     }
-    #tblProcess td{
-        white-space:nowrap;
-        padding:10px 5px 10px 10px;
+    .throughput {
+        margin-left: 0px;
     }
+
+    .pull-none-sm {
+        float: none !important;
+    }
+
+    .mt-sm-2 {
+        margin-top: 20px;
+    }
+
+    #tblProcess td {
+        white-space: nowrap;
+        padding: 10px 5px 10px 10px;
+    }
+
     .table-responsive td {
         white-space: nowrap;
         padding: 10px 5px 10px 10px;
     }
 }
-    @media(max-width:699px) {
-        .intro-page {
-            height: 420px;
-        }
 
-        .box-wrapper {
-            min-height: 750px;
-        }
-
-        .intro-page h2 {
-            font-size: 14px;
-        }
-
-        .intro-page h1 {
-            font-size: 19px;
-            margin-top: 10px;
-        }
-
-        .introduction h2, .introduction1 h2 {
-            font-size: 24px;
-        }
-
-        .introduction h3, .introduction1 h3 {
-            font-size: 18px;
-        }
-
-        .introLogo img {
-            height: 280px;
-        }
-
-
+@media(max-width:699px) {
+    .intro-page {
+        height: 420px;
     }
 
+    .box-wrapper {
+        min-height: 850px;
+    }
 
-    @media(max-width:536px) {
-        .question {
-            font-size: 24px;
-            padding-left: 40px;
-            padding-right: 40px;
-            line-height: 32px;
-            margin-top: 30px;
-            text-align: left;
+    .intro-page h2 {
+        font-size: 14px;
+    }
+
+    .intro-page h1 {
+        font-size: 19px;
+        margin-top: 10px;
+    }
+
+    .introduction h2, .introduction1 h2 {
+        font-size: 24px;
+    }
+
+    .introduction h3, .introduction1 h3 {
+        font-size: 18px;
+    }
+
+    .introLogo img {
+        height: 280px;
+    }
+}
+
+
+@media(max-width:536px) {
+    .question {
+        font-size: 24px;
+        padding-left: 40px;
+        padding-right: 40px;
+        line-height: 32px;
+        margin-top: 30px;
+        text-align: left;
+    }
+
+    .options {
+        margin-top: 45px;
+    }
+
+    .questionintro {
+        padding-left: 40px;
+        padding-right: 40px;
+        font-size: 20px;
+    }
+
+    .options ul {
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    .footer-copyright img {
+        float: none !important;
+        display: block;
+        margin: 20px auto 0;
+    }
+
+    .steps-footer {
+        position: initial;
+    }
+
+    .inpt-form {
+        width: 100%;
+    }
+}
+
+
+@media(max-width:390px) {
+    .introduction .intro-page {
+        height: 285px;
+        background-position-y: 45px;
+    }
+
+        .introduction .intro-page h2 {
+            color: #000;
         }
 
-        .options {
-            margin-top: 45px;
-        }
+    .introduction1 .intro-page {
+        height: 285px;
+    }
 
-        .questionintro {
-            padding-left: 40px;
-            padding-right: 40px;
-            font-size: 20px;
-        }
+    .box-wrapper {
+        min-height: 747px;
+    }
+
+    .question {
+        font-size: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        line-height: 28px;
+        margin-top: 25px;
+    }
+
+    .questionintro {
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 17px;
+    }
+
+    .options {
+        margin-top: 30px;
+    }
 
         .options ul {
-            padding-left: 40px;
-            padding-right: 40px;
+            padding-left: 25px;
+            padding-right: 25px;
         }
 
-        .footer-copyright img {
-            float: none !important;
-            display: block;
-            margin: 20px auto 0;
-        }
-
-        .steps-footer {
-            position: initial;
-        }
-        .inpt-form {
-            width:100%;
-        }
+    .introLogo img {
+        height: 180px;
     }
-
-
-    @media(max-width:390px) {
-        .introduction .intro-page {
-            height: 285px;
-            background-position-y: 45px;
-        }
-
-            .introduction .intro-page h2 {
-                color: #000;
-            }
-
-        .introduction1 .intro-page {
-            height: 285px;
-        }
-
-        .box-wrapper {
-            min-height: 685px;
-        }
-
-        .question {
-            font-size: 20px;
-            padding-left: 20px;
-            padding-right: 20px;
-            line-height: 28px;
-            margin-top: 25px;
-        }
-
-        .questionintro {
-            padding-left: 20px;
-            padding-right: 20px;
-            font-size: 17px;
-        }
-
-        .options {
-            margin-top: 30px;
-        }
-
-            .options ul {
-                padding-left: 25px;
-                padding-right: 25px;
-            }
-            
-        .introLogo img {
-            height: 180px;
-        }
-    }
+}
 
 /*Header Responsive*/
-@media only screen and (max-width: 445px) {
-    #header{
-        width:100%;
-        height:auto;
+@media only screen and (max-width: 480px) {
+    .chart canvas{
+        width:250px !important;
+        height:350px !important;
     }
+    .chart .donat_text {       
+        top: 49%;
+        left: 30%;        
+    }
+}
+@media only screen and (min-width: 769px) and (max-width: 1199px) {
+    .chart canvas {
+        width: 300px !important;
+        height: 400px !important;
+    }
+
+    .chart .donat_text {
+        font-size: 18px;
+        position: absolute;
+        z-index: 99;
+        top: 57%;
+        left: 39%;
+        text-align: center;
+    }
+    .strip_con {
+        position: relative;
+        margin-top: 9%;
+        width:40%;
+        min-width:300px;
+        margin:9% auto 0;
+    }
+}
+
+@media only screen and (max-width: 445px) {
+    #header {
+        width: 100%;
+        height: auto;
+    }
+
     .logo {
         width: 300px;
         height: auto;
         float: left;
         position: relative;
     }
-    .logo img{
-        width:100%;
-    }
-    .logo img {        
-        height: auto;
-        float: left;
-        position: relative;
-        top: -22px;
-        left: 0px;
-    }
+
+        .logo img {
+            width: 100%;
+        }
+
+        .logo img {
+            height: auto;
+            float: left;
+            position: relative;
+            top: -22px;
+            left: 0px;
+        }
+
     .head_sub_new {
         color: #555;
         float: left;
@@ -198,29 +239,35 @@ margin-left:300px
         left: 110px;
         top: 42px;
     }
+
     #social {
         float: right;
         position: relative;
         right: 0px;
         top: -24px;
     }
+
     .foot-copy {
         padding-left: 0px !important;
     }
+
     #copyright-inner {
         padding-left: 0px !important;
         margin-right: 0px !important;
         margin-top: 0px;
-        text-align:center;
+        text-align: center;
     }
+
     .question-area {
         min-height: auto !important;
     }
+
     .footer_text {
         width: 300px;
         margin: 0 auto;
     }
 }
+
 @media only screen and (min-width: 446px) and (max-width:591px) {
     #header {
         width: 100%;
@@ -234,17 +281,17 @@ margin-left:300px
         position: relative;
     }
 
-    .logo img {
-        width: 100%;
-    }
+        .logo img {
+            width: 100%;
+        }
 
-    .logo img {
-        height: auto;
-        float: left;
-        position: relative;
-        top: -22px;
-        left: 0px;
-    }
+        .logo img {
+            height: auto;
+            float: left;
+            position: relative;
+            top: -22px;
+            left: 0px;
+        }
 
     .head_sub_new {
         color: #555;
@@ -279,11 +326,13 @@ margin-left:300px
     .question-area {
         min-height: auto !important;
     }
+
     .footer_text {
-        width:354px;
-        margin:0 auto;
+        width: 354px;
+        margin: 0 auto;
     }
 }
+
 @media only screen and (min-width: 592px) and (max-width:767px) {
     #header {
         width: 100%;
@@ -342,6 +391,7 @@ margin-left:300px
     .question-area {
         min-height: auto !important;
     }
+
     .footer_text {
         width: 354px;
         margin: 0 auto;
