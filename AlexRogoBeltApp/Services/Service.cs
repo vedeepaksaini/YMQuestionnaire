@@ -218,5 +218,12 @@ namespace AlexRogoBeltApp.Services
             db.SaveChanges();
 
         }
+        public Steps CountSlideSteps()
+        {
+            Steps data = new Steps();
+           data.SetpsCompleted = db.TransactionMasters.Select(x => new { x.QuestionID }).Distinct().Count();
+           data.TotalSetps = db.QuestionMasters.Select(x => new { x.ID }).Distinct().Count();
+            return data;
+        }
     }
 }
