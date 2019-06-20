@@ -235,8 +235,8 @@
                     <div class="row">
                         <div class="col-lg-5 col-md-12 col-sm-12">
                             <div class="chart">
-                                <div class="donat_text"><span>@Model.TotalSetps</span> steps</div>
-                                <div id="chartContainer"></div>
+                                <div class="donat_text">Total<span>@Model.TotalSetps</span> Steps</div>
+                                <div id="container" class="inner_chart"></div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 col-sm-12">
@@ -367,13 +367,7 @@
                 plotBackgroundColor: null,
                 plotBorderWidth: 0,
                 plotShadow: false
-            },
-            title: {
-                text: 'Total<br>10<br>Steps',
-                align: 'center',
-                verticalAlign: 'middle',
-                y: 40
-            },
+            },            
             tooltip: {
                 pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
             },
@@ -396,18 +390,20 @@
                 type: 'pie',
                 name: 'Browser share',
                 innerSize: '50%',
-                data: [{
-                    type: "doughnut",
-                    innerRadius: 80,
-                    startAngle: 60,
-                    dataPoints: [
-                        { y: @stepsRemaining, color: "red" },
-                        { y: @Model.SetpsCompleted, color: "green" }
-                    ]
+                data: [
+                {
+                    name: 'Step Completed',
+                    y: @Model.SetpsCompleted,
+                    color: 'green'
+                },
+                {
+                    name: 'Step Remain',
+                    y: @stepsRemaining,
+                    color: 'red'
                 }]
-            });
-            chart.render();
-        }
+            }]
+
+        });
     </script>
     
 </body>
