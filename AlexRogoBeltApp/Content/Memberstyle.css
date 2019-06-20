@@ -302,3 +302,6 @@ img{
         -moz-box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
         box-shadow: 0px 0px 7px 0px rgba(0,0,0,0.25);
     }
+    path{
+        stroke:transparent !important;
+    }
