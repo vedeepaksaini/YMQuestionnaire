@@ -106,14 +106,14 @@
             $(".imgcircle").attr("src", "../../Content/Images/circle.png");
             $("#marketImg").attr("src", "../../Content/Images/markert-gold.png");
             $(stepId).attr("src", "../../Content/Images/circle-RED.png");
-            //steps.push(step);
+            steps.push(step);
         }
         else {
             $(stepId).attr("src", "../../Content/Images/circle.png");
-            // steps.pop(step);
+             steps.pop(step);
         }
-
-        steps.push(step);
+        debugger;
+        //steps.push(step);
         if (steps.length > 0) {
             $('#btnSubmitMarketProcess').prop('disabled', false);
         }
