@@ -241,6 +241,7 @@
     <Compile Include="ViewModel\MemberViewModel.cs" />
     <Compile Include="ViewModel\ProcessTemplateStepsViewModel.cs" />
     <Compile Include="ViewModel\ProcessTemplateViewModel.cs" />
+    <Compile Include="ViewModel\Steps.cs" />
     <Compile Include="ViewModel\Questionnaire.cs" />
     <Compile Include="ViewModel\QuestionViewModel.cs" />
     <Compile Include="ViewModel\TransactionViewModel.cs" />
@@ -253,11 +254,14 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Images\bg-intro.jpg" />
     <Content Include="Content\Images\bg.jpg" />
+    <Content Include="Content\Images\Bill_Peach_and_Alex_Rogo.png" />
     <Content Include="Content\Images\bottom-bg.jpg" />
     <Content Include="Content\Images\cancel.png" />
     <Content Include="Content\Images\Check_Circle.png" />
     <Content Include="Content\Images\circle-RED.png" />
     <Content Include="Content\Images\circle.png" />
+    <Content Include="Content\Images\Eli_Goldratt_Finding_Bottleneck.png" />
+    <Content Include="Content\Images\Eli_Protective_Capacity.png" />
     <Content Include="Content\Images\facebook-w.png" />
     <Content Include="Content\Images\facebook.png" />
     <Content Include="Content\Images\favicon.ico" />
@@ -278,6 +282,10 @@
     <Content Include="Content\Memberstyle.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\style.css" />
+    <Content Include="Content\Videos\Bill_Peach_and_Alex_Rogo-1.mp4" />
+    <Content Include="Content\Videos\Bill_Peach_and_Alex_Rogo.mp4" />
+    <Content Include="Content\Videos\Eli_Goldratt_Finding_Bottleneck.mp4" />
+    <Content Include="Content\Videos\Eli_Protective_Capacity.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide10_Video.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide11_Video.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide12_Video.mp4" />

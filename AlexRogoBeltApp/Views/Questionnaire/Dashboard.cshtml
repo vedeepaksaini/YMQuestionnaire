@@ -1,6 +1,5 @@
-﻿
-@{
-    ViewBag.Title = "Dashboard";
+﻿@model AlexRogoBeltApp.ViewModel.Steps
+@{    ViewBag.Title = "Dashboard";
     Layout = null;
 }
 
@@ -227,20 +226,27 @@
                         <div role="tabpanel" class="tab-pane" id="black">3</div>
                         <div role="tabpanel" class="tab-pane" id="tocexpert">4</div>
                     </div>
+                    @{
+                        int stepsRemaining = Model.TotalSetps - Model.SetpsCompleted;
+                        decimal stepsRemainingPer = (Convert.ToDecimal(stepsRemaining) * 100) / Convert.ToDecimal(Model.TotalSetps);
+                        decimal stepsCompletedPer = (Convert.ToDecimal(Model.SetpsCompleted) / Model.TotalSetps) * 100;
+
+                    }
                     <div class="row">
                         <div class="col-lg-5 col-md-12 col-sm-12">
                             <div class="chart">
-                                <div class="donat_text">Total<span>13</span> tasks</div>
-                                <div id="container" class="inner_chart"></div>                               
+                                <div class="donat_text"><span>@Model.TotalSetps</span> steps</div>
+                                <div id="chartContainer"></div>
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 col-sm-12">
                             <div class="strip_con">
                                 <div class="strip">
-                                    <div class="num_it">5</div>
+                                    <div class="num_it">@Model.SetpsCompleted</div>
                                     Step Completed
-                                </div><div class="strip">
-                                    <div class="num_it2">8</div>
+                                </div>
+                                <div class="strip">
+                                    <div class="num_it2">@stepsRemaining</div>
                                     Step remain to complete
                                 </div>
                             </div>
@@ -391,20 +397,17 @@
                 name: 'Browser share',
                 innerSize: '50%',
                 data: [{
-                    name: 'two',
-                    y: 50,
-                    color: 'green' 
-                },
-                {
-                    name: 'three',
-                    y: 10,
-                    color: 'red' 
-                }
-                ]
-            }]
-        });
-
-
+                    type: "doughnut",
+                    innerRadius: 80,
+                    startAngle: 60,
+                    dataPoints: [
+                        { y: @stepsRemaining, color: "red" },
+                        { y: @Model.SetpsCompleted, color: "green" }
+                    ]
+                }]
+            });
+            chart.render();
+        }
     </script>
     
 </body>

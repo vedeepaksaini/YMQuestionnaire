@@ -70,8 +70,8 @@ namespace AlexRogoBeltApp.Controllers
                     TempData["ErrorMsg"] = "You have completed the Yellow Belt.";
                 else
                     TempData["MemberId"] = id;
-
-                return View();
+               
+                return View(_service.CountSlideSteps());
             }
             catch (Exception e)
             {
