@@ -227,55 +227,114 @@
                         <div role="tabpanel" class="tab-pane" id="tocexpert">4</div>
                     </div>
                     @{
-                        int stepsRemaining = Model.TotalSetps - Model.SetpsCompleted;
-                        decimal stepsRemainingPer = (Convert.ToDecimal(stepsRemaining) * 100) / Convert.ToDecimal(Model.TotalSetps);
-                        decimal stepsCompletedPer = (Convert.ToDecimal(Model.SetpsCompleted) / Model.TotalSetps) * 100;
+                        int stepsRemaining = 0;
+                        int SetpsCompleted = 0;
+                        if (Model != null)
+                        {
+
+                            stepsRemaining = Model.TotalSetps - Model.SetpsCompleted;
+                            decimal stepsRemainingPer = (Convert.ToDecimal(stepsRemaining) * 100) / Convert.ToDecimal(Model.TotalSetps);
+                            decimal stepsCompletedPer = (Convert.ToDecimal(Model.SetpsCompleted) / Model.TotalSetps) * 100;
+                            SetpsCompleted = Model.SetpsCompleted;
+                        }
 
                     }
-                    <div class="row">
-                        <div class="col-lg-5 col-md-12 col-sm-12">
-                            <div class="chart">
-                                <div class="donat_text">Total<span>@Model.TotalSetps</span> Steps</div>
-                                <div id="container" class="inner_chart"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div class="strip_con">
-                                <div class="strip">
-                                    <div class="num_it">@Model.SetpsCompleted</div>
-                                    Step Completed
-                                </div>
-                                <div class="strip">
-                                    <div class="num_it2">@stepsRemaining</div>
-                                    Step remain to complete
+                    @if (Model != null)
+                    {
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                <div class="chart">
+                                    <div class="donat_text">Total<span>@Model.TotalSetps</span> Steps</div>
+                                    <div id="container" class="inner_chart"></div>
                                 </div>
                             </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="strip_con">
+                                    <div class="strip">
+                                        <div class="num_it">@Model.SetpsCompleted</div>
+                                        Step Completed
+                                    </div>
+                                    <div class="strip">
+                                        <div class="num_it2">@stepsRemaining</div>
+                                        Step remain to complete
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div>
+                        <div>
 
 
-                        @*<h3 class="text-center">You're on yellow belt</h3>*@
-                        <br>
-                        <div class="text-center">
-                            @{
-                                int Memberid = Convert.ToInt32(Request.QueryString["MemberId"]);
+                            @*<h3 class="text-center">You're on yellow belt</h3>*@
+                            <br>
+                            <div class="text-center">
+                                @{
+                                    int Memberid = Convert.ToInt32(Request.QueryString["MemberId"]);
 
+                                }
+                                <a id="startButton" href="/Questionnaire/GetStarted?MemberId=@Memberid" class="mt-2 btn btn-success btn-lg"
+                                   @{ if (TempData["ErrorMsg"] != null) { @: style="display:none"
+                                   } else { @: style="display:inline"
+                                   } }>Get Started</a>
+
+
+                                @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>*@
+                                @*<a href="@Url.Action("GetStarted", "Questionnaire")" class="mt-2 btn btn-success btn-lg">
+                        Get
+                        Started
+                    </a>*@
+
+                            </div>
+                        </div>
+
+                        <script>
+
+
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: 0,
+                    plotShadow: false
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        dataLabels: {
+                            enabled: false,
+                            distance: -50,
+                            style: {
+                                fontWeight: 'bold',
+                                color: 'white',
+                                textShadow: '0px 1px 2px black'
                             }
-                            <a id="startButton" href="/Questionnaire/GetStarted?MemberId=@Memberid" class="mt-2 btn btn-success btn-lg"
-                               @{ if (TempData["ErrorMsg"] != null) { @: style="display:none"
-                               } else { @: style="display:inline"
-                               } }>Get Started</a>
+                        },
 
+                        center: ['50%', '50%']
+                    }
+                },
+                series: [{
+                    type: 'pie',
+                    name: 'Step',
+                    innerSize: '50%',
+                    data: [
+                        {
+                            name: 'Step Completed',
 
-                            @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>*@
-                            @*<a href="@Url.Action("GetStarted", "Questionnaire")" class="mt-2 btn btn-success btn-lg">
-                                    Get
-                                    Started
-                                </a>*@
+                            y: @SetpsCompleted,
+                            color: 'green'
+                        },
+                        {
+                            name: 'Step Remain',
+                            y: @stepsRemaining,
+                            color: 'red'
+                        }]
+                }]
 
-                        </div>
-                    </div>
+            });
+
+                        </script>
+                    }
                 </div>
             </div>
         </div>
@@ -361,50 +420,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <script>
-        Highcharts.chart('container', {
-            chart: {
-                plotBackgroundColor: null,
-                plotBorderWidth: 0,
-                plotShadow: false
-            },            
-            tooltip: {
-                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-            },
-            plotOptions: {
-                pie: {
-                    dataLabels: {
-                        enabled: false,
-                        distance: -50,
-                        style: {
-                            fontWeight: 'bold',
-                            color: 'white',
-                            textShadow: '0px 1px 2px black'
-                        }
-                    },
-
-                    center: ['50%', '50%']
-                }
-            },
-            series: [{
-                type: 'pie',
-                name: 'Browser share',
-                innerSize: '50%',
-                data: [
-                {
-                    name: 'Step Completed',
-                    y: @Model.SetpsCompleted,
-                    color: 'green'
-                },
-                {
-                    name: 'Step Remain',
-                    y: @stepsRemaining,
-                    color: 'red'
-                }]
-            }]
-
-        });
-    </script>
+    
     
 </body>
 
