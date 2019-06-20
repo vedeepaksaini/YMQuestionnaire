@@ -130,7 +130,7 @@
                         }
                         @if (stepsRemaining != 0)
                         {
-                            <div class="w3-container w3-green w3-center" style="width:@wd%">@Model.SetpsCompleted step</div>
+                            <div class="w3-container w3-green w3-center" style="width:@wd%">@Model.SetpsCompleted <span class="step">Step</span></div>
                         }
                         else
                         {
@@ -141,7 +141,7 @@
 
                         @if (stepsRemaining != 0)
                         {
-                            <div style="position: absolute; top:-2px; left:@left%; margin-left:-25px;"> @stepsRemaining Step</div>
+                            <div style="position: absolute; top:-2px; left:@left%; margin-left:-25px;"> @stepsRemaining <span class="step">Step</span></div>
                         }
                     </div>
                 </div>

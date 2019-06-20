@@ -28,7 +28,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
           crossorigin="anonymous">
     <link href="~/Content/Memberstyle.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/responsive.css" rel="stylesheet" type="text/css" />    
+    <link href="~/Content/responsive.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
@@ -39,8 +39,9 @@
             $('#errMsg').text('@TempData["ErrorMsg"]');
         };
     </script>
-    <style>
-    </style>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    
+    
 
 </head>
 
@@ -229,17 +230,16 @@
                     <div class="row">
                         <div class="col-lg-5 col-md-12 col-sm-12">
                             <div class="chart">
-                                <div class="donat_text"><span>13</span> tasks left</div>
-                                <div id="chartContainer"></div>
+                                <div class="donat_text">Total<span>13</span> tasks</div>
+                                <div id="container" class="inner_chart"></div>                               
                             </div>
                         </div>
                         <div class="col-lg-4 col-md-12 col-sm-12">
                             <div class="strip_con">
                                 <div class="strip">
                                     <div class="num_it">5</div>
-                                   Step Completed
-                                </div>
-                                <div class="strip">
+                                    Step Completed
+                                </div><div class="strip">
                                     <div class="num_it2">8</div>
                                     Step remain to complete
                                 </div>
@@ -248,7 +248,7 @@
                     </div>
                     <div>
 
-                       
+
                         @*<h3 class="text-center">You're on yellow belt</h3>*@
                         <br>
                         <div class="text-center">
@@ -356,23 +356,57 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
     <script>
-        window.onload = function () {
-            var chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: 0,
+                plotShadow: false
+            },
+            title: {
+                text: 'Total<br>10<br>Steps',
+                align: 'center',
+                verticalAlign: 'middle',
+                y: 40
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    dataLabels: {
+                        enabled: false,
+                        distance: -50,
+                        style: {
+                            fontWeight: 'bold',
+                            color: 'white',
+                            textShadow: '0px 1px 2px black'
+                        }
+                    },
+
+                    center: ['50%', '50%']
+                }
+            },
+            series: [{
+                type: 'pie',
+                name: 'Browser share',
+                innerSize: '50%',
                 data: [{
-                    type: "doughnut",
-                    innerRadius: 80,
-                    startAngle: 60,
-                    dataPoints: [
-                        { y: 70, color: "green" },
-                        { y: 30, color: "red" }
-                    ]
-                }]
-            });
-            chart.render();
-        }
+                    name: 'two',
+                    y: 50,
+                    color: 'green' 
+                },
+                {
+                    name: 'three',
+                    y: 10,
+                    color: 'red' 
+                }
+                ]
+            }]
+        });
+
+
     </script>
-    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    
 </body>
 
 </html>

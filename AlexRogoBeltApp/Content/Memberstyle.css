@@ -224,8 +224,8 @@ img{
     font-size: 18px;
     position: absolute;
     z-index: 99;
-    top: 57%;
-    left: 39%;
+    top: 54%;
+    left: 45%;
     text-align:center;
 }
 .chart .donat_text span {
@@ -234,9 +234,32 @@ img{
     color:#ff0000;
     display:block;
 }
-.strip_con{
-position:relative;
-margin-top:35%;
+.highcharts-credits{
+    display:none;
+}
+.highcharts-title {
+    display: none;
+}
+.chart .inner_chart {
+    min-width: 310px;
+    height: 400px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+/*High chart*/
+.highcharts-exporting-group {
+    display: none;
+}
+.highcharts-background,
+.highcharts-plot-background,
+.highcharts-plot-border{
+    display:none;
+}
+
+/*High chart*/
+.strip_con {
+    position: relative;
+    margin-top: 35%;
 }
 .strip{
     background-color:#f2f2f2;
