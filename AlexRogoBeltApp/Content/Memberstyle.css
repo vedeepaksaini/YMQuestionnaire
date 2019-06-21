@@ -255,7 +255,10 @@ img{
 .highcharts-plot-border{
     display:none;
 }
+.highcharts-point-inactive{
+    display:none;
 
+}
 /*High chart*/
 .strip_con {
     position: relative;
