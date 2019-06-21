@@ -12,10 +12,11 @@
     function GetProcesses() {
         $.ajax({
             type: "POST", url: "GetAllTemplates", data: JSON.stringify({ id: localStorage.getItem("EnvId") }), dataType: "json", contentType: "application/json", success: function (res) {
-
+                debugger; 
                 localStorage.setItem('TemplateResponse', JSON.stringify(res));
+                
                 $.each(res, function (data, value) {
-                    debugger;
+                
                     $("#ProcessTemplateDropdown").append($("<option></option>").val(value.ID).html(value.ProcessTemplateName));
                 });
 
@@ -31,8 +32,12 @@
                 $("#ProcessTemplateDropdown").append($("<option></option>").val("Custom").html("Custom"));
             },
             error: function (response, c, d) {
-                //var err = eval("(" + response.responseText + ")");
-                //alert(err.Message);
+                if (localStorage.getItem("EnvId")  == 20) { //temp solution 
+                    $("#ProcessTemplateDropdown").append($("<option></option>").val("Custom").html("Custom"));
+                    var SelectedProcessId = localStorage.getItem('ProcessId');
+                    $('#ProcessTemplateDropdown [value="' + parseInt(SelectedProcessId) + '"]').attr('selected', 'true');
+                }
+                
                 debugger;
             }
         });
@@ -48,7 +53,10 @@
             $('#btnSubmitMarketProcess').prop('disabled', false);
         } else {
             $('#btnAddStep').css("display", "block");
-            if (id == "Custom") { return; }
+            if (id == "Custom") {
+                localStorage.setItem('ProcessId', JSON.stringify('Custom'));
+                return;
+            }
             var data = localStorage.getItem('TemplateResponse');
             //alert(data);
 
