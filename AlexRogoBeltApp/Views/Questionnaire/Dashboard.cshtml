@@ -37,10 +37,18 @@
             $('#myModal').modal('show');
             $('#errMsg').text('@TempData["ErrorMsg"]');
         };
+
     </script>
     <script src="https://code.highcharts.com/highcharts.js"></script>
-    
-    
+    <script>
+        var dateData = new Date;
+        var nyeardata = dateData.getFullYear();        
+        window.onload = function getYear() {
+            document.getElementById('nyear').innerHTML = nyeardata;
+        };
+    </script>
+
+
 
 </head>
 
@@ -396,7 +404,8 @@
                     </div>
                     <div class="foot-copy">
                         <div class="footer_text">
-                            Copyright © 2018 TOCICO. All rights reserved.<br>
+                            Copyright © <span id="nyear"></span> 
+                            TOCICO. All rights reserved.<br>
                             Theory of Constraints International Certification Organization<br>
                             230 Washington Avenue Extension, Suite 101<br>
                             Albany, New York 12203-5319&nbsp; USA<br>

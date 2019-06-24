@@ -1,9 +1,9 @@
 ﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
 
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Yellow Belt";
+    ViewBag.Title = "Yellow Belt";
 }
 
 @*<script>
@@ -27,55 +27,30 @@
 {
     @*@Html.AntiForgeryToken()*@
 
-<div style="background:#ffffff;">
+    <script>
+        var dateData = new Date;
+        var nyeardata = dateData.getFullYear();
+        window.onload = function getYear() {
+            document.getElementById('nyear').innerHTML = nyeardata;
+        };
+    </script>
 
-    <div class="toolbar-out">
-        <div class="container">
-            <div id="itoolbar_bg">
-                <div id="itoolbar" class="col-md-12  text-right">
+    <div style="background:#ffffff;">
 
-                    <a href="@Url.Action("Logout", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })">Sign Out</a>
-                </div>
-
-            </div>
-        </div>
-    </div>
-    <div class="header-out">
-        <div class="container">
-            <div class="header">
-                <script type="text/javascript">
-                    WebFontConfig = {
-                        google: { families: ['Open+Sans:400,300,600,700,800:latin', 'Roboto+Condensed:400,300,700:latin'] }
-                    };
-                    (function () {
-                        var wf = document.createElement('script');
-                        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-                        wf.type = 'text/javascript';
-                        wf.async = 'true';
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(wf, s);
-                    })();</script>
-                <div class="row">
-                    <div class="col-lg-6 col-md-12 col-sm-12">
-                        <a class="logo" href="/" target="_parent" style="color:#000;">
-                            <img src="~/Content/Images/TOCICOBannerLogoGoldHorizontal.gif" />
-                        </a>
-                        <i class="head_sub_new">"Bringing People and TOC Knowledge Together Globally"</i>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12">
-                        <div id="social">
-                            <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank"><img border="0" src="~/Content/Images/facebook.png"></a>
-                            <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank"><img border="0" src="~/Content/Images/linkedin.png"></a>
-                            <a class="tw" href="https://twitter.com/TOCICO" target="_blank"><img border="0" src="~/Content/Images/twitter.png"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    @*<div class="header-out">
+        <div class="toolbar-out">
             <div class="container">
-                <div id="header">
+                <div id="itoolbar_bg">
+                    <div id="itoolbar" class="col-md-12  text-right">
+
+                        <a href="@Url.Action("Logout", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })">Sign Out</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="header-out">
+            <div class="container">
+                <div class="header">
                     <script type="text/javascript">
                         WebFontConfig = {
                             google: { families: ['Open+Sans:400,300,600,700,800:latin', 'Roboto+Condensed:400,300,700:latin'] }
@@ -88,33 +63,66 @@
                             var s = document.getElementsByTagName('script')[0];
                             s.parentNode.insertBefore(wf, s);
                         })();</script>
-
-                    <a class="logo" href="/" target="_parent" style="color:#000; float:left">
-                        <img src="~/Content/Images/TOCICOBannerLogoGoldHorizontal.gif" />
-                    </a>
-                    <i class="head-sub">"Bringing People and TOC Knowledge Together Globally"</i>
-
-
-
-                    <div id="social">
-                        <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank"><img border="0" src="~/Content/Images/facebook.png"></a>
-                        <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank"><img border="0" src="~/Content/Images/linkedin.png"></a>
-                        <a class="tw" href="https://twitter.com/TOCICO" target="_blank"><img border="0" src="~/Content/Images/twitter.png"></a>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <a class="logo" href="/" target="_parent" style="color:#000;">
+                                <img src="~/Content/Images/TOCICOBannerLogoGoldHorizontal.gif" />
+                            </a>
+                            <i class="head_sub_new">"Bringing People and TOC Knowledge Together Globally"</i>
+                        </div>
+                        <div class="col-lg-6 col-md-12 col-sm-12">
+                            <div id="social">
+                                <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank"><img border="0" src="~/Content/Images/facebook.png"></a>
+                                <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank"><img border="0" src="~/Content/Images/linkedin.png"></a>
+                                <a class="tw" href="https://twitter.com/TOCICO" target="_blank"><img border="0" src="~/Content/Images/twitter.png"></a>
+                            </div>
+                        </div>
                     </div>
-
-
                 </div>
             </div>
-        </div>*@
+        </div>
+        @*<div class="header-out">
+                <div class="container">
+                    <div id="header">
+                        <script type="text/javascript">
+                            WebFontConfig = {
+                                google: { families: ['Open+Sans:400,300,600,700,800:latin', 'Roboto+Condensed:400,300,700:latin'] }
+                            };
+                            (function () {
+                                var wf = document.createElement('script');
+                                wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                                wf.type = 'text/javascript';
+                                wf.async = 'true';
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(wf, s);
+                            })();</script>
 
-</div>
-    <div class="step-page" >
+                        <a class="logo" href="/" target="_parent" style="color:#000; float:left">
+                            <img src="~/Content/Images/TOCICOBannerLogoGoldHorizontal.gif" />
+                        </a>
+                        <i class="head-sub">"Bringing People and TOC Knowledge Together Globally"</i>
+
+
+
+                        <div id="social">
+                            <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank"><img border="0" src="~/Content/Images/facebook.png"></a>
+                            <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank"><img border="0" src="~/Content/Images/linkedin.png"></a>
+                            <a class="tw" href="https://twitter.com/TOCICO" target="_blank"><img border="0" src="~/Content/Images/twitter.png"></a>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>*@
+
+    </div>
+    <div class="step-page">
         <div class="text-center " style="padding:15px;">The Alex Rogo Levels</div>
     </div>
     <div class="container">
-       
-        <div class="box-wrapper" style=" background-image: linear-gradient(to top,#ace0f9  0%,  #fff1eb 100%);">            
-            
+
+        <div class="box-wrapper" style=" background-image: linear-gradient(to top,#ace0f9  0%,  #fff1eb 100%);">
+
             <div class="question-area">
                 <div class="progress_bar">
                     <div class="w3-red">
@@ -161,11 +169,11 @@
                     <input type="submit" id="btnSubmitMarketProcess" style="display:none" onclick="submitMarketStep()" value="Next >" class="mt-2 btn btn-success btn-lg pull-right " />
                 </div>
                 @*<div class="footer-copyright">
-                <img src="~/Content/Images/logo_black.png" />
-                <div class="steps-footer">
-                    &copy; 2019 TOCICO. All Rights Reserved.
-                </div>
-            </div>*@
+                        <img src="~/Content/Images/logo_black.png" />
+                        <div class="steps-footer">
+                            &copy; 2019 TOCICO. All Rights Reserved.
+                        </div>
+                    </div>*@
             </footer>
         </div>
     </div>
@@ -203,7 +211,6 @@
                         }
                         -->
                         .foot-copy {
-                            
                         }
                     </style>
                 </span>
@@ -227,15 +234,15 @@
                     </div>
                     <div class="foot-copy">
                         <div class="footer_text">
-                            Copyright © 2018 TOCICO. All rights reserved.<br>
+                            Copyright © <span id="nyear"></span> TOCICO. All rights reserved.<br>
                             Theory of Constraints International Certification Organization<br>
                             230 Washington Avenue Extension, Suite 101<br>
                             Albany, New York 12203-5319&nbsp; USA<br>
                             Ph: +1 (518) 694-8478<br>
                             Fax: +1 (518) 463-8656<br>
                             admin@tocico.org<br>
-                            </div>
                         </div>
+                    </div>
                 </div>
             </div>
             <div id="icopyright">

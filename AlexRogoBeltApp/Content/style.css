@@ -151,13 +151,13 @@
                 word-break: break-all;
             }
 
-            .options ul li i {
-                font-size: 12px;
-                position: absolute;
-                top: 9px;
-                left: 3px;
-                color: #fff;
-            }
+.options ul li i {
+    font-size: 12px;
+    position: absolute;
+    top: 10px;
+    left: 3px;
+    color: #fff;
+}
 
 .copyrightfooter {
     position: absolute;
@@ -186,7 +186,8 @@
     width: 18px;
     height: 18px;
     position: relative;
-    top: 3px;
+    top: 4px;
+    margin-right:15px;
     transition: all .3s linear;
     border: 1px solid #0096e7;
 }
@@ -456,8 +457,15 @@ min-height: 35px;
     padding-top: 15px;
     margin: 0 auto 15px;
 }
+.progress_bar .w3-green {
+    border-top-left-radius:10px !important;
+    border-bottom-left-radius:10px !important;       
+    -moz-border-radius-topleft: 10px !important;
+    -moz-border-radius-bottomleft: 10px !important;
+}
 .progress_bar .w3-red {
-    position:relative !important;
+    position: relative !important;
+    border-radius: 10px !important;
 }
 .progress_bar .w3-red .remain {
     position: absolute;
