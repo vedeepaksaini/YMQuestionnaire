@@ -24,15 +24,14 @@ namespace AlexRogoBeltApp.Entities
         }
     
         public int ID { get; set; }
+        public string GUID { get; set; }
         public int MemberID { get; set; }
+        public Nullable<int> WebsiteID { get; set; }
         public string MemberUserName { get; set; }
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Company { get; set; }
-        public string ApiGuid { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
         public string MemberType { get; set; }
         public string HomeAddress1 { get; set; }
         public string City { get; set; }

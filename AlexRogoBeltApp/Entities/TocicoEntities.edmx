@@ -90,15 +90,14 @@
             <PropertyRef Name="MemberID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GUID" Type="nvarchar" MaxLength="100" />
           <Property Name="MemberID" Type="int" Nullable="false" />
+          <Property Name="WebsiteID" Type="int" />
           <Property Name="MemberUserName" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Company" Type="varchar" MaxLength="500" />
-          <Property Name="ApiGuid" Type="varchar" MaxLength="200" />
-          <Property Name="Username" Type="varchar" MaxLength="50" />
-          <Property Name="Password" Type="varchar" MaxLength="200" />
           <Property Name="MemberType" Type="varchar" MaxLength="20" />
           <Property Name="HomeAddress1" Type="varchar" MaxLength="300" />
           <Property Name="City" Type="varchar" MaxLength="50" />
@@ -585,8 +584,8 @@
           <Property Name="GoalID" Type="Int32" Nullable="false" />
           <Property Name="Deactive" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="GoalMaster" Relationship="Self.FK__ProcessGo__GoalI__2A4B4B5E" FromRole="ProcessGoalMapping" ToRole="GoalMaster" />
-          <NavigationProperty Name="MemberMaster" Relationship="TOCICOModel.FK__ProcessGo__Membe__4A4E069C" FromRole="ProcessGoalMapping" ToRole="MemberMaster" />
           <NavigationProperty Name="ProcessTemplateMaster" Relationship="TOCICOModel.FK__ProcessGo__Proce__29572725" FromRole="ProcessGoalMapping" ToRole="ProcessTemplateMaster" />
+          <NavigationProperty Name="MemberMaster" Relationship="TOCICOModel.FK__ProcessGo__Membe__4A4E069C" FromRole="ProcessGoalMapping" ToRole="MemberMaster" />
         </EntityType>
         <EntityType Name="ProcessTemplateStep">
           <Key>
@@ -649,7 +648,7 @@
           <NavigationProperty Name="QuestionMaster" Relationship="Self.FK__Transacti__Quest__1ED998B2" FromRole="TransactionMaster" ToRole="QuestionMaster" />
           <NavigationProperty Name="MemberMaster" Relationship="TOCICOModel.FK__Transacti__Membe__467D75B8" FromRole="TransactionMaster" ToRole="MemberMaster" />
           <NavigationProperty Name="MemberMaster1" Relationship="TOCICOModel.FK__Transacti__Membe__4865BE2A" FromRole="TransactionMaster" ToRole="MemberMaster" />
-        </EntityType>
+          </EntityType>
         <Association Name="FK__AnswerMas__Actio__55009F39">
           <End Role="ActionMaster" Type="Self.ActionMaster" Multiplicity="0..1" />
           <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="*" />
@@ -809,6 +808,19 @@
             <End Role="QuestionMaster" EntitySet="QuestionMasters" />
             <End Role="TransactionMaster" EntitySet="TransactionMasters" />
           </AssociationSet>
+          <EntitySet Name="ProcessTemplateMasters" EntityType="TOCICOModel.ProcessTemplateMaster" />
+          <AssociationSet Name="FK__Environme__Proce__756D6ECB" Association="TOCICOModel.FK__Environme__Proce__756D6ECB">
+            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
+            <End Role="EnvironmentMaster" EntitySet="EnvironmentMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessGo__Proce__29572725" Association="TOCICOModel.FK__ProcessGo__Proce__29572725">
+            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
+            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProcessTe__Proce__59C55456" Association="TOCICOModel.FK__ProcessTe__Proce__59C55456">
+            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
+            <End Role="ProcessTemplateStep" EntitySet="ProcessTemplateSteps" />
+          </AssociationSet>
           <EntitySet Name="MemberMasters" EntityType="TOCICOModel.MemberMaster" />
           <AssociationSet Name="FK__GoalTarge__Membe__4959E263" Association="TOCICOModel.FK__GoalTarge__Membe__4959E263">
             <End Role="MemberMaster" EntitySet="MemberMasters" />
@@ -826,97 +838,7 @@
             <End Role="MemberMaster" EntitySet="MemberMasters" />
             <End Role="TransactionMaster" EntitySet="TransactionMasters" />
           </AssociationSet>
-          <EntitySet Name="ProcessTemplateMasters" EntityType="TOCICOModel.ProcessTemplateMaster" />
-          <AssociationSet Name="FK__Environme__Proce__756D6ECB" Association="TOCICOModel.FK__Environme__Proce__756D6ECB">
-            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
-            <End Role="EnvironmentMaster" EntitySet="EnvironmentMasters" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProcessGo__Proce__29572725" Association="TOCICOModel.FK__ProcessGo__Proce__29572725">
-            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
-            <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMappings" />
-          </AssociationSet>
-          <AssociationSet Name="FK__ProcessTe__Proce__59C55456" Association="TOCICOModel.FK__ProcessTe__Proce__59C55456">
-            <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMasters" />
-            <End Role="ProcessTemplateStep" EntitySet="ProcessTemplateSteps" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="MemberMaster">
-          <Key>
-            <PropertyRef Name="MemberID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="MemberID" Type="Int32" Nullable="false" />
-          <Property Name="MemberUserName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="Company" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="ApiGuid" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Password" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="MemberType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="HomeAddress1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="MemberSuspended" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="GoalTargets" Relationship="TOCICOModel.FK__GoalTarge__Membe__4959E263" FromRole="MemberMaster" ToRole="GoalTarget" />
-          <NavigationProperty Name="ProcessGoalMappings" Relationship="TOCICOModel.FK__ProcessGo__Membe__4A4E069C" FromRole="MemberMaster" ToRole="ProcessGoalMapping" />
-          <NavigationProperty Name="TransactionMasters" Relationship="TOCICOModel.FK__Transacti__Membe__467D75B8" FromRole="MemberMaster" ToRole="TransactionMaster" />
-          <NavigationProperty Name="TransactionMasters1" Relationship="TOCICOModel.FK__Transacti__Membe__4865BE2A" FromRole="MemberMaster" ToRole="TransactionMaster" />
-          <Property Name="IsYBpaymentCompleted" Type="Boolean" Nullable="false" />
-          <Property Name="IsYBStepsCompleted" Type="Boolean" Nullable="false" />
-        </EntityType>
-        <Association Name="FK__GoalTarge__Membe__4959E263">
-          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
-          <End Type="TOCICOModel.GoalTarget" Role="GoalTarget" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MemberMaster">
-              <PropertyRef Name="MemberID" />
-            </Principal>
-            <Dependent Role="GoalTarget">
-              <PropertyRef Name="MemberID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__ProcessGo__Membe__4A4E069C">
-          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
-          <End Type="TOCICOModel.ProcessGoalMapping" Role="ProcessGoalMapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MemberMaster">
-              <PropertyRef Name="MemberID" />
-            </Principal>
-            <Dependent Role="ProcessGoalMapping">
-              <PropertyRef Name="MemberID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Transacti__Membe__467D75B8">
-          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
-          <End Type="TOCICOModel.TransactionMaster" Role="TransactionMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MemberMaster">
-              <PropertyRef Name="MemberID" />
-            </Principal>
-            <Dependent Role="TransactionMaster">
-              <PropertyRef Name="MemberID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Transacti__Membe__4865BE2A">
-          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
-          <End Type="TOCICOModel.TransactionMaster" Role="TransactionMaster" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MemberMaster">
-              <PropertyRef Name="MemberID" />
-            </Principal>
-            <Dependent Role="TransactionMaster">
-              <PropertyRef Name="MemberID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="ProcessTemplateMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -964,6 +886,82 @@
             </Principal>
             <Dependent Role="ProcessTemplateStep">
               <PropertyRef Name="ProcessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="MemberMaster">
+          <Key>
+            <PropertyRef Name="MemberID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GUID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MemberID" Type="Int32" Nullable="false" />
+          <Property Name="WebsiteID" Type="Int32" />
+          <Property Name="MemberUserName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Company" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="MemberType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="HomeAddress1" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MemberSuspended" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="IsYBpaymentCompleted" Type="Boolean" Nullable="false" />
+          <Property Name="IsYBStepsCompleted" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="GoalTargets" Relationship="TOCICOModel.FK__GoalTarge__Membe__4959E263" FromRole="MemberMaster" ToRole="GoalTarget" />
+          <NavigationProperty Name="ProcessGoalMappings" Relationship="TOCICOModel.FK__ProcessGo__Membe__4A4E069C" FromRole="MemberMaster" ToRole="ProcessGoalMapping" />
+          <NavigationProperty Name="TransactionMasters" Relationship="TOCICOModel.FK__Transacti__Membe__467D75B8" FromRole="MemberMaster" ToRole="TransactionMaster" />
+          <NavigationProperty Name="TransactionMasters1" Relationship="TOCICOModel.FK__Transacti__Membe__4865BE2A" FromRole="MemberMaster" ToRole="TransactionMaster" />
+        </EntityType>
+        <Association Name="FK__GoalTarge__Membe__4959E263">
+          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
+          <End Type="TOCICOModel.GoalTarget" Role="GoalTarget" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="GoalTarget">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProcessGo__Membe__4A4E069C">
+          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
+          <End Type="TOCICOModel.ProcessGoalMapping" Role="ProcessGoalMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="ProcessGoalMapping">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Membe__467D75B8">
+          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
+          <End Type="TOCICOModel.TransactionMaster" Role="TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="MemberID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Transacti__Membe__4865BE2A">
+          <End Type="TOCICOModel.MemberMaster" Role="MemberMaster" Multiplicity="1" />
+          <End Type="TOCICOModel.TransactionMaster" Role="TransactionMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MemberMaster">
+              <PropertyRef Name="MemberID" />
+            </Principal>
+            <Dependent Role="TransactionMaster">
+              <PropertyRef Name="MemberID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1128,6 +1126,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProcessTemplateMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateMaster">
+              <MappingFragment StoreEntitySet="ProcessTemplateMaster">
+                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
+                <ScalarProperty Name="EnvironmentID" ColumnName="EnvironmentID" />
+                <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
+                <ScalarProperty Name="Steps" ColumnName="Steps" />
+                <ScalarProperty Name="ProcessTemplateName" ColumnName="ProcessTemplateName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="MemberMasters">
             <EntityTypeMapping TypeName="TOCICOModel.MemberMaster">
               <MappingFragment StoreEntitySet="MemberMaster">
@@ -1141,27 +1151,14 @@
                 <ScalarProperty Name="City" ColumnName="City" />
                 <ScalarProperty Name="HomeAddress1" ColumnName="HomeAddress1" />
                 <ScalarProperty Name="MemberType" ColumnName="MemberType" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="ApiGuid" ColumnName="ApiGuid" />
                 <ScalarProperty Name="Company" ColumnName="Company" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="MemberUserName" ColumnName="MemberUserName" />
+                <ScalarProperty Name="WebsiteID" ColumnName="WebsiteID" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ProcessTemplateMasters">
-            <EntityTypeMapping TypeName="TOCICOModel.ProcessTemplateMaster">
-              <MappingFragment StoreEntitySet="ProcessTemplateMaster">
-                <ScalarProperty Name="Deactive" ColumnName="Deactive" />
-                <ScalarProperty Name="EnvironmentID" ColumnName="EnvironmentID" />
-                <ScalarProperty Name="IsCustom" ColumnName="IsCustom" />
-                <ScalarProperty Name="Steps" ColumnName="Steps" />
-                <ScalarProperty Name="ProcessTemplateName" ColumnName="ProcessTemplateName" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
