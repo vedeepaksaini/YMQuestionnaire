@@ -458,10 +458,11 @@ min-height: 35px;
     margin: 0 auto 15px;
 }
 .progress_bar .w3-green {
-    border-top-left-radius:10px !important;
+    border-radius:10px;
+    /*border-top-left-radius:10px !important;
     border-bottom-left-radius:10px !important;       
     -moz-border-radius-topleft: 10px !important;
-    -moz-border-radius-bottomleft: 10px !important;
+    -moz-border-radius-bottomleft: 10px !important;*/
 }
 .progress_bar .w3-red {
     position: relative !important;
@@ -474,4 +475,8 @@ min-height: 35px;
 }
 #ProcessTemplateDropdown{
     margin-bottom:10px;
+}
+.modellabel{
+    font-size:20px;
+    text-align:right;
 }

@@ -224,6 +224,10 @@
         min-width: 300px;
         margin: 10% auto 0;
     }
+    .modal-dialog{
+        width:90% !important;
+        margin: 5% auto !important;
+    }
 }
 
     @media only screen and (min-width: 769px) and (max-width: 1199px) {
@@ -307,6 +311,7 @@
 
         .question-area {
             min-height: auto !important;
+            padding:0 15px;
         }
 
         .footer_text {
