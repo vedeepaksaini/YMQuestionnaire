@@ -88,9 +88,9 @@
                                     <div class="col-lg-12 col-md-12 col-sm-12">
                                         <div class="input-group" style="width:180px; margin: 0 auto;">
                                             <span class="input-group-addon">$</span>
-                                            <input id="throughput" type="number" step=".01" class="form-control"  readonly  />
+                                            <input id="throughput" type="number" step=".01" class="form-control" readonly />
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                             </div>
                             <div class="table-responsive">
@@ -101,46 +101,53 @@
                                 </table>
                             </div>
 
+
+
+
                             <div class="row mt-3">
-                                <div class="col-md-5 col-xs-12">
-                                    <div class="pull-right pull-none-sm">
-                                        <div class="text-danger">Inventory</div>
-                                        <div style="width:240px;">
-                                            <div class="input-group pull-left" style="width:180px;">
-                                                <span class="input-group-addon">$</span>
-                                                <input id="inventory" type="number" step=".01" class="form-control" readonly>
+                                    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                        <div class="" style="width:180px; margin: 0 auto;">
+                                            <div class="text-danger">Inventory</div>
+                                            <div style="width:240px;">
+                                                <div class="input-group pull-left" style="width:180px;">
+                                                    <span class="input-group-addon">$</span>
+                                                    <input id="inventory" type="number" step=".01" class="form-control" readonly>
+
+                                                </div>
 
                                             </div>
-                                            @*<a href="#" class="pull-left" style="font-size:16px; margin-left:5px; margin-top:5px;">Change</a>*@
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-5 col-md-offset-2 col-xs-12">
-                                    <div class="mt-sm-2">
-                                        <div>Operating Expense</div>
-                                        <div style="width:240px;">
-                                            <div class="input-group pull-left" style="width:180px;">
-                                                <span class="input-group-addon">$</span>
-                                                <input id="expense" type="number" step=".01" class="form-control" readonly>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                        <div class="" style="width:180px; margin: 0 auto;">
+                                            <div class="text-blue">Operating Expense</div>
+                                            <div style="width:240px;">
+                                                <div class="input-group pull-left" style="width:180px;">
+                                                    <span class="input-group-addon">$</span>
+                                                    <input id="expense" type="number" step=".01" class="form-control" readonly>
+
+                                                </div>
 
                                             </div>
-                                            @*<a href="#" class="pull-left" style="font-size:16px; margin-left:5px; margin-top:5px;">Change</a>*@
                                         </div>
                                     </div>
+                                    <div class="col-lg-1 col-md-1 col-sm-12 col-xs-12">
+                                    </div>
                                 </div>
-                            </div>
 
-                            @Html.Partial("Popup")
-                            @{
-                                Model.Answers.FirstOrDefault().IsSelected = true;
-                            }
+                                @Html.Partial("Popup")
+                                @{
+                                    Model.Answers.FirstOrDefault().IsSelected = true;
+                                }
 
-                            @Html.HiddenFor(model => Model.Answers[i].ID)
-                            @Html.HiddenFor(model => model.LevelID)
-                            @Html.HiddenFor(model => Model.Answers[i].QuestionID)
-                            @Html.HiddenFor(model => Model.Answers[i].IsSelected)
-                            @Html.HiddenFor(model => model.QuestionOrder)
-                        </label>
+                                @Html.HiddenFor(model => Model.Answers[i].ID)
+                                @Html.HiddenFor(model => model.LevelID)
+                                @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                                @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                                @Html.HiddenFor(model => model.QuestionOrder)
+</label>
                     </li>
                 }
             }

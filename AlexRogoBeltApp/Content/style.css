@@ -480,3 +480,10 @@ min-height: 35px;
     font-size:20px;
     text-align:right;
 }
+.radiobtn input[type="radio"]{
+    margin-right:15px !important;
+}
+.text-danger{margin-bottom:10px !important;}
+.text-blue {
+    margin-bottom: 10px !important;
+}

@@ -1,7 +1,7 @@
 ﻿@media(max-width:1199px) {
-    .throughput {
+    /*.throughput {
         margin-left: 300px
-    }
+    }*/
 }
 
 @media(max-width:991px) {
@@ -13,9 +13,9 @@
         padding-left: 0;
     }
 
-    .throughput {
+    /*.throughput {
         margin-left: 180px;
-    }
+    }*/
 }
 
 @media(max-width:767px) {
@@ -27,9 +27,9 @@
         font-size: 14px;
     }
 
-    .throughput {
+    /*.throughput {
         margin-left: 0px;
-    }
+    }*/
 
     .pull-none-sm {
         float: none !important;
@@ -457,6 +457,9 @@
         label .companyName .form-control {
             margin-top: 8px !important;
         }
+        .tc{text-align:center;}
+        .text-danger{margin-bottom:0px !important;}
+
     }
 
     @media only screen and (max-width: 1200px) {

@@ -135,21 +135,23 @@
                                 wd = 7.7 * Model.SetpsCompleted - 1;
                             }
                             double left = (100 - wd) / 2 + wd;
-                        }
-                        @if (stepsRemaining != 0)
-                        {
-                            <div class="w3-container w3-green w3-center" style="width:@wd%">@Model.SetpsCompleted <span class="step">Step</span></div>
-                        }
-                        else
-                        {
-                            <div class="w3-container w3-green w3-center" style="width:100%">@Model.SetpsCompleted step</div>
-
-                        }
 
 
-                        @if (stepsRemaining != 0)
-                        {
-                            <div style="position: absolute; top:-2px; left:@left%; margin-left:-25px;"> @stepsRemaining <span class="step">Step</span></div>
+                            if (stepsRemaining != 0)
+                            {
+                                <div class="w3-container w3-green w3-center" style="width:@wd%">@Model.SetpsCompleted <span class="step">Step</span></div>
+                            }
+                            else
+                            {
+                                <div class="w3-container w3-green w3-center" style="width:100%">@Model.SetpsCompleted step</div>
+
+                            }
+
+
+                            if (stepsRemaining != 0)
+                            {
+                                <div style="position: absolute; top:-2px; left:@left%; margin-left:-25px;"> @stepsRemaining <span class="step">Step</span></div>
+                            }
                         }
                     </div>
                 </div>
@@ -234,7 +236,7 @@
                     </div>
                     <div class="foot-copy">
                         <div class="footer_text">
-                            Copyright © <span id="nyear"></span> TOCICO. All rights reserved.<br>
+                            Copyright © <span id=""></span> TOCICO. All rights reserved.<br>
                             Theory of Constraints International Certification Organization<br>
                             230 Washington Avenue Extension, Suite 101<br>
                             Albany, New York 12203-5319&nbsp; USA<br>
