@@ -18,7 +18,7 @@ namespace SampleApp
             manager.ApiKeySa = "B4226439-485F-49EF-A183-37319519A0FA";
             manager.SaPasscode = "04iHL9sU5g24";
             manager.Version = "2.30";
-            
+
             //Create session for the current user
             YMSDK.ApiResponse response = manager.SessionCreate();
 
@@ -33,26 +33,26 @@ namespace SampleApp
                 string memberID = response.MethodResults.GetNamedItem("WebsiteID").Value;
 
                 //Get Inbox messages for this user
-                //esponse = manager.MemberProfileGet();
-                var timestamp = DateTime.Now.ToString("yyyy-MM-dd HH mm ss"); 
-                     //2008 - 01 - 01 00:00:00
-               response = manager.SaPeopleAllGetIDs(DateTime.Now,Convert.ToInt32(memberID));
-                //if (response.ErrorCode == YMSDK.ApiErrorCode.NoError)
-                //{
-                //    //Display the messages to the user
-                //    ApiMethodResults results = response.MethodResults;
+                //response = manager.MemberProfileGet();
+                var timestamp = DateTime.Now.ToString("yyyy-MM-dd HH mm ss");
+                //2008 - 01 - 01 00:00:00
+                response = manager.SaPeopleAllGetIDs(DateTime.Now, Convert.ToInt32(memberID));
+                if (response.ErrorCode == YMSDK.ApiErrorCode.NoError)
+                {
+                    //Display the messages to the user
+                    ApiMethodResults results = response.MethodResults;
 
-                //    if (results.Items.Count > 0)
-                //    {
-                //        foreach (DataItem message in results.Items)
-                //        {
-                //            messageHeaders.Add(
-                //                message.GetNamedItem("MessageID").Value,
-                //                message.GetNamedItem("Subject").Value
-                //            );
-                //        }
-                //    }
-                //}
+                    if (results.Items.Count > 0)
+                    {
+                        foreach (DataItem message in results.Items)
+                        {
+                            messageHeaders.Add(
+                                message.GetNamedItem("MessageID").Value,
+                                message.GetNamedItem("Subject").Value
+                            );
+                        }
+                    }
+                }
             }
 
             //Console.WriteLine(string.Format("Fetched {0} messages.", messageHeaders.Count));

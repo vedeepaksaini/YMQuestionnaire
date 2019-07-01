@@ -1,0 +1,34 @@
+﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+<h2 class="question">
+    @Html.DisplayFor(model => model.Introduction)
+</h2>
+
+<div class="question">View video below for the meaning of “Murphy”</div>
+<div class="question">
+    <div>
+        <div>
+            <div>
+                <video width="400" controls="controls" poster="~/Content/Images/Slide15.png">
+                    <source src="~/Content/Videos/Eli_Protective_Capacity.mp4" type="video/mp4" />
+                    Your browser does not support HTML5 video.
+                </video>
+            </div>
+        </div>
+
+    </div>
+
+    <div>2hrs “Murphy” and planned downtime</div>
+    <div>8hr Shift</div>
+    <div>6hrs Run Time</div>
+    <div>Constraint Utilization = Run Time / Total Time = 75%</div>
+    <div>But what if we ran at 50% of full speed, or produced bad parts and rework?</div>
+
+
+    @{Model.Answers.FirstOrDefault().IsSelected = true;}
+
+    @Html.HiddenFor(model => Model.Answers[0].ID)
+    @Html.HiddenFor(model => model.LevelID)
+    @Html.HiddenFor(model => Model.Answers[0].QuestionID)
+    @Html.HiddenFor(model => Model.Answers[0].IsSelected)
+    @Html.HiddenFor(model => model.QuestionOrder)
+

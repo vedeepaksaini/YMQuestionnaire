@@ -1,1 +1,119 @@
-﻿slide 14
+﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+
+
+<h2 class="question">
+    @Html.DisplayFor(model => model.Introduction)
+</h2>
+
+<div class="options radiobtn">
+    <h3 class="questionintro">
+        @Html.DisplayFor(model => model.Question)
+    </h3>
+    <ul>
+        @{
+            if (Model != null)
+            {
+                for (var i = 0; i < Model.Answers.Count(); i++)
+                {
+                    <li>
+                        <label>
+                            @{
+                                var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
+                                if (transaction != null)
+                                {
+                                    Model.Answers[i].IsSelected = true;
+                                }
+                            }
+
+                            @Html.RadioButton("grp", Model.Answers[i].ID, Model.Answers[i].IsSelected, new { @class = "rdbtn", @onchange = "ShowError('Answers_" + i + "__IsSelected');" })
+
+                            @Html.DisplayFor(model => Model.Answers[i].Answers)
+
+                            @Html.HiddenFor(model => Model.Answers[i].ID)
+                            @Html.HiddenFor(model => model.LevelID)
+                            @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                            @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                            @Html.HiddenFor(model => model.QuestionOrder)
+                        </label>
+                    </li>
+                }
+
+                for (var i = 0; i < Model.Answers.Count(); i++)
+                {
+                    if (Model.Answers[i].ErrorMSG != null)
+                    {
+                        @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError" + i, style = "display:none;color:#a94442; font-size:14px;" })
+                    }
+                }
+            }
+        }
+    </ul>
+</div>
+
+<script>
+
+    $(document).ready(function () {
+        SetButtonProp()
+    });
+
+    function SetButtonProp() {
+        if ($("input:radio.rdbtn:checked").length > 0) {
+            $('#btnSubmit').prop('disabled', false);
+        }
+        else {
+            $('#btnSubmit').prop('disabled', true);
+        }
+    }
+    function ShowError(controlId) {
+        SetButtonProp();
+        debugger;
+        if (controlId == "Answers_0__IsSelected") {
+
+            //$('#btnSubmit').removeAttr('disabled');
+            $('#btnSubmit').prop('disabled', true);
+            $('#lblError0').css("display", "block");
+
+            //lblError1
+
+        }
+
+        if (controlId == "Answers_1__IsSelected") {
+            $('#btnSubmit').prop('disabled', true);
+            $('#lblError1').css("display", "block");
+            $('#lblError0').css("display", "none");
+            $('#lblError3').css("display", "none");
+            $('#lblError4').css("display", "none");
+
+
+
+
+        }
+        if (controlId == "Answers_3__IsSelected") {
+            $('#btnSubmit').prop('disabled', true);
+            $('#lblError3').css("display", "block");
+            $('#lblError0').css("display", "none");
+            $('#lblError1').css("display", "none");
+            $('#lblError4').css("display", "none");
+
+
+
+        }
+
+        if (controlId == "Answers_4__IsSelected") {
+            $('#btnSubmit').prop('disabled', true);
+            $('#lblError4').css("display", "block");
+            $('#lblError0').css("display", "none");
+            $('#lblError1').css("display", "none");
+            $('#lblError3').css("display", "none");
+
+
+        }
+        else {
+           //// $('#lblError0').css("display", "none");
+           // $('#lblError1').css("display", "none");
+           // $('#lblError3').css("display", "none");
+           // $('#lblError4').css("display", "none");
+
+        }
+    }
+</script>

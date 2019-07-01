@@ -17,6 +17,7 @@ namespace AlexRogoBeltApp.Controllers
     {
 
         private readonly Service _service = new Service();
+        private readonly YMServices _ymservice = new YMServices();
 
         public ActionResult GetStarted()
         {
@@ -70,7 +71,7 @@ namespace AlexRogoBeltApp.Controllers
                     TempData["ErrorMsg"] = "You have completed the Yellow Belt.";
                 else
                     TempData["MemberId"] = id;
-               
+
                 return View(_service.CountSlideSteps());
             }
             catch (Exception e)
@@ -78,6 +79,10 @@ namespace AlexRogoBeltApp.Controllers
                 return PartialView(@"~\Views\Shared\Error.cshtml");
             }
         }
+
+
+
+        //Method call on Get Start Button.
         public ActionResult Questions()
         {
             try
@@ -105,7 +110,7 @@ namespace AlexRogoBeltApp.Controllers
                     {
                         TempData["LevelId"] = TempData["OrderId"] = 0;
                     }
-                    else if (Convert.ToString(TempData["slideno"]) == "slide14")
+                    else if (Convert.ToString(TempData["slideno"]) == "slide17")
                     {
                         TempData["OrderId"] = Convert.ToInt32(TempData["OrderId"]) - 1;
                     }
@@ -189,7 +194,7 @@ namespace AlexRogoBeltApp.Controllers
                     return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
                 }
 
-                if (model.QuestionOrder != 13)
+                if (model.QuestionOrder != 16)
                 {
                     List<TransactionViewModel> transactions = selectedAnswers.Distinct().Select(x => new TransactionViewModel
                     {
@@ -206,7 +211,7 @@ namespace AlexRogoBeltApp.Controllers
                 TempData["LevelId"] = model.LevelID;
                 TempData["OrderId"] = model.QuestionOrder + 1;
 
-                if (TempData["OrderId"].ToString() == "14")
+                if (TempData["OrderId"].ToString() == "17")
                 {
                     //Mark yellow belt completed
                     _service.MarkYellowBeltCompleted(MemberDetails.MemberID);
@@ -294,7 +299,7 @@ namespace AlexRogoBeltApp.Controllers
         {
             TempData["ErrorMsg"] = "Session has been expired.";
             return RedirectToAction("Dashboard", new { MemberId = MemberDetails == null ? Convert.ToInt32(Request.QueryString["MemberId"]) : MemberDetails.MemberID });
-           // return View("Dashboard");
+            // return View("Dashboard");
         }
 
         [WebMethod]
@@ -315,7 +320,7 @@ namespace AlexRogoBeltApp.Controllers
 
             if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
             {
-                TempData["OrderId"] = 13;
+                TempData["OrderId"] = 17;
                 TempData["LevelId"] = 1;
                 TempData["Slide"] = "empty";
                 return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
@@ -333,13 +338,19 @@ namespace AlexRogoBeltApp.Controllers
 
             _service.SetTransactions(transactions);
 
-            TempData["OrderId"] = 14;
+            TempData["OrderId"] = 17;
             TempData["LevelId"] = 1;
-            TempData["Slideno"] = "slide14";
+            TempData["Slideno"] = "slide16";
             return RedirectToAction("Questions");
             //return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
         }
 
+        public ActionResult LoadMemebrGUID()
+        {
+            //List<int> obj= _ymservice.GetAllGuid();
+            _ymservice.GetMemberData();
+            return View();
+        }
         public ActionResult Logout()
         {
             var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];

@@ -1,0 +1,44 @@
+﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+<h2 class="question">
+    @Html.DisplayFor(model => model.Introduction)
+</h2>
+
+<div class="center-block">
+    <div class="row mt-3">
+        <div class="col-md-6 col-md-offset-3">
+            <div class="embed-responsive embed-responsive-16by9">
+                <video width="600" controls="controls" poster="~/Content/Images/Overall_Equipment_Effectiveness.png" class="center-block">
+                    <source src="~/Content/Videos/Eli_Protective_Capacity.mp4"  type="video/mp4" />
+                    Your browser does not support HTML5 video.
+                </video>
+            </div>
+        </div>
+
+    </div>
+    <div class="text-center mt-1" style="color: #17de17; font-weight:600;">
+        From Goldratt Satellite Series available from Goldratt’s Marketing Group: Purchase full video <a href="https://www.toc-goldratt.com/en/product/gsp-on-operations-dbr-and-buffer-management." target="_blank">here</a>.
+    </div>
+</div>
+
+<br />
+
+<div>
+    Correct OEE = (Availability) x (Performance) x (Quality)
+    Run Time vs Scheduled Time         % of Maximum Speed                   % Good Parts
+    75%           x            85%         x      97%     =   62% OEE
+</div>
+<br />
+<div>
+    Simple   OEE = (Good Quantity Produced) / (Maximum Possible Production)
+    Sum of good quality products produced in shift                    Maximum rate per hour  x  Number of  Hours in Shift
+    4,960 units         /       8,000       =   62% OEE
+</div>
+
+
+@{Model.Answers.FirstOrDefault().IsSelected = true;}
+
+@Html.HiddenFor(model => Model.Answers[0].ID)
+@Html.HiddenFor(model => model.LevelID)
+@Html.HiddenFor(model => Model.Answers[0].QuestionID)
+@Html.HiddenFor(model => Model.Answers[0].IsSelected)
+@Html.HiddenFor(model => model.QuestionOrder)
