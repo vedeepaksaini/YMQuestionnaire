@@ -238,7 +238,7 @@
 }
 
 .question-area {
-    min-height: 670px;
+    min-height: 637px;
 }
 
 
@@ -486,4 +486,11 @@ min-height: 35px;
 .text-danger{margin-bottom:10px !important;}
 .text-blue {
     margin-bottom: 10px !important;
+}
+.market{
+    text-align:right;
+    margin-right:63px;
+}
+.ml_remain_progress{
+    margin-left:-25px;
 }

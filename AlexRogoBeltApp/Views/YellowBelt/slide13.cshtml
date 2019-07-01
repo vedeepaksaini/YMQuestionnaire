@@ -252,15 +252,16 @@
                     </label>
                 </li>
             </ul>
-
         </div>
-
     </div>
-    <div class="pull-right" style="margin-right:100px; margin-top:40px;">
-
+    <div class="row">
+        <div class="col-md-12">
+            <div class="market"><img id="marketImg" onclick="RecordMarket()" src="~/Content/Images/markert-gold.png" /></div>
+        </div>
+    </div>
+    @*<div class="pull-right" style="margin-right:100px; margin-top:40px;">
         <img id="marketImg" onclick="RecordMarket()" src="~/Content/Images/markert-gold.png" />
-
-    </div>
+    </div>*@
 </div>
 
 @{Model.Answers.FirstOrDefault().IsSelected = true;}
