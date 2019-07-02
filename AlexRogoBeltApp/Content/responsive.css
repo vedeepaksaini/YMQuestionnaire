@@ -450,21 +450,28 @@
         }
     }
 
-    @media only screen and (max-width:767px) {
-        .beltlevels li {
-            border-right: 0px solid #e1e1e1;
-        }
-        label .companyName .form-control {
-            margin-top: 8px !important;
-        }
-        .tc{text-align:center;}
-        .text-danger{margin-bottom:0px !important;}
-        .market {
-            text-align: center;
-            margin-right: 0px;
-        }
-
+@media only screen and (max-width:767px) {
+    .beltlevels li {
+        border-right: 0px solid #e1e1e1;
     }
+
+    label .companyName .form-control {
+        margin-top: 8px !important;
+    }
+
+    .tc {
+        text-align: center;
+    }
+
+    .text-danger {
+        margin-bottom: 0px !important;
+    }
+
+    .market {
+        text-align: center;
+        margin-right: 0px;
+    }
+}
 
     @media only screen and (max-width: 1200px) {
         .step {
@@ -473,4 +480,52 @@
         .ml_remain_progress {
             margin-left: -6px;
         }
+        .text_lower {
+            overflow-x: auto !important;
+        }
     }
+@media only screen and (min-width:320px) and (max-width:349px) {
+    .text_left, .text_right {
+        font-size: 12px !important;
+    }
+
+        .text_right .inner_r {
+            padding-top: 7%;
+            font-weight: bold;
+        }
+
+        .text_right .inner_g {
+            padding-top: 21%;
+            font-weight: bold;
+        }
+}
+@media only screen and (min-width:350px) and (max-width:420px) {
+    .text_left, .text_right {
+        font-size: 12px !important;
+    }
+
+    .text_right .inner_r {
+        padding-top: 7%;
+        font-weight: bold;
+    }
+
+    .text_right .inner_g {
+        padding-top: 52%;
+        font-weight: bold;
+    }
+}
+@media only screen and (min-width:421px) and (max-width:500px) {
+    .text_left, .text_right {
+        font-size: 12px !important;
+    }
+
+        .text_right .inner_r {
+            padding-top: 7%;
+            font-weight: bold;
+        }
+
+        .text_right .inner_g {
+            padding-top: 74%;
+            font-weight: bold;
+        }
+}

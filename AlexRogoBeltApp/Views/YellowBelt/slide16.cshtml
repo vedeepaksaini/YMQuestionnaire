@@ -3,36 +3,97 @@
     @Html.DisplayFor(model => model.Introduction)
 </h2>
 
-<div class="center-block">
+
+<div class="containr">
     <div class="row mt-3">
         <div class="col-md-6 col-md-offset-3">
+            <div class="text-center mt-1" style="color: #17de17; font-weight:600; margin-bottom:20px;">
+                Introduction to OEE
+            </div>
             <div class="embed-responsive embed-responsive-16by9">
                 <video width="600" controls="controls" poster="~/Content/Images/Overall_Equipment_Effectiveness.png" class="center-block">
-                    <source src="~/Content/Videos/Eli_Protective_Capacity.mp4"  type="video/mp4" />
+                    <source src="~/Content/Videos/Eli_Protective_Capacity.mp4" type="video/mp4" />
                     Your browser does not support HTML5 video.
                 </video>
             </div>
         </div>
-
     </div>
-    <div class="text-center mt-1" style="color: #17de17; font-weight:600;">
-        From Goldratt Satellite Series available from Goldratt’s Marketing Group: Purchase full video <a href="https://www.toc-goldratt.com/en/product/gsp-on-operations-dbr-and-buffer-management." target="_blank">here</a>.
+    <div class="row mt-3">
+        <div class="col-md-12">
+            <div class="text_lower">
+                <table width="100%">
+                    <tr>
+                        <th>Correct OEE</th>
+                        <th>=</th>
+                        <th>(Availability)</th>
+                        <th>X</th>
+                        <th>(Performance)</th>
+                        <th>X</th>
+                        <th>(Quality)</th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Run Time vs Scheduled Time</td>
+                        <td></td>
+                        <td>% of Maximum Speed</td>
+                        <td></td>
+                        <td>% Good Parts </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>75%</td>
+                        <td>X</td>
+                        <td>85%</td>
+                        <td>X</td>
+                        <td>97%</td>
+                        <td>=</td>
+                        <td>62% OEE</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="text_lower" style="margin-top:50px;">
+                <table width="100%">
+                    <tr>
+                        <th>Simple OEE </th>
+                        <th>=</th>
+                        <th>(Good Quantity Produced) </th>
+                        <th>/</th>
+                        <th>(Maximum Possible Production) </th>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>4,960 units</td>
+                        <td>/</td>
+                        <td>8,000 = 62% OEE</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Sum of good quality products produced in shift</td>
+                        <td></td>
+                        <td>Maximum rate per hour  x  Number of  Hours in Shift</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
+    <div class="center-block">
+        <div class="text-center mt-1" style="color: #17de17; font-weight:600;">
+            Important Note: Going Forward we will assume Constraint Utilization is measured on the simple OEE method.
+        </div>
+    </div>
+
 </div>
 
-<br />
 
-<div>
-    Correct OEE = (Availability) x (Performance) x (Quality)
-    Run Time vs Scheduled Time         % of Maximum Speed                   % Good Parts
-    75%           x            85%         x      97%     =   62% OEE
-</div>
-<br />
-<div>
-    Simple   OEE = (Good Quantity Produced) / (Maximum Possible Production)
-    Sum of good quality products produced in shift                    Maximum rate per hour  x  Number of  Hours in Shift
-    4,960 units         /       8,000       =   62% OEE
-</div>
+
+
 
 
 @{Model.Answers.FirstOrDefault().IsSelected = true;}
