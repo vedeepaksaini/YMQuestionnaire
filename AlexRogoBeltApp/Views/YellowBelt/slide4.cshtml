@@ -10,6 +10,7 @@
     });
 
     function GetProcesses() {
+        debugger
         $.ajax({
             type: "POST", url: "GetAllTemplates", data: JSON.stringify({ id: localStorage.getItem("EnvId") }), dataType: "json", contentType: "application/json", success: function (res) {
                 debugger; 

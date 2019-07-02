@@ -1,0 +1,23 @@
+﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+
+<h2 class="question">
+    @Html.DisplayFor(model => model.Introduction)
+</h2>
+<div class="center-block">
+
+</div>
+
+@{
+    Model.Answers.FirstOrDefault().IsSelected = true;
+}
+
+@Html.HiddenFor(model => Model.Answers[0].ID)
+@Html.HiddenFor(model => model.LevelID)
+@Html.HiddenFor(model => Model.Answers[0].QuestionID)
+@Html.HiddenFor(model => Model.Answers[0].IsSelected)
+@Html.HiddenFor(model => model.QuestionOrder)
+
+
+
+
+
