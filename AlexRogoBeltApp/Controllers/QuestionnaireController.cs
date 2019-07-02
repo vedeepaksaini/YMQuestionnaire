@@ -164,6 +164,14 @@ namespace AlexRogoBeltApp.Controllers
                     return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
                 }
 
+                if (Convert.ToString(TempData["Slide"]) == "slide13")
+                {
+                    TempData.Remove("Slide");
+                    TempData["LevelId"] = model.LevelID;
+                    TempData["OrderId"] = model.QuestionOrder + 1;
+                    return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
+                }
+
                 if (Convert.ToString(TempData["Slide"]) == "empty")
                 {
                     TempData.Remove("Slide");
@@ -320,7 +328,7 @@ namespace AlexRogoBeltApp.Controllers
 
             if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
             {
-                TempData["OrderId"] = 23;
+                TempData["OrderId"] = 13;
                 TempData["LevelId"] = 1;
                 TempData["Slide"] = "empty";
                 return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
@@ -338,9 +346,9 @@ namespace AlexRogoBeltApp.Controllers
 
             _service.SetTransactions(transactions);
 
-            TempData["OrderId"] = 23;
+            TempData["OrderId"] = 13 + 1;
             TempData["LevelId"] = 1;
-            TempData["Slideno"] = "slide22";
+            TempData["Slide"] = "slide13";
             return RedirectToAction("Questions");
             //return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
         }

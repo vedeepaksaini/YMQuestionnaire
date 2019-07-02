@@ -77,6 +77,17 @@
           <Property Name="TargetID" Type="int" Nullable="false" />
           <Property Name="Deavtive" Type="bit" Nullable="false" />
         </EntityType>
+        <EntityType Name="GuidMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MemberId" Type="int" />
+          <Property Name="GUID" Type="nvarchar" MaxLength="200" />
+          <Property Name="UpdateOn" Type="date" Nullable="false" />
+          <Property Name="CreatedON" Type="date" Nullable="false" />
+          <Property Name="DeletedOn" Type="date" />
+        </EntityType>
         <EntityType Name="LevelMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -397,6 +408,7 @@
           <EntitySet Name="EnvironmentMaster" EntityType="Self.EnvironmentMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoalMaster" EntityType="Self.GoalMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GoalTarget" EntityType="Self.GoalTarget" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GuidMaster" EntityType="Self.GuidMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LevelMaster" EntityType="Self.LevelMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MemberMaster" EntityType="Self.MemberMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ProcessGoalMapping" EntityType="Self.ProcessGoalMapping" Schema="dbo" store:Type="Tables" />
@@ -838,6 +850,7 @@
             <End Role="MemberMaster" EntitySet="MemberMasters" />
             <End Role="TransactionMaster" EntitySet="TransactionMasters" />
           </AssociationSet>
+          <EntitySet Name="GuidMasters" EntityType="TOCICOModel.GuidMaster" />
         </EntityContainer>
         <EntityType Name="ProcessTemplateMaster">
           <Key>
@@ -965,6 +978,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="GuidMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MemberId" Type="Int32" />
+          <Property Name="GUID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="UpdateOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedON" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DeletedOn" Type="DateTime" Precision="0" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1159,6 +1183,18 @@
                 <ScalarProperty Name="WebsiteID" ColumnName="WebsiteID" />
                 <ScalarProperty Name="MemberID" ColumnName="MemberID" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GuidMasters">
+            <EntityTypeMapping TypeName="TOCICOModel.GuidMaster">
+              <MappingFragment StoreEntitySet="GuidMaster">
+                <ScalarProperty Name="DeletedOn" ColumnName="DeletedOn" />
+                <ScalarProperty Name="CreatedON" ColumnName="CreatedON" />
+                <ScalarProperty Name="UpdateOn" ColumnName="UpdateOn" />
+                <ScalarProperty Name="GUID" ColumnName="GUID" />
+                <ScalarProperty Name="MemberId" ColumnName="MemberId" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
