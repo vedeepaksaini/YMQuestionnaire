@@ -1,0 +1,68 @@
+﻿
+@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+
+<h2 class="question">
+    @Html.DisplayFor(model => model.Introduction)
+</h2>
+<div class="center-block">
+    <div>
+        <h3>
+            The Pareto diagram.
+        </h3>
+        <p>
+            This concept is related to the 80/20 principle where you typically find that one or two items make up for 80% of your “Murphy”
+            and downtime items. Start by identifying your top 5 Pareto items and focus your improvement on #1 and #2 only. If starvation
+            from upstream machines/departments is a concern just do your best – your next Green belt will offer a full solution.
+        </p>
+        <div>
+            <img src="~/Content/Images/slide19_1.png" alt="" height=100 width=200 />
+        </div>
+    </div>
+    <div>
+        <h3>
+            The Standardized Work chart.
+        </h3>
+        <p>
+            This Lean Manufacturing tool makes it simple to visually see the items that take up the most time in a certain process. This
+            Tool comes in handy for analyzing set-up times or shift change-over times.
+        </p>
+        <div>
+            <img src="~/Content/Images/slide19_2.png" alt="" height=100 width=200 />
+        </div>
+    </div>
+    <div>
+        <h3>
+            The Single Minute Exchange of Die (SMED) process.
+        </h3>
+        <p>
+            This concept is used for set-up or tool change over time reduction. It first identifies any opportunities for doing some of the
+            set-up work while the machine is still running (external) and then moves the focus on improving the remaining internal tasks.
+        </p>
+        <div>
+            <img src="~/Content/Images/slide19_3.png" alt="" height=100 width=200 />
+        </div>
+    </div>
+    <div>
+        <h3>
+            Plus many others.
+        </h3>
+        <p>
+          
+
+            These include among others, Ishikawa (fish bone) diagrams, Current Reality trees, Conflict Clouds, Spaghetti diagrams, Kaizen events and many more.
+            Important: do NOT let the tools delay your efforts to improve the Constraint Utilization. Often identifying your #1 and #2 Pareto items is enough
+            to make a good improvement.
+        </p>
+
+    </div>
+</div>
+
+@{
+    Model.Answers.FirstOrDefault().IsSelected = true;
+}
+
+@Html.HiddenFor(model => Model.Answers[0].ID)
+@Html.HiddenFor(model => model.LevelID)
+@Html.HiddenFor(model => Model.Answers[0].QuestionID)
+@Html.HiddenFor(model => Model.Answers[0].IsSelected)
+@Html.HiddenFor(model => model.QuestionOrder)

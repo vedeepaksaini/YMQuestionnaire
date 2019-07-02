@@ -110,7 +110,7 @@ namespace AlexRogoBeltApp.Controllers
                     {
                         TempData["LevelId"] = TempData["OrderId"] = 0;
                     }
-                    else if (Convert.ToString(TempData["slideno"]) == "slide17")
+                    else if (Convert.ToString(TempData["slideno"]) == "slide23")
                     {
                         TempData["OrderId"] = Convert.ToInt32(TempData["OrderId"]) - 1;
                     }
@@ -194,7 +194,7 @@ namespace AlexRogoBeltApp.Controllers
                     return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
                 }
 
-                if (model.QuestionOrder != 16)
+                if (model.QuestionOrder != 22)
                 {
                     List<TransactionViewModel> transactions = selectedAnswers.Distinct().Select(x => new TransactionViewModel
                     {
@@ -211,7 +211,7 @@ namespace AlexRogoBeltApp.Controllers
                 TempData["LevelId"] = model.LevelID;
                 TempData["OrderId"] = model.QuestionOrder + 1;
 
-                if (TempData["OrderId"].ToString() == "17")
+                if (TempData["OrderId"].ToString() == "23")
                 {
                     //Mark yellow belt completed
                     _service.MarkYellowBeltCompleted(MemberDetails.MemberID);
@@ -320,7 +320,7 @@ namespace AlexRogoBeltApp.Controllers
 
             if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
             {
-                TempData["OrderId"] = 17;
+                TempData["OrderId"] = 23;
                 TempData["LevelId"] = 1;
                 TempData["Slide"] = "empty";
                 return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
@@ -338,11 +338,11 @@ namespace AlexRogoBeltApp.Controllers
 
             _service.SetTransactions(transactions);
 
-            TempData["OrderId"] = 17;
+            TempData["OrderId"] = 23;
             TempData["LevelId"] = 1;
-            TempData["Slideno"] = "slide16";
-            return RedirectToAction("Questions");
-            //return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
+            TempData["Slideno"] = "slide22";
+           // return RedirectToAction("Questions");
+            return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
         }
 
         public ActionResult LoadMemebrGUID()
