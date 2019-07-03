@@ -65,12 +65,21 @@ namespace AlexRogoBeltApp.Controllers
                 if (MemberDetails == null)
                     return UnauthorizedRequest(MemberDetails);
 
+
                 if (!MemberDetails.IsYBpaymentCompleted)
                     TempData["ErrorMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
                 else if (MemberDetails.IsYBStepsCompleted)
                     TempData["ErrorMsg"] = "You have completed the Yellow Belt.";
                 else
                     TempData["MemberId"] = id;
+
+                //if (MemberDetails.IsYBStepsCompleted == false || Convert.ToString(TempData["Slide"]) == "slide23")
+                //{
+
+                //    _service.RemoveTransactions();
+
+
+                //}
 
                 return View(_service.CountSlideSteps());
             }
@@ -104,12 +113,15 @@ namespace AlexRogoBeltApp.Controllers
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
 
+              
+
                 if (Request.QueryString["QuestionOrder"] == null)
                 {
                     if (TempData["LevelId"] == null || TempData["OrderId"] == null)
                     {
                         TempData["LevelId"] = TempData["OrderId"] = 0;
                     }
+                    //****** 3 july 2019 Sadhana******** To complete step slide should be 23
                     else if (Convert.ToString(TempData["slideno"]) == "slide23")
                     {
                         TempData["OrderId"] = Convert.ToInt32(TempData["OrderId"]) - 1;
@@ -202,7 +214,7 @@ namespace AlexRogoBeltApp.Controllers
                     return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
                 }
 
-                if (model.QuestionOrder != 22)
+                if (model.QuestionOrder != 23)
                 {
                     List<TransactionViewModel> transactions = selectedAnswers.Distinct().Select(x => new TransactionViewModel
                     {
