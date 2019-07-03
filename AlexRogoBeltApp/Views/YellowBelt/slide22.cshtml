@@ -1,0 +1,44 @@
+﻿<script>
+    var steps = [];
+    $(document).ready(function () {
+        $('#btnSubmitProcess').css("display", "none");
+        $('#btnSubmit').css("display", "none");
+        $('#btnSubmitMarketProcess').css("display", "block");
+         $("#btnSubmitMarketProcess").attr('value', 'Finish');
+        //$("#btnSubmitMarketProcess").attr('disable', 'True');
+       // $('#btnSubmitMarketProcess').prop('disabled', true);
+        GetSelectedProcess();
+    });
+</script>
+@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+
+<h2 class="question">
+    @Html.DisplayFor(model => model.Introduction)
+</h2>
+<br />
+
+<div class="center-block">
+    <div>
+        Focus is not on Step 3 of 5 Focusing Steps – Subordinate to the Constraint
+    </div>
+    <div>
+        Introduction videos of how to easily implement Drum-Buffer-Rope to eliminate starvation and the Constraint and to release lots of cash from inventory.
+    </div>
+    <div>
+        Step by step instructions on how to manage non-bottleneck resources.
+    </div>
+    <div>
+        Step 4 – How to effectively Elevate the Constraint
+
+    </div>
+</div>
+
+@{
+    Model.Answers.FirstOrDefault().IsSelected = true;
+}
+
+@Html.HiddenFor(model => Model.Answers[0].ID)
+@Html.HiddenFor(model => model.LevelID)
+@Html.HiddenFor(model => Model.Answers[0].QuestionID)
+@Html.HiddenFor(model => Model.Answers[0].IsSelected)
+@Html.HiddenFor(model => model.QuestionOrder)

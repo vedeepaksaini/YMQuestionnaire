@@ -41,5 +41,6 @@ namespace AlexRogoBeltApp.Entities
         public virtual DbSet<TransactionMaster> TransactionMasters { get; set; }
         public virtual DbSet<ProcessTemplateMaster> ProcessTemplateMasters { get; set; }
         public virtual DbSet<MemberMaster> MemberMasters { get; set; }
+        public virtual DbSet<GuidMaster> GuidMasters { get; set; }
     }
 }

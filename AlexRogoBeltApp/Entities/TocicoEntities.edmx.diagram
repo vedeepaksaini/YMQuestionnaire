@@ -37,6 +37,7 @@
         <AssociationConnector Association="TOCICOModel.FK__ProcessGo__Membe__4A4E069C" />
         <AssociationConnector Association="TOCICOModel.FK__Transacti__Membe__467D75B8" />
         <AssociationConnector Association="TOCICOModel.FK__Transacti__Membe__4865BE2A" />
+        <EntityTypeShape EntityType="TOCICOModel.GuidMaster" Width="1.5" PointX="5.375" PointY="11.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

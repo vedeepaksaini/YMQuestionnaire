@@ -17,17 +17,15 @@
             }
         });
     }
+
     function GetProcess(id) {
         $.ajax({
             type: "POST", url: "GetTemplate", data: JSON.stringify({ id: 8 }), dataType: "json", contentType: "application/json", success: function (res) {
-                localStorage.setItem('TemplateResponse', JSON.stringify(res));
-                var data = localStorage.getItem('TemplateResponse');
-                var object = JSON.parse(data);
+                debugger;
                 $("#steps").empty();
                 $("#images").empty();
-                $.each(object, function (key, value) {
+                $.each(res, function (key, value) {
                     debugger;
-
                     if (value.split(',').length > 1) {
                         value = value.split(',')[0];
                     }
@@ -39,26 +37,30 @@
 
                     $('#images').prepend('<td align="center"><a href="javascript:void(0)"  onclick="RecordStep(' + "'" + value + "'" + ')"><img id="' + value + '" class="imgcircle" src="../../Content/Images/circle.png" /></a ></td>')
                 });
+
+                GetSelectedProcess();
             },
             error: function (response) {
             }
         });
     }
 
+    var steps = [];
+
     function GetSelectedProcess(id) {
         $.ajax({
             type: "POST", url: "GetTemplate", data: JSON.stringify({ id: 20 }), dataType: "json", contentType: "application/json", success: function (res) {
                 debugger;
-                $.each(res, function (key, value) {
+                $.each(res, function (key, step) {
                     debugger;
-                    if (value == "markert-gold.png") {
+                    if (step == "markert-gold.png") {
                         $("#marketImg").attr("src", "../../Content/Images/markert-red.png");
                     }
                     else {
-                        value = value.replace(/ /g, "___");
-                        value = value.replace("/", "__");
-                        $('#' + value).attr("src", "../../Content/Images/circle-RED.png");
-
+                        steps.push(step);
+                        step = step.replace(/ /g, "___");
+                        step = step.replace("/", "__");
+                        $('#' + step).attr("src", "../../Content/Images/circle-RED.png");
                     }
                     $('#btnSubmitMarketProcess').prop('disabled', false);
                 });
@@ -67,15 +69,15 @@
             }
         });
     }
-    var steps = [];
+
     $(document).ready(function () {
         $('#btnSubmitProcess').css("display", "none");
         $('#btnSubmit').css("display", "none");
         $('#btnSubmitMarketProcess').css("display", "block");
-       // $("#btnSubmitMarketProcess").attr('value', 'Finish');
+        //$("#btnSubmitMarketProcess").attr('value', 'Finish');
         //$("#btnSubmitMarketProcess").attr('disable', 'True');
         $('#btnSubmitMarketProcess').prop('disabled', true);
-        GetSelectedProcess();
+        GetProcess(8);
     });
 
     function ManageSelection() {
@@ -90,7 +92,6 @@
             }
         }
     }
-
 
     function RecordStep(step) {
         debugger;
@@ -110,7 +111,7 @@
         }
         else {
             $(stepId).attr("src", "../../Content/Images/circle.png");
-             steps.pop(step);
+            steps.pop(step);
         }
         debugger;
         //steps.push(step);
@@ -124,7 +125,6 @@
 
         return JSON.stringify(steps);
     }
-
 
     function RecordMarket() {
 
@@ -148,11 +148,13 @@
             $('#btnSubmitMarketProcess').prop('disabled', true);
         }
     }
+
     $('#marketImg').click(function () {
         alert();
         $("#bg").attr('src', "img/picture1.jpg");
         return false;
     });
+
     function submitMarketStep() {
         debugger;
         var data = steps.toString();
@@ -212,7 +214,6 @@
                         </div>
                         <div>
                             <div class="table-responsive">
-                                <script>GetProcess(8); GetSelectedProcess();</script>
                                 <div class="table-responsive">
                                     <table style="width:100%; margin-top:15px;">
                                         <tr id="steps"></tr>
