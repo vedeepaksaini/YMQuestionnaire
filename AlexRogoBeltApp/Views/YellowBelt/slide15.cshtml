@@ -3,32 +3,56 @@
     @Html.DisplayFor(model => model.Introduction)
 </h2>
 
-<div class="question">View video below for the meaning of “Murphy”</div>
-<div class="question">
-    <div>
-        <div>
-            <div>
-                <video width="400" controls="controls" poster="~/Content/Images/Slide15.png">
+
+<div class="containr">
+    <div class="row mt-3">
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="text-center mt-1" style="color: #17de17; font-weight:600; margin-bottom:20px;">
+                View video below for the meaning of “Murphy”
+            </div>
+            <div class="embed-responsive embed-responsive-16by9">
+                <video width="600" controls="controls" poster="~/Content/Images/Exploiting_the_Constraint.png" class="center-block">
                     <source src="~/Content/Videos/Eli_Protective_Capacity.mp4" type="video/mp4" />
                     Your browser does not support HTML5 video.
                 </video>
             </div>
         </div>
-
+        <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="clearfix">
+                <div class="text_left">
+                    <div class="inner_c">8hr Shift</div>
+                </div>
+                <div class="text_center">
+                    <img src="~/Content/Images/slide-15-figure.png" />
+                </div>
+                <div class="text_right">
+                    <div class="inner_r">
+                        2hrs “Murphy” and planned downtime
+                    </div>
+                    <div class="inner_g">
+                        6hrs Run Time
+                    </div>
+                </div>
+            </div>
+            <div class="text_lower">
+                Constraint Utilization = Run Time / Total Time = 75%
+            </div>
+        </div>
     </div>
+    <div class="row">
+        <div class="col-md-12 botm_txt">
+            But what if we ran at 50% of full speed, or produced bad parts and rework?
+        </div>
+    </div>
+    
+</div>
 
-    <div>2hrs “Murphy” and planned downtime</div>
-    <div>8hr Shift</div>
-    <div>6hrs Run Time</div>
-    <div>Constraint Utilization = Run Time / Total Time = 75%</div>
-    <div>But what if we ran at 50% of full speed, or produced bad parts and rework?</div>
+@{Model.Answers.FirstOrDefault().IsSelected = true;}
 
+@Html.HiddenFor(model => Model.Answers[0].ID)
+@Html.HiddenFor(model => model.LevelID)
+@Html.HiddenFor(model => Model.Answers[0].QuestionID)
+@Html.HiddenFor(model => Model.Answers[0].IsSelected)
+@Html.HiddenFor(model => model.QuestionOrder)
 
-    @{Model.Answers.FirstOrDefault().IsSelected = true;}
-
-    @Html.HiddenFor(model => Model.Answers[0].ID)
-    @Html.HiddenFor(model => model.LevelID)
-    @Html.HiddenFor(model => Model.Answers[0].QuestionID)
-    @Html.HiddenFor(model => Model.Answers[0].IsSelected)
-    @Html.HiddenFor(model => model.QuestionOrder)
 

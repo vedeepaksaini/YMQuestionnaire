@@ -494,3 +494,53 @@ min-height: 35px;
 .ml_remain_progress{
     margin-left:-25px;
 }
+.containr{
+    width:86%;
+    margin:0 auto;
+}
+.text_left{
+    width:35%;
+    float:left;    
+}
+.text_left .inner_c{
+    padding-top:95%;
+    text-align:center;
+    font-weight:bold;
+}
+.text_center {
+    width: 30%;
+    float: left;
+    text-align: center;
+}
+.text_right {
+    width: 35%;
+    float: left;
+}
+.text_right .inner_r {
+    padding-top: 25%;
+    font-weight: bold;
+}
+.text_right .inner_g {
+    padding-top: 79%;
+    font-weight: bold;
+}
+.text_center img{
+    max-width:100%;
+}
+.text_lower{
+    width:100%;
+    margin-top:20px;
+    text-align:center;
+}
+.botm_txt {
+    font-size: 16px;
+    font-family: 'Open Sans', sans-serif !important;
+    font-weight: 700;
+    margin-top:40px;
+    text-align:center;
+}
+.text_lower table th, .text_lower table td{
+    text-align: center;
+    white-space: nowrap;
+    padding: 10px;
+}
