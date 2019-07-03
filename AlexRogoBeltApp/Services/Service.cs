@@ -137,6 +137,17 @@ namespace AlexRogoBeltApp.Services
             //    db.SaveChanges();
             //}
         }
+
+        //public void RemoveTransactions()
+        //{
+        //    // var result = db.TransactionMasters.FirstOrDefault();
+        //    var result = db.TransactionMasters.ToList();
+        //    foreach (var res in result)
+        //        db.TransactionMasters.Remove(res);
+        //    db.SaveChanges();
+
+        //}
+
         public MemberMaster IsMemberExist(int MemberId)
         {
             var MemberCredentials = db.MemberMasters.Where(x => x.MemberID == MemberId).FirstOrDefault();

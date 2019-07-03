@@ -1,4 +1,6 @@
-﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+﻿
+
+@model AlexRogoBeltApp.ViewModel.QuestionViewModel
 
 
 <h2 class="question">
@@ -9,6 +11,9 @@
     <h3 class="questionintro">
         @Html.DisplayFor(model => model.Question)
     </h3>
+
+
+
     <ul>
         @{
             if (Model != null)
@@ -22,6 +27,7 @@
                                 if (transaction != null)
                                 {
                                     Model.Answers[i].IsSelected = true;
+                                    Model.Answers[i].ControlValue = transaction.ControlValue;
                                 }
                             }
 
@@ -72,6 +78,9 @@
             //$('#btnSubmit').removeAttr('disabled');
             $('#btnSubmit').prop('disabled', true);
             $('#lblError0').css("display", "block");
+            $('#lblError1').css("display", "none");
+            $('#lblError3').css("display", "none");
+            $('#lblError4').css("display", "none");
 
             //lblError1
 
@@ -85,7 +94,13 @@
             $('#lblError4').css("display", "none");
 
 
-
+        }
+            if (controlId == "Answers_2__IsSelected") {
+                $('#btnSubmit').prop('disabled', false);
+                $('#lblError1').css("display", "none");
+                $('#lblError0').css("display", "none");
+                $('#lblError3').css("display", "none");
+                $('#lblError4').css("display", "none");
 
         }
         if (controlId == "Answers_3__IsSelected") {
