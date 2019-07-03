@@ -6,82 +6,103 @@
 </h2>
 
 
-<br />
-<ul>
-    @{
-        if (Model != null)
-        {
-            for (var i = 0; i < Model.Answers.Count(); i++)
-            {
-                <li>
-                  
-
-                        <span >
-                            @Html.DisplayFor(model => Model.Answers[i].Answers)
-
-                            @if (Model.Answers[i].ControlID == 6)
-                            {
-                                <span class="text-danger">*</span>
-                            }
-                        </span>
-
-                        @if (Model.Answers[i].ControlID == 20)
+<div class="containr">
+    <div class="row mt-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 rogo_level">
+            <ul>
+                @{
+                    if (Model != null)
+                    {
+                        for (var i = 0; i < Model.Answers.Count(); i++)
                         {
-                        <span>
-                            <div class="inpt-form">
-                                <select class="form-control">
-                                    <option>8hr</option>
-                                    <option>12hr</option>
-                                </select>
-                            </div>
-                        </span>
+                            <li>
 
-                        
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        <span style="font-weight:bold;">
+                                            @Html.DisplayFor(model => Model.Answers[i].Answers)
 
-                        }
-                        else if (Model.Answers[i].ControlID == 6)
-                        {
-                            <span >
-                                <div class="inpt-form">
+                                            @if (Model.Answers[i].ControlID == 6)
+                                            {
+                                                <span class="text-danger">*</span>
+                                            }
+                                        </span>
+                                    </div>
+                                    <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        @if (Model.Answers[i].ControlID == 20)
+                                        {
 
-                                    @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", @class = "form-control" })
+                                            <div class="inpt-form">
+                                                <select class="form-control">
+                                                    <option>8hr</option>
+                                                    <option>12hr</option>
+                                                </select>
+                                            </div>
 
+                                        }
+                                        else if (Model.Answers[i].ControlID == 6)
+                                        {
+
+                                            <div class="inpt-form">
+
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", @class = "form-control" })
+
+                                            </div>
+
+                                        }
+                                        else if (Model.Answers[i].ControlID == 6)
+                                        {
+
+                                            <div class="inpt-form">
+
+                                                <span class="input-group-addon">$</span>
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", @class = "form-control" })
+
+                                            </div>
+
+                                        }
+                                        else if (Model.Answers[i].ControlID == 6)
+                                        {
+
+                                            <div class="inpt-form">
+                                                <span>
+                                                    @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", step = ".01", @class = "form-control" })
+                                                </span>
+
+                                            </div>
+
+                                        }
+                                    </div>
                                 </div>
-                            </span>
-                        }
-                        else if (Model.Answers[i].ControlID == 6)
-                        {
-                            <span >
-                                <div class="inpt-form">
-                                  
-                                        <span class="input-group-addon">$</span>
-                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", @class = "form-control" })
-                                  
-                                </div>
-                            </span>
-                        }
-                        else if (Model.Answers[i].ControlID == 6)
-                        {
-                            <span  >
-                                <div class="inpt-form">
-                                    <span>
-                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", step = ".01", @class = "form-control" })
-                                    </span>
 
-                                </div>
-                            </span>
-                        }
 
-                        @Html.HiddenFor(model => Model.Answers[i].ID)
-                        @Html.HiddenFor(model => model.LevelID)
-                        @Html.HiddenFor(model => Model.Answers[i].ControlValue)
-                        @Html.HiddenFor(model => Model.Answers[i].QuestionID)
-                        @Html.HiddenFor(model => Model.Answers[i].IsSelected)
-                        @Html.HiddenFor(model => model.QuestionOrder)
-                  
-                </li>
-            }
-        }
-    }
-</ul>
+
+
+
+
+
+                                @Html.HiddenFor(model => Model.Answers[i].ID)
+                                @Html.HiddenFor(model => model.LevelID)
+                                @Html.HiddenFor(model => Model.Answers[i].ControlValue)
+                                @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                                @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                                @Html.HiddenFor(model => model.QuestionOrder)
+
+                            </li>
+                        }
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
 
