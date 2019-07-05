@@ -529,3 +529,31 @@
             font-weight: bold;
         }
 }
+@media only screen and (min-width:540px) and (max-width:600px) {
+    .hourshift {        
+        float: left;
+        width: 50%;
+        margin-top: 45%;        
+    }
+}
+@media only screen and (min-width:601px) and (max-width:650px) {
+    .hourshift {
+        float: left;
+        width: 50%;
+        margin-top: 36%;
+    }
+}
+@media only screen and (min-width:651px) and (max-width:800px) {
+    .hourshift {
+        float: left;
+        width: 50%;
+        margin-top: 30%;
+    }
+}
+@media only screen and (min-width:801px) and (max-width:1200px) {
+    .hourshift {
+        float: left;
+        width: 50%;
+        margin-top: 25%;
+    }
+}

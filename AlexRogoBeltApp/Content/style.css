@@ -303,7 +303,9 @@ ul li{
 
 /*header and footer style*/
 
-
+img{
+    max-width:100%;
+}
 .logo img {
     width: 500px;
     height: auto;
@@ -570,10 +572,13 @@ min-height: 35px;
 .graph_image img {
     max-width: 100%;
 }
-.hourshift{
-    margin-top:52%;
-    float:left;
-    width:50%;
+.hourshift {
+    /*margin-top:52%;*/
+    float: left;
+    width: 50%;
+    margin-top:50%;
+    -webkit-transform: translate(0, -50%);
+    transform: translate(0, -50%);
 }
 .graph{
     width:100%;    
@@ -585,3 +590,17 @@ min-height: 35px;
     font-weight:bold;
     margin-bottom:10px;
 }
+.cong_text {
+    font-size: 2em;
+    color: #4CAF50;
+}
+.list_data ul{
+    margin:0;
+    padding:0;
+}
+    .list_data ul li {
+        list-style-type: disc;
+        margin-bottom: 15px;
+        margin-left: 20px;
+        padding-left: 15px;
+    }

@@ -4,9 +4,9 @@
         $('#btnSubmitProcess').css("display", "none");
         $('#btnSubmit').css("display", "none");
         $('#btnSubmitMarketProcess').css("display", "block");
-         $("#btnSubmitMarketProcess").attr('value', 'Finish');
+        $("#btnSubmitMarketProcess").attr('value', 'Finish');
         //$("#btnSubmitMarketProcess").attr('disable', 'True');
-       // $('#btnSubmitMarketProcess').prop('disabled', true);
+        // $('#btnSubmitMarketProcess').prop('disabled', true);
         GetSelectedProcess();
     });
 </script>
@@ -15,21 +15,27 @@
 <h2 class="question">
     @Html.DisplayFor(model => model.Introduction)
 </h2>
-<br />
 
-<div class="center-block">
-    <div>
-        Focus is not on Step 3 of 5 Focusing Steps – Subordinate to the Constraint
-    </div>
-    <div>
-        Introduction videos of how to easily implement Drum-Buffer-Rope to eliminate starvation and the Constraint and to release lots of cash from inventory.
-    </div>
-    <div>
-        Step by step instructions on how to manage non-bottleneck resources.
-    </div>
-    <div>
-        Step 4 – How to effectively Elevate the Constraint
 
+<div class="containr">
+    <div class="row mt-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 list_data">
+            <ul>
+
+                <li>
+                    Focus is not on Step 3 of 5 Focusing Steps – Subordinate to the Constraint
+                </li>
+                <li>
+                    Introduction videos of how to easily implement Drum-Buffer-Rope to eliminate starvation and the Constraint and to release lots of cash from inventory.
+                </li>
+                <li>
+                    Step by step instructions on how to manage non-bottleneck resources.
+                </li>
+                <li>
+                    Step 4 – How to effectively Elevate the Constraint
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 

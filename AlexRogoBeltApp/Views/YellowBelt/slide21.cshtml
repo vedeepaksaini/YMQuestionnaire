@@ -1,22 +1,30 @@
 ﻿
 @model AlexRogoBeltApp.ViewModel.QuestionViewModel
 
-<h2 class="question">
+<h2 class="question cong_text" style="text-align:center;">
     @Html.DisplayFor(model => model.Introduction)
 </h2>
-<br />
-<div class="center-block">
-    <div>
-        <img src="~/Content/Images/slide21.png" alt="" />
+
+<div class="containr">
+    <div class="row mt-3">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="center-block">
+                <div style="max-width:100%; margin-top:5%;">
+                    <img src="~/Content/Images/slide21.png" alt="" />
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
-@{
-    Model.Answers.FirstOrDefault().IsSelected = true;
-}
+            
 
-@Html.HiddenFor(model => Model.Answers[0].ID)
-@Html.HiddenFor(model => model.LevelID)
-@Html.HiddenFor(model => Model.Answers[0].QuestionID)
-@Html.HiddenFor(model => Model.Answers[0].IsSelected)
-@Html.HiddenFor(model => model.QuestionOrder)
+            @{
+                Model.Answers.FirstOrDefault().IsSelected = true;
+            }
+
+            @Html.HiddenFor(model => Model.Answers[0].ID)
+            @Html.HiddenFor(model => model.LevelID)
+            @Html.HiddenFor(model => Model.Answers[0].QuestionID)
+            @Html.HiddenFor(model => Model.Answers[0].IsSelected)
+            @Html.HiddenFor(model => model.QuestionOrder)
