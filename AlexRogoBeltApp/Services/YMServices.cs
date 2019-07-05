@@ -102,7 +102,7 @@ namespace AlexRogoBeltApp.Services
                     List<int> objGuids = new List<int>();
                     Dictionary<string, string> messageHeaders = new Dictionary<string, string>();
                     MemberProfile profile;
-                    //List<MemberMaster> memberData = new List<MemberMaster>();
+                 
                     XmlHttpProvider provider = new XmlHttpProvider("https://api.yourmembership.com/");
 
                     YMSDK.ApiManager manager = new YMSDK.ApiManager(provider);
@@ -146,9 +146,6 @@ namespace AlexRogoBeltApp.Services
                         // memberData.Add(member);
                         db.MemberMasters.Add(member);
                         db.SaveChanges();
-
-
-
 
                     }
 

@@ -19,13 +19,21 @@
 
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                                        @{
+                                            var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
+                                            if (transaction != null)
+                                            {
+                                                Model.Answers[i].IsSelected = true;
+                                                Model.Answers[i].ControlValue = transaction.ControlValue;
+                                            }
+                                        }
                                         <span style="font-weight:bold;">
                                             @Html.DisplayFor(model => Model.Answers[i].Answers)
 
                                             @if (Model.Answers[i].ControlID == 6)
-                                            {
-                                                <span class="text-danger">*</span>
-                                            }
+        {
+                                    <span class="text-danger">*</span>
+}
                                         </span>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
@@ -75,12 +83,7 @@
                                     </div>
                                 </div>
 
-
-
-
-
-
-
+                              
                                 @Html.HiddenFor(model => Model.Answers[i].ID)
                                 @Html.HiddenFor(model => model.LevelID)
                                 @Html.HiddenFor(model => Model.Answers[i].ControlValue)

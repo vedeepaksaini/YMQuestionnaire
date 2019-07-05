@@ -364,10 +364,10 @@ namespace AlexRogoBeltApp.Controllers
             //return RedirectToAction("Questions");
             return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
         }
-
+        [HttpGet]
         public ActionResult LoadMemebrGUID()
         {
-            //List<int> obj= _ymservice.GetAllGuid();
+            List<int> obj= _ymservice.GetAllGuid();
             _ymservice.GetMemberData();
             return View();
         }
