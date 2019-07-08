@@ -1,6 +1,28 @@
 ﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
 
 
+<script>
+    function CalcAlgo() {
+        debugger;
+        ClearCalc();
+        //var value2 = $('#Answers_2__ControlValue').val();
+        //var value1 = $('#Answers_1__ControlValue').val();
+        //var value3 = $('#ddlTimePeriod').val();
+        
+        $('#Answers_3__ControlValue').val($('#Answers_1__ControlValue').val() / ($('#ddlTimePeriod').val() * $('#Answers_2__ControlValue').val()));
+
+       // var value = $('#Answers_3__ControlValue').val();
+      
+    }
+ 
+
+    function ClearCalc() {
+        $('#Answers_3__ControlValue').val("");
+       
+    }
+
+</script>
+
 <h2 class="question">
     @Html.DisplayFor(model => model.Introduction)
 </h2>
@@ -31,53 +53,56 @@
                                             @Html.DisplayFor(model => Model.Answers[i].Answers)
 
                                             @if (Model.Answers[i].ControlID == 6)
-        {
-                                    <span class="text-danger">*</span>
+    {
+                                        <span class="text-danger">*</span>
+
 }
                                         </span>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                                         @if (Model.Answers[i].ControlID == 20)
-                                        {
+    {
 
-                                            <div class="inpt-form">
-                                                <select class="form-control">
-                                                    <option>8hr</option>
-                                                    <option>12hr</option>
-                                                </select>
-                                            </div>
+                                    <div class="inpt-form">
+                                        <select id="ddlTimePeriod" class="form-control">
+                                            <option>8</option>
+                                            <option>12</option>
+                                        </select>
+                                    </div>
 
-                                        }
-                                        else if (Model.Answers[i].ControlID == 6)
-                                        {
+}
+else if (Model.Answers[i].ControlID == 6)
+{
 
-                                            <div class="inpt-form">
+                                    <div class="inpt-form">
+                                        <div class="input-group pull-left">
+                                            <span class="input-group-addon">%</span>
+                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { step = ".01", type = "number", @class = "form-control" })
 
-                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", @class = "form-control" })
-
-                                            </div>
-
-                                        }
-                                        else if (Model.Answers[i].ControlID == 6)
-                                        {
-
-                                            <div class="inpt-form">
-
-                                                <span class="input-group-addon">$</span>
-                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", @class = "form-control" })
-
-                                            </div>
+                                        </div>
+                                   </div>
 
                                         }
-                                        else if (Model.Answers[i].ControlID == 6)
+                                        else if (Model.Answers[i].ControlID == 9)
                                         {
 
-                                            <div class="inpt-form">
-                                                <span>
-                                                    @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", step = ".01", @class = "form-control" })
-                                                </span>
+                                        <div class="inpt-form">
 
-                                            </div>
+
+                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", type = "number", step = ".01", @class = "form-control" })
+
+                                        </div>
+
+                                        }
+                                        else if (Model.Answers[i].ControlID == 11)
+                                        {
+
+                                        <div class="inpt-form">
+                                           
+
+                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", @class = "form-control" })
+
+                                        </div>
 
                                         }
                                     </div>
