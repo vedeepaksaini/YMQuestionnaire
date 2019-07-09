@@ -9,9 +9,11 @@
         //var value1 = $('#Answers_1__ControlValue').val();
         //var value3 = $('#ddlTimePeriod').val();
         
-        $('#Answers_3__ControlValue').val($('#Answers_1__ControlValue').val() / ($('#ddlTimePeriod').val() * $('#Answers_2__ControlValue').val()));
+        $('#Answers_3__ControlValue').val(Math.round($('#Answers_1__ControlValue').val() / ($('#ddlTimePeriod').val() * $('#Answers_2__ControlValue').val())*100)/100);
+       
+        var value = $('#Answers_3__ControlValue').val();
 
-       // var value = $('#Answers_3__ControlValue').val();
+       // var result = Math.round(value * 100) / 100  //returns 28.45 this method is used to round the fig of Answer_3_Control Value
       
     }
  
@@ -65,8 +67,8 @@
 
                                     <div class="inpt-form">
                                         <select id="ddlTimePeriod" class="form-control">
-                                            <option>8</option>
-                                            <option>12</option>
+                                            <option value="8">8 Hours</option>
+                                            <option value="12">12 Hours</option>
                                         </select>
                                     </div>
 
@@ -100,7 +102,7 @@ else if (Model.Answers[i].ControlID == 6)
                                         <div class="inpt-form">
                                            
 
-                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", @class = "form-control" })
+                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", value = "0.00", @class = "form-control" })
 
                                         </div>
 
