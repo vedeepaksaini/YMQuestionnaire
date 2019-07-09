@@ -6,7 +6,11 @@
 
 <div class="containr">
     <div class="row mt-3">
-        <div class="col-lg-12">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="hourshift">12 Hour Shift</div>
+            <div class="graph_image"><img src="~/Content/Images/slide-18.png" /></div>
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <ul>
                 @{
                     if (Model != null)
@@ -24,22 +28,22 @@
                                                 Model.Answers[i].ControlValue = transaction.ControlValue;
                                             }
                                         }
-                                        
-                                            @Html.DisplayFor(model => Model.Answers[i].Answers)
 
-                                            @if (Model.Answers[i].ControlID == 10 || Model.Answers[i].ControlID == 6)
-                                            {
+                                        @Html.DisplayFor(model => Model.Answers[i].Answers)
 
-                                            }                                        
+                                        @if (Model.Answers[i].ControlID == 10 || Model.Answers[i].ControlID == 6)
+                                        {
+
+                                        }
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         @if (Model.Answers[i].ControlID == 6)
                                         {
-                                            
-                                                <div>
-                                                    @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control" })
-                                                </div>
-                                           
+
+                                            <div>
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control" })
+                                            </div>
+
                                         }
                                     </div>
 
