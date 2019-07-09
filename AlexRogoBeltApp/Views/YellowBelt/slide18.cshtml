@@ -1,6 +1,31 @@
 ﻿@model AlexRogoBeltApp.ViewModel.QuestionViewModel
+
+
+<script>
+    function CalcAlgo() {
+        debugger;
+        ClearCalc();
+        //var value2 = $('#Answers_1__ControlValue').val();
+        //var value1 = $('#Answers_2__ControlValue').val();
+        //var value3 = $('#Answers_3__ControlValue').val();
+        //var value4 = $('#Answers_4__ControlValue').val();
+      
+        
+
+        $('#Answers_4__ControlValue').val(($('#Answers_1__ControlValue').val() * $('#Answers_3__ControlValue').val() * 2080)/100);
+
+         //var value = $('#Answers_4__ControlValue').val();
+
+    }
+    function ClearCalc() {
+        $('#Answers_4__ControlValue').val("");
+
+    }
+
+</script>
+
 <h2 class="question">
-    @Html.DisplayFor(model => model.Introduction) 
+    @Html.DisplayFor(model => model.Introduction)
 </h2>
 
 
@@ -15,65 +40,88 @@
                     @{
                         if (Model != null)
                         {
-                            for (var i = 0; i < Model.Answers.Count(); i++)
-                            {
-                                <li>
-                                    <div class="row">
-                                        <div class="col-lg-7">
-                                            @{
-                                                var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
-                                                if (transaction != null)
-                                                {
-                                                    Model.Answers[i].IsSelected = true;
-                                                    Model.Answers[i].ControlValue = transaction.ControlValue;
-                                                }
-                                            }
-                                            <span>
-                                                @Html.DisplayFor(model => Model.Answers[i].Answers)
-
-                                                @if (Model.Answers[i].ControlID == 10 || Model.Answers[i].ControlID == 6)
-                                                {
-
-                                                }
-                                            </span>
-                                        </div>
-                                        <div class="col-lg-5">
-                                            @if (Model.Answers[i].ControlID == 6)
+                            <li>
+                                <div class="row">
+                                    <div class="col-lg-7">
+                                        @{
+                                            var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
+                                            if (transaction != null)
                                             {
-                                                <span>
-                                                    <div>
-                                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control" })
-                                                    </div>
-                                                </span>
+                                                Model.Answers[i].IsSelected = true;
+                                                Model.Answers[i].ControlValue = transaction.ControlValue;
                                             }
-                                        </div>
+                                        }
+                                        <span>
+                                            @Html.DisplayFor(model => Model.Answers[i].Answers)
+
+
+                                        </span>
                                     </div>
+                                    <div class="col-lg-5">
+                                        @if (Model.Answers[i].ControlID == 6)
+    {
+                                    <span>
+                                        <div>
+                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control" })
+                                        </div>
+                                    </span>
+}
 
-                                    <label>                                    
-                                        
+                                        @if (Model.Answers[i].ControlID == 9)
+    {
+                                    <span>
+                                        <div class="inpt-form">
+                                            <div class="input-group pull-left">
+                                                <span class="input-group-addon">%</span>
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", max = "50", step = ".01", @class = "form-control" })
+                                            </div>
+                                            </div>
+                                    </span>
+}
 
 
-                                        @Html.HiddenFor(model => Model.Answers[i].ID)
-                                        @Html.HiddenFor(model => model.LevelID)
-                                        @Html.HiddenFor(model => Model.Answers[i].ControlValue)
-                                        @Html.HiddenFor(model => Model.Answers[i].QuestionID)
-                                        @Html.HiddenFor(model => Model.Answers[i].IsSelected)
-                                        @Html.HiddenFor(model => model.QuestionOrder)
-                                    </label>
-                                </li>
-                            }
+
+
+else if (Model.Answers[i].ControlID == 11)
+{
+                                    <span class="col-md-6" style="padding-left:0px;">
+                                        <div class="inpt-form">
+                                            <div class="input-group pull-left">
+                                                <span class="input-group-addon">$</span>
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", type = "number", step = ".01",  @class = "form-control" })
+
+                                            </div>
+                                        </div>
+                                    </span>
+}
+                                    </div>
+                                </div>
+
+                                <label>
+
+
+
+                                    @Html.HiddenFor(model => Model.Answers[i].ID)
+                                    @Html.HiddenFor(model => model.LevelID)
+                                    @Html.HiddenFor(model => Model.Answers[i].ControlValue)
+                                    @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                                    @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                                    @Html.HiddenFor(model => model.QuestionOrder)
+                                </label>
+                            </li>
                         }
                     }
-                </ul>
-            </div>
+                }
+            </ul>
         </div>
-    
+    </div>
+
 </div>
 
-        <script>
-            $(document).ready(function () {
-                $("#Answers_0__ControlValue").removeAttr('step');
-                $("#Answers_1__ControlValue").removeAttr('step');
-            });
+<script>
+    $(document).ready(function () {
+        $("#Answers_0__ControlValue").removeAttr('step');
+        $("#Answers_1__ControlValue").removeAttr('step');
+    });
 
-        </script>
+</script>
