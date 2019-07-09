@@ -29,18 +29,16 @@
 </h2>
 
 
-<div class="containr">
-    <div class="row mt-3">
-        <div class="col-lg-3 col-md-12 col-sm-12 col-xs-12">
-            <div class="hourshift">12 Hour Shift</div>
-            <div class="graph_image"><img src="~/Content/Images/slide-18.png" /></div>
-        </div>
-        <div class="col-lg-9 col-md-12 col-sm-12 col-xs-12">
-            <ul>
-                @{
-                    if (Model != null)
-                    {
-                        for (var i = 0; i < Model.Answers.Count(); i++)
+<div class="containr">    
+        <div class="row mt-3">
+            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+                <div class="hourshift">12 Hour Shift</div>
+                <div class="graph_image"><img src="~/Content/Images/slide-18.png" /></div>
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                <ul>
+                    @{
+                        if (Model != null)
                         {
                             <li>
                                 <div class="row">

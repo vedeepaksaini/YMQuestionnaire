@@ -272,6 +272,8 @@ ul li{
 .modal-header {
     background: #4782cb;
     color: #ffffff;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
 }
 
 .companyName {
