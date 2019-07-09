@@ -604,3 +604,7 @@ min-height: 35px;
         margin-left: 20px;
         padding-left: 15px;
     }
+#tblProcess td img{
+    width:75px;
+    height:75px;
+}
