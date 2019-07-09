@@ -96,6 +96,7 @@ namespace AlexRogoBeltApp.Controllers
         {
             try
             {
+
                 var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
 
                 if (MemberDetails == null)
@@ -113,7 +114,7 @@ namespace AlexRogoBeltApp.Controllers
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
 
-              
+
 
                 if (Request.QueryString["QuestionOrder"] == null)
                 {
@@ -249,6 +250,18 @@ namespace AlexRogoBeltApp.Controllers
         }
 
         [WebMethod]
+        public JsonResult GetHours()
+        {
+            var member_Id = ((MemberMaster)HttpContext.Session["MemberId"]).MemberID;
+
+            var question_Id = 32;
+            var answer_Id = 47;
+            return Json(_service.GetHours(member_Id, question_Id, answer_Id));
+
+
+        }
+
+        [WebMethod]
         public JsonResult GetAllTemplates(int id)
         {
             //var processes = _service.GetAllTemplates();
@@ -367,7 +380,7 @@ namespace AlexRogoBeltApp.Controllers
         [HttpGet]
         public ActionResult LoadMemebrGUID()
         {
-            List<int> obj= _ymservice.GetAllGuid();
+            List<int> obj = _ymservice.GetAllGuid();
             _ymservice.GetMemberData();
             return View();
         }
