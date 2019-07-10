@@ -188,6 +188,7 @@
     <Compile Include="Entities\GoalTarget.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\GuidMaster.cs" />
     <Compile Include="Entities\LevelMaster.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
@@ -236,6 +237,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Authentication.cs" />
     <Compile Include="Services\Service.cs" />
+    <Compile Include="Services\YMServices.cs" />
     <Compile Include="ViewModel\AnswerViewModel.cs" />
     <Compile Include="ViewModel\CalculationsViewModel.cs" />
     <Compile Include="ViewModel\MemberViewModel.cs" />
@@ -282,13 +284,10 @@
     <Content Include="Content\Memberstyle.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\style.css" />
-    <Content Include="Content\Videos\Bill_Peach_and_Alex_Rogo-1.mp4" />
-    <Content Include="Content\Videos\Bill_Peach_and_Alex_Rogo.mp4" />
-    <Content Include="Content\Videos\Eli_Goldratt_Finding_Bottleneck.mp4" />
-    <Content Include="Content\Videos\Eli_Protective_Capacity.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide10_Video.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide11_Video.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide12_Video.mp4" />
+    <Content Include="Content\Videos\YellowBelt_Slide15_Video.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide6_Video.mp4" />
     <Content Include="Entities\TocicoEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -316,6 +315,7 @@
     <Content Include="Entities\TocicoEntities.edmx.diagram">
       <DependentUpon>TocicoEntities.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -364,6 +364,14 @@
     <Content Include="Views\Questionnaire\Dashboard.cshtml" />
     <Content Include="Views\YellowBelt\Congratulations.cshtml" />
     <Content Include="Views\Shared\ErrorPopup.cshtml" />
+    <Content Include="Views\YellowBelt\slide15.cshtml" />
+    <Content Include="Views\YellowBelt\slide16.cshtml" />
+    <Content Include="Views\YellowBelt\slide17.cshtml" />
+    <Content Include="Views\YellowBelt\slide18.cshtml" />
+    <Content Include="Views\YellowBelt\slide19.cshtml" />
+    <Content Include="Views\YellowBelt\slide20.cshtml" />
+    <Content Include="Views\YellowBelt\slide21.cshtml" />
+    <Content Include="Views\YellowBelt\slide22.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -383,6 +391,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YMSDK\YMSDK.csproj">
+      <Project>{f1839950-8fdf-4fea-b287-860ebf6dc357}</Project>
+      <Name>YMSDK</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
