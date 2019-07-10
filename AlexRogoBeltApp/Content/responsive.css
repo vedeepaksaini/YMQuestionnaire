@@ -49,6 +49,10 @@
         padding: 10px 5px 10px 10px;
         min-width:100px;
     }
+    .popover{display:none;}
+    .w3-green .popover2 {
+        display: none;
+    }
 }
 
 @media(max-width:699px) {

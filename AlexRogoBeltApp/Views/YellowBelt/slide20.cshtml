@@ -10,8 +10,16 @@
         ClearCalc();
         //var value2 = $('#Answers_1__ControlValue').val();
         //var value1 = $('#Answers_2__ControlValue').val();
-        //var value3 = $('#Answers_3__ControlValue').val();
+         //var value3 = $('#Answers_3__ControlValue').val();
         //var value4 = $('#Answers_4__ControlValue').val();
+
+        var value3 = $('#Answers_3__ControlValue').val();
+        if (value3 >= 10)
+        {
+            //document.getElementById("pass").style["display"] = "block";   
+            document.getElementById("pass").classList.add("passText");
+        }
+        var value4 = $('#Answers_4__ControlValue').val();
 
 
 
@@ -72,8 +80,9 @@
                                             <span>
                                                 <div class="inpt-form">
                                                     <div class="input-group pull-left">
-                                                        <span class="input-group-addon">%</span>
+                                                        <span class="input-group-addon">%</span>                                                        
                                                         @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", required = "required", type = "number", step = ".01", @class = "form-control" })
+                                                        <span id="pass" style="display:none;">Pass</span>
                                                     </div>
                                                 </div>
                                             </span>
