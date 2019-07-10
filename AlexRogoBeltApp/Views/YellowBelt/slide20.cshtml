@@ -17,6 +17,14 @@
         }
         var value4 = $('#Answers_4__ControlValue').val();
 
+        var value3 = $('#Answers_3__ControlValue').val();
+        if (value3 >= 10)
+        {
+            //document.getElementById("pass").style["display"] = "block";   
+            document.getElementById("pass").classList.add("passText");
+        }
+        var value4 = $('#Answers_4__ControlValue').val();
+
 
 
         $('#Answers_4__ControlValue').val(($('#Answers_2__ControlValue').val() * $('#Answers_3__ControlValue').val() * 2080) / 100);       
