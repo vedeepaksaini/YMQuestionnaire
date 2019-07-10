@@ -86,6 +86,8 @@ namespace AlexRogoBeltApp.Services
 
         public void SetTransactions(List<TransactionViewModel> models)
         {
+            
+
             var questionId = models.FirstOrDefault().QuestionID;
             //  var tet = db.TransactionMasters.Select(x => x.MemberID == Convert.ToInt32(models[0].MemberID) && x.QuestionID == questionId).ToList();
             int MemberID = Convert.ToInt32(models[0].MemberID);
@@ -95,6 +97,7 @@ namespace AlexRogoBeltApp.Services
 
             db.TransactionMasters.AddRange(models.Select(x => new TransactionMaster
             {
+
                 AnswerID = x.AnswerID,
                 Deactive = x.Deactive,
                 MemberID = x.MemberID,
@@ -138,15 +141,6 @@ namespace AlexRogoBeltApp.Services
             //}
         }
 
-        //public void RemoveTransactions()
-        //{
-        //    // var result = db.TransactionMasters.FirstOrDefault();
-        //    var result = db.TransactionMasters.ToList();
-        //    foreach (var res in result)
-        //        db.TransactionMasters.Remove(res);
-        //    db.SaveChanges();
-
-        //}
 
         public MemberMaster IsMemberExist(int MemberId)
         {
