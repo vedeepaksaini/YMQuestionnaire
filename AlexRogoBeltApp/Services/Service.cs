@@ -236,5 +236,15 @@ namespace AlexRogoBeltApp.Services
            data.TotalSetps = db.QuestionMasters.Select(x => new { x.ID }).Distinct().Count();
             return data;
         }
+
+        public string GetHours(int member_Id,int question_Id,int answer_Id)
+        {
+            var Result = db.TransactionMasters.Where(x => x.QuestionID == question_Id && x.AnswerID== answer_Id && x.MemberID == member_Id ).FirstOrDefault();
+            return (Result.ControlValue);
+
+
+        }
+
+      
     }
 }

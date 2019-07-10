@@ -2,26 +2,29 @@
 
 
 <script>
-    function CalcAlgo() {
+    function CalcAlgo()
+    {
         debugger;
         ClearCalc();
-        //var value2 = $('#Answers_2__ControlValue').val();
-        //var value1 = $('#Answers_1__ControlValue').val();
-        //var value3 = $('#ddlTimePeriod').val();
+        var value2 = $('#Answers_2__ControlValue').val();
+        var value1 = $('#Answers_1__ControlValue').val();
+        var value3 = $('#Answers_3__ControlValue').val();
+        var value4 = $('#Answers_4__ControlValue').val();
         
-        $('#Answers_3__ControlValue').val(Math.round($('#Answers_1__ControlValue').val() / ($('#ddlTimePeriod').val() * $('#Answers_2__ControlValue').val())*100)/100);
+      //  $('#Answers_3__ControlValue').val(Math.round($('#Answers_1__ControlValue').val() / ($('#ddlTimePeriod').val() * $('#Answers_2__ControlValue').val())*100)/100);
        
         var value = $('#Answers_3__ControlValue').val();
 
-       // var result = Math.round(value * 100) / 100  //returns 28.45 this method is used to round the fig of Answer_3_Control Value
-      
+        var result = Math.round(value * 100) / 100  //returns 28.45 this method is used to round the fig of Answer_3_Control Value
     }
  
-
     function ClearCalc() {
         $('#Answers_3__ControlValue').val("");
        
     }
+
+   
+
 
 </script>
 
@@ -65,12 +68,14 @@
                                         @if (Model.Answers[i].ControlID == 20)
     {
 
-                                    <div class="inpt-form">
-                                        <select id="ddlTimePeriod" class="form-control">
-                                            <option value="8">8 Hours</option>
-                                            <option value="12">12 Hours</option>
-                                        </select>
-                                    </div>
+                               
+                                        <div class="inpt-form">
+                                            @*<select id="ddlTimePeriod" class="form-control">
+                                                            <option value="8">8 Hours</option>
+                                                            <option value="12">12 Hours</option>
+                                                        </select>*@
+                                            @Html.DropDownListFor(model => model.Answers[i].ControlValue, new SelectList(new string[] { "8", "12" }, Model.Answers[i].ControlValue))
+                                        </div>
 
 }
 else if (Model.Answers[i].ControlID == 6)
@@ -82,31 +87,31 @@ else if (Model.Answers[i].ControlID == 6)
                                             @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { step = ".01", type = "number", @class = "form-control" })
 
                                         </div>
-                                   </div>
+                                    </div>
 
-                                        }
-                                        else if (Model.Answers[i].ControlID == 9)
-                                        {
+}
+else if (Model.Answers[i].ControlID == 9)
+{
 
-                                        <div class="inpt-form">
+                                    <div class="inpt-form">
 
 
-                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", type = "number", step = ".01", @class = "form-control" })
+                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", type = "number", step = ".01", @class = "form-control" })
 
-                                        </div>
+                                    </div>
 
-                                        }
-                                        else if (Model.Answers[i].ControlID == 11)
-                                        {
+}
+else if (Model.Answers[i].ControlID == 11)
+{
 
-                                        <div class="inpt-form">
-                                           
+                                    <div class="inpt-form">
 
-                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", value = "0.00", @class = "form-control" })
 
-                                        </div>
+                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { type = "number", step = ".01", value = "0.00", @class = "form-control" })
 
-                                        }
+                                    </div>
+
+}
                                     </div>
                                 </div>
 

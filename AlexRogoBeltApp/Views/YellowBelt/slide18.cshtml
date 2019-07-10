@@ -9,19 +9,35 @@
         //var value1 = $('#Answers_2__ControlValue').val();
         //var value3 = $('#Answers_3__ControlValue').val();
         //var value4 = $('#Answers_4__ControlValue').val();
-      
-        
 
-        $('#Answers_4__ControlValue').val(($('#Answers_1__ControlValue').val() * $('#Answers_3__ControlValue').val() * 2080)/100);
 
-         //var value = $('#Answers_4__ControlValue').val();
+
+        $('#Answers_4__ControlValue').val(($('#Answers_2__ControlValue').val() * $('#Answers_3__ControlValue').val() * 2080) / 100);
+
+        //var value = $('#Answers_4__ControlValue').val();
 
     }
+
     function ClearCalc() {
         $('#Answers_4__ControlValue').val("");
 
     }
 
+    function GetHours() {
+        $.ajax({
+            type: "POST",
+            url: "GetHours",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (res) {
+                debugger;
+                $('#hours').text(res + 'hours shift');
+            },
+            error: function (response) {
+                debugger;
+            }
+        });
+    }
 </script>
 
 <h2 class="question">
@@ -29,19 +45,21 @@
 </h2>
 
 
-<div class="containr">    
-        <div class="row mt-3">
-            <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-                <div class="hourshift">12 Hour Shift</div>
-                <div class="graph_image"><img src="~/Content/Images/slide-18.png" /></div>
+<div class="containr">
+    <div class="row mt-3">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+            <div class="hourshift" id="hours">
             </div>
-            <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                <ul>
-                    @{
-                        if (Model != null)
+            <div class="graph_image"><img src="~/Content/Images/slide-18.png" /></div>
+        </div>
+        <script>GetHours()</script>
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+            <ul>
+                @{
+                    if (Model != null)
+                    {
+                        for (var i = 0; i < Model.Answers.Count(); i++)
                         {
-                            for (var i = 0; i < Model.Answers.Count(); i++)
-                            {
                             <li>
                                 <div class="row">
                                     <div class="col-lg-7">
@@ -61,41 +79,41 @@
                                     </div>
                                     <div class="col-lg-5">
                                         @if (Model.Answers[i].ControlID == 6)
-    {
-                                    <span>
-                                        <div>
-                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control" })
-                                        </div>
-                                    </span>
-}
+                                        {
+                                            <span>
+                                                <div>
+                                                    @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control" })
+                                                </div>
+                                            </span>
+                                        }
 
                                         @if (Model.Answers[i].ControlID == 9)
-    {
-                                    <span>
-                                        <div class="inpt-form">
-                                            <div class="input-group pull-left">
-                                                <span class="input-group-addon">%</span>
-                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", max = "50", step = ".01", @class = "form-control" })
-                                            </div>
-                                            </div>
-                                    </span>
-}
+                                        {
+                                            <span>
+                                                <div class="inpt-form">
+                                                    <div class="input-group pull-left">
+                                                        <span class="input-group-addon">%</span>
+                                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", max = "50", step = ".01", @class = "form-control" })
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        }
 
 
 
 
-else if (Model.Answers[i].ControlID == 11)
-{
-                                    <span class="col-md-6" style="padding-left:0px;">
-                                        <div class="inpt-form">
-                                            <div class="input-group pull-left">
-                                                <span class="input-group-addon">$</span>
-                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", type = "number", step = ".01",  @class = "form-control" })
+                                        else if (Model.Answers[i].ControlID == 11)
+                                        {
+                                            <span class="col-md-6" style="padding-left:0px;">
+                                                <div class="inpt-form">
+                                                    <div class="input-group pull-left">
+                                                        <span class="input-group-addon">$</span>
+                                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", type = "number", step = ".01", @class = "form-control" })
 
-                                            </div>
-                                        </div>
-                                    </span>
-}
+                                                    </div>
+                                                </div>
+                                            </span>
+                                        }
                                     </div>
                                 </div>
 
