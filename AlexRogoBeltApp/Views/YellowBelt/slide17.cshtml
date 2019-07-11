@@ -69,12 +69,12 @@
     {
 
                                
-                                        <div class="inpt-form">
+                                        <div>
                                             @*<select id="ddlTimePeriod" class="form-control">
                                                             <option value="8">8 Hours</option>
                                                             <option value="12">12 Hours</option>
                                                         </select>*@
-                                            @Html.DropDownListFor(model => model.Answers[i].ControlValue, new SelectList(new string[] { "8", "12" }, Model.Answers[i].ControlValue))
+                                            @Html.DropDownListFor(model => model.Answers[i].ControlValue, new SelectList(new string[] { "8", "12" }, Model.Answers[i].ControlValue), new { @class = "form-control pull-left" })
                                         </div>
 
 }

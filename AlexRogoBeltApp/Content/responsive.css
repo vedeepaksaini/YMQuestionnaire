@@ -476,6 +476,7 @@
         text-align: center;
         margin-right: 0px;
     }
+    
 }
 
     @media only screen and (max-width: 1200px) {
@@ -560,5 +561,51 @@
         float: left;
         width: 50%;
         margin-top: 25%;
+    }
+}
+@media only screen and (max-width:430px) {
+    .input-group .passText {
+        color: green;
+        background-color: #ffffff;
+        display: block !important;
+        position: absolute;
+        font-size: 12px;
+        z-index: 99;
+        top: 10px;
+        right: 7px;
+        animation: blink 0.8s linear infinite;
+    }
+}
+@media only screen and (min-width:431px) and (max-width:767px) {
+    .input-group .passText {
+        color: green;
+        background-color: transparent;
+        display: block !important;
+        position: absolute;
+        font-size: 12px;
+        z-index: 99;
+        top: 10px;
+        right: -30px;
+        animation: blink 0.8s linear infinite;
+    }
+}
+@media only screen and (min-width:992px) and (max-width:1199px) {
+    .input-group .passText {
+        color: green;
+        background-color: #ffffff;
+        display: block !important;
+        position: absolute;
+        font-size: 12px;
+        z-index: 99;
+        top: 10px;
+        right: 7px;
+        animation: blink 0.8s linear infinite;
+    }
+    .input-group .form-control {
+        position: relative;
+        z-index: 2;
+        float: left;
+        width: 81%;
+        margin-bottom: 0;
     }
 }
