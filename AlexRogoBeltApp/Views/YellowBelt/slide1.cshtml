@@ -12,7 +12,7 @@
 
 <div class="options radiobtn">
     <h3 class="questionintro">
-        @Html.DisplayFor(model => model.Question) --
+        @Html.DisplayFor(model => model.Question)
     </h3>
     <ul>
         @{
@@ -32,16 +32,24 @@
 
                             @if (Model.Answers[i].ErrorMSG != null)
                             {
-                                @Html.CheckBoxFor(model => Model.Answers[i].IsSelected, new { @class = "chk", @onchange = "ShowError();" })
-                                <i class="glyphicon glyphicon-ok"></i>
-                                @Html.DisplayFor(model => Model.Answers[i].Answers)
-                                @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:#a94442; display:none; font-size:14px;" })
+                                <div class="label_check">
+                                    @Html.CheckBoxFor(model => Model.Answers[i].IsSelected, new { @class = "chk", @onchange = "ShowError();" })
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                </div>
+                                <div class="label_que">
+                                    @Html.DisplayFor(model => Model.Answers[i].Answers)
+                                    @Html.Label(Model.Answers[i].ErrorMSG, Model.Answers[i].ErrorMSG, new { @id = "lblError", style = "color:#a94442; display:none; font-size:14px;" })
+                                </div>
                             }
                             else
                             {
-                                @Html.CheckBoxFor(model => Model.Answers[i].IsSelected, new { @class = "chk" })
-                                <i class="glyphicon glyphicon-ok"></i>
-                                @Html.DisplayFor(model => Model.Answers[i].Answers)
+                                <div class="label_check">
+                                    @Html.CheckBoxFor(model => Model.Answers[i].IsSelected, new { @class = "chk" })
+                                    <i class="glyphicon glyphicon-ok"></i>
+                                </div>
+                                <div class="label_que">
+                                    @Html.DisplayFor(model => Model.Answers[i].Answers)
+                                </div>
                             }
 
                             @Html.HiddenFor(model => Model.Answers[i].ID)

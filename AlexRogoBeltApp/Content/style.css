@@ -698,5 +698,16 @@ min-height: 35px;
 #images td{padding:40px 20px !important;}
 #steps td{white-space:nowrap;}
 
+/**/
+.label_check{
+    float:left;
+    width:40px;
+}
+.label_que {
+    float: left;
+    width: 80%;
+    word-break:break-word;
+    margin-top:5px;
+}
 
 
