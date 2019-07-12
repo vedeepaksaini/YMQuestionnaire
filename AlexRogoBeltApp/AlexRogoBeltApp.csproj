@@ -188,7 +188,9 @@
     <Compile Include="Entities\GoalTarget.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\GuidMaster.cs" />
+    <Compile Include="Entities\GuidMaster.cs">
+      <DependentUpon>TocicoEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Entities\LevelMaster.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
@@ -277,6 +279,7 @@
     <Content Include="Content\Images\markert-gold.png" />
     <Content Include="Content\Images\markert-red.png" />
     <Content Include="Content\Images\Overall_Equipment_Effectiveness.png" />
+    <Content Include="Content\Images\slide-15-figure.png" />
     <Content Include="Content\Images\slide-18.png" />
     <Content Include="Content\Images\Slide15.png" />
     <Content Include="Content\Images\slide19_1.png" />
@@ -288,18 +291,16 @@
     <Content Include="Content\Images\TOCICOBannerLogoGoldHorizontal.gif" />
     <Content Include="Content\Images\twitter-w.png" />
     <Content Include="Content\Images\twitter.png" />
+    <Content Include="Content\Images\yellow-belt.jpg" />
     <Content Include="Content\Images\yellow-level.png" />
     <Content Include="Content\Images\YellowBelt_Slide6_Video.png" />
     <Content Include="Content\Memberstyle.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\style.css" />
-    <Content Include="Content\Videos\Bill_Peach_and_Alex_Rogo-1.mp4" />
-    <Content Include="Content\Videos\Bill_Peach_and_Alex_Rogo.mp4" />
-    <Content Include="Content\Videos\Eli_Goldratt_Finding_Bottleneck.mp4" />
-    <Content Include="Content\Videos\Eli_Protective_Capacity.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide10_Video.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide11_Video.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide12_Video.mp4" />
+    <Content Include="Content\Videos\YellowBelt_Slide15_Video.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide6_Video.mp4" />
     <Content Include="Entities\TocicoEntities.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -327,6 +328,7 @@
     <Content Include="Entities\TocicoEntities.edmx.diagram">
       <DependentUpon>TocicoEntities.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -405,7 +407,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\YMSDK\YMSDK.csproj">
-      <Project>{F1839950-8FDF-4FEA-B287-860EBF6DC357}</Project>
+      <Project>{f1839950-8fdf-4fea-b287-860ebf6dc357}</Project>
       <Name>YMSDK</Name>
     </ProjectReference>
   </ItemGroup>

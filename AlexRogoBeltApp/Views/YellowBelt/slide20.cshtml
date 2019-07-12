@@ -8,10 +8,14 @@
     function CalcAlgo() {
         debugger;
         ClearCalc();
-        //var value2 = $('#Answers_1__ControlValue').val();
-        //var value1 = $('#Answers_2__ControlValue').val();
-         //var value3 = $('#Answers_3__ControlValue').val();
-        //var value4 = $('#Answers_4__ControlValue').val();
+        var value2 = $('#Answers_1__ControlValue').val();
+        var value1 = $('#Answers_2__ControlValue').val();
+        var value3 = $('#Answers_3__ControlValue').val();
+        if (value3 >= 10)
+        {
+            document.getElementById("pass").style["display"] = "block";            
+        }
+        var value4 = $('#Answers_4__ControlValue').val();
 
         var value3 = $('#Answers_3__ControlValue').val();
         if (value3 >= 10)
@@ -34,91 +38,111 @@
 
     }
 
+      //METHOD TO GET THE SHIFT FROM LAST PAGE
+    function GetHours() {
+        debugger
+        $.ajax({
+            type: "POST",
+            url: "GetHours",
+            dataType: "json",
+            contentType: "application/json",
+            success: function (res) {
+                debugger;
+                $('#hours').text(res + ' shift');
+            },
+            error: function (response) {
+                debugger;
+            }
+        });
+    }
+
 </script>
 
 
 <div class="containr">
     <div class="row mt-3">
         <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
-            <div class="hourshift">12 Hour Shift</div>
+            <div class="hourshift" id="hours">
+            </div>
             <div class="graph_image"><img src="~/Content/Images/slide-18.png" /></div>
         </div>
+        <script>GetHours()</script>
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <ul>
                 @{
-                    if (Model != null)
+                if (Model != null)
+                {
+                    for (var i = 0; i < Model.Answers.Count(); i++)
                     {
-                        for (var i = 0; i < Model.Answers.Count(); i++)
-                        {
-                            <li style="margin-bottom:15px;">
-                                <div class="row">
-                                    <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
-                                        @{
-                                            var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
-                                            if (transaction != null)
-                                            {
-                                                Model.Answers[i].IsSelected = true;
-                                                Model.Answers[i].ControlValue = transaction.ControlValue;
-                                            }
-                                        }
+                        <li style="margin-bottom:15px;">
+                            <div class="row">
+                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="font-weight:bold;">
+                                    @{
+                                    var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
+                                    if (transaction != null)
+                                    {
+                                        Model.Answers[i].IsSelected = true;
+                                        Model.Answers[i].ControlValue = transaction.ControlValue;
+                                    }
+                                    }
 
-                                        @Html.DisplayFor(model => Model.Answers[i].Answers)
+                                    @Html.DisplayFor(model => Model.Answers[i].Answers)
 
 
+                                </div>
+                                <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                    @if (Model.Answers[i].ControlID == 6)
+                                {
+
+                                    <div>
+                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control" })
                                     </div>
-                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
-                                        @if (Model.Answers[i].ControlID == 6)
-                                        {
+                            }
 
-                                            <div>
-                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control" })
+                                    @if (Model.Answers[i].ControlID == 9)
+                                {
+                                    <span>
+                                        <div class="inpt-form">
+                                            <div class="input-group pull-left">
+                                                <span class="input-group-addon">%</span>
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", required = "required", type = "number", step = ".01", @class = "form-control" })
+                                                <span id="pass" style="color:green; display:none; font-weight:700">Pass</span>
                                             </div>
-                                        }
-
-                                        @if (Model.Answers[i].ControlID == 9)
-                                        {
-                                            <span>
-                                                <div class="inpt-form">
-                                                    <div class="input-group pull-left">
-                                                        <span class="input-group-addon">%</span>                                                        
-                                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", required = "required", type = "number", step = ".01", @class = "form-control" })
-                                                        <span id="pass" style="display:none;">Pass</span>
-                                                    </div>
-                                                </div>
-                                            </span>
-                                        }
+                                        </div>
+                                    </span>
+                            }
 
 
 
 
-                                        else if (Model.Answers[i].ControlID == 11)
-                                        {
-                                            <span class="col-md-6" style="padding-left:0px;">
-                                                <div class="inpt-form">
-                                                    <div class="input-group pull-left">
-                                                        <span class="input-group-addon">$</span>
-                                                        @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new {  type = "number", step = ".01", @class = "form-control" })
+                            else if (Model.Answers[i].ControlID == 11)
+                            {
+                                <span class="col-md-6" style="padding-left:0px;">
+                                    <div class="inpt-form">
+                                        <div class="input-group pull-left">
+                                            <span class="input-group-addon">$</span>
+                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control" })
 
-                                                    </div>
-                                                </div>
-                                            </span>
-                                        }
-
-
-
+                                        </div>
                                     </div>
-
-                                    @Html.HiddenFor(model => Model.Answers[i].ID)
-                                    @Html.HiddenFor(model => model.LevelID)
-                                    @Html.HiddenFor(model => Model.Answers[i].ControlValue)
-                                    @Html.HiddenFor(model => Model.Answers[i].QuestionID)
-                                    @Html.HiddenFor(model => Model.Answers[i].IsSelected)
-                                    @Html.HiddenFor(model => model.QuestionOrder)
-
-
-                            </li>
+                                </span>
                         }
-                    }
+
+
+
+                                </div>
+
+                                @Html.HiddenFor(model => Model.Answers[i].ID)
+                                @Html.HiddenFor(model => model.LevelID)
+                                @Html.HiddenFor(model => Model.Answers[i].ControlValue)
+                                @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                                @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                                @Html.HiddenFor(model => model.QuestionOrder)
+
+
+                        </li>
+                }
+            }
                 }
             </ul>
         </div>

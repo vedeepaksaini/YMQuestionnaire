@@ -45,7 +45,7 @@ namespace AlexRogoBeltApp.Services
                     ActionID = y.ActionID
 
                 }).ToList(),
-                Transactions = model.TransactionMasters.Where(q => !q.Deactive && q.QuestionID == model.ID).Select(z => new TransactionViewModel
+                Transactions = model.TransactionMasters.Where(q => !q.Deactive && q.QuestionID == model.ID && q.MemberID == MemberId).Select(z => new TransactionViewModel
                 {
                     ID = z.ID,
                     AnswerID = z.AnswerID,
@@ -61,7 +61,7 @@ namespace AlexRogoBeltApp.Services
             if (data != null && orderId == 2)
             {
                 var member = db.MemberMasters.FirstOrDefault(x => x.MemberID == MemberId);
-                
+
                 if (member != null)
                 {
                     data.Member = new MemberViewModel
@@ -79,13 +79,15 @@ namespace AlexRogoBeltApp.Services
             {
 
             }
-            data.SetpsCompleted = db.TransactionMasters.Select(x => new { x.QuestionID }).Distinct().Count();
+            data.SetpsCompleted = db.TransactionMasters.Where(x => x.MemberID == MemberId).Select(y => new { y.QuestionID }).Distinct().Count();
             data.TotalSetps = db.QuestionMasters.Select(x => new { x.ID }).Distinct().Count();
             return data;
         }
 
         public void SetTransactions(List<TransactionViewModel> models)
         {
+
+
             var questionId = models.FirstOrDefault().QuestionID;
             //  var tet = db.TransactionMasters.Select(x => x.MemberID == Convert.ToInt32(models[0].MemberID) && x.QuestionID == questionId).ToList();
             int MemberID = Convert.ToInt32(models[0].MemberID);
@@ -95,6 +97,7 @@ namespace AlexRogoBeltApp.Services
 
             db.TransactionMasters.AddRange(models.Select(x => new TransactionMaster
             {
+
                 AnswerID = x.AnswerID,
                 Deactive = x.Deactive,
                 MemberID = x.MemberID,
@@ -138,15 +141,6 @@ namespace AlexRogoBeltApp.Services
             //}
         }
 
-        //public void RemoveTransactions()
-        //{
-        //    // var result = db.TransactionMasters.FirstOrDefault();
-        //    var result = db.TransactionMasters.ToList();
-        //    foreach (var res in result)
-        //        db.TransactionMasters.Remove(res);
-        //    db.SaveChanges();
-
-        //}
 
         public MemberMaster IsMemberExist(int MemberId)
         {
@@ -159,7 +153,7 @@ namespace AlexRogoBeltApp.Services
         }
         public List<ProcessTemplateViewModel> GetAllTemplates(int id)
         {
-            var processes = db.ProcessTemplateMasters.Where(x => !x.Deactive && x.EnvironmentID==id);
+            var processes = db.ProcessTemplateMasters.Where(x => !x.Deactive && x.EnvironmentID == id);
 
             if (processes == null || processes.Count() == 0)
                 return null;
@@ -181,9 +175,9 @@ namespace AlexRogoBeltApp.Services
             }).ToList();
         }
 
-        public List<string> GetTemplate(int id)
+        public List<string> GetTemplate(int id, int memberId)
         {
-            return db.TransactionMasters.Where(x => x.QuestionID == id).OrderByDescending(x => x.ID).Select(x => x.ControlValue).ToList();
+            return db.TransactionMasters.Where(x => x.QuestionID == id && x.MemberID == memberId).OrderByDescending(x => x.ID).Select(x => x.ControlValue).ToList();
 
             //var process = db.ProcessTemplateMasters.FirstOrDefault(x => !x.Deactive && x.ID == 2);
 
@@ -207,13 +201,13 @@ namespace AlexRogoBeltApp.Services
             //};
         }
 
-        public List<CalculationsViewModel> GetCalculation()
+        public List<CalculationsViewModel> GetCalculation(int memberID)
         {
             var ans = new string[] { "Throughput", "Inventory", "Operating Expense" };
 
             var data = (from answers in db.AnswerMasters
                         join transaction in db.TransactionMasters on answers.ID equals transaction.AnswerID
-                        where ans.Contains(answers.Answers)
+                        where ans.Contains(answers.Answers) && transaction.MemberID == memberID
                         select new CalculationsViewModel
                         {
                             Answers = answers.Answers,
@@ -229,22 +223,26 @@ namespace AlexRogoBeltApp.Services
             db.SaveChanges();
 
         }
-        public Steps CountSlideSteps()
+        public Steps CountSlideSteps(string id)
         {
             Steps data = new Steps();
-           data.SetpsCompleted = db.TransactionMasters.Select(x => new { x.QuestionID }).Distinct().Count();
-           data.TotalSetps = db.QuestionMasters.Select(x => new { x.ID }).Distinct().Count();
+            int memberId = Convert.ToInt32(id);
+            //data.SetpsCompleted = db.TransactionMasters.Select(x => new { x.QuestionID }).Distinct().Count();
+
+            //changes By sadhana 11/july/19
+            data.SetpsCompleted = db.TransactionMasters.Where(x => x.MemberID == memberId).Select(y => new { y.QuestionID }).Distinct().Count();
+            data.TotalSetps = db.QuestionMasters.Select(x => new { x.ID }).Distinct().Count();
             return data;
         }
 
-        public string GetHours(int member_Id,int question_Id,int answer_Id)
+        public string GetHours(int member_Id, int question_Id, int answer_Id)
         {
-            var Result = db.TransactionMasters.Where(x => x.QuestionID == question_Id && x.AnswerID== answer_Id && x.MemberID == member_Id ).FirstOrDefault();
+            var Result = db.TransactionMasters.Where(x => x.QuestionID == question_Id && x.AnswerID == answer_Id && x.MemberID == member_Id).FirstOrDefault();
             return (Result.ControlValue);
 
 
         }
 
-      
+
     }
 }

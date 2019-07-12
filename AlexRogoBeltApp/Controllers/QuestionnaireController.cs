@@ -81,7 +81,7 @@ namespace AlexRogoBeltApp.Controllers
 
                 //}
 
-                return View(_service.CountSlideSteps());
+                return View(_service.CountSlideSteps(id));
             }
             catch (Exception e)
             {
@@ -273,7 +273,8 @@ namespace AlexRogoBeltApp.Controllers
         [WebMethod]
         public JsonResult GetTemplate(int id)
         {
-            var data = _service.GetTemplate(id);
+            var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
+            var data = _service.GetTemplate(id, MemberDetails.MemberID);
             //if (data[0] == null)
             //    data.Clear();
             return Json(data);
@@ -338,7 +339,8 @@ namespace AlexRogoBeltApp.Controllers
         [WebMethod]
         public JsonResult GetCalculations()
         {
-            return Json(_service.GetCalculation());
+            var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
+            return Json(_service.GetCalculation(MemberDetails.MemberID));
         }
 
         [WebMethod]
