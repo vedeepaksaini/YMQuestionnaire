@@ -188,6 +188,7 @@
     <Compile Include="Entities\GoalTarget.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Entities\GuidMaster.cs" />
     <Compile Include="Entities\LevelMaster.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
@@ -236,6 +237,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Authentication.cs" />
     <Compile Include="Services\Service.cs" />
+    <Compile Include="Services\YMServices.cs" />
     <Compile Include="ViewModel\AnswerViewModel.cs" />
     <Compile Include="ViewModel\CalculationsViewModel.cs" />
     <Compile Include="ViewModel\MemberViewModel.cs" />
@@ -262,6 +264,7 @@
     <Content Include="Content\Images\circle.png" />
     <Content Include="Content\Images\Eli_Goldratt_Finding_Bottleneck.png" />
     <Content Include="Content\Images\Eli_Protective_Capacity.png" />
+    <Content Include="Content\Images\Exploiting_the_Constraint.png" />
     <Content Include="Content\Images\facebook-w.png" />
     <Content Include="Content\Images\facebook.png" />
     <Content Include="Content\Images\favicon.ico" />
@@ -273,12 +276,20 @@
     <Content Include="Content\Images\logo_black.png" />
     <Content Include="Content\Images\markert-gold.png" />
     <Content Include="Content\Images\markert-red.png" />
+    <Content Include="Content\Images\Overall_Equipment_Effectiveness.png" />
+    <Content Include="Content\Images\slide-18.png" />
+    <Content Include="Content\Images\Slide15.png" />
+    <Content Include="Content\Images\slide19_1.png" />
+    <Content Include="Content\Images\slide19_2.png" />
+    <Content Include="Content\Images\slide19_3.png" />
+    <Content Include="Content\Images\slide21.png" />
     <Content Include="Content\Images\steps-data.png" />
     <Content Include="Content\Images\steps.png" />
     <Content Include="Content\Images\TOCICOBannerLogoGoldHorizontal.gif" />
     <Content Include="Content\Images\twitter-w.png" />
     <Content Include="Content\Images\twitter.png" />
     <Content Include="Content\Images\yellow-level.png" />
+    <Content Include="Content\Images\YellowBelt_Slide6_Video.png" />
     <Content Include="Content\Memberstyle.css" />
     <Content Include="Content\responsive.css" />
     <Content Include="Content\style.css" />
@@ -364,6 +375,14 @@
     <Content Include="Views\Questionnaire\Dashboard.cshtml" />
     <Content Include="Views\YellowBelt\Congratulations.cshtml" />
     <Content Include="Views\Shared\ErrorPopup.cshtml" />
+    <Content Include="Views\YellowBelt\slide15.cshtml" />
+    <Content Include="Views\YellowBelt\slide16.cshtml" />
+    <Content Include="Views\YellowBelt\slide17.cshtml" />
+    <Content Include="Views\YellowBelt\slide18.cshtml" />
+    <Content Include="Views\YellowBelt\slide19.cshtml" />
+    <Content Include="Views\YellowBelt\slide20.cshtml" />
+    <Content Include="Views\YellowBelt\slide21.cshtml" />
+    <Content Include="Views\YellowBelt\slide22.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -383,6 +402,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\YMSDK\YMSDK.csproj">
+      <Project>{F1839950-8FDF-4FEA-B287-860EBF6DC357}</Project>
+      <Name>YMSDK</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
