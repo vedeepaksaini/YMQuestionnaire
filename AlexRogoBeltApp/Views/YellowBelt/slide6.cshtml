@@ -24,16 +24,18 @@
                                     Model.Answers[i].IsSelected = true;
                                 }
                             }
+                            <div class="label_checkr">
+                                @Html.RadioButton("grp", Model.Answers[i].ID, Model.Answers[i].IsSelected, new { @class = "rdbtn", @onchange = "ShowError('Answers_" + i + "__IsSelected');" })
+                            </div>
+                            <div class="label_quer">
+                                @Html.DisplayFor(model => Model.Answers[i].Answers)
 
-                            @Html.RadioButton("grp", Model.Answers[i].ID, Model.Answers[i].IsSelected, new {@class= "rdbtn", @onchange = "ShowError('Answers_" + i + "__IsSelected');" })
-
-                            @Html.DisplayFor(model => Model.Answers[i].Answers)
-
-                            @Html.HiddenFor(model => Model.Answers[i].ID)
-                            @Html.HiddenFor(model => model.LevelID)
-                            @Html.HiddenFor(model => Model.Answers[i].QuestionID)
-                            @Html.HiddenFor(model => Model.Answers[i].IsSelected)
-                            @Html.HiddenFor(model => model.QuestionOrder)
+                                @Html.HiddenFor(model => Model.Answers[i].ID)
+                                @Html.HiddenFor(model => model.LevelID)
+                                @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                                @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                                @Html.HiddenFor(model => model.QuestionOrder)
+                            </div>
                         </label>
                     </li>
                 }
@@ -52,11 +54,11 @@
 
 <script>
 
-    $(document).ready(function () {       
+    $(document).ready(function () {
         SetButtonProp()
     });
 
-    function SetButtonProp() {      
+    function SetButtonProp() {
         if ($("input:radio.rdbtn:checked").length > 0) {
             $('#btnSubmit').prop('disabled', false);
         }
@@ -68,27 +70,27 @@
         SetButtonProp();
         debugger;
         if (controlId == "Answers_0__IsSelected") {
-            $('#btnSubmit').removeAttr('disabled'); 
-           
+            $('#btnSubmit').removeAttr('disabled');
+
         }
 
         if (controlId == "Answers_1__IsSelected") {
             $('#btnSubmit').prop('disabled', true);
             $('#lblError1').css("display", "block");
             $('#lblError2').css("display", "none");
-          
-           
+
+
         }
         else if (controlId == "Answers_2__IsSelected") {
             $('#btnSubmit').prop('disabled', true);
             $('#lblError2').css("display", "block");
             $('#lblError1').css("display", "none");
-           
-         
+
+
         } else {
             $('#lblError1').css("display", "none");
             $('#lblError2').css("display", "none");
-            
+
         }
     }
 </script>

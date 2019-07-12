@@ -30,16 +30,18 @@
                                     Model.Answers[i].ControlValue = transaction.ControlValue;
                                 }
                             }
+                            <div class="label_checkr">
+                                @Html.RadioButton("grp", Model.Answers[i].ID, Model.Answers[i].IsSelected, new { @class = "rdbtn", @onchange = "ShowError('Answers_" + i + "__IsSelected');" })
+                            </div>
+                            <div class="label_quer">
+                                @Html.DisplayFor(model => Model.Answers[i].Answers)
 
-                            @Html.RadioButton("grp", Model.Answers[i].ID, Model.Answers[i].IsSelected, new { @class = "rdbtn", @onchange = "ShowError('Answers_" + i + "__IsSelected');" })
-
-                            @Html.DisplayFor(model => Model.Answers[i].Answers)
-
-                            @Html.HiddenFor(model => Model.Answers[i].ID)
-                            @Html.HiddenFor(model => model.LevelID)
-                            @Html.HiddenFor(model => Model.Answers[i].QuestionID)
-                            @Html.HiddenFor(model => Model.Answers[i].IsSelected)
-                            @Html.HiddenFor(model => model.QuestionOrder)
+                                @Html.HiddenFor(model => Model.Answers[i].ID)
+                                @Html.HiddenFor(model => model.LevelID)
+                                @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                                @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                                @Html.HiddenFor(model => model.QuestionOrder)
+                            </div>
                         </label>
                     </li>
                 }
@@ -95,12 +97,12 @@
 
 
         }
-            if (controlId == "Answers_2__IsSelected") {
-                $('#btnSubmit').prop('disabled', false);
-                $('#lblError1').css("display", "none");
-                $('#lblError0').css("display", "none");
-                $('#lblError3').css("display", "none");
-                $('#lblError4').css("display", "none");
+        if (controlId == "Answers_2__IsSelected") {
+            $('#btnSubmit').prop('disabled', false);
+            $('#lblError1').css("display", "none");
+            $('#lblError0').css("display", "none");
+            $('#lblError3').css("display", "none");
+            $('#lblError4').css("display", "none");
 
         }
         if (controlId == "Answers_3__IsSelected") {
@@ -124,10 +126,10 @@
 
         }
         else {
-           //// $('#lblError0').css("display", "none");
-           // $('#lblError1').css("display", "none");
-           // $('#lblError3').css("display", "none");
-           // $('#lblError4').css("display", "none");
+            //// $('#lblError0').css("display", "none");
+            // $('#lblError1').css("display", "none");
+            // $('#lblError3').css("display", "none");
+            // $('#lblError4').css("display", "none");
 
         }
     }

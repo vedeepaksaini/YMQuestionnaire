@@ -256,6 +256,32 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\fabicon\android-icon-144x144.png" />
+    <Content Include="Content\fabicon\android-icon-192x192.png" />
+    <Content Include="Content\fabicon\android-icon-36x36.png" />
+    <Content Include="Content\fabicon\android-icon-48x48.png" />
+    <Content Include="Content\fabicon\android-icon-72x72.png" />
+    <Content Include="Content\fabicon\android-icon-96x96.png" />
+    <Content Include="Content\fabicon\apple-icon-114x114.png" />
+    <Content Include="Content\fabicon\apple-icon-120x120.png" />
+    <Content Include="Content\fabicon\apple-icon-144x144.png" />
+    <Content Include="Content\fabicon\apple-icon-152x152.png" />
+    <Content Include="Content\fabicon\apple-icon-180x180.png" />
+    <Content Include="Content\fabicon\apple-icon-57x57.png" />
+    <Content Include="Content\fabicon\apple-icon-60x60.png" />
+    <Content Include="Content\fabicon\apple-icon-72x72.png" />
+    <Content Include="Content\fabicon\apple-icon-76x76.png" />
+    <Content Include="Content\fabicon\apple-icon-precomposed.png" />
+    <Content Include="Content\fabicon\apple-icon.png" />
+    <Content Include="Content\fabicon\browserconfig.xml" />
+    <Content Include="Content\fabicon\favicon-16x16.png" />
+    <Content Include="Content\fabicon\favicon-32x32.png" />
+    <Content Include="Content\fabicon\favicon-96x96.png" />
+    <Content Include="Content\fabicon\favicon.ico" />
+    <Content Include="Content\fabicon\ms-icon-144x144.png" />
+    <Content Include="Content\fabicon\ms-icon-150x150.png" />
+    <Content Include="Content\fabicon\ms-icon-310x310.png" />
+    <Content Include="Content\fabicon\ms-icon-70x70.png" />
     <Content Include="Content\Images\bg-intro.jpg" />
     <Content Include="Content\Images\bg.jpg" />
     <Content Include="Content\Images\Bill_Peach_and_Alex_Rogo.png" />
@@ -328,6 +354,7 @@
     <Content Include="Entities\TocicoEntities.edmx.diagram">
       <DependentUpon>TocicoEntities.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\fabicon\manifest.json" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />

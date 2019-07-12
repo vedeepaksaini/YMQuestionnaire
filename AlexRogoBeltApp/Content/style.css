@@ -618,7 +618,7 @@ min-height: 35px;
 .popover {
     background-color: #f44336;
     border-radius: 5px;
-    top: -41px;
+    top: 30px;
     box-shadow: 0 0 5px rgba(0,0,0,0.4);
     color: #fff;
     display: block;
@@ -633,10 +633,10 @@ min-height: 35px;
     text-align: center;
 }
 .popover:before {
-    border-top: 7px solid #f44336;
+    border-bottom: 7px solid #f44336;
     border-right: 7px solid transparent;
     border-left: 7px solid transparent;
-    bottom: -7px;
+    top: -7px;
     content: '';
     display: block;
     left: 50%;
@@ -646,7 +646,7 @@ min-height: 35px;
 .w3-green .popover2 {
     background-color: #4CAF50;
     border-radius: 5px;
-    top: -41px;
+    top: 30px;
     box-shadow: 0 0 5px rgba(0,0,0,0.4);
     color: #fff;
     display: block;
@@ -662,10 +662,10 @@ min-height: 35px;
 }
 
 .w3-green .popover2:before {
-    border-top: 7px solid #4CAF50;
+    border-bottom: 7px solid #4CAF50;
     border-right: 7px solid transparent;
     border-left: 7px solid transparent;
-    bottom: -7px;
+    top: -7px;
     content: '';
     display: block;
     left: 50%;
@@ -708,6 +708,17 @@ min-height: 35px;
     width: 80%;
     word-break:break-word;
     margin-top:5px;
+}
+.label_checkr {
+    float: left;
+    width: 40px;
+}
+
+.label_quer {
+    float: left;
+    width: 80%;
+    word-break: break-word;
+    margin-top: 0px;
 }
 
 
