@@ -116,7 +116,7 @@
           <Property Name="Country" Type="varchar" MaxLength="50" />
           <Property Name="Phone" Type="nvarchar" MaxLength="30" />
           <Property Name="EmployeeName" Type="varchar" MaxLength="100" />
-          <Property Name="MemberSuspended" Type="varchar" MaxLength="10" />
+          <Property Name="MemberSuspended" Type="varchar" MaxLength="100" />
           <Property Name="IsYBpaymentCompleted" Type="bit" Nullable="false" />
           <Property Name="IsYBStepsCompleted" Type="bit" Nullable="false" />
         </EntityType>
@@ -922,7 +922,7 @@
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Phone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="EmployeeName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="MemberSuspended" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="MemberSuspended" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="IsYBpaymentCompleted" Type="Boolean" Nullable="false" />
           <Property Name="IsYBStepsCompleted" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="GoalTargets" Relationship="TOCICOModel.FK__GoalTarge__Membe__4959E263" FromRole="MemberMaster" ToRole="GoalTarget" />

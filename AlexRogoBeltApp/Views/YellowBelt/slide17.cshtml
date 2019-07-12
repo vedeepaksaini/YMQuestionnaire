@@ -5,12 +5,17 @@
     function CalcAlgo()
     {
         debugger;
+    
         ClearCalc();
-        var value2 = $('#Answers_2__ControlValue').val();
-        var value1 = $('#Answers_1__ControlValue').val();
-        var value3 = $('#Answers_3__ControlValue').val();
-        var value = $('#Answers_0__ControlValue').val();
+        //var value2 = $('#Answers_2__ControlValue').val();
+        //var value1 = $('#Answers_1__ControlValue').val();
+        //var value3 = $('#Answers_3__ControlValue').val();
+        //var value = $('#Answers_0__ControlValue').val();
+        
+        var value=  $('#ddlhours').find("option:selected").text();
+        
         var Answers_3__ControlValue = value.slice(0, -6);
+    
         $('#Answers_3__ControlValue').val(Math.round($('#Answers_1__ControlValue').val() / (Answers_3__ControlValue * $('#Answers_2__ControlValue').val())*100)/100);
        
      
@@ -75,7 +80,7 @@
                                                             <option value="8">8 Hours</option>
                                                             <option value="12">12 Hours</option>
                                                         </select>*@
-                                            @Html.DropDownListFor(model => model.Answers[i].ControlValue,new SelectList(new string[] { "8 Hours", "12 Hours" }), Model.Answers[i].ControlValue,new {  @class = "form-control" })
+                                            @Html.DropDownListFor(model => model.Answers[i].ControlValue,new SelectList(new string[] { "8 Hours", "12 Hours" }), Model.Answers[i].ControlValue,new {@id="ddlhours", @class = "form-control" })
                                         </div>
 
 }

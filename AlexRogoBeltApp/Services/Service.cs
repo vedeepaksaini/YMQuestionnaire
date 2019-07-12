@@ -45,7 +45,7 @@ namespace AlexRogoBeltApp.Services
                     ActionID = y.ActionID
 
                 }).ToList(),
-                Transactions = model.TransactionMasters.Where(q => !q.Deactive && q.QuestionID == model.ID).Select(z => new TransactionViewModel
+                Transactions = model.TransactionMasters.Where(q => !q.Deactive && q.QuestionID == model.ID && q.MemberID==MemberId).Select(z => new TransactionViewModel
                 {
                     ID = z.ID,
                     AnswerID = z.AnswerID,
@@ -79,7 +79,7 @@ namespace AlexRogoBeltApp.Services
             {
 
             }
-            data.SetpsCompleted = db.TransactionMasters.Select(x => new { x.QuestionID }).Distinct().Count();
+            data.SetpsCompleted = db.TransactionMasters.Where(x => x.MemberID == MemberId).Select(y => new { y.QuestionID }).Distinct().Count();
             data.TotalSetps = db.QuestionMasters.Select(x => new { x.ID }).Distinct().Count();
             return data;
         }
@@ -223,11 +223,15 @@ namespace AlexRogoBeltApp.Services
             db.SaveChanges();
 
         }
-        public Steps CountSlideSteps()
+        public Steps CountSlideSteps(string id)
         {
             Steps data = new Steps();
-           data.SetpsCompleted = db.TransactionMasters.Select(x => new { x.QuestionID }).Distinct().Count();
-           data.TotalSetps = db.QuestionMasters.Select(x => new { x.ID }).Distinct().Count();
+            int memberId = Convert.ToInt32(id);
+            //data.SetpsCompleted = db.TransactionMasters.Select(x => new { x.QuestionID }).Distinct().Count();
+
+            //changes By sadhana 11/july/19
+            data.SetpsCompleted = db.TransactionMasters.Where(x => x.MemberID == memberId).Select(y=>new { y.QuestionID }).Distinct().Count();
+            data.TotalSetps = db.QuestionMasters.Select(x => new { x.ID }).Distinct().Count();
             return data;
         }
 

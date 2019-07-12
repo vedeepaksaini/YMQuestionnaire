@@ -45,7 +45,7 @@ namespace AlexRogoBeltApp.Controllers
 
 
         public ActionResult Dashboard()
-        {
+       {
             try
 
             {
@@ -81,7 +81,7 @@ namespace AlexRogoBeltApp.Controllers
 
                 //}
 
-                return View(_service.CountSlideSteps());
+                return View(_service.CountSlideSteps(id));
             }
             catch (Exception e)
             {
