@@ -147,9 +147,10 @@ namespace AlexRogoBeltApp.Services
             var MemberCredentials = db.MemberMasters.Where(x => x.MemberID == MemberId).FirstOrDefault();
             return MemberCredentials;
             //if (MemberCredentials != null)
-
-            //    return MemberCredentials.MemberID;
-            //    return 0;
+            //{
+            //    return MemberCredentials;
+            //}
+            //return 0;
         }
         public List<ProcessTemplateViewModel> GetAllTemplates(int id)
         {
