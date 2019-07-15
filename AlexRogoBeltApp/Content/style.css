@@ -134,7 +134,7 @@ ul li{
 }
 
 .options {
-    margin-top: 80px;
+    margin-top: 40px;
 }
 
     .options ul {
@@ -719,6 +719,9 @@ min-height: 35px;
     width: 80%;
     word-break: break-word;
     margin-top: 0px;
+}
+.modal-title .glyphicon {
+    margin-right: 10px !important;
 }
 
 

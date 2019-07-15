@@ -71,8 +71,7 @@ namespace AlexRogoBeltApp.Controllers
                     // TempData["INFOMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
                     TempData["ErrorMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
                 else if (MemberDetails.IsYBStepsCompleted)
-                     TempData["SUCESSMsg"] = "You have completed the Yellow Belt.";
-                    //TempData["ErrorMsg"] = "You have completed the Yellow Belt.";
+                    TempData["SuccessMsg"] = "You have completed the Yellow Belt.";
                 else
                     TempData["MemberId"] = res;
 
@@ -113,8 +112,7 @@ namespace AlexRogoBeltApp.Controllers
 
                 if (MemberDetails.IsYBStepsCompleted)
                 {
-                    TempData["SUCESSMsg"] = "You have completed Yellow Belt.";
-                    //TempData["ErrorMsg"] = "You have completed the Yellow Belt.";
+                    TempData["SuccessMsg"] = "You have completed Yellow Belt.";
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
 
@@ -171,8 +169,7 @@ namespace AlexRogoBeltApp.Controllers
 
                 if (MemberDetails.IsYBStepsCompleted)
                 {
-                     TempData["SUCESSMsg"] = "You have completed Yellow Belt.";
-                   // TempData["ErrorMsg"] = "You have completed the Yellow Belt.";
+                    TempData["SuccessMsg"] = "You have completed Yellow Belt.";
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
 
@@ -337,7 +334,7 @@ namespace AlexRogoBeltApp.Controllers
         }
         private ActionResult SessionExpired()
         {
-            TempData["ErrorMsg"] = "Session has been expired.";
+            TempData["InfoMsg"] = "Session has been expired.";
 
             return RedirectToAction("Dashboard", new { MemberId = Request.QueryString["MemberId"] });
         }

@@ -34,10 +34,16 @@
 
     <script>
         function RenderErrorPopup() {
-            $('#myModal').modal('show');
-            $('#errMsg').text('@TempData["ErrorMsg"]');
-            $('#successMsg').text('@TempData["successMsg"]');
-
+            $('#myModal').modal('show');            
+            $('#errMsg').text('@TempData["ErrorMsg"]');            
+        };
+        function RenderSuccessPopup() {            
+            $('#myModalSuccess').modal('show');           
+            $('#successMsg').text('@TempData["SuccessMsg"]');
+        };
+        function RenderInfoPopup() {            
+            $('#myModalInfo').modal('show');           
+            $('#infoMsg').text('@TempData["InfoMsg"]');
         };
 
     </script>
@@ -56,6 +62,8 @@
 
 <body>
     @Html.Partial("~/Views/Shared/ErrorPopup.cshtml")
+    @Html.Partial("~/Views/Shared/SuccessPopup.cshtml")
+    @Html.Partial("~/Views/Shared/InfoPopup.cshtml")
     @*<nav class="navbar navbar-default">
             <div class="container">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -92,16 +100,24 @@
     <div>
         <div class="fll_wdth ">
             @if (TempData["ErrorMsg"] != null)
-                {
-                         <script>RenderErrorPopup();</script>
-                }
+            {
+                <script>RenderErrorPopup();</script>
+            }
             <!-- <h4 class="pull-left mt-25">You are on yellow belt levels.</h4> -->
         </div>
         <div class="fll_wdth ">
-            @if (TempData["SUCESSMsg"] != null)
+            @if (TempData["SuccessMsg"] != null)
 
             {
-                      <script>RenderErrorPopup();</script>
+                <script>RenderSuccessPopup();</script>
+            }
+            <!-- <h4 class="pull-left mt-25">You are on yellow belt levels.</h4> -->
+        </div>
+        <div class="fll_wdth ">
+            @if (TempData["InfoMsg"] != null)
+
+            {
+                <script>RenderInfoPopup();</script>
             }
             <!-- <h4 class="pull-left mt-25">You are on yellow belt levels.</h4> -->
         </div>
@@ -151,38 +167,38 @@
             </div>
         </div>
         @*<div class="header-out">
-            <div class="container">
-                <div id="header" class="clearfix">
-                    <script type="text/javascript">
-                        WebFontConfig = {
-                            google: { families: ['Open+Sans:400,300,600,700,800:latin', 'Roboto+Condensed:400,300,700:latin'] }
-                        };
-                        (function () {
-                            var wf = document.createElement('script');
-                            wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-                            wf.type = 'text/javascript';
-                            wf.async = 'true';
-                            var s = document.getElementsByTagName('script')[0];
-                            s.parentNode.insertBefore(wf, s);
-                        })(); </script>
+                <div class="container">
+                    <div id="header" class="clearfix">
+                        <script type="text/javascript">
+                            WebFontConfig = {
+                                google: { families: ['Open+Sans:400,300,600,700,800:latin', 'Roboto+Condensed:400,300,700:latin'] }
+                            };
+                            (function () {
+                                var wf = document.createElement('script');
+                                wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                                wf.type = 'text/javascript';
+                                wf.async = 'true';
+                                var s = document.getElementsByTagName('script')[0];
+                                s.parentNode.insertBefore(wf, s);
+                            })(); </script>
 
-                    <a class="logo" href="/" target="_parent" style="color:#000; float:left">
-                        <img src="~/Content/Images/TOCICOBannerLogoGoldHorizontal.gif" />
-                    </a>
-                    <i class="head-sub">"Bringing People and TOC Knowledge Together Globally"</i>
+                        <a class="logo" href="/" target="_parent" style="color:#000; float:left">
+                            <img src="~/Content/Images/TOCICOBannerLogoGoldHorizontal.gif" />
+                        </a>
+                        <i class="head-sub">"Bringing People and TOC Knowledge Together Globally"</i>
 
 
 
-                    <div id="social">
-                        <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank"><img border="0" src="~/Content/Images/facebook.png"></a>
-                        <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank"><img border="0" src="~/Content/Images/linkedin.png"></a>
-                        <a class="tw" href="https://twitter.com/TOCICO" target="_blank"><img border="0" src="~/Content/Images/twitter.png"></a>
+                        <div id="social">
+                            <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank"><img border="0" src="~/Content/Images/facebook.png"></a>
+                            <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank"><img border="0" src="~/Content/Images/linkedin.png"></a>
+                            <a class="tw" href="https://twitter.com/TOCICO" target="_blank"><img border="0" src="~/Content/Images/twitter.png"></a>
+                        </div>
+
+
                     </div>
-
-
                 </div>
-            </div>
-        </div>*@
+            </div>*@
         <div style="background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(80, 80, 80, 1) 0%, rgba(0, 0, 0, 1) 100%) repeat fixed 0 0;">
             <div class="container ">
                 <div class="box-wrapper" style="padding-top:100px;padding-bottom: 114px;">
@@ -245,66 +261,66 @@
                         <div role="tabpanel" class="tab-pane" id="tocexpert">4</div>
                     </div>
                     @{
-                    int stepsRemaining = 0;
-                    int SetpsCompleted = 0;
-                    if (Model != null)
-                    {
+                        int stepsRemaining = 0;
+                        int SetpsCompleted = 0;
+                        if (Model != null)
+                        {
 
-                        stepsRemaining = Model.TotalSetps - Model.SetpsCompleted;
-                        decimal stepsRemainingPer = (Convert.ToDecimal(stepsRemaining) * 100) / Convert.ToDecimal(Model.TotalSetps);
-                        decimal stepsCompletedPer = (Convert.ToDecimal(Model.SetpsCompleted) / Model.TotalSetps) * 100;
-                        SetpsCompleted = Model.SetpsCompleted;
-                    }
+                            stepsRemaining = Model.TotalSetps - Model.SetpsCompleted;
+                            decimal stepsRemainingPer = (Convert.ToDecimal(stepsRemaining) * 100) / Convert.ToDecimal(Model.TotalSetps);
+                            decimal stepsCompletedPer = (Convert.ToDecimal(Model.SetpsCompleted) / Model.TotalSetps) * 100;
+                            SetpsCompleted = Model.SetpsCompleted;
+                        }
 
                     }
                     @if (Model != null)
-                {
-                    <div class="row">
-                        <div class="col-lg-5 col-md-12 col-sm-12">
-                            <div class="chart">
-                                <div class="donat_text">Total<span>@Model.TotalSetps</span> Steps</div>
-                                <div id="container" class="inner_chart"></div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div class="strip_con">
-                                <div class="strip">
-                                    <div class="num_it">@Model.SetpsCompleted</div>
-                                    Step Completed
-                                </div>
-                                <div class="strip">
-                                    <div class="num_it2">@stepsRemaining</div>
-                                    Step remain to complete
+                    {
+                        <div class="row">
+                            <div class="col-lg-5 col-md-12 col-sm-12">
+                                <div class="chart">
+                                    <div class="donat_text">Total<span>@Model.TotalSetps</span> Steps</div>
+                                    <div id="container" class="inner_chart"></div>
                                 </div>
                             </div>
+                            <div class="col-lg-4 col-md-12 col-sm-12">
+                                <div class="strip_con">
+                                    <div class="strip">
+                                        <div class="num_it">@Model.SetpsCompleted</div>
+                                        Step Completed
+                                    </div>
+                                    <div class="strip">
+                                        <div class="num_it2">@stepsRemaining</div>
+                                        Step remain to complete
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <div>
+                        <div>
 
 
-                        @*<h3 class="text-center">You're on yellow belt</h3>*@
-                        <br>
-                        <div class="text-center">
-                            @{
-                            int Memberid = Convert.ToInt32(Request.QueryString["MemberId"]);
+                            @*<h3 class="text-center">You're on yellow belt</h3>*@
+                            <br>
+                            <div class="text-center">
+                                @{
+                                    int Memberid = Convert.ToInt32(Request.QueryString["MemberId"]);
 
-                            }
-                            <a id="startButton" href="/Questionnaire/GetStarted?MemberId=@Memberid" class="mt-2 btn btn-success btn-lg"
-                               @{ if (TempData["ErrorMsg"] != null) { @: style="display:none"
-                               } else { @: style="display:inline"
-                               } }>Get Started</a>
+                                }
+                                <a id="startButton" href="/Questionnaire/GetStarted?MemberId=@Memberid" class="mt-2 btn btn-success btn-lg"
+                                   @{ if (TempData["ErrorMsg"] != null) { @: style="display:none"
+                                   } else { @: style="display:inline"
+                                   } }>Get Started</a>
 
 
-                            @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>*@
-                            @*<a href="@Url.Action("GetStarted", "Questionnaire")" class="mt-2 btn btn-success btn-lg">
-                                Get
-                                Started
-                            </a>*@
+                                @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>*@
+                                @*<a href="@Url.Action("GetStarted", "Questionnaire")" class="mt-2 btn btn-success btn-lg">
+                                        Get
+                                        Started
+                                    </a>*@
 
+                            </div>
                         </div>
-                    </div>
 
-                    <script>
+                        <script>
 
 
             Highcharts.chart('container', {
@@ -351,8 +367,8 @@
 
             });
 
-                    </script>
-            }
+                        </script>
+                    }
                 </div>
             </div>
         </div>
