@@ -23,7 +23,12 @@ namespace AlexRogoBeltApp.Controllers
         {
             try
             {
-                int id = Convert.ToInt32(TempData["MemberId"] == null ? Request.QueryString["MemberId"] : TempData["MemberId"]);
+                bool isValid = int.TryParse(Request.QueryString["MemberId"], out int res);
+
+                if (!isValid)
+                    return UnauthorizedRequest();
+
+                int id = Convert.ToInt32(TempData["MemberId"] == null ? res : TempData["MemberId"]);
                 var MemberDetails = _service.IsMemberExist(id);
                 if (MemberDetails != null)
                 //if (MemberId > 0)
@@ -45,43 +50,34 @@ namespace AlexRogoBeltApp.Controllers
 
 
         public ActionResult Dashboard()
+
         {
             try
 
             {
                 //TempData.Remove("ErrorMsg");
-                var id = Request.QueryString["MemberId"];
+                bool isValid = int.TryParse(Request.QueryString["MemberId"], out int res);
 
-                //PropertyInfo isreadonly = typeof(System.Collections.Specialized.NameValueCollection).GetProperty("IsReadOnly", BindingFlags.Instance | BindingFlags.NonPublic);
-                //// make collection editable
-                //isreadonly.SetValue(this.Request.QueryString, false, null);
-                //// remove
-                //Request.QueryString.Remove("MemberId");
-                //if (id == null)
-                //    return SeesionExpired(MemberDetails);
+                if (!isValid)
+                    return UnauthorizedRequest();
 
-                var MemberDetails = _service.IsMemberExist(Convert.ToInt32(id));
+               
+                var MemberDetails = _service.IsMemberExist(Convert.ToInt32(res));
 
-                if (MemberDetails == null)
-                    return UnauthorizedRequest(MemberDetails);
+               
 
 
                 if (!MemberDetails.IsYBpaymentCompleted)
+                    // TempData["INFOMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
                     TempData["ErrorMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
                 else if (MemberDetails.IsYBStepsCompleted)
                     TempData["SuccessMsg"] = "You have completed the Yellow Belt.";
                 else
-                    TempData["MemberId"] = id;
+                    TempData["MemberId"] = res;
 
-                //if (MemberDetails.IsYBStepsCompleted == false || Convert.ToString(TempData["Slide"]) == "slide23")
-                //{
+             
 
-                //    _service.RemoveTransactions();
-
-
-                //}
-
-                return View(_service.CountSlideSteps(id));
+                return View(_service.CountSlideSteps(res));
             }
             catch (Exception e)
             {
@@ -99,11 +95,17 @@ namespace AlexRogoBeltApp.Controllers
 
                 var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
 
+
+              
+
                 if (MemberDetails == null)
-                    return SeesionExpired(MemberDetails);
+                {
+                    return SessionExpired();
+                }
 
                 if (!MemberDetails.IsYBpaymentCompleted)
                 {
+                    //TempData["infoMsg"] = "Pay for Yellow Belt first.";
                     TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
@@ -142,6 +144,7 @@ namespace AlexRogoBeltApp.Controllers
             }
             catch (Exception ex)
             {
+
                 //TempData["ErrorMsg"] = "We are facing some issue at this time.";
                 return PartialView(@"~\Views\Shared\Error.cshtml");
             }
@@ -155,10 +158,11 @@ namespace AlexRogoBeltApp.Controllers
                 var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
 
                 if (MemberDetails == null)
-                    return SeesionExpired(MemberDetails);
+                    return SessionExpired();
 
                 if (!MemberDetails.IsYBpaymentCompleted)
                 {
+                    //  TempData["infoMsg"] = "Pay for Yellow Belt first.";
                     TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
@@ -288,7 +292,7 @@ namespace AlexRogoBeltApp.Controllers
                 var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
 
                 if (MemberDetails == null)
-                    return SeesionExpired(MemberDetails);
+                    return SessionExpired();
 
                 if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
                 {
@@ -323,17 +327,16 @@ namespace AlexRogoBeltApp.Controllers
             }
         }
 
-        private ActionResult UnauthorizedRequest(MemberMaster MemberDetails)
+        private ActionResult UnauthorizedRequest()//MemberMaster MemberDetails
         {
             TempData["ErrorMsg"] = "You are not an authenticated Member.";
-            //return RedirectToAction("Dashboard", new { MemberId = MemberDetails == null ? Convert.ToInt32(Request.QueryString["MemberId"]) : MemberDetails.MemberID });
-            return View("Dashboard");
+            return View ("Dashboard");
         }
-        private ActionResult SeesionExpired(MemberMaster MemberDetails)
+        private ActionResult SessionExpired()
         {
             TempData["ErrorMsg"] = "Session has been expired.";
-            return RedirectToAction("Dashboard", new { MemberId = MemberDetails == null ? Convert.ToInt32(Request.QueryString["MemberId"]) : MemberDetails.MemberID });
-            // return View("Dashboard");
+
+            return RedirectToAction("Dashboard", new { MemberId = Request.QueryString["MemberId"] });
         }
 
         [WebMethod]
@@ -351,7 +354,7 @@ namespace AlexRogoBeltApp.Controllers
             var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
 
             if (MemberDetails == null)
-                return SeesionExpired(MemberDetails);
+                return SessionExpired();
 
             if (data.Replace("[]", "").Length == 0 || string.IsNullOrEmpty(data))
             {
