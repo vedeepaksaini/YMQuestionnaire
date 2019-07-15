@@ -145,12 +145,13 @@ namespace AlexRogoBeltApp.Services
         public MemberMaster IsMemberExist(int MemberId)
         {
             var MemberCredentials = db.MemberMasters.Where(x => x.MemberID == MemberId).FirstOrDefault();
-            return MemberCredentials;
-            //if (MemberCredentials != null)
-            //{
-            //    return MemberCredentials;
-            //}
-            //return 0;
+
+            // return MemberCredentials;
+            if (MemberCredentials != null)
+            {
+                return MemberCredentials;
+            }
+            return null;
         }
         public List<ProcessTemplateViewModel> GetAllTemplates(int id)
         {
@@ -224,10 +225,9 @@ namespace AlexRogoBeltApp.Services
             db.SaveChanges();
 
         }
-        public Steps CountSlideSteps(string id)
+        public Steps CountSlideSteps(int memberId)
         {
             Steps data = new Steps();
-            int memberId = Convert.ToInt32(id);
             //data.SetpsCompleted = db.TransactionMasters.Select(x => new { x.QuestionID }).Distinct().Count();
 
             //changes By sadhana 11/july/19
