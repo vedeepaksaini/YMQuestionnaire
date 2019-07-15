@@ -49,10 +49,10 @@
         padding: 10px 5px 10px 10px;
         min-width:100px;
     }
-    .popover{display:none;}
+    /*.popover{display:none;}
     .w3-green .popover2 {
         display: none;
-    }
+    }*/
 }
 
 @media(max-width:699px) {
@@ -605,7 +605,7 @@
         position: relative;
         z-index: 2;
         float: left;
-        width: 81%;
+        width: 100%;
         margin-bottom: 0;
     }
 }

@@ -69,7 +69,7 @@ namespace AlexRogoBeltApp.Controllers
                 if (!MemberDetails.IsYBpaymentCompleted)
                     TempData["ErrorMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
                 else if (MemberDetails.IsYBStepsCompleted)
-                    TempData["ErrorMsg"] = "You have completed the Yellow Belt.";
+                    TempData["SuccessMsg"] = "You have completed the Yellow Belt.";
                 else
                     TempData["MemberId"] = id;
 
@@ -110,7 +110,7 @@ namespace AlexRogoBeltApp.Controllers
 
                 if (MemberDetails.IsYBStepsCompleted)
                 {
-                    TempData["ErrorMsg"] = "You have completed Yellow Belt.";
+                    TempData["SuccessMsg"] = "You have completed Yellow Belt.";
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
 
@@ -165,7 +165,7 @@ namespace AlexRogoBeltApp.Controllers
 
                 if (MemberDetails.IsYBStepsCompleted)
                 {
-                    TempData["ErrorMsg"] = "You have completed Yellow Belt.";
+                    TempData["SuccessMsg"] = "You have completed Yellow Belt.";
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
 

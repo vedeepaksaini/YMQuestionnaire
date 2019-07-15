@@ -412,6 +412,8 @@
     <Content Include="Views\YellowBelt\slide20.cshtml" />
     <Content Include="Views\YellowBelt\slide21.cshtml" />
     <Content Include="Views\YellowBelt\slide22.cshtml" />
+    <Content Include="Views\Shared\SuccessPopup.cshtml" />
+    <Content Include="Views\Shared\InfoPopup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
