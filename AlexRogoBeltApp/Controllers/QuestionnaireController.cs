@@ -334,7 +334,7 @@ namespace AlexRogoBeltApp.Controllers
         }
         private ActionResult SessionExpired()
         {
-            TempData["ErrorMsg"] = "Session has been expired.";
+            TempData["InfoMsg"] = "Session has been expired.";
 
             return RedirectToAction("Dashboard", new { MemberId = Request.QueryString["MemberId"] });
         }

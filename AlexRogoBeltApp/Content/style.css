@@ -720,5 +720,8 @@ min-height: 35px;
     word-break: break-word;
     margin-top: 0px;
 }
+.modal-title .glyphicon {
+    margin-right: 10px !important;
+}
 
 
