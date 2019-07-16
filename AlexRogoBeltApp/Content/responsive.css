@@ -608,4 +608,8 @@
         width: 100%;
         margin-bottom: 0;
     }
+    .thefield .input-group input {
+        max-width: 199px !important;
+    }
+    
 }
