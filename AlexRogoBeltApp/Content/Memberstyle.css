@@ -308,3 +308,104 @@ img{
     path{
         stroke:transparent !important;
     }
+
+/*Admin payment update*/
+.fi_label{
+    font-weight:bold;
+}
+.table th{
+    background-color:#f2f2f2;
+    padding:15px 10px !important;
+    border-bottom:5px solid rgba(0,0,0,0.10) !important;
+}
+.pass_field{
+    position:relative;
+}
+.pass_field .pass_error{
+    position:absolute;
+    color:#ff0000;
+    font-size:12px;
+    left:15px;
+
+}
+.check_tile {
+    border-radius: 30px;
+    background-color: #f2f2f2;
+    padding: 10px 30px;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+}
+.control {
+    display: block;
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 5px;
+    padding-top: 3px;
+    cursor: pointer;
+}
+
+.control input {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.control_indicator {
+    position: absolute;
+    top: 2px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+}
+
+.control-radio .control_indicator {
+}
+
+.control:hover input ~ .control_indicator,
+.control input:focus ~ .control_indicator {
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+}
+
+.control input:checked ~ .control_indicator {
+    background: #006599;
+    border: 1px solid #006599;
+}
+
+.control:hover input:not([disabled]):checked ~ .control_indicator,
+.control input:checked:focus ~ .control_indicator {
+    background: #006599;
+    border: 1px solid #006599;
+}
+
+.control input:disabled ~ .control_indicator {
+    background: #e6e6e6;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.control_indicator:after {
+    box-sizing: unset;
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.control input:checked ~ .control_indicator:after {
+    display: block;
+}
+
+.control-checkbox .control_indicator:after {
+    left: 8px;
+    top: 4px;
+    width: 3px;
+    height: 8px;
+    border: solid #ffffff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.control-checkbox input:disabled ~ .control_indicator:after {
+    border-color: #7b7b7b;
+}

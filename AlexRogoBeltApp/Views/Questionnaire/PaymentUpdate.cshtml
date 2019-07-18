@@ -1,38 +1,63 @@
 ﻿@model AlexRogoBeltApp.ViewModel.ProductViewModel
 
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>TOCICO</title>
 
-    <style>
-        #tblInfo {
-            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-            border-collapse: collapse;
-            width: 80%;
-            border-width: 2px;
-            border-color: turquoise
-        }
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
 
-            #tblInfo td, #tblInfo th {
-                /*border: 1px solid #ddd;*/
-                padding: 5px;
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+          crossorigin="anonymous">
+    <link href="~/Content/Memberstyle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/responsive.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+    @*<style>
+            #tblInfo {
+                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+                border-collapse: collapse;
+                width: 80%;
+                border-width: 2px;
+                border-color: turquoise
             }
 
-            #tblInfo tr:nth-child(even) {
-                background-color: #f2f2f2;
-            }
+                #tblInfo td, #tblInfo th {
+                    padding: 5px;
+                }
 
-            #tblInfo tr:hover {
-                background-color: #ddd;
-            }
+                #tblInfo tr:nth-child(even) {
+                    background-color: #f2f2f2;
+                }
 
-            #tblInfo th {
-                padding-top: 4px;
-                padding-bottom: 4px;
-                text-align: left;
-                background-color: turquoise;
-                color: white;
-                font-size: medium;
-            }
-    </style>
+                #tblInfo tr:hover {
+                    background-color: #ddd;
+                }
+
+                #tblInfo th {
+                    padding-top: 4px;
+                    padding-bottom: 4px;
+                    text-align: left;
+                    background-color: turquoise;
+                    color: white;
+                    font-size: medium;
+                }
+        </style>*@
 
     <script>
         function GetMemberData() {
@@ -89,103 +114,261 @@
         </script>*@
 
 </head>
+<body>
 
-@*Textbox for input Member Id*@
+    @*Textbox for input Member Id*@
 
-<div class="row">
-    <div class="col-md-4">
-        <label style="font-size:medium ;color:white">Member Id</label>
-        <br />
-        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId" })
-        @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
+    <div class="toolbar-out" style="background-color:#ffffff;">
+        <div class="container">
+            <div id="itoolbar_bg">
+                <div id="itoolbar" class="col-md-12  text-right">
+
+                    <a href="@Url.Action("Logout", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })">Sign Out</a>
+                </div>
+
+            </div>
+        </div>
     </div>
-</div>
-<br />
-
-
-<table id="tblInfo">
-    <thead>
-        <tr>
-            <th>
-                Name
-            </th>
-            <th>
-                Email
-            </th>
-            <th>
-                Company
-            </th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>
-                <label id="Name"></label>
-            </td>
-            <td>
-                <label id="Email"></label>
-            </td>
-            <td>
-                <label id="Company"></label>
-            </td>
-        </tr>
-    </tbody>
-</table>
-
-<br />
-<div class="row">
-    <div class="col-md-3">
-        <label style="font-size:medium ;color:white">Yellow Belt</label>
-        @Html.CheckBoxFor(model => model.IsYBpaymentCompleted)
-    </div>
-
-    <div class="col-md-3">
-        <label style="font-size:medium ;color:white">Green Belt</label>
-        @Html.CheckBoxFor(model => model.IsGBpaymentCompleted)
+    <div class="header-out">
+        <div class="container">
+            <div class="header">
+                <script type="text/javascript">
+                    WebFontConfig = {
+                        google: { families: ['Open+Sans:400,300,600,700,800:latin', 'Roboto+Condensed:400,300,700:latin'] }
+                    };
+                    (function () {
+                        var wf = document.createElement('script');
+                        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                        wf.type = 'text/javascript';
+                        wf.async = 'true';
+                        var s = document.getElementsByTagName('script')[0];
+                        s.parentNode.insertBefore(wf, s);
+                    })();</script>
+                <div class="row">
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <a class="logo" href="/" target="_parent" style="color:#000;">
+                            <img src="~/Content/Images/TOCICOBannerLogoGoldHorizontal.gif" />
+                        </a>
+                        <i class="head_sub_new">"Bringing People and TOC Knowledge Together Globally"</i>
+                    </div>
+                    <div class="col-lg-6 col-md-12 col-sm-12">
+                        <div id="social">
+                            <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank"><img border="0" src="~/Content/Images/facebook.png"></a>
+                            <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank"><img border="0" src="~/Content/Images/linkedin.png"></a>
+                            <a class="tw" href="https://twitter.com/TOCICO" target="_blank"><img border="0" src="~/Content/Images/twitter.png"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-3">
-        <label style="font-size:medium ;color:white">Blue Belt</label>
-        @Html.CheckBoxFor(model => model.IsBBpaymentCompleted)
-    </div>
 
-    <div class="col-md-3">
-        <label style="font-size:medium ;color:white">TOI</label>
-        @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted)
-    </div>
-    <br />
-    <br />
+    <div style="background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(80, 80, 80, 1) 0%, rgba(0, 0, 0, 1) 100%) repeat fixed 0 0;">
+        <div class="container ">
 
-    @*<div style="float:left">
-            <input type="submit" value="Confirm" onclick="$('#password').show()" style="background-color:turquoise ;color: mintcream ;font-weight:bold;font-size:medium;height:30px;width:100px" />
+            <div class="box-wrapper" style="padding-top:100px;padding-bottom: 114px;">
+
+
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
+                        Member ID:
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId" })
+                        @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                @*<div class="row">
+            <div class="col-md-4">
+                <label>Member Id</label>
+                <br />
+                @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId" })
+                @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
+            </div>
         </div>*@
 
-</div>
 
-@*<div id="password" style="display:none">*@
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Company</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span id="Name"></span>
+                                        </td>
+                                        <td>
+                                            <span id="Email"></span>
+                                        </td>
+                                        <td>
+                                            <span id="Company"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
 
-<div class="alert alert-danger" role="alert">
-    <label id="Error"></label>
-    <br />
-</div>
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="check_tile">
+                            <label class="control control-checkbox">
+                                Yellow Belt
+                                @Html.CheckBoxFor(model => model.IsYBpaymentCompleted)
+                                <div class="control_indicator"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="check_tile">
+                            <label class="control control-checkbox">
+                                Green Belt
+                                @Html.CheckBoxFor(model => model.IsGBpaymentCompleted)
+                                <div class="control_indicator"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="check_tile">
+                            <label class="control control-checkbox">
+                                Black Belt
+                                @Html.CheckBoxFor(model => model.IsBBpaymentCompleted)
+                                <div class="control_indicator"></div>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="check_tile">
+                            <label class="control control-checkbox">
+                                TOC Expert
+                                @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted)
+                                <div class="control_indicator"></div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <hr style="margin:50px 0;" />
 
-<br />
-<br />
-<div class="row">
-    <div class="col-md-2">
-        <label style="font-size:medium ;color:white">Admin Password</label>
+                @*<div class="alert alert-danger" role="alert">
+            <label id="Error"></label>
+        </div>*@
+
+
+                <div class="row" style="margin-top:50px;">
+                    <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
+                        Admin Password:
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 pass_field">
+                        @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.AdminPassword, "", new { @class = "text-danger", placeholder = "Password" })
+                        <div class="pass_error" id="Error"></div>
+                    </div>                    
+                </div>
+                <div class="row" style="margin-top:40px;">
+                    <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
+                        
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <input type="submit" value="Update Payment" class="btn btn-primary btn-sm" onclick="postModel()" />
+                    </div>                    
+                </div>
+
+            </div>
+        </div>
     </div>
 
-    <div class="col-md-3">
-        @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control" })
-        @Html.ValidationMessageFor(model => model.AdminPassword, "", new { @class = "text-danger", placeholder = "Password" })
+
+
+    <div id="footer">
+        <div id="foot-social">
+            <span>
+                <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank">
+                    <img alt="" src="~/Content/Images/facebook-w.png" style="border-width: 0px; border-style: solid;">
+                </a>
+                <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank">
+                    <img alt="" src="~/Content/Images/linkedin-w.png" style="border-width: 0px; border-style: solid;">
+                </a>
+                <a class="tw" href="https://twitter.com/TOCICO" target="_blank">
+                    <img alt="" src="~/Content/Images/twitter-w.png" style="border-width: 0px; border-style: solid;">
+                </a>
+            </span>
+        </div>
+        <div id="FooterContentArea">
+            <div class="container">
+                <!--YMPSTITLE=TgBBAA==/YMPSTITLE--><span>
+                    <style>
+                        #copyright-inner {
+                            padding-left: 0px !important;
+                            margin-right: 0px;
+                            margin-top: 0px;
+                            text-align: center;
+                        }
+
+                        #icopyright {
+                            width: 100% !important;
+                        }
+                        <!-- .mainmenu-out {
+                            padding-left: 8%;
+                        }
+                        -->
+                        .foot-copy {
+                        }
+                    </style>
+                </span>
+                <div id="footer">
+                    <div id="foot-social">
+                        <span>
+                            <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank">
+                                <img alt="" src="~/Content/Images/facebook-w.png" style="border-width: 0px; border-style: solid;">
+                            </a>
+
+                            <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank">
+
+                                <img alt="" src="~/Content/Images/linkedin-w.png" style="border-width: 0px; border-style: solid;">
+                            </a>
+
+                            <a class="tw" href="https://twitter.com/TOCICO" target="_blank">
+
+                                <img alt="" src="~/Content/Images/twitter-w.png" style="border-width: 0px; border-style: solid;">
+                            </a>
+                        </span>
+                    </div>
+                    <div class="foot-copy">
+                        <div class="footer_text">
+                            Copyright © <span id="2019"></span>
+                            TOCICO. All rights reserved.<br>
+                            Theory of Constraints International Certification Organization<br>
+                            230 Washington Avenue Extension, Suite 101<br>
+                            Albany, New York 12203-5319&nbsp; USA<br>
+                            Ph: +1 (518) 694-8478<br>
+                            Fax: +1 (518) 463-8656<br>
+                            admin@tocico.org<br>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="icopyright">
+                <div id="copyright-inner" class="text-center">
+                    <a href="/ams/legal-privacy.htm" class="">Legal</a><!-- Copyright (c) 1998-2019 YourMembership.com Inc. All Rights Reserved. Copyright: Certain elements of this website are: Copyright (c) 1998-2019, YourMembership.com, Incorporated. YourMembership.com, Incorporated provides a limited license to use its Copyrights to the entity from whose web page you are viewing. Certain elements of this website may also be copyrighted by that entity; please see its Terms of Use or contact the organization for more information. General information about copyright laws can be found at: http://www.copyright.gov/. For more specific information, please consult an attorney. -->
+                </div>
+            </div>
+        </div>
     </div>
 
-    <br />
-    <div style="float:left">
-        <input type="submit" value="Update Payment" onclick="postModel()" style="background-color:turquoise ;color: mintcream ;font-weight:bold;font-size:medium;height:30px;width:100px" />
-    </div>
-
-</div>
-
-
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+</body>
+</html>
