@@ -76,7 +76,7 @@
                     {
                         <li style="margin-bottom:15px;">
                             <div class="row">
-                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12" style="font-weight:bold;">
+                                <div class="col-lg-7 col-md-7 col-sm-12 col-xs-12">
                                     @{
                                     var transaction = Model.Transactions.FirstOrDefault(x => x.AnswerID == Model.Answers[i].ID);
                                     if (transaction != null)
@@ -102,7 +102,7 @@
                                     @if (Model.Answers[i].ControlID == 9)
                                 {
                                     <span>
-                                        <div class="inpt-form">
+                                        <div class="inpt-form thefield">
                                             <div class="input-group pull-left">
                                                 <span class="input-group-addon">%</span>
                                                 @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", required = "required", type = "number", step = ".01", @class = "form-control" })
@@ -117,8 +117,8 @@
 
                             else if (Model.Answers[i].ControlID == 11)
                             {
-                                <span class="col-md-6" style="padding-left:0px;">
-                                    <div class="inpt-form">
+                                <span>
+                                    <div class="inpt-form thefield">
                                         <div class="input-group pull-left">
                                             <span class="input-group-addon">$</span>
                                             @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control" })

@@ -308,6 +308,7 @@ ul li{
 /*img{
     max-width:100%;
 }*/
+
 .logo img {
     width: 500px;
     height: auto;
@@ -588,6 +589,7 @@ min-height: 35px;
     -webkit-box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.64);
     -moz-box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.64);
     box-shadow: 0px 0px 15px -4px rgba(0,0,0,0.64);
+    background-color:#ffffff;
 }
 .graph img{
     max-width:100%;
@@ -713,7 +715,6 @@ min-height: 35px;
     float: left;
     width: 40px;
 }
-
 .label_quer {
     float: left;
     width: 80%;
@@ -723,5 +724,14 @@ min-height: 35px;
 .modal-title .glyphicon {
     margin-right: 10px !important;
 }
-
+.form-control{
+    border-radius:4px !important;
+}
+.hero_img img{
+    max-width:100%;
+}
+.imgcircle{
+    width:75px;
+    height:75px;
+}
 
