@@ -4,40 +4,28 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5153d0f2ada44ec7b9d109e3665e18a5" Name="Diagram1">
-        <EntityTypeShape EntityType="TOCICOModel.ActionMaster" Width="1.5" PointX="3" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.AnswerMaster" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.ConstraintMaster" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.ControlMaster" Width="1.5" PointX="3" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.EnvironmentMaster" Width="1.5" PointX="10" PointY="7.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.GoalMaster" Width="1.5" PointX="10.75" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.GoalTarget" Width="1.5" PointX="13" PointY="3.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.LevelMaster" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.ProcessGoalMapping" Width="1.5" PointX="13" PointY="7.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.ProcessTemplateStep" Width="2.875" PointX="11.125" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.QuestionMaster" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.sysdiagram" Width="1.5" PointX="2.75" PointY="11.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.TargetMaster" Width="1.5" PointX="10.75" PointY="2.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="TOCICOModel.TransactionMaster" Width="1.5" PointX="7.5" PointY="1.25" IsExpanded="true" />
+      <Diagram DiagramId="3c041fe2f8164a5fbd01d1447a08a131" Name="Diagram1">
+        <EntityTypeShape EntityType="TOCICOModel.ActionMaster" Width="1.5" PointX="1.5" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOCICOModel.AnswerMaster" Width="1.5" PointX="0.75" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOCICOModel.ControlMaster" Width="1.5" PointX="1.5" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOCICOModel.GuidMaster" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOCICOModel.LevelMaster" Width="1.5" PointX="1.5" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOCICOModel.MemberMaster" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOCICOModel.ProcessTemplateMaster" Width="1.5" PointX="5.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOCICOModel.ProcessTemplateStep" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOCICOModel.QuestionMaster" Width="1.5" PointX="1.5" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOCICOModel.sysdiagram" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TOCICOModel.TransactionMaster" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
         <AssociationConnector Association="TOCICOModel.FK__AnswerMas__Actio__55009F39" ManuallyRouted="false" />
         <AssociationConnector Association="TOCICOModel.FK__AnswerMas__Contr__2DE6D218" ManuallyRouted="false" />
         <AssociationConnector Association="TOCICOModel.FK__AnswerMas__Quest__797309D9" ManuallyRouted="false" />
-        <AssociationConnector Association="TOCICOModel.FK__Transacti__Answe__68487DD7" ManuallyRouted="false" />
-        <AssociationConnector Association="TOCICOModel.FK__GoalTarge__GoalI__267ABA7A" ManuallyRouted="false" />
-        <AssociationConnector Association="TOCICOModel.FK__ProcessGo__GoalI__2A4B4B5E" ManuallyRouted="false" />
-        <AssociationConnector Association="TOCICOModel.FK__GoalTarge__Targe__276EDEB3" ManuallyRouted="false" />
+        <AssociationConnector Association="TOCICOModel.FK__Transacti__Answe__477199F1" ManuallyRouted="false" />
+        <AssociationConnector Association="TOCICOModel.FK__Transacti__Answe__4B422AD5" ManuallyRouted="false" />
         <AssociationConnector Association="TOCICOModel.FK__QuestionM__Level__5070F446" ManuallyRouted="false" />
-        <AssociationConnector Association="TOCICOModel.FK__Transacti__Quest__1ED998B2" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="TOCICOModel.ProcessTemplateMaster" Width="2.375" PointX="8.125" PointY="11" />
-        <AssociationConnector Association="TOCICOModel.FK__Environme__Proce__756D6ECB" />
-        <AssociationConnector Association="TOCICOModel.FK__ProcessGo__Proce__29572725" />
-        <AssociationConnector Association="TOCICOModel.FK__ProcessTe__Proce__59C55456" />
-        <EntityTypeShape EntityType="TOCICOModel.MemberMaster" Width="1.5" PointX="5.25" PointY="5" />
-        <AssociationConnector Association="TOCICOModel.FK__GoalTarge__Membe__4959E263" />
-        <AssociationConnector Association="TOCICOModel.FK__ProcessGo__Membe__4A4E069C" />
-        <AssociationConnector Association="TOCICOModel.FK__Transacti__Membe__467D75B8" />
-        <AssociationConnector Association="TOCICOModel.FK__Transacti__Membe__4865BE2A" />
-        <EntityTypeShape EntityType="TOCICOModel.GuidMaster" Width="1.5" PointX="5.375" PointY="11.75" />
+        <AssociationConnector Association="TOCICOModel.FK__Transacti__Membe__467D75B8" ManuallyRouted="false" />
+        <AssociationConnector Association="TOCICOModel.FK__Transacti__Membe__4865BE2A" ManuallyRouted="false" />
+        <AssociationConnector Association="TOCICOModel.FK__ProcessTe__Proce__59C55456" ManuallyRouted="false" />
+        <AssociationConnector Association="TOCICOModel.FK__Transacti__Quest__43A1090D" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

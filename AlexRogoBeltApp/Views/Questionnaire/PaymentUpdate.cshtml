@@ -1,0 +1,191 @@
+﻿@model AlexRogoBeltApp.ViewModel.ProductViewModel
+
+<head>
+
+    <style>
+        #tblInfo {
+            font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 80%;
+            border-width: 2px;
+            border-color: turquoise
+        }
+
+            #tblInfo td, #tblInfo th {
+                /*border: 1px solid #ddd;*/
+                padding: 5px;
+            }
+
+            #tblInfo tr:nth-child(even) {
+                background-color: #f2f2f2;
+            }
+
+            #tblInfo tr:hover {
+                background-color: #ddd;
+            }
+
+            #tblInfo th {
+                padding-top: 4px;
+                padding-bottom: 4px;
+                text-align: left;
+                background-color: turquoise;
+                color: white;
+                font-size: medium;
+            }
+    </style>
+
+    <script>
+        function GetMemberData() {
+            $.post("/Questionnaire/PaymentUpdate", { MId: $('#txtMemberId').val() }, function (data) {
+                var flag = data.IsYBpaymentCompleted;
+                $('#IsYBpaymentCompleted').attr('checked', data.IsYBpaymentCompleted);
+                $('#IsGBpaymentCompleted').attr('checked', data.IsGBpaymentCompleted);
+                $('#IsBBpaymentCompleted').attr('checked', data.IsBBpaymentCompleted);
+                $('#IsTOIpaymentCompleted').attr('checked', data.IsTOIpaymentCompleted);
+                $('#Name').text(data.Name);
+                $('#Email').text(data.Email);
+                $('#Company').text(data.Company);
+            });
+        }
+
+        function postModel() {
+            var model = {
+                Name: $('#Name').text(),
+                Email: $('#Email').text(),
+                Company: $('#Company').text(),
+                IsYBpaymentCompleted: $('#IsYBpaymentCompleted').is(":checked"),
+                IsGBpaymentCompleted: $('#IsGBpaymentCompleted').is(":checked"),
+                IsBBpaymentCompleted: $('#IsBBpaymentCompleted').is(":checked"),
+                IsTOIpaymentCompleted: $('#IsTOIpaymentCompleted').is(":checked"),
+                MemberId: $('#txtMemberId').val(),
+                AdminPassword: $('#AdminPassword').val()
+            };
+
+            debugger;
+            $.ajax({
+                type: "POST",
+                url: "/Questionnaire/ConfirmPayment",
+                data: JSON.stringify(model),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    $('#Error').text(response.Error);
+                },
+                failure: function (response) {
+                    //alert(response.responseText);
+                },
+                error: function (response) {
+                    //alert(response.responseText);
+                    debugger;
+                }
+            });
+        }
+    </script>
+
+    @*<script>
+            $(document).ready(function () {
+                $('#password').css("display", "none");
+            });
+        </script>*@
+
+</head>
+
+@*Textbox for input Member Id*@
+
+<div class="row">
+    <div class="col-md-4">
+        <label style="font-size:medium ;color:white">Member Id</label>
+        <br />
+        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId" })
+        @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
+    </div>
+</div>
+<br />
+
+
+<table id="tblInfo">
+    <thead>
+        <tr>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Company
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                <label id="Name"></label>
+            </td>
+            <td>
+                <label id="Email"></label>
+            </td>
+            <td>
+                <label id="Company"></label>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<br />
+<div class="row">
+    <div class="col-md-3">
+        <label style="font-size:medium ;color:white">Yellow Belt</label>
+        @Html.CheckBoxFor(model => model.IsYBpaymentCompleted)
+    </div>
+
+    <div class="col-md-3">
+        <label style="font-size:medium ;color:white">Green Belt</label>
+        @Html.CheckBoxFor(model => model.IsGBpaymentCompleted)
+    </div>
+
+    <div class="col-md-3">
+        <label style="font-size:medium ;color:white">Blue Belt</label>
+        @Html.CheckBoxFor(model => model.IsBBpaymentCompleted)
+    </div>
+
+    <div class="col-md-3">
+        <label style="font-size:medium ;color:white">TOI</label>
+        @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted)
+    </div>
+    <br />
+    <br />
+
+    @*<div style="float:left">
+            <input type="submit" value="Confirm" onclick="$('#password').show()" style="background-color:turquoise ;color: mintcream ;font-weight:bold;font-size:medium;height:30px;width:100px" />
+        </div>*@
+
+</div>
+
+@*<div id="password" style="display:none">*@
+
+<div class="alert alert-danger" role="alert">
+    <label id="Error"></label>
+    <br />
+</div>
+
+<br />
+<br />
+<div class="row">
+    <div class="col-md-2">
+        <label style="font-size:medium ;color:white">Admin Password</label>
+    </div>
+
+    <div class="col-md-3">
+        @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.AdminPassword, "", new { @class = "text-danger", placeholder = "Password" })
+    </div>
+
+    <br />
+    <div style="float:left">
+        <input type="submit" value="Update Payment" onclick="postModel()" style="background-color:turquoise ;color: mintcream ;font-weight:bold;font-size:medium;height:30px;width:100px" />
+    </div>
+
+</div>
+
+

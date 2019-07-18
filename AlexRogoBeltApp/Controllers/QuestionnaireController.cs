@@ -23,6 +23,7 @@ namespace AlexRogoBeltApp.Controllers
         {
             try
             {
+
                 bool isValid = int.TryParse(Request.QueryString["MemberId"], out int res);
 
                 if (!isValid)
@@ -61,23 +62,25 @@ namespace AlexRogoBeltApp.Controllers
                 if (!isValid)
                     return UnauthorizedRequest();
 
-               
+
                 var MemberDetails = _service.IsMemberExist(Convert.ToInt32(res));
 
-               
+
+                if (MemberDetails != null)
+                {
+
+                    if (!MemberDetails.IsYBpaymentCompleted)
+                        // TempData["INFOMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
+                        TempData["ErrorMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
+                    else if (MemberDetails.IsYBStepsCompleted)
+                        TempData["SuccessMsg"] = "You have completed the Yellow Belt.";
+                    else
+                        TempData["MemberId"] = res;
 
 
-                if (!MemberDetails.IsYBpaymentCompleted)
-                    // TempData["INFOMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
-                    TempData["ErrorMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
-                else if (MemberDetails.IsYBStepsCompleted)
-                    TempData["SuccessMsg"] = "You have completed the Yellow Belt.";
-                else
-                    TempData["MemberId"] = res;
-
-             
-
+                }
                 return View(_service.CountSlideSteps(res));
+
             }
             catch (Exception e)
             {
@@ -94,10 +97,6 @@ namespace AlexRogoBeltApp.Controllers
             {
 
                 var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
-
-
-              
-
                 if (MemberDetails == null)
                 {
                     return SessionExpired();
@@ -330,7 +329,7 @@ namespace AlexRogoBeltApp.Controllers
         private ActionResult UnauthorizedRequest()//MemberMaster MemberDetails
         {
             TempData["ErrorMsg"] = "You are not an authenticated Member.";
-            return View ("Dashboard");
+            return View("Dashboard");
         }
         private ActionResult SessionExpired()
         {
@@ -385,9 +384,8 @@ namespace AlexRogoBeltApp.Controllers
         [HttpGet]
         public ActionResult LoadMemebrGUID()
         {
-            List<int> obj = _ymservice.GetAllGuid();
-            _ymservice.GetMemberData();
-            return View();
+            //Getting all GUID from Server
+            return Json(_ymservice.GetAllGuid());
         }
         public ActionResult Logout()
         {
@@ -399,6 +397,80 @@ namespace AlexRogoBeltApp.Controllers
             FormsAuthentication.SignOut();
             Session.Abandon(); // it will clear the session at the end of request
             return RedirectToAction("Dashboard", new { MemberId = MemberDetails == null ? Convert.ToInt32(Request.QueryString["MemberId"]) : MemberDetails.MemberID });
+        }
+
+
+        //Created By Sadhana 11 july 19
+        public ActionResult Setsessiondata()
+        {
+            var MID = Request.QueryString["MemberId"];
+            bool isValid = int.TryParse(Request.QueryString["MemberId"], out int res);
+
+            HttpContext.Session["MemberId"] = res;// MemberDetails.MemberID;
+
+            return RedirectToAction("Questions");
+
+        }
+
+
+
+        //Created By Sadhana 17 july 19
+        [HttpGet]
+        public ActionResult PaymentUpdate()
+        {
+            return View();
+        }
+
+        //Created By Sadhana 16 july 19
+        [HttpPost]
+        public ActionResult PaymentUpdate(int MID)
+        {
+            ProductViewModel model = new ProductViewModel();
+            model.MemberID = MID;
+
+            if (!ModelState.IsValid)
+                return View(model);
+
+            try
+            {
+                var member = _service.GetMemberIdExist(Convert.ToInt32(model.MemberID));
+
+                if (member == null)
+                {
+                    model.Error = "Member not found";
+                    return View(model);
+                }
+
+                return Json(member, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception e)
+            {
+                return PartialView(@"~\Views\Shared\Error.cshtml");
+            }
+        }
+
+        //Created By Sadhana 16 july 19
+        [HttpPost]
+        public ActionResult ConfirmPayment(ProductViewModel model)
+        {
+            if ((_service.CheckAdminPassword(model)) == true)
+            {
+                var result = _service.ConfirmPayment(model);
+                if (result == "Success")
+                {
+                    model.Error = "Data Updated successfully";
+                    return View("PaymentUpdate", model);
+                }
+            }
+            else
+            {
+                //var member = _service.GetMemberIdExist(Convert.ToInt32(model.MemberID));
+                //model.Email = member.Email;
+                //model.Company = member.Company;
+                //model.Name = member.Name;
+                model.Error = "Invalid Password";
+            }
+            return Json(model, JsonRequestBehavior.AllowGet);
         }
     }
 }

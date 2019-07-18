@@ -5,6 +5,7 @@ using System.Web;
 using AlexRogoBeltApp.Entities;
 using AlexRogoBeltApp.ViewModel;
 
+
 namespace AlexRogoBeltApp.Services
 {
     public class Service
@@ -153,9 +154,33 @@ namespace AlexRogoBeltApp.Services
             }
             return null;
         }
+
+        public ProductViewModel GetMemberIdExist(int MemberId)
+        {
+            var member = db.MemberMasters.FirstOrDefault(x => x.MemberID == MemberId);
+
+            if (member != null)
+            {
+                return new ProductViewModel
+                {
+                    MemberID = member.MemberID,
+                    Name = member.FirstName + member.LastName,
+                    Company = member.Company,
+                    Email = member.Email,
+                    // Eleminate HasValue check onec the AllowNull has been set to false
+                    IsBBpaymentCompleted = member.IsBBpaymentCompleted,
+                    IsGBpaymentCompleted = member.IsGBpaymentCompleted,
+                    IsYBpaymentCompleted = member.IsYBpaymentCompleted,
+                    IsTOIpaymentCompleted = member.IsTOIpaymentCompleted,
+                };
+            }
+
+            return null;
+        }
+
         public List<ProcessTemplateViewModel> GetAllTemplates(int id)
         {
-            var processes = db.ProcessTemplateMasters.Where(x => !x.Deactive && x.EnvironmentID == id);
+            var processes = db.ProcessTemplateMasters.Where(x => !x.Deactive);
 
             if (processes == null || processes.Count() == 0)
                 return null;
@@ -244,6 +269,44 @@ namespace AlexRogoBeltApp.Services
 
         }
 
+        public string ConfirmPayment(ProductViewModel model)
+        {
+            var obj = db.MemberMasters.Where(y => y.MemberID == model.MemberID).FirstOrDefault();
 
+            if (obj != null)
+            {
+                obj.MemberID = model.MemberID;
+                //AdminPassword = x.Mdetail.;
+                obj.IsYBpaymentCompleted = model.IsYBpaymentCompleted;
+                obj.IsGBpaymentCompleted = model.IsGBpaymentCompleted;
+                obj.IsBBpaymentCompleted = model.IsBBpaymentCompleted;
+                obj.IsTOIpaymentCompleted = model.IsTOIpaymentCompleted;
+                // obj.Error=
+
+
+            }
+
+
+            db.SaveChanges();
+
+            if (obj == null)
+            {
+                return "Error Not Found";
+            }
+
+            return "Success";
+        }
+
+        public bool CheckAdminPassword(ProductViewModel model)
+        {
+            var result = db.MemberMasters.Where(y => y.MemberID == 1 && y.WebsiteID == 1 && y.MemberUserName == "Admin" && y.Email == model.AdminPassword).FirstOrDefault();
+            if (result == null)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
     }
 }

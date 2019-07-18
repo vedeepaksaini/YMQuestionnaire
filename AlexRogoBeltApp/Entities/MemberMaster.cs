@@ -17,8 +17,6 @@ namespace AlexRogoBeltApp.Entities
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MemberMaster()
         {
-            this.GoalTargets = new HashSet<GoalTarget>();
-            this.ProcessGoalMappings = new HashSet<ProcessGoalMapping>();
             this.TransactionMasters = new HashSet<TransactionMaster>();
             this.TransactionMasters1 = new HashSet<TransactionMaster>();
         }
@@ -42,11 +40,13 @@ namespace AlexRogoBeltApp.Entities
         public string MemberSuspended { get; set; }
         public bool IsYBpaymentCompleted { get; set; }
         public bool IsYBStepsCompleted { get; set; }
+        public bool IsGBpaymentCompleted { get; set; }
+        public bool IsGBStepsCompleted { get; set; }
+        public bool IsBBpaymentCompleted { get; set; }
+        public bool IsBBStepsCompleted { get; set; }
+        public bool IsTOIpaymentCompleted { get; set; }
+        public bool IsTOIStepsCompleted { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GoalTarget> GoalTargets { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ProcessGoalMapping> ProcessGoalMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionMaster> TransactionMasters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -27,20 +27,14 @@ namespace AlexRogoBeltApp.Entities
     
         public virtual DbSet<ActionMaster> ActionMasters { get; set; }
         public virtual DbSet<AnswerMaster> AnswerMasters { get; set; }
-        public virtual DbSet<ConstraintMaster> ConstraintMasters { get; set; }
         public virtual DbSet<ControlMaster> ControlMasters { get; set; }
-        public virtual DbSet<EnvironmentMaster> EnvironmentMasters { get; set; }
-        public virtual DbSet<GoalMaster> GoalMasters { get; set; }
-        public virtual DbSet<GoalTarget> GoalTargets { get; set; }
+        public virtual DbSet<GuidMaster> GuidMasters { get; set; }
         public virtual DbSet<LevelMaster> LevelMasters { get; set; }
-        public virtual DbSet<ProcessGoalMapping> ProcessGoalMappings { get; set; }
+        public virtual DbSet<MemberMaster> MemberMasters { get; set; }
+        public virtual DbSet<ProcessTemplateMaster> ProcessTemplateMasters { get; set; }
         public virtual DbSet<ProcessTemplateStep> ProcessTemplateSteps { get; set; }
         public virtual DbSet<QuestionMaster> QuestionMasters { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
-        public virtual DbSet<TargetMaster> TargetMasters { get; set; }
         public virtual DbSet<TransactionMaster> TransactionMasters { get; set; }
-        public virtual DbSet<ProcessTemplateMaster> ProcessTemplateMasters { get; set; }
-        public virtual DbSet<MemberMaster> MemberMasters { get; set; }
-        public virtual DbSet<GuidMaster> GuidMasters { get; set; }
     }
 }

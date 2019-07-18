@@ -18,6 +18,7 @@ namespace AlexRogoBeltApp.Entities
         public AnswerMaster()
         {
             this.TransactionMasters = new HashSet<TransactionMaster>();
+            this.TransactionMasters1 = new HashSet<TransactionMaster>();
         }
     
         public int ID { get; set; }
@@ -34,5 +35,7 @@ namespace AlexRogoBeltApp.Entities
         public virtual QuestionMaster QuestionMaster { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TransactionMaster> TransactionMasters { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TransactionMaster> TransactionMasters1 { get; set; }
     }
 }

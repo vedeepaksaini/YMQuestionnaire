@@ -7,11 +7,10 @@
             </div>
 
             <div id="infoMsg" class="modal-body text-left">                
-
-
             </div>
             <div class="modal-footer">
-                <a href="#" class="mt-2 btn btn-info btn-sm">Continue Again</a>
+                @*<a href="#" class="mt-2 btn btn-info btn-sm">Continue Again</a>*@
+                @Html.ActionLink("Continue Again", "Setsessiondata", "Questionnaire", new { @class = "btn btn-info" })
             </div>
 
         </div><!-- /.modal-content -->

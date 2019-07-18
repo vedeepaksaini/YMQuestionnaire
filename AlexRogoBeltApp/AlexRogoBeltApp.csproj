@@ -173,19 +173,7 @@
     <Compile Include="Entities\AnswerMaster.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\ConstraintMaster.cs">
-      <DependentUpon>TocicoEntities.tt</DependentUpon>
-    </Compile>
     <Compile Include="Entities\ControlMaster.cs">
-      <DependentUpon>TocicoEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\EnvironmentMaster.cs">
-      <DependentUpon>TocicoEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GoalMaster.cs">
-      <DependentUpon>TocicoEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\GoalTarget.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\GuidMaster.cs">
@@ -195,9 +183,6 @@
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\MemberMaster.cs">
-      <DependentUpon>TocicoEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\ProcessGoalMapping.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\ProcessTemplateMaster.cs">
@@ -210,9 +195,6 @@
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\sysdiagram.cs">
-      <DependentUpon>TocicoEntities.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\TargetMaster.cs">
       <DependentUpon>TocicoEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\TocicoEntities.Context.cs">
@@ -245,6 +227,7 @@
     <Compile Include="ViewModel\MemberViewModel.cs" />
     <Compile Include="ViewModel\ProcessTemplateStepsViewModel.cs" />
     <Compile Include="ViewModel\ProcessTemplateViewModel.cs" />
+    <Compile Include="ViewModel\ProductViewModel.cs" />
     <Compile Include="ViewModel\Steps.cs" />
     <Compile Include="ViewModel\Questionnaire.cs" />
     <Compile Include="ViewModel\QuestionViewModel.cs" />
@@ -347,6 +330,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\fabicon\manifest.json" />
     <EntityDeploy Include="Entities\TocicoEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TocicoEntities.Designer.cs</LastGenOutput>
@@ -354,7 +338,6 @@
     <Content Include="Entities\TocicoEntities.edmx.diagram">
       <DependentUpon>TocicoEntities.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\fabicon\manifest.json" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
@@ -412,8 +395,9 @@
     <Content Include="Views\YellowBelt\slide20.cshtml" />
     <Content Include="Views\YellowBelt\slide21.cshtml" />
     <Content Include="Views\YellowBelt\slide22.cshtml" />
-    <Content Include="Views\Shared\SuccessPopup.cshtml" />
     <Content Include="Views\Shared\InfoPopup.cshtml" />
+    <Content Include="Views\Shared\SuccessPopup.cshtml" />
+    <Content Include="Views\Questionnaire\PaymentUpdate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

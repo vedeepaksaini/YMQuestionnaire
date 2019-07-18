@@ -15,10 +15,9 @@ namespace AlexRogoBeltApp.Entities
     public partial class GuidMaster
     {
         public int ID { get; set; }
-        public Nullable<int> MemberId { get; set; }
         public string GUID { get; set; }
-        public System.DateTime UpdateOn { get; set; }
-        public System.DateTime CreatedON { get; set; }
+        public Nullable<System.DateTime> UpdateOn { get; set; }
+        public Nullable<System.DateTime> CreatedON { get; set; }
         public Nullable<System.DateTime> DeletedOn { get; set; }
     }
 }
