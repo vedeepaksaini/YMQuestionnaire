@@ -500,5 +500,14 @@ namespace AlexRogoBeltApp.Controllers
             }
             return Json(model, JsonRequestBehavior.AllowGet);
         }
+
+
+        //Created By Sadhana 17 july 19
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
     }
 }
