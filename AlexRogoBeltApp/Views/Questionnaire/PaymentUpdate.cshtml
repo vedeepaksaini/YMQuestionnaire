@@ -40,7 +40,7 @@
             $('#ErrorInvalidPwd').text("");
             $('#ErrorNotFound').text("");
             $('#ErrorRequired').text("");
-            $('#Success').text("");
+            $('#success').text("");
 
 
 
@@ -254,8 +254,10 @@
                         Member ID:
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
-                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", type="number" })
-                        <span id="success"></span>                        
+                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", type = "number" })
+                      
+                        <span id="ErrorRequired" style="color:#ff0000; font-size:12px;"></span>
+                        <span id="success"></span>
                     </div>
                 </div>
 
