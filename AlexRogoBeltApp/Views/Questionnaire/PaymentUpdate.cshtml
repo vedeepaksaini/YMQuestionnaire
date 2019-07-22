@@ -32,7 +32,33 @@
     <script>
         //method to get memberRecord onblur event of textbox
         function GetMemberData() {
+
             debugger;
+
+            //clear all error messages
+
+            $('#ErrorInvalidPwd').text("");
+            $('#ErrorNotFound').text("");
+            $('#ErrorRequired').text("");
+            $('#Success').text("");
+
+
+
+            
+
+
+
+            if (!document.getElementById("txtMemberId").checkValidity()) {
+                $('#ErrorRequired').text("Member id is required");
+                document.getElementById("mtable").style.display = "none";
+                document.getElementById("mchekboxes").style.display = "none";
+                document.getElementById("updateMember").style.display = "none";
+                document.getElementById("updatePayment").style.display = "none";
+                document.getElementById("adminPassword").style.display = "none";
+
+                return;
+            }
+
             $.post("/Questionnaire/PaymentUpdate", { MId: $('#txtMemberId').val() }, function (data) {
                 debugger;
 
@@ -54,9 +80,9 @@
                 if (data.MemberID == txtMemberId.value) {
                     document.getElementById("mtable").style.display = "block";
                     document.getElementById("mchekboxes").style.display = "block";
-                    document.getElementById("updatePayment").style.display = "block";
                     document.getElementById("updateMember").style.display = "none";
                     document.getElementById("updatePayment").style.display = "none";
+                    document.getElementById("adminPassword").style.display = "none";
 
 
                 }
@@ -68,7 +94,7 @@
                     document.getElementById("adminPassword").style.display = "block";
                     document.getElementById("ErrorNotFound").style.display = "block";
 
-                    
+
 
 
 
@@ -167,8 +193,8 @@
             debugger;
             document.getElementById("adminPassword").style.display = "block";
             document.getElementById("updatePayment").style.display = "block";
-           
-                }
+
+        }
     </script>
 
 
@@ -227,8 +253,9 @@
                         Member ID:
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", })
+                        @Html.TextBoxFor(model => model.MemberID, new { required = "required", type = "number", onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", maxlength = "8" })
 
+                        <span id="ErrorRequired" style="color:#ff0000; font-size:12px;"></span>
                         <span id="success"></span>
                     </div>
                 </div>
@@ -276,7 +303,7 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 Yellow Belt
-                                @Html.CheckBoxFor(model => model.IsYBpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
+                                @Html.CheckBoxFor(model => model.IsYBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
                                 <div class="control_indicator"></div>
                             </label>
                         </div>
@@ -285,7 +312,7 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 Green Belt
-                                @Html.CheckBoxFor(model => model.IsGBpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
+                                @Html.CheckBoxFor(model => model.IsGBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
                                 <div class="control_indicator"></div>
                             </label>
                         </div>
@@ -294,7 +321,7 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 Black Belt
-                                @Html.CheckBoxFor(model => model.IsBBpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
+                                @Html.CheckBoxFor(model => model.IsBBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
                                 <div class="control_indicator"></div>
                             </label>
                         </div>
@@ -303,7 +330,7 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 TOC Expert
-                                @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
+                                @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
                                 <div class="control_indicator"></div>
                             </label>
                         </div>
@@ -322,7 +349,7 @@
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 pass_field" ,id="">
                         <div class="col-lg-4 col-md-4 col-sm-12 pass_field" ,id="divAdmin">
-                            @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required", })
+                            @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required" })
                             <span id="ErrorInvalidPwd" style="color:#ff0000; font-size:12px;"></span>
                             @Html.ValidationMessageFor(model => model.AdminPassword, "", new { @class = "text-danger", placeholder = "Password" })
 
@@ -332,7 +359,7 @@
                     <div>
                         @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger", @id = "ErrorNotFound" })
 
-                     
+
                     </div>
                 </div>
                 <div class="row" style="margin-top:40px;">
@@ -344,7 +371,7 @@
                         <input type="submit" value="Update Data" id="updateMember" class="btn btn-primary btn-sm" onclick="PostData()" />
                     </div>
 
-                    
+
                     @*<div class="pass_error" id="ErrorInvalidPwd"></div>*@
 
                 </div>
