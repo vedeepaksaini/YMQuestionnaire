@@ -477,139 +477,158 @@
         margin-right: 0px;
     }
     
+    
+}
+@media only screen and (max-width:991px) {
+    .check_tile {
+        margin-bottom: 10px;
+    }
 }
 
     @media only screen and (max-width: 1200px) {
         .step {
             display: none;
         }
+
         .ml_remain_progress {
             margin-left: -6px;
         }
+
         .text_lower {
             overflow-x: auto !important;
         }
     }
-@media only screen and (min-width:320px) and (max-width:349px) {
-    .text_left, .text_right {
-        font-size: 12px !important;
-    }
 
-        .text_right .inner_r {
-            padding-top: 7%;
-            font-weight: bold;
+    @media only screen and (min-width:320px) and (max-width:349px) {
+        .text_left, .text_right {
+            font-size: 12px !important;
         }
 
-        .text_right .inner_g {
-            padding-top: 21%;
-            font-weight: bold;
-        }
-}
-@media only screen and (min-width:350px) and (max-width:420px) {
-    .text_left, .text_right {
-        font-size: 12px !important;
+            .text_right .inner_r {
+                padding-top: 7%;
+                font-weight: bold;
+            }
+
+            .text_right .inner_g {
+                padding-top: 21%;
+                font-weight: bold;
+            }
     }
 
-    .text_right .inner_r {
-        padding-top: 7%;
-        font-weight: bold;
-    }
-
-    .text_right .inner_g {
-        padding-top: 52%;
-        font-weight: bold;
-    }
-}
-@media only screen and (min-width:421px) and (max-width:500px) {
-    .text_left, .text_right {
-        font-size: 12px !important;
-    }
-
-        .text_right .inner_r {
-            padding-top: 7%;
-            font-weight: bold;
+    @media only screen and (min-width:350px) and (max-width:420px) {
+        .text_left, .text_right {
+            font-size: 12px !important;
         }
 
-        .text_right .inner_g {
-            padding-top: 74%;
-            font-weight: bold;
+            .text_right .inner_r {
+                padding-top: 7%;
+                font-weight: bold;
+            }
+
+            .text_right .inner_g {
+                padding-top: 52%;
+                font-weight: bold;
+            }
+    }
+
+    @media only screen and (min-width:421px) and (max-width:500px) {
+        .text_left, .text_right {
+            font-size: 12px !important;
         }
-}
-@media only screen and (min-width:540px) and (max-width:600px) {
-    .hourshift {        
-        float: left;
-        width: 50%;
-        margin-top: 45%;        
+
+            .text_right .inner_r {
+                padding-top: 7%;
+                font-weight: bold;
+            }
+
+            .text_right .inner_g {
+                padding-top: 74%;
+                font-weight: bold;
+            }
     }
-}
-@media only screen and (min-width:601px) and (max-width:650px) {
-    .hourshift {
-        float: left;
-        width: 50%;
-        margin-top: 36%;
+
+    @media only screen and (min-width:540px) and (max-width:600px) {
+        .hourshift {
+            float: left;
+            width: 50%;
+            margin-top: 45%;
+        }
     }
-}
-@media only screen and (min-width:651px) and (max-width:800px) {
-    .hourshift {
-        float: left;
-        width: 50%;
-        margin-top: 30%;
+
+    @media only screen and (min-width:601px) and (max-width:650px) {
+        .hourshift {
+            float: left;
+            width: 50%;
+            margin-top: 36%;
+        }
     }
-}
-@media only screen and (min-width:801px) and (max-width:1200px) {
-    .hourshift {
-        float: left;
-        width: 50%;
-        margin-top: 25%;
+
+    @media only screen and (min-width:651px) and (max-width:800px) {
+        .hourshift {
+            float: left;
+            width: 50%;
+            margin-top: 30%;
+        }
     }
-}
-@media only screen and (max-width:430px) {
-    .input-group .passText {
-        color: green;
-        background-color: #ffffff;
-        display: block !important;
-        position: absolute;
-        font-size: 12px;
-        z-index: 99;
-        top: 10px;
-        right: 7px;
-        animation: blink 0.8s linear infinite;
+
+    @media only screen and (min-width:801px) and (max-width:1200px) {
+        .hourshift {
+            float: left;
+            width: 50%;
+            margin-top: 25%;
+        }
     }
-}
-@media only screen and (min-width:431px) and (max-width:767px) {
-    .input-group .passText {
-        color: green;
-        background-color: transparent;
-        display: block !important;
-        position: absolute;
-        font-size: 12px;
-        z-index: 99;
-        top: 10px;
-        right: -30px;
-        animation: blink 0.8s linear infinite;
+
+    @media only screen and (max-width:430px) {
+        .input-group .passText {
+            color: green;
+            background-color: #ffffff;
+            display: block !important;
+            position: absolute;
+            font-size: 12px;
+            z-index: 99;
+            top: 10px;
+            right: 7px;
+            animation: blink 0.8s linear infinite;
+        }
     }
-}
-@media only screen and (min-width:992px) and (max-width:1199px) {
-    .input-group .passText {
-        color: green;
-        background-color: #ffffff;
-        display: block !important;
-        position: absolute;
-        font-size: 12px;
-        z-index: 99;
-        top: 10px;
-        right: 7px;
-        animation: blink 0.8s linear infinite;
+
+    @media only screen and (min-width:431px) and (max-width:767px) {
+        .input-group .passText {
+            color: green;
+            background-color: transparent;
+            display: block !important;
+            position: absolute;
+            font-size: 12px;
+            z-index: 99;
+            top: 10px;
+            right: -30px;
+            animation: blink 0.8s linear infinite;
+        }
     }
-    .input-group .form-control {
-        position: relative;
-        z-index: 2;
-        float: left;
-        width: 100%;
-        margin-bottom: 0;
+
+    @media only screen and (min-width:992px) and (max-width:1199px) {
+        .input-group .passText {
+            color: green;
+            background-color: #ffffff;
+            display: block !important;
+            position: absolute;
+            font-size: 12px;
+            z-index: 99;
+            top: 10px;
+            right: 7px;
+            animation: blink 0.8s linear infinite;
+        }
+
+        .input-group .form-control {
+            position: relative;
+            z-index: 2;
+            float: left;
+            width: 100%;
+            margin-bottom: 0;
+        }
+
+        .thefield .input-group input {
+            max-width: 199px !important;
+        }
     }
-    .thefield .input-group input {
-        max-width: 199px !important;
-    }
-    
-}
