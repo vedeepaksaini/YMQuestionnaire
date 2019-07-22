@@ -398,6 +398,7 @@
     <Content Include="Views\Shared\InfoPopup.cshtml" />
     <Content Include="Views\Shared\SuccessPopup.cshtml" />
     <Content Include="Views\Questionnaire\PaymentUpdate.cshtml" />
+    <Content Include="Views\Questionnaire\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
