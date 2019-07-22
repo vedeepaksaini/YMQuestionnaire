@@ -107,39 +107,7 @@ namespace AlexRogoBeltApp.Services
             }));
             db.SaveChanges();
 
-            //if (models.Count != 0)
-            //{
-            //    var questionId = models.FirstOrDefault().QuestionID;
-            //    var existingTransactions = db.TransactionMasters.Where(x => x.MemberID == 1 && x.QuestionID == questionId);
-
-            //    //Update Existing records
-            //    foreach (var transaction in models)
-            //    {
-            //        var record = existingTransactions.FirstOrDefault(x => x.AnswerID == transaction.AnswerID);
-            //        if (record != null)
-            //            record.ControlValue = transaction.ControlValue;
-            //    }
-            //    db.SaveChanges();
-
-            //    //Remove existing record from models
-            //    foreach (var transaction in existingTransactions)
-            //    {
-            //        var existing = models.FirstOrDefault(x => x.MemberID == transaction.MemberID && x.QuestionID == transaction.QuestionID && x.AnswerID == transaction.AnswerID);
-            //        if (existing != null)
-            //            models.Remove(existing);
-            //    }
-
-            //    //Insert fresh records
-            //    db.TransactionMasters.AddRange(models.Select(x => new TransactionMaster
-            //    {
-            //        AnswerID = x.AnswerID,
-            //        Deactive = x.Deactive,
-            //        MemberID = x.MemberID,
-            //        QuestionID = x.QuestionID,
-            //        ControlValue = x.ControlValue
-            //    }));
-            //    db.SaveChanges();
-            //}
+           
         }
 
 
@@ -167,7 +135,7 @@ namespace AlexRogoBeltApp.Services
                     Name = member.FirstName + member.LastName,
                     Company = member.Company,
                     Email = member.Email,
-                    // Eleminate HasValue check onec the AllowNull has been set to false
+                  
                     IsBBpaymentCompleted = member.IsBBpaymentCompleted,
                     IsGBpaymentCompleted = member.IsGBpaymentCompleted,
                     IsYBpaymentCompleted = member.IsYBpaymentCompleted,
@@ -206,26 +174,7 @@ namespace AlexRogoBeltApp.Services
         {
             return db.TransactionMasters.Where(x => x.QuestionID == id && x.MemberID == memberId).OrderByDescending(x => x.ID).Select(x => x.ControlValue).ToList();
 
-            //var process = db.ProcessTemplateMasters.FirstOrDefault(x => !x.Deactive && x.ID == 2);
-
-            //if (process == null)
-            //    return null;
-
-            //return new ProcessTemplateViewModel
-            //{
-            //    ID = process.ID,
-            //    ProcessTemplateName = process.ProcessTemplateName,
-            //    Steps = process.Steps,
-            //    Deactive = process.Deactive,
-            //    ProcessTemplateSteps = process.ProcessTemplateSteps.OrderByDescending(x => x.ProcessOrder).Where(z => !z.Deactive && z.ProcessID == process.ID).Select(q => new ProcessTemplateStepsViewModel
-            //    {
-            //        ID = q.ID,
-            //        ProcessID = q.ProcessID,
-            //        ProcessOrder = q.ProcessOrder,
-            //        StepDescription = q.StepDescription.Trim(),
-            //        Deactive = q.Deactive
-            //    }).ToList()
-            //};
+       
         }
 
         public List<CalculationsViewModel> GetCalculation(int memberID)
@@ -281,9 +230,6 @@ namespace AlexRogoBeltApp.Services
                 obj.IsGBpaymentCompleted = model.IsGBpaymentCompleted;
                 obj.IsBBpaymentCompleted = model.IsBBpaymentCompleted;
                 obj.IsTOIpaymentCompleted = model.IsTOIpaymentCompleted;
-                // obj.Error=
-
-
             }
 
 

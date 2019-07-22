@@ -28,32 +28,59 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    
 
     <script>
-        
-        function GetMemberData() {            
+        //method to get memberRecord onblur event of textbox
+        function GetMemberData() {
+            debugger;
             $.post("/Questionnaire/PaymentUpdate", { MId: $('#txtMemberId').val() }, function (data) {
                 debugger;
-                var flag = data.IsYBpaymentCompleted;
+
+
                 $('#IsYBpaymentCompleted').attr('checked', data.IsYBpaymentCompleted);
                 $('#IsGBpaymentCompleted').attr('checked', data.IsGBpaymentCompleted);
                 $('#IsBBpaymentCompleted').attr('checked', data.IsBBpaymentCompleted);
                 $('#IsTOIpaymentCompleted').attr('checked', data.IsTOIpaymentCompleted);
                 $('#Name').text(data.Name);
                 $('#Email').text(data.Email);
-                $('#Company').text(data.Company);                
-                
+                $('#Company').text(data.Company);
+                if (data.Error != null) {
+                    $('#ErrorNotFound').text(data.Error);
+                }
+
+
+
+
                 if (data.MemberID == txtMemberId.value) {
                     document.getElementById("mtable").style.display = "block";
+                    document.getElementById("mchekboxes").style.display = "block";
+                    document.getElementById("updatePayment").style.display = "block";
+                    document.getElementById("updateMember").style.display = "none";
+                    document.getElementById("updatePayment").style.display = "none";
+
+
                 }
                 else {
                     document.getElementById("mtable").style.display = "none";
-                }  
-            });            
+                    document.getElementById("mchekboxes").style.display = "none";
+                    document.getElementById("updatePayment").style.display = "none";
+                    document.getElementById("updateMember").style.display = "block";
+                    document.getElementById("adminPassword").style.display = "block";
+                    document.getElementById("ErrorNotFound").style.display = "block";
+
+                    
+
+
+
+                }
+
+
+            });
         }
 
+        //method to update data when member is valid *******Priyank Sir 19 July 2019
         function postModel() {
+            debugger;
             var model = {
                 Name: $('#Name').text(),
                 Email: $('#Email').text(),
@@ -66,48 +93,91 @@
                 AdminPassword: $('#AdminPassword').val()
             };
 
-            //debugger;
             $.ajax({
+
                 type: "POST",
                 url: "/Questionnaire/ConfirmPayment",
                 data: JSON.stringify(model),
                 contentType: "application/json; charset=utf-8",
                 dataType: "json",
                 success: function (response) {
-                    $('#Error').text(response.Error);
+                    debugger;
+                    if (response.Success != null) {
+                        $('#success').text(response.Success);
+                        document.getElementById("mtable").style.display = "none";
+                        document.getElementById("mchekboxes").style.display = "none";
+                        document.getElementById("updatePayment").style.display = "none";
+                        document.getElementById("updateMember").style.display = "none";
+                        document.getElementById("adminPassword").style.display = "none";
+                    }
+                    else {
+                        $('#ErrorInvalidPwd').text(response.Error);
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+
+        //method to update data when member not found *****sadhana 22 july2019
+        function PostData() {
+            debugger;
+
+            var url = "/Questionnaire/LoadMemebrGUID";
+
+            $.ajax({
+                url: url,
+                data: "id=" + AdminPassword.value,
+                cache: false,
+                type: "POST",
+                dataType: "json",
+                success: function (response) {
+                    debugger;
+                    if (response.Success != null) {
+                        $('#success').text(response.Success);
+                        document.getElementById("mtable").style.display = "none";
+                        document.getElementById("mchekboxes").style.display = "none";
+                        document.getElementById("updatePayment").style.display = "none";
+                        document.getElementById("updateMember").style.display = "none";
+                        document.getElementById("adminPassword").style.display = "none";
+                    }
+                    else {
+                        $('#ErrorInvalidPwd').text(response.Error);
+                    }
+
                 },
                 failure: function (response) {
                     //alert(response.responseText);
                 },
                 error: function (response) {
-                    //alert(response.responseText);
+                    debugger;
+                    $('#ErrorInvalidPwd').text(response.Error);
                     debugger;
                 }
+
             });
         }
+
+        //Method to show admin textbox on blur event of checkboxes
+        function OnchangeEventCheckBox() {
+            debugger;
+            document.getElementById("adminPassword").style.display = "block";
+            document.getElementById("updatePayment").style.display = "block";
+           
+                }
     </script>
 
-    @*<script>
-            $(document).ready(function () {
-                $('#password').css("display", "none");
-            });
-        </script>*@
 
 </head>
 <body>
 
     @*Textbox for input Member Id*@
 
-    <div class="toolbar-out" style="background-color:#ffffff;">
-        <div class="container">
-            <div id="itoolbar_bg">
-                <div id="itoolbar" class="col-md-12  text-right">
-                    <a href="@Url.Action("Logout", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })">Sign Out</a>
-                </div>
 
-            </div>
-        </div>
-    </div>
     <div class="header-out">
         <div class="container">
             <div class="header">
@@ -157,22 +227,21 @@
                         Member ID:
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required" })
-                        @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
+                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", })
+
+                        <span id="success"></span>
                     </div>
                 </div>
 
                 @*<div class="row">
-            <div class="col-md-4">
-                <label>Member Id</label>
-                <br />
-                @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId" })
-                @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
-            </div>
-        </div>*@
+                        <div class="col-md-4">
+                            <label>Member Id</label>
+                            <br />
+                            @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId" })
+                            @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
+                        </div>
+                    </div>*@
 
-                
-                
                 <div class="row" style="margin-bottom:20px;" id="mtable">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="table-responsive">
@@ -202,12 +271,12 @@
                     </div>
                 </div>
 
-                <div class="row" style="margin-bottom:20px;">
+                <div class="row" style="margin-bottom:20px;" id="mchekboxes">
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 Yellow Belt
-                                @Html.CheckBoxFor(model => model.IsYBpaymentCompleted)
+                                @Html.CheckBoxFor(model => model.IsYBpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
                                 <div class="control_indicator"></div>
                             </label>
                         </div>
@@ -216,7 +285,7 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 Green Belt
-                                @Html.CheckBoxFor(model => model.IsGBpaymentCompleted)
+                                @Html.CheckBoxFor(model => model.IsGBpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
                                 <div class="control_indicator"></div>
                             </label>
                         </div>
@@ -225,7 +294,7 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 Black Belt
-                                @Html.CheckBoxFor(model => model.IsBBpaymentCompleted)
+                                @Html.CheckBoxFor(model => model.IsBBpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
                                 <div class="control_indicator"></div>
                             </label>
                         </div>
@@ -234,7 +303,7 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 TOC Expert
-                                @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted)
+                                @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
                                 <div class="control_indicator"></div>
                             </label>
                         </div>
@@ -243,27 +312,45 @@
                 <hr style="margin:50px 0;" />
 
                 @*<div class="alert alert-danger" role="alert">
-            <label id="Error"></label>
-        </div>*@
+                        <label id="Error"></label>
+                    </div>*@
 
 
-                <div class="row" style="margin-top:50px;">
+                <div class="row" style="margin-top:50px;" id="adminPassword">
                     <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
                         Admin Password:
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 pass_field">
-                        @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.AdminPassword, "", new { @class = "text-danger", placeholder = "Password" })
-                        <div class="pass_error" id="Error"></div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 pass_field" ,id="">
+                        <div class="col-lg-2 col-md-2 col-sm-12 fi_label" ,id="divAdmin">
+                            @*<div class="col-lg-4 col-md-4 col-sm-12 pass_field" ,id="divAdmin">*@
+                            @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required", })
+
+                            <span id="ErrorInvalidPwd" style="color:#ff0000; font-size:12px;"></span>
+                        </div>
+                        <div class="col-lg-4 col-md-4 col-sm-12">
+                            @Html.ValidationMessageFor(model => model.AdminPassword, "", new { @class = "text-danger", placeholder = "Password" })
+                            </div>
+                        </div>
+
                     </div>
-                </div>
+                        <div>
+                            @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger", @id = "ErrorNotFound" })
+
+
+                        </div>
+                    </div>
                 <div class="row" style="margin-top:40px;">
                     <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
 
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <input type="submit" value="Update Payment" class="btn btn-primary btn-sm" onclick="postModel()" />
+                        <input type="submit" value="Update Payment" id="updatePayment" class="btn btn-primary btn-sm" onclick="postModel()" />
+                        <input type="submit" value="Update Data" id="updateMember" class="btn btn-primary btn-sm" onclick="PostData()" />
                     </div>
+
+                    
+                    @*<div class="pass_error" id="ErrorInvalidPwd"></div>*@
+
                 </div>
 
             </div>

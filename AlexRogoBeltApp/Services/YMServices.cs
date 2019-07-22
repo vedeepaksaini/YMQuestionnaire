@@ -85,6 +85,12 @@ namespace AlexRogoBeltApp.Services
                         MemberSuspended = profile.Membership,
                         IsYBpaymentCompleted = false,
                         IsYBStepsCompleted = false,
+                        IsGBpaymentCompleted = false,
+                        IsGBStepsCompleted=false,
+                        IsBBpaymentCompleted=false,
+                        IsBBStepsCompleted=false,
+                        IsTOIpaymentCompleted=false,
+                        IsTOIStepsCompleted=false
                     });
                 }
             }

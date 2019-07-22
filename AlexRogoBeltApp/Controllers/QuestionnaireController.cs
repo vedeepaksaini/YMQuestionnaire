@@ -77,9 +77,10 @@ namespace AlexRogoBeltApp.Controllers
                     else
                         TempData["MemberId"] = res;
 
-
+                    return View(_service.CountSlideSteps(res));
                 }
-                return View(_service.CountSlideSteps(res));
+                return UnauthorizedRequest();
+
 
             }
             catch (Exception e)
@@ -333,9 +334,14 @@ namespace AlexRogoBeltApp.Controllers
         }
         private ActionResult SessionExpired()
         {
+            var MemberDetails = _service.IsMemberExist(Convert.ToInt32(Request.QueryString["MemberId"]));
+            if (MemberDetails==null)
+            {
+                return UnauthorizedRequest();
+            }
             TempData["InfoMsg"] = "Session has been expired.";
 
-            return RedirectToAction("Dashboard", new { MemberId = Request.QueryString["MemberId"] });
+            return View("Dashboard");
         }
 
         [WebMethod]
@@ -381,11 +387,25 @@ namespace AlexRogoBeltApp.Controllers
             //return RedirectToAction("Questions");
             return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
         }
-        [HttpGet]
-        public ActionResult LoadMemebrGUID()
+        [HttpPost]
+        public ActionResult LoadMemebrGUID( string id)
         {
-            //Getting all GUID from Server
-            return Json(_ymservice.GetAllGuid());
+            ProductViewModel model = new ProductViewModel();
+            model.AdminPassword = id;
+            if ((_service.CheckAdminPassword(model)) == true)
+
+            {                //Getting all GUID from Server
+                 model.Success = _ymservice.GetAllGuid();
+                 return Json(model, JsonRequestBehavior.AllowGet);
+
+
+            }
+            else
+            {
+                model.Error = "Invalid Password";
+                return Json(model, JsonRequestBehavior.AllowGet);
+            }
+
         }
         public ActionResult Logout()
         {
@@ -401,14 +421,18 @@ namespace AlexRogoBeltApp.Controllers
 
 
         //Created By Sadhana 11 july 19
+
+            //Method to set the session of user after confirmation to continue session
         public ActionResult Setsessiondata()
         {
-            var MID = Request.QueryString["MemberId"];
-            bool isValid = int.TryParse(Request.QueryString["MemberId"], out int res);
 
-            HttpContext.Session["MemberId"] = res;// MemberDetails.MemberID;
+            var memberId = Request.QueryString["MemberId"];
 
-            return RedirectToAction("Questions");
+            var MemberDetails = _service.IsMemberExist(Convert.ToInt32(memberId));
+
+            HttpContext.Session["MemberId"] = MemberDetails;// MemberDetails.MemberID;
+
+            return RedirectToAction("Questions", new { MemberId = memberId });
 
         }
 
@@ -422,6 +446,8 @@ namespace AlexRogoBeltApp.Controllers
         }
 
         //Created By Sadhana 16 july 19
+
+            //Method to get the MemberDeatil of specific member requested from the PaymentUpdate Page.
         [HttpPost]
         public ActionResult PaymentUpdate(int MID)
         {
@@ -438,7 +464,9 @@ namespace AlexRogoBeltApp.Controllers
                 if (member == null)
                 {
                     model.Error = "Member not found";
-                    return View(model);
+                    model.MemberID = 0;
+                    return Json(model, JsonRequestBehavior.AllowGet);
+                    //return View(model);
                 }
 
                 return Json(member, JsonRequestBehavior.AllowGet);
@@ -450,6 +478,8 @@ namespace AlexRogoBeltApp.Controllers
         }
 
         //Created By Sadhana 16 july 19
+
+            //method to update data in member master table posted from PaymentUpdatePage
         [HttpPost]
         public ActionResult ConfirmPayment(ProductViewModel model)
         {
@@ -458,16 +488,14 @@ namespace AlexRogoBeltApp.Controllers
                 var result = _service.ConfirmPayment(model);
                 if (result == "Success")
                 {
-                    model.Error = "Data Updated successfully";
-                    return View("PaymentUpdate", model);
+                    model.Success = "Payment Updated successfully";
+                    model.MemberID = 0;
+                    return Json(model, JsonRequestBehavior.AllowGet);
                 }
             }
             else
             {
-                //var member = _service.GetMemberIdExist(Convert.ToInt32(model.MemberID));
-                //model.Email = member.Email;
-                //model.Company = member.Company;
-                //model.Name = member.Name;
+            
                 model.Error = "Invalid Password";
             }
             return Json(model, JsonRequestBehavior.AllowGet);
