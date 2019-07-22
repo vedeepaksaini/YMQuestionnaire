@@ -432,3 +432,24 @@ img{
     color:#5cb85c;
     font-size:12px;
 }
+.error_msg{
+    color:#ff0000;
+    font-size:12px;
+    margin-top:7px;
+}
+/*Login*/
+.login_box {
+    width: 350px;
+    min-height: 250px;
+    margin: 5% auto;
+    -webkit-box-shadow: 0px 0px 50px -10px rgba(0,0,0,0.30);
+    -moz-box-shadow: 0px 0px 50px -10px rgba(0,0,0,0.30);
+    box-shadow: 0px 0px 50px -10px rgba(0,0,0,0.30);
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding:15px;
+}
+.login_box input{
+    width:100% !important;
+    max-width:100%;
+}
