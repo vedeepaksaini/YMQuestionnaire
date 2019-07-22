@@ -310,8 +310,11 @@ img{
     }
 
 /*Admin payment update*/
-.fi_label{
-    font-weight:bold;
+#mtable{
+    display:none;
+}
+.fi_label {
+    font-weight: bold;
 }
 .table th{
     background-color:#f2f2f2;

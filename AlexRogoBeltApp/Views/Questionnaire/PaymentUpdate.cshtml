@@ -28,40 +28,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
 
-    @*<style>
-            #tblInfo {
-                font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-                border-collapse: collapse;
-                width: 80%;
-                border-width: 2px;
-                border-color: turquoise
-            }
-
-                #tblInfo td, #tblInfo th {
-                    padding: 5px;
-                }
-
-                #tblInfo tr:nth-child(even) {
-                    background-color: #f2f2f2;
-                }
-
-                #tblInfo tr:hover {
-                    background-color: #ddd;
-                }
-
-                #tblInfo th {
-                    padding-top: 4px;
-                    padding-bottom: 4px;
-                    text-align: left;
-                    background-color: turquoise;
-                    color: white;
-                    font-size: medium;
-                }
-        </style>*@
+    
 
     <script>
-        function GetMemberData() {
+        
+        function GetMemberData() {            
             $.post("/Questionnaire/PaymentUpdate", { MId: $('#txtMemberId').val() }, function (data) {
+                debugger;
                 var flag = data.IsYBpaymentCompleted;
                 $('#IsYBpaymentCompleted').attr('checked', data.IsYBpaymentCompleted);
                 $('#IsGBpaymentCompleted').attr('checked', data.IsGBpaymentCompleted);
@@ -69,8 +42,15 @@
                 $('#IsTOIpaymentCompleted').attr('checked', data.IsTOIpaymentCompleted);
                 $('#Name').text(data.Name);
                 $('#Email').text(data.Email);
-                $('#Company').text(data.Company);
-            });
+                $('#Company').text(data.Company);                
+                
+                if (data.MemberID == txtMemberId.value) {
+                    document.getElementById("mtable").style.display = "block";
+                }
+                else {
+                    document.getElementById("mtable").style.display = "none";
+                }  
+            });            
         }
 
         function postModel() {
@@ -86,7 +66,7 @@
                 AdminPassword: $('#AdminPassword').val()
             };
 
-            debugger;
+            //debugger;
             $.ajax({
                 type: "POST",
                 url: "/Questionnaire/ConfirmPayment",
@@ -122,7 +102,6 @@
         <div class="container">
             <div id="itoolbar_bg">
                 <div id="itoolbar" class="col-md-12  text-right">
-
                     <a href="@Url.Action("Logout", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })">Sign Out</a>
                 </div>
 
@@ -162,12 +141,15 @@
             </div>
         </div>
     </div>
+    <div class="step-page">
+        <div class="text-center " style="padding:15px;">Payment Update</div>
+    </div>
 
 
     <div style="background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(80, 80, 80, 1) 0%, rgba(0, 0, 0, 1) 100%) repeat fixed 0 0;">
         <div class="container ">
 
-            <div class="box-wrapper" style="padding-top:100px;padding-bottom: 114px;">
+            <div class="box-wrapper" style="padding-top:50px;padding-bottom: 114px;">
 
 
                 <div class="row" style="margin-bottom:20px;">
@@ -175,7 +157,7 @@
                         Member ID:
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId" })
+                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required" })
                         @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -189,8 +171,9 @@
             </div>
         </div>*@
 
-
-                <div class="row" style="margin-bottom:20px;">
+                
+                
+                <div class="row" style="margin-bottom:20px;" id="mtable">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="table-responsive">
                             <table class="table table-bordered">
@@ -272,15 +255,15 @@
                         @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control" })
                         @Html.ValidationMessageFor(model => model.AdminPassword, "", new { @class = "text-danger", placeholder = "Password" })
                         <div class="pass_error" id="Error"></div>
-                    </div>                    
+                    </div>
                 </div>
                 <div class="row" style="margin-top:40px;">
                     <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
-                        
+
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
                         <input type="submit" value="Update Payment" class="btn btn-primary btn-sm" onclick="postModel()" />
-                    </div>                    
+                    </div>
                 </div>
 
             </div>
