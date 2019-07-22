@@ -320,24 +320,19 @@
                         Admin Password:
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12 pass_field" ,id="">
-                        <div class="col-lg-2 col-md-2 col-sm-12 fi_label" ,id="divAdmin">
-                            @*<div class="col-lg-4 col-md-4 col-sm-12 pass_field" ,id="divAdmin">*@
+                        <div class="col-lg-4 col-md-4 col-sm-12 pass_field" ,id="divAdmin">
                             @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required", })
-
-                            <span id="ErrorInvalidPwd" style="color:#ff0000; font-size:12px;"></span>
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-sm-12">
                             @Html.ValidationMessageFor(model => model.AdminPassword, "", new { @class = "text-danger", placeholder = "Password" })
-                            </div>
+
                         </div>
 
                     </div>
-                        <div>
-                            @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger", @id = "ErrorNotFound" })
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger", @id = "ErrorNotFound" })
 
-
-                        </div>
+                        <span id="ErrorInvalidPwd" style="color:#ff0000; font-size:12px;"></span>
                     </div>
+                </div>
                 <div class="row" style="margin-top:40px;">
                     <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
 
