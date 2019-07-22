@@ -1,4 +1,4 @@
-﻿@model AlexRogoBeltApp.ViewModel.ProductViewModel
+﻿@model AlexRogoBeltApp.ViewModel.LoginModel
 
 
 <!DOCTYPE html>
@@ -73,113 +73,129 @@
     </div>
 
 
-    <div style="background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(80, 80, 80, 1) 0%, rgba(0, 0, 0, 1) 100%) repeat fixed 0 0;">
-        <div class="container ">
 
-            <div class="box-wrapper" style="padding-top:50px;padding-bottom: 114px;">
+    @using (Html.BeginForm("Login", "Questionnaire", FormMethod.Post))
+    {
 
-                <div class="login_box">
-                    <form action="/action_page.php">
-                        <div class="form-group">
-                            <label for="email">Username:</label>
-                            <input type="text" class="form-control" name="username">
-                            <span class="error_msg"></span>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Password:</label>
-                            <input type="password" class="form-control" name="password">
-                            <span class="error_msg"></span>
-                        </div>
+        @Html.ValidationSummary(true)
+        if (@ViewBag.Message != null)
+        {
 
-                        <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                    </form>
+            <div style="border:1px solid red">
+                @ViewBag.Message
+            </div>
+        }
+
+
+        <div style="background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(80, 80, 80, 1) 0%, rgba(0, 0, 0, 1) 100%) repeat fixed 0 0;">
+            <div class="container ">
+
+                <div class="box-wrapper" style="padding-top:50px;padding-bottom: 114px;">
+
+                    <div class="login_box">
+                        <form action="/action_page.php">
+                            <div class="form-group">
+                                <label for="email">Username:</label>
+                                @Html.TextBoxFor(model => model.UserID, new { @class = "form-control", required = "required" })
+                                <span class="error_msg"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Password:</label>
+                                @Html.TextBoxFor(model => model.Password, new { @class = "form-control", required = "required" })
+
+                                <span class="error_msg"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary pull-right">Submit</button>
+                            @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger", placeholder = "Password" })
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
 
-
-    <div id="footer">
-        <div id="foot-social">
-            <span>
-                <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank">
-                    <img alt="" src="~/Content/Images/facebook-w.png" style="border-width: 0px; border-style: solid;">
-                </a>
-                <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank">
-                    <img alt="" src="~/Content/Images/linkedin-w.png" style="border-width: 0px; border-style: solid;">
-                </a>
-                <a class="tw" href="https://twitter.com/TOCICO" target="_blank">
-                    <img alt="" src="~/Content/Images/twitter-w.png" style="border-width: 0px; border-style: solid;">
-                </a>
-            </span>
-        </div>
-        <div id="FooterContentArea">
-            <div class="container">
-                <!--YMPSTITLE=TgBBAA==/YMPSTITLE--><span>
-                    <style>
-                        #copyright-inner {
-                            padding-left: 0px !important;
-                            margin-right: 0px;
-                            margin-top: 0px;
-                            text-align: center;
-                        }
-
-                        #icopyright {
-                            width: 100% !important;
-                        }
-                        <!-- .mainmenu-out {
-                            padding-left: 8%;
-                        }
-                        -->
-                        .foot-copy {
-                        }
-                    </style>
+    }
+        <div id="footer">
+            <div id="foot-social">
+                <span>
+                    <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank">
+                        <img alt="" src="~/Content/Images/facebook-w.png" style="border-width: 0px; border-style: solid;">
+                    </a>
+                    <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank">
+                        <img alt="" src="~/Content/Images/linkedin-w.png" style="border-width: 0px; border-style: solid;">
+                    </a>
+                    <a class="tw" href="https://twitter.com/TOCICO" target="_blank">
+                        <img alt="" src="~/Content/Images/twitter-w.png" style="border-width: 0px; border-style: solid;">
+                    </a>
                 </span>
-                <div id="footer">
-                    <div id="foot-social">
-                        <span>
-                            <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank">
-                                <img alt="" src="~/Content/Images/facebook-w.png" style="border-width: 0px; border-style: solid;">
-                            </a>
+            </div>
+            <div id="FooterContentArea">
+                <div class="container">
+                    <!--YMPSTITLE=TgBBAA==/YMPSTITLE--><span>
+                        <style>
+                            #copyright-inner {
+                                padding-left: 0px !important;
+                                margin-right: 0px;
+                                margin-top: 0px;
+                                text-align: center;
+                            }
 
-                            <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank">
+                            #icopyright {
+                                width: 100% !important;
+                            }
+                            <!-- .mainmenu-out {
+                                padding-left: 8%;
+                            }
+                            -->
+                            .foot-copy {
+                            }
+                        </style>
+                    </span>
+                    <div id="footer">
+                        <div id="foot-social">
+                            <span>
+                                <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank">
+                                    <img alt="" src="~/Content/Images/facebook-w.png" style="border-width: 0px; border-style: solid;">
+                                </a>
 
-                                <img alt="" src="~/Content/Images/linkedin-w.png" style="border-width: 0px; border-style: solid;">
-                            </a>
+                                <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank">
 
-                            <a class="tw" href="https://twitter.com/TOCICO" target="_blank">
+                                    <img alt="" src="~/Content/Images/linkedin-w.png" style="border-width: 0px; border-style: solid;">
+                                </a>
 
-                                <img alt="" src="~/Content/Images/twitter-w.png" style="border-width: 0px; border-style: solid;">
-                            </a>
-                        </span>
-                    </div>
-                    <div class="foot-copy">
-                        <div class="footer_text">
-                            Copyright © <span id="2019"></span>
-                            TOCICO. All rights reserved.<br>
-                            Theory of Constraints International Certification Organization<br>
-                            230 Washington Avenue Extension, Suite 101<br>
-                            Albany, New York 12203-5319&nbsp; USA<br>
-                            Ph: +1 (518) 694-8478<br>
-                            Fax: +1 (518) 463-8656<br>
-                            admin@tocico.org<br>
+                                <a class="tw" href="https://twitter.com/TOCICO" target="_blank">
+
+                                    <img alt="" src="~/Content/Images/twitter-w.png" style="border-width: 0px; border-style: solid;">
+                                </a>
+                            </span>
+                        </div>
+                        <div class="foot-copy">
+                            <div class="footer_text">
+                                Copyright © <span id="2019"></span>
+                                TOCICO. All rights reserved.<br>
+                                Theory of Constraints International Certification Organization<br>
+                                230 Washington Avenue Extension, Suite 101<br>
+                                Albany, New York 12203-5319&nbsp; USA<br>
+                                Ph: +1 (518) 694-8478<br>
+                                Fax: +1 (518) 463-8656<br>
+                                admin@tocico.org<br>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="icopyright">
-                <div id="copyright-inner" class="text-center">
-                    <a href="/ams/legal-privacy.htm" class="">Legal</a><!-- Copyright (c) 1998-2019 YourMembership.com Inc. All Rights Reserved. Copyright: Certain elements of this website are: Copyright (c) 1998-2019, YourMembership.com, Incorporated. YourMembership.com, Incorporated provides a limited license to use its Copyrights to the entity from whose web page you are viewing. Certain elements of this website may also be copyrighted by that entity; please see its Terms of Use or contact the organization for more information. General information about copyright laws can be found at: http://www.copyright.gov/. For more specific information, please consult an attorney. -->
+                <div id="icopyright">
+                    <div id="copyright-inner" class="text-center">
+                        <a href="/ams/legal-privacy.htm" class="">Legal</a><!-- Copyright (c) 1998-2019 YourMembership.com Inc. All Rights Reserved. Copyright: Certain elements of this website are: Copyright (c) 1998-2019, YourMembership.com, Incorporated. YourMembership.com, Incorporated provides a limited license to use its Copyrights to the entity from whose web page you are viewing. Certain elements of this website may also be copyrighted by that entity; please see its Terms of Use or contact the organization for more information. General information about copyright laws can be found at: http://www.copyright.gov/. For more specific information, please consult an attorney. -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-</body>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+                crossorigin="anonymous"></script>
+    </body>
 </html>

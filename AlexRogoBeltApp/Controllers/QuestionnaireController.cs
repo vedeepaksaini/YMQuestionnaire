@@ -500,5 +500,19 @@ namespace AlexRogoBeltApp.Controllers
             }
             return Json(model, JsonRequestBehavior.AllowGet);
         }
+
+        //method to login admin
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Login(LoginModel LoginModel)
+        {
+            LoginModel.Error = "invalid User Name or Password";
+            return View();
+        }
     }
 }
