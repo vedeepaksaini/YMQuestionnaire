@@ -313,8 +313,8 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 Green Belt
-                                @Html.CheckBoxFor(model => model.IsGBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
-                                <div class="control_indicator"></div>
+                                @Html.CheckBoxFor(model => model.IsGBpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
+                                <div class="control_indicator "></div>
                             </label>
                         </div>
                     </div>
