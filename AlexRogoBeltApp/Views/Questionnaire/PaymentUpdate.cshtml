@@ -32,7 +32,33 @@
     <script>
         //method to get memberRecord onblur event of textbox
         function GetMemberData() {
+
             debugger;
+
+            //clear all error messages
+
+            $('#ErrorInvalidPwd').text("");
+            $('#ErrorNotFound').text("");
+            $('#ErrorRequired').text("");
+            $('#success').text("");
+
+
+
+            
+
+
+
+            if (!document.getElementById("txtMemberId").checkValidity()) {
+                $('#ErrorRequired').text("Member id is required");
+                document.getElementById("mtable").style.display = "none";
+                document.getElementById("mchekboxes").style.display = "none";
+                document.getElementById("updateMember").style.display = "none";
+                document.getElementById("updatePayment").style.display = "none";
+                document.getElementById("adminPassword").style.display = "none";
+
+                return;
+            }
+
             $.post("/Questionnaire/PaymentUpdate", { MId: $('#txtMemberId').val() }, function (data) {
                 debugger;
 
@@ -54,9 +80,9 @@
                 if (data.MemberID == txtMemberId.value) {
                     document.getElementById("mtable").style.display = "block";
                     document.getElementById("mchekboxes").style.display = "block";
-                    document.getElementById("updatePayment").style.display = "block";
                     document.getElementById("updateMember").style.display = "none";
                     document.getElementById("updatePayment").style.display = "none";
+                    document.getElementById("adminPassword").style.display = "none";
 
 
                 }
@@ -228,8 +254,10 @@
                         Member ID:
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
-                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", type="number" })
-                        <span id="success"></span>                        
+                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", type = "number" })
+                      
+                        <span id="ErrorRequired" style="color:#ff0000; font-size:12px;"></span>
+                        <span id="success"></span>
                     </div>
                 </div>
 
@@ -276,7 +304,7 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 Yellow Belt
-                                @Html.CheckBoxFor(model => model.IsYBpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
+                                @Html.CheckBoxFor(model => model.IsYBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
                                 <div class="control_indicator"></div>
                             </label>
                         </div>
@@ -294,7 +322,7 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 Black Belt
-                                @Html.CheckBoxFor(model => model.IsBBpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
+                                @Html.CheckBoxFor(model => model.IsBBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
                                 <div class="control_indicator"></div>
                             </label>
                         </div>
@@ -303,7 +331,7 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 TOC Expert
-                                @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
+                                @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
                                 <div class="control_indicator"></div>
                             </label>
                         </div>
@@ -316,6 +344,9 @@
                     <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
                         Admin Password:
                     </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12 pass_field" ,id="">
+                        <div class="col-lg-4 col-md-4 col-sm-12 pass_field" ,id="divAdmin">
+                            @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required" })
                     <div class="col-lg-3 col-md-3 col-sm-12 pass_field" id="">
                         <div id="divAdmin">
                             @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required", })
@@ -323,6 +354,10 @@
                             @Html.ValidationMessageFor(model => model.AdminPassword, "", new { @class = "text-danger", placeholder = "Password" })
                         </div>
                     </div>
+                    <div>
+                        @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger", @id = "ErrorNotFound" })
+
+
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         @Html.ValidationMessageFor(model => model.Error, "", new { @class = "error_msg", @id = "ErrorNotFound" })                     
                     </div>
@@ -336,7 +371,7 @@
                         <input type="submit" value="Update Data" id="updateMember" class="btn btn-primary btn-sm" onclick="PostData()" />
                     </div>
 
-                    
+
                     @*<div class="pass_error" id="ErrorInvalidPwd"></div>*@
 
                 </div>
@@ -348,19 +383,7 @@
 
 
     <div id="footer">
-        <div id="foot-social">
-            <span>
-                <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank">
-                    <img alt="" src="~/Content/Images/facebook-w.png" style="border-width: 0px; border-style: solid;">
-                </a>
-                <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank">
-                    <img alt="" src="~/Content/Images/linkedin-w.png" style="border-width: 0px; border-style: solid;">
-                </a>
-                <a class="tw" href="https://twitter.com/TOCICO" target="_blank">
-                    <img alt="" src="~/Content/Images/twitter-w.png" style="border-width: 0px; border-style: solid;">
-                </a>
-            </span>
-        </div>
+      
         <div id="FooterContentArea">
             <div class="container">
                 <!--YMPSTITLE=TgBBAA==/YMPSTITLE--><span>
