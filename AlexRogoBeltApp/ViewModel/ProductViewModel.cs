@@ -20,5 +20,6 @@ namespace AlexRogoBeltApp.ViewModel
         [Required]
         public string AdminPassword { get; set; }
         public string Error { get; set; }
+        public string Success { get; set; }
     }
 }

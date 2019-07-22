@@ -409,3 +409,23 @@ img{
 .control-checkbox input:disabled ~ .control_indicator:after {
     border-color: #7b7b7b;
 }
+#mtable {
+    display: none;
+}
+#updatePayment {
+    display: none;
+}
+#adminPassword{
+    display:none;
+    /*display:block;*/
+}
+#updateMember{
+    display:none;
+}
+#mchekboxes{
+    display:none;
+}
+#success{
+    color:#5cb85c;
+    font-size:12px;
+}
