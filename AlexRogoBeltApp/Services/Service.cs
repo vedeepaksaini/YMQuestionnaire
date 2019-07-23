@@ -254,5 +254,17 @@ namespace AlexRogoBeltApp.Services
             return true;
 
         }
+
+        public bool CheckLoginCredential(LoginModel model)
+        {
+            var result = db.MemberMasters.Where(y=> y.MemberUserName == "Admin" && y.Email == model.Password).FirstOrDefault();
+            if (result == null)
+            {
+                return false;
+            }
+
+            return true;
+
+        }
     }
 }

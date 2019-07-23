@@ -9,7 +9,7 @@ namespace AlexRogoBeltApp.ViewModel
     public class LoginModel
     {
         [Required(ErrorMessage = "Please Provide Username", AllowEmptyStrings = false)]
-        public int UserID { get; set; }
+        public string UserID { get; set; }
 
         [Required(ErrorMessage = "Please provide password", AllowEmptyStrings = false)]
         public string Password { get; set; }

@@ -15,40 +15,40 @@ namespace AlexRogoBeltApp.Services
 
         public string GetAllGuid()
         {
-            XmlHttpProvider provider = new XmlHttpProvider("https://api.yourmembership.com/");
+            //XmlHttpProvider provider = new XmlHttpProvider("https://api.yourmembership.com/");
 
-            YMSDK.ApiManager manager = new YMSDK.ApiManager(provider);
-            manager.ApiKeyPublic = "9FB80E52-49C5-4B31-9AE6-08D83F065897";
-            manager.ApiKeySa = "B4226439-485F-49EF-A183-37319519A0FA";
-            manager.SaPasscode = "04iHL9sU5g24";
-            manager.Version = "2.30";
+            //YMSDK.ApiManager manager = new YMSDK.ApiManager(provider);
+            //manager.ApiKeyPublic = "9FB80E52-49C5-4B31-9AE6-08D83F065897";
+            //manager.ApiKeySa = "B4226439-485F-49EF-A183-37319519A0FA";
+            //manager.SaPasscode = "04iHL9sU5g24";
+            //manager.Version = "2.30";
 
-            //Create session for the current user
-            YMSDK.ApiResponse response = manager.SessionCreate();
+            ////Create session for the current user
+            //YMSDK.ApiResponse response = manager.SessionCreate();
 
-            //Authenticate the user for the current session
-            response = manager.AuthAuthenticate("vijaysaini", "priyank1");
+            ////Authenticate the user for the current session
+            //response = manager.AuthAuthenticate("vijaysaini", "priyank1");
 
-            response = manager.SaPeopleAllGetIDs(null, null);
+            //response = manager.SaPeopleAllGetIDs(null, null);
 
-            if (response.ErrorCode == YMSDK.ApiErrorCode.NoError)
-            {
-                IEnumerable<string> apiGuids = (from items in response.MethodResults.Items[2].Items select items).Select(x => x.Value);
-                IEnumerable<string> localGuid = db.GuidMasters.Select(x => x.GUID);
-                apiGuids = apiGuids.Except(localGuid).ToList();
+            //if (response.ErrorCode == YMSDK.ApiErrorCode.NoError)
+            //{
+            //    IEnumerable<string> apiGuids = (from items in response.MethodResults.Items[2].Items select items).Select(x => x.Value);
+            //    IEnumerable<string> localGuid = db.GuidMasters.Select(x => x.GUID);
+            //    apiGuids = apiGuids.Except(localGuid).ToList();
 
-                var MemberGuid = apiGuids.Select(x => new GuidMaster()
-                {
-                    GUID = x,
-                    CreatedON = DateTime.Now,
-                    UpdateOn = DateTime.Now
-                }).ToList();
+            //    var MemberGuid = apiGuids.Select(x => new GuidMaster()
+            //    {
+            //        GUID = x,
+            //        CreatedON = DateTime.Now,
+            //        UpdateOn = DateTime.Now
+            //    }).ToList();
 
-                db.GuidMasters.AddRange(MemberGuid);
-                db.SaveChanges();
+            //    db.GuidMasters.AddRange(MemberGuid);
+            //    db.SaveChanges();
 
-                GetMemberData(response, manager, MemberGuid.Select(x => x.GUID).ToList());
-            }
+            //    GetMemberData(response, manager, MemberGuid.Select(x => x.GUID).ToList());
+           // }
             return "Data updated successfully";
         }
 

@@ -394,7 +394,8 @@ namespace AlexRogoBeltApp.Controllers
             model.AdminPassword = id;
             if ((_service.CheckAdminPassword(model)) == true)
 
-            {                //Getting all GUID from Server
+            {    
+                //Getting all GUID from Server
                  model.Success = _ymservice.GetAllGuid();
                  return Json(model, JsonRequestBehavior.AllowGet);
 
@@ -511,8 +512,14 @@ namespace AlexRogoBeltApp.Controllers
         [HttpPost]
         public ActionResult Login(LoginModel LoginModel)
         {
-            LoginModel.Error = "invalid User Name or Password";
-            return View();
+            var result = _service.CheckLoginCredential(LoginModel);
+            if(result==true)
+            {
+                return View("PaymentUpdate");
+            }
+           
+            ViewBag.Error = "invalid User Name or Password";
+            return View(LoginModel);
         }
     }
 }
