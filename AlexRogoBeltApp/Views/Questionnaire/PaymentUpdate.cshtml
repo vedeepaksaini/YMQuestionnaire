@@ -36,17 +36,11 @@
             debugger;
 
             //clear all error messages
-
+            $('#AdminPassword').val("");
             $('#ErrorInvalidPwd').text("");
             $('#ErrorNotFound').text("");
             $('#ErrorRequired').text("");
             $('#success').text("");
-
-
-
-            
-
-
 
             if (!document.getElementById("txtMemberId").checkValidity()) {
                 $('#ErrorRequired').text("Member id is required");
@@ -55,6 +49,7 @@
                 document.getElementById("updateMember").style.display = "none";
                 document.getElementById("updatePayment").style.display = "none";
                 document.getElementById("adminPassword").style.display = "none";
+                document.getElementById("UpdateDatalbl").style.display = "none";
 
                 return;
             }
@@ -92,8 +87,8 @@
                     document.getElementById("updatePayment").style.display = "none";
                     document.getElementById("updateMember").style.display = "block";
                     document.getElementById("adminPassword").style.display = "block";
-                    document.getElementById("ErrorNotFound").style.display = "block";
-                                    
+                    document.getElementById("UpdateDatalbl").style.display = "block";
+
 
 
 
@@ -169,6 +164,10 @@
                         document.getElementById("updatePayment").style.display = "none";
                         document.getElementById("updateMember").style.display = "none";
                         document.getElementById("adminPassword").style.display = "none";
+                        document.getElementById("UpdateDatalbl").style.display = "none";
+                        document.getElementById("ErrorNotFound").style.display = "none";
+
+                       
                     }
                     else {
                         $('#ErrorInvalidPwd').text(response.Error);
@@ -192,12 +191,12 @@
             debugger;
             document.getElementById("adminPassword").style.display = "block";
             document.getElementById("updatePayment").style.display = "block";
-           
-        }  
-        
+
+        }
+
     </script>
 
-    
+
 
 
 </head>
@@ -246,7 +245,7 @@
 
     <div style="background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(80, 80, 80, 1) 0%, rgba(0, 0, 0, 1) 100%) repeat fixed 0 0;">
         <div class="container ">
-            <div class="box-wrapper" style="padding-top:50px;padding-bottom: 114px;">              
+            <div class="box-wrapper" style="padding-top:50px;padding-bottom: 114px;">
 
 
                 <div class="row" style="margin-bottom:20px;">
@@ -255,20 +254,13 @@
                     </div>
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", type = "number" })
-                      
                         <span id="ErrorRequired" style="color:#ff0000; font-size:12px;"></span>
+                        <span id="ErrorNotFound" style="color:#ff0000; font-size:12px;"></span>
+                      
                         <span id="success"></span>
                     </div>
                 </div>
 
-                @*<div class="row">
-                        <div class="col-md-4">
-                            <label>Member Id</label>
-                            <br />
-                            @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId" })
-                            @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
-                        </div>
-                    </div>*@
 
                 <div class="row" style="margin-bottom:20px;" id="mtable">
                     <div class="col-lg-12 col-md-12 col-sm-12">
@@ -313,8 +305,8 @@
                         <div class="check_tile">
                             <label class="control control-checkbox">
                                 Green Belt
-                                @Html.CheckBoxFor(model => model.IsGBpaymentCompleted, new { onBlur = "OnchangeEventCheckBox()" })
-                                <div class="control_indicator "></div>
+                                @Html.CheckBoxFor(model => model.IsGBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
+                                <div class="control_indicator"></div>
                             </label>
                         </div>
                     </div>
@@ -339,36 +331,30 @@
                 </div>
                 <hr style="margin:50px 0;" />
 
-               
+                <div style="background-color:steelblue;color:white;font-size:medium;font-weight:bold" class="text-center" id="UpdateDatalbl">Update Member Data</div>
+                
                 <div class="row" style="margin-top:50px;" id="adminPassword">
                     <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
                         Admin Password:
                     </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12 pass_field" ,id="">
-                        <div class="col-lg-4 col-md-4 col-sm-12 pass_field" ,id="divAdmin">
-                            @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required" })
-                    <div class="col-lg-3 col-md-3 col-sm-12 pass_field" id="">
-                        <div id="divAdmin">
+                    <div class="col-lg-3 col-md-3 col-sm-12 pass_field">
+                        <div>
                             @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required", })
                             <span id="ErrorInvalidPwd" style="color:#ff0000; font-size:12px;"></span>
-                            @Html.ValidationMessageFor(model => model.AdminPassword, "", new { @class = "text-danger", placeholder = "Password" })
+
+                            @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <div>
-                        @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger", @id = "ErrorNotFound" })
 
-
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        @Html.ValidationMessageFor(model => model.Error, "", new { @class = "error_msg", @id = "ErrorNotFound" })                     
-                    </div>
                 </div>
+
                 <div class="row" style="margin-top:40px;">
                     <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
 
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
                         <input type="submit" value="Update Payment" id="updatePayment" class="btn btn-primary btn-sm" onclick="postModel()" />
-                        <input type="submit" value="Update Data" id="updateMember" class="btn btn-primary btn-sm" onclick="PostData()" />
+                        <input type="submit" value="Update" id="updateMember" class="btn btn-primary btn-sm" onclick="PostData()" />
                     </div>
 
 
@@ -383,7 +369,19 @@
 
 
     <div id="footer">
-      
+        <div id="foot-social">
+            <span>
+                <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank">
+                    <img alt="" src="~/Content/Images/facebook-w.png" style="border-width: 0px; border-style: solid;">
+                </a>
+                <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank">
+                    <img alt="" src="~/Content/Images/linkedin-w.png" style="border-width: 0px; border-style: solid;">
+                </a>
+                <a class="tw" href="https://twitter.com/TOCICO" target="_blank">
+                    <img alt="" src="~/Content/Images/twitter-w.png" style="border-width: 0px; border-style: solid;">
+                </a>
+            </span>
+        </div>
         <div id="FooterContentArea">
             <div class="container">
                 <!--YMPSTITLE=TgBBAA==/YMPSTITLE--><span>
