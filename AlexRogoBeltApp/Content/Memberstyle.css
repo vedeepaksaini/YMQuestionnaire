@@ -441,6 +441,26 @@ img{
     font-size:12px;
     margin-top:7px;
 }
+.heading{
+    padding:10px;
+    margin-bottom:30px;
+}
+.section_head {
+    color: #006599;
+    font-size:18px;
+    position:relative;
+    font-weight:bold;
+}
+.section_head:after {
+    content: "";
+    position: absolute;
+    width: 50px;
+    height: 1px;
+    top: 29px;
+    display: block;
+    background-color: #006599;
+}
+
 /*Login*/
 .login_box {
     width: 400px;
