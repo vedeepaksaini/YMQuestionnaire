@@ -102,8 +102,11 @@
                                 <label for="email">Password:</label>
                                 @Html.PasswordFor(model => model.Password, new { @class = "form-control", required = "required", placeholder = "Password" })
                             </div>
+                            <div class="form-group">
+                                <span class="error_msg">@ViewBag.Error</span>
+                            </div>
                             <button type="submit" class="btn btn-primary pull-right">Submit</button>
-                            <p style="color:#ff0000; font-size:12px;">@ViewBag.Error</p>
+
                         </form>
                     </div>
                 </div>
@@ -163,7 +166,6 @@
                                 <img alt="" src="~/Content/Images/linkedin-w.png" style="border-width: 0px; border-style: solid;">
                             </a>
 
-                            <a class="tw" href="https://twitter.com/TOCICO" target="_blank">
 
                                 <img alt="" src="~/Content/Images/twitter-w.png" style="border-width: 0px; border-style: solid;">
                             </a>
@@ -182,14 +184,13 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div id="icopyright">
-                <div id="copyright-inner" class="text-center">
-                    <a href="/ams/legal-privacy.htm" class="">Legal</a><!-- Copyright (c) 1998-2019 YourMembership.com Inc. All Rights Reserved. Copyright: Certain elements of this website are: Copyright (c) 1998-2019, YourMembership.com, Incorporated. YourMembership.com, Incorporated provides a limited license to use its Copyrights to the entity from whose web page you are viewing. Certain elements of this website may also be copyrighted by that entity; please see its Terms of Use or contact the organization for more information. General information about copyright laws can be found at: http://www.copyright.gov/. For more specific information, please consult an attorney. -->
+                <div id="icopyright">
+                    <div id="copyright-inner" class="text-center">
+                        <a href="/ams/legal-privacy.htm" class="">Legal</a><!-- Copyright (c) 1998-2019 YourMembership.com Inc. All Rights Reserved. Copyright: Certain elements of this website are: Copyright (c) 1998-2019, YourMembership.com, Incorporated. YourMembership.com, Incorporated provides a limited license to use its Copyrights to the entity from whose web page you are viewing. Certain elements of this website may also be copyrighted by that entity; please see its Terms of Use or contact the organization for more information. General information about copyright laws can be found at: http://www.copyright.gov/. For more specific information, please consult an attorney. -->
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
