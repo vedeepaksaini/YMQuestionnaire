@@ -522,6 +522,10 @@ namespace AlexRogoBeltApp.Controllers
            
             ViewBag.Error = "invalid User Name or Password";
             ModelState.Clear();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3f30cf25ee34a6ce45a5d4e2f420fc366ac21a3a
             return View();
         }
     }
