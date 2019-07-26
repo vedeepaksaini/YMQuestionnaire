@@ -256,7 +256,7 @@
                         @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", type = "number" })
                         <span id="ErrorRequired" style="color:#ff0000; font-size:12px;"></span>
                         <span id="ErrorNotFound" style="color:#ff0000; font-size:12px;"></span>
-                      
+
                         <span id="success"></span>
                     </div>
                 </div>
@@ -329,16 +329,17 @@
                         </div>
                     </div>
                 </div>
-                <hr style="margin:50px 0;" />               
-                
-                
+                <hr style="margin:50px 0;" />
+
+                <div class="heading" id="UpdateDatalbl">
+                    <div class="section_head">
+                        Update Member Data
+                    </div>
+                </div>
+
                 <div class="row" style="margin-top:0px;" id="adminPassword">
 
-                    <div class="heading">
-                        <div class="section_head">
-                            Update Member Data
-                        </div>
-                    </div>
+
 
                     <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
                         Admin Password:
