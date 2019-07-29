@@ -9,8 +9,6 @@
             <div id="infoMsg" class="modal-body text-left">                
             </div>
             <div class="modal-footer">
-                @*<a href="#" class="mt-2 btn btn-info btn-sm">Continue Again</a>*@
-                @*@Html.ActionLink("Continue Again", "Setsessiondata", "Questionnaire", new { @class = "btn btn-info" })*@
                 <a href="@Url.Action("Setsessiondata", "Questionnaire", new { MemberId = Request.QueryString["MemberId"] })">Continue Again</a>
             </div>
 
