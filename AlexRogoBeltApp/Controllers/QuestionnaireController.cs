@@ -511,6 +511,8 @@ namespace AlexRogoBeltApp.Controllers
 
         [HttpPost]
         public ActionResult Login(LoginModel LoginModel)
+
+
         {
             var result = _service.CheckLoginCredential(LoginModel);
             if(result==true)
@@ -520,7 +522,10 @@ namespace AlexRogoBeltApp.Controllers
            
             ViewBag.Error = "invalid User Name or Password";
             ModelState.Clear();
+<<<<<<< HEAD
+=======
 
+>>>>>>> 3f30cf25ee34a6ce45a5d4e2f420fc366ac21a3a
             return View();
         }
     }

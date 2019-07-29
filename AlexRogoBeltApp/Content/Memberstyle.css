@@ -441,9 +441,9 @@ img{
     font-size:12px;
     margin-top:7px;
 }
-.heading{
-    padding:10px;
-    margin-bottom:30px;
+.heading {
+    padding: 0px 10px 10px 10px;
+    margin-bottom: 30px;
 }
 .section_head {
     color: #006599;
