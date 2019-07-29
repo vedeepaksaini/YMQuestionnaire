@@ -105,7 +105,7 @@
                                         <div class="inpt-form thefield">
                                             <div class="input-group pull-left">
                                                 <span class="input-group-addon">%</span>
-                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", required = "required", type = "number", step = ".01", @class = "form-control" })
+                                                @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { onblur = "CalcAlgo()", required = "required", type = "number", step = ".01", @class = "form-control addon_input" })
                                                 <span id="pass" style="color:green; display:none; font-weight:700">Pass</span>
                                             </div>
                                         </div>
@@ -121,7 +121,7 @@
                                     <div class="inpt-form thefield">
                                         <div class="input-group pull-left">
                                             <span class="input-group-addon">$</span>
-                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control" })
+                                            @Html.TextBoxFor(model => Model.Answers[i].ControlValue, new { required = "required", type = "number", step = ".01", @class = "form-control addon_input" })
 
                                         </div>
                                     </div>

@@ -229,29 +229,32 @@
 
                                     GetProcess(8);
                                 </script>
+                                <div class="col-md-3">
+                                    <select id="ProcessTemplateDropdown" class="form-control pull-left" style="margin-right:15px;" onchange="ProcessSelectionChanged(this.value)"><option value="0">Select Process</option></select>
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" id="btnAddStep" class="btn btn-info" style="display:none;" onclick="$('#btnDel').attr('disabled', true);$('#myModal').modal('show');"><b>+</b> Add</button>
+                                </div>
+                                </div>
+                                <div class="table-responsive">
+                                    <table id="tblProcess" style="width:100%; margin-top:15px;">
+                                        <tr id="steps"></tr>
+                                        <tr><td></td></tr>
+                                        <tr id="images"></tr>
+                                    </table>
+                                </div>
 
-                                <select id="ProcessTemplateDropdown" class="form-control pull-left" style="margin-right:15px;" onchange="ProcessSelectionChanged(this.value)"><option value="0">Select Process</option></select>
-                                <button type="button" id="btnAddStep" class="btn btn-info" style="display:none;" onclick="$('#btnDel').attr('disabled', true);$('#myModal').modal('show');"><b>+</b> Add</button>
-                            </div>
-                            <div class="table-responsive">
-                                <table id="tblProcess" style="width:100%; margin-top:15px;">
-                                    <tr id="steps"></tr>
-                                    <tr><td></td></tr>
-                                    <tr id="images"></tr>
-                                </table>
-                            </div>
+                                @Html.Partial("Popup")
+                                @{
+                                    Model.Answers.FirstOrDefault().IsSelected = true;
+                                }
 
-                            @Html.Partial("Popup")
-                            @{
-                                Model.Answers.FirstOrDefault().IsSelected = true;
-                            }
-
-                            @Html.HiddenFor(model => Model.Answers[i].ID)
-                            @Html.HiddenFor(model => model.LevelID)
-                            @Html.HiddenFor(model => Model.Answers[i].QuestionID)
-                            @Html.HiddenFor(model => Model.Answers[i].IsSelected)
-                            @Html.HiddenFor(model => model.QuestionOrder)
-                        </label>
+                                @Html.HiddenFor(model => Model.Answers[i].ID)
+                                @Html.HiddenFor(model => model.LevelID)
+                                @Html.HiddenFor(model => Model.Answers[i].QuestionID)
+                                @Html.HiddenFor(model => Model.Answers[i].IsSelected)
+                                @Html.HiddenFor(model => model.QuestionOrder)
+</label>
                     </li>
                 }
             }
