@@ -130,12 +130,16 @@
 
 @media(max-width:390px) {
     .introduction .intro-page {
-        height: 285px;
-        background-position-y: 45px;
+        /*height: 285px;*/
+        /*background-image: url('Images/bg-mobile.jpg');*/
+        /*background-position-y: 45px;*/
+        height: 385px;
+        background-image: url(Images/bg-mobile.jpg);
+        background-position-y: 0px;
     }
 
         .introduction .intro-page h2 {
-            color: #000;
+            color: #fff;
         }
 
     .introduction1 .intro-page {
@@ -484,6 +488,9 @@
         border-radius: 10px;
         padding: 20px;
     }
+    .theimage .graph_image {
+        text-align: center;
+    }
     
     
 }
@@ -640,3 +647,11 @@
             max-width: 199px !important;
         }
     }
+
+@media only screen and (min-width:320px) and (max-width:991px) {
+    .theimage .graph_image {
+        text-align: center;
+        float:none;
+        margin:0 auto;
+    }
+}

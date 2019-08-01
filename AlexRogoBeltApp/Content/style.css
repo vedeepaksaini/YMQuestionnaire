@@ -12,6 +12,7 @@ ul{
 }
 ul li{
     list-style-type:none;
+    margin-left:15px;
 }
 
 .fw-600 {
@@ -628,10 +629,10 @@ min-height: 35px;
     font-size: 12px;
     font-family: 'Helvetica',sans-serif;
     left: 50%;
-    margin-left: -60px;
+    margin-left: -65px;
     padding: 7px 10px;
     position: absolute;
-    width: 120px;
+    width: 130px;
     z-index: 4;
     text-align: center;
 }
@@ -657,10 +658,10 @@ min-height: 35px;
     font-size: 12px;
     font-family: 'Helvetica',sans-serif;
     left: 50%;
-    margin-left: -60px;
+    margin-left: -65px;
     padding: 7px 10px;
     position: absolute;
-    width: 120px;
+    width: 130px;
     z-index: 4;
     text-align: center;
 }
@@ -719,7 +720,7 @@ min-height: 35px;
 }
 .label_quer {
     float: left;
-    width: 80%;
+    width: 79%;
     word-break: break-word;
     margin-top: 0px;
 }
@@ -814,4 +815,10 @@ min-height: 35px;
 .addon_input{
     border-radius:0px 4px 4px 0px !important;
 }
-
+.options ul li{
+    margin-left:0px !important;
+}
+.form-control, .form-control:focus {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+}

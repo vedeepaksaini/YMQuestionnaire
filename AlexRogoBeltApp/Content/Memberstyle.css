@@ -5,6 +5,15 @@
 img{
     max-width:100%;
 }
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+    ul li {
+        list-style-type: disc;
+        margin-left: 15px;
+    }
 .clearfix{
     clear:both;
     display:block;
@@ -476,4 +485,8 @@ img{
 .login_box input{
     width:100% !important;
     max-width:100%;
+}
+.form-control, .form-control:focus {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
 }
