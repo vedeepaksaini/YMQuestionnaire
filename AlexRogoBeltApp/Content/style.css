@@ -818,3 +818,7 @@ min-height: 35px;
 .options ul li{
     margin-left:0px !important;
 }
+.form-control, .form-control:focus {
+    box-shadow: none !important;
+    border: 1px solid #ccc !important;
+}
