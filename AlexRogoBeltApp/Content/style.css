@@ -12,6 +12,7 @@ ul{
 }
 ul li{
     list-style-type:none;
+    margin-left:15px;
 }
 
 .fw-600 {
@@ -719,7 +720,7 @@ min-height: 35px;
 }
 .label_quer {
     float: left;
-    width: 80%;
+    width: 79%;
     word-break: break-word;
     margin-top: 0px;
 }
@@ -814,4 +815,6 @@ min-height: 35px;
 .addon_input{
     border-radius:0px 4px 4px 0px !important;
 }
-
+.options ul li{
+    margin-left:0px !important;
+}

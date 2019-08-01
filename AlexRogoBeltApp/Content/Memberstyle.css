@@ -5,6 +5,15 @@
 img{
     max-width:100%;
 }
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+    ul li {
+        list-style-type: disc;
+        margin-left: 15px;
+    }
 .clearfix{
     clear:both;
     display:block;

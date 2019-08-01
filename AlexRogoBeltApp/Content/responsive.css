@@ -130,12 +130,16 @@
 
 @media(max-width:390px) {
     .introduction .intro-page {
-        height: 285px;
-        background-position-y: 45px;
+        /*height: 285px;*/
+        /*background-image: url('Images/bg-mobile.jpg');*/
+        /*background-position-y: 45px;*/
+        height: 385px;
+        background-image: url(Images/bg-mobile.jpg);
+        background-position-y: 0px;
     }
 
         .introduction .intro-page h2 {
-            color: #000;
+            color: #fff;
         }
 
     .introduction1 .intro-page {
