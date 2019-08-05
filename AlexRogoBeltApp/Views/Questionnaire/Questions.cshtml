@@ -164,12 +164,13 @@
 
                 <div class="questionintro">
                     <a id="btnBack" href="@Url.Action("Questions", "Questionnaire", new { QuestionOrder = Model.QuestionOrder })" class="mt-2 btn btn-primary btn-lg ">
-                        < Back
+                        Back
                     </a>
+                    
 
-                    <input type="submit" id="btnSubmit" style="display:block" value="Next >" class="mt-2 btn btn-success btn-lg pull-right " />
-                    <input type="submit" id="btnSubmitProcess" style="display:none" onclick="submitBusinessProcess()" value="Next >" class="mt-2 btn btn-success btn-lg pull-right " />
-                    <input type="submit" id="btnSubmitMarketProcess" style="display:none" onclick="submitMarketStep()" value="Next >" class="mt-2 btn btn-success btn-lg pull-right " />
+                    <input type="submit" id="btnSubmit" style="display:block" value="Next &#xf101" class="mt-2 btn btn-success btn-lg pull-right btnNext" />
+                    <input type="submit" id="btnSubmitProcess" style="display:none" onclick="submitBusinessProcess()" value="Next &#xf101" class="mt-2 btn btn-success btn-lg pull-right btnNext" />
+                    <input type="submit" id="btnSubmitMarketProcess" style="display:none" onclick="submitMarketStep()" value="Next &#xf101" class="mt-2 btn btn-success btn-lg pull-right btnNext" />
                 </div>
                 @*<div class="footer-copyright">
                         <img src="~/Content/Images/logo_black.png" />
