@@ -22,6 +22,7 @@
     <![endif]-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
           crossorigin="anonymous">
+    <link href="~/Content/style.admin.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/Memberstyle.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/responsive.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -49,7 +50,7 @@
                 document.getElementById("updateMember").style.display = "none";
                 document.getElementById("updatePayment").style.display = "none";
                 document.getElementById("adminPassword").style.display = "none";
-               document.getElementById("UpdateDatalbl").style.display = "none";
+                document.getElementById("UpdateDatalbl").style.display = "none";
 
                 return;
             }
@@ -170,7 +171,7 @@
                         document.getElementById("UpdateDatalbl").style.display = "none";
                         document.getElementById("ErrorNotFound").style.display = "none";
 
-                       
+
                     }
                     else {
                         $('#ErrorInvalidPwd').text(response.Error);
@@ -194,280 +195,328 @@
             debugger;
             document.getElementById("adminPassword").style.display = "block";
             document.getElementById("updatePayment").style.display = "block";
-
         }
-
     </script>
-
-
-
 
 </head>
 <body>
 
+    <!-- Side Navbar -->
+    <nav class="side-navbar">
+        <div class="side-navbar-wrapper">
+            <!-- Sidebar Header    -->
+            @*<div class="sidenav-header d-flex align-items-center justify-content-center">
+                
+                <div class="sidenav-header-inner text-center">
+                    <img src="img/avatar-7.jpg" alt="person" class="img-fluid rounded-circle">
+                    <h2 class="h5">Nathan Andrews</h2><span>Web Developer</span>
+                </div>
+                
+                <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
+            </div>*@
+            <!-- Sidebar Navigation Menus-->
+            <div class="main-menu">
+                <h5 class="sidenav-heading">Main</h5>
+                <ul id="side-main-menu" class="side-menu list-unstyled">
+                    <li><a href="index.html"> <i class="icon-home"></i>Home</a></li>
+
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+    <div class="page">
+        <!-- navbar-->
+        <header class="header">
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <div class="navbar-holder d-flex align-items-center justify-content-between">
+                        <div class="navbar-header">
+                            <a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
+                                <div class="brand-text d-none d-md-inline-block"><span>Bootstrap </span><strong class="text-primary">Dashboard</strong></div>
+                            </a>
+                        </div>
+                        @*<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+                           
+                            <li class="nav-item dropdown">
+                                <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell"></i><span class="badge badge-warning">12</span></a>
+                                <ul aria-labelledby="notifications" class="dropdown-menu">
+                                    <li>
+                                        <a rel="nofollow" href="#" class="dropdown-item">
+                                            <div class="notification d-flex justify-content-between">
+                                                <div class="notification-content"><i class="fa fa-envelope"></i>You have 6 new messages </div>
+                                                <div class="notification-time"><small>4 minutes ago</small></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a rel="nofollow" href="#" class="dropdown-item">
+                                            <div class="notification d-flex justify-content-between">
+                                                <div class="notification-content"><i class="fa fa-twitter"></i>You have 2 followers</div>
+                                                <div class="notification-time"><small>4 minutes ago</small></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a rel="nofollow" href="#" class="dropdown-item">
+                                            <div class="notification d-flex justify-content-between">
+                                                <div class="notification-content"><i class="fa fa-upload"></i>Server Rebooted</div>
+                                                <div class="notification-time"><small>4 minutes ago</small></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a rel="nofollow" href="#" class="dropdown-item">
+                                            <div class="notification d-flex justify-content-between">
+                                                <div class="notification-content"><i class="fa fa-twitter"></i>You have 2 followers</div>
+                                                <div class="notification-time"><small>10 minutes ago</small></div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-bell"></i>view all notifications                                            </strong></a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="nav-item dropdown">
+                                <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope"></i><span class="badge badge-info">10</span></a>
+                                <ul aria-labelledby="notifications" class="dropdown-menu">
+                                    <li>
+                                        <a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                            <div class="msg-profile"> <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                                            <div class="msg-body">
+                                                <h3 class="h5">Jason Doe</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                            <div class="msg-profile"> <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                                            <div class="msg-body">
+                                                <h3 class="h5">Frank Williams</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a rel="nofollow" href="#" class="dropdown-item d-flex">
+                                            <div class="msg-profile"> <img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                                            <div class="msg-body">
+                                                <h3 class="h5">Ashley Wood</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="nav-item dropdown">
+                                <a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
+                                <ul aria-labelledby="languages" class="dropdown-menu">
+                                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/DE.png" alt="English" class="mr-2"><span>German</span></a></li>
+                                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/FR.png" alt="English" class="mr-2"><span>French                                                         </span></a></li>
+                                </ul>
+                            </li>
+                            
+                            <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
+                        </ul>*@
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- Counts Section -->
+        <section class="dashboard-counts section-padding">
+            <div class="container-fluid">
+
+                <div class="container ">
+                    <div class="box-wrapper" style="padding-top:50px;padding-bottom: 114px;">
+
+
+                        <div class="row" style="margin-bottom:20px;">
+                            <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
+                                Member ID:
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", minlength = "7", maxlength = "8" })
+
+
+                                <span id="ErrorRequired" style="color:#ff0000; font-size:12px;"></span>
+                                <span id="ErrorNotFound" style="color:#ff0000; font-size:12px;"></span>
+
+                                <span id="success"></span>
+                            </div>
+                        </div>
+                        <div></div>
+
+
+                        <div class="row" style="margin-bottom:20px;" id="mtable">
+                            <div class="col-lg-12 col-md-12 col-sm-12">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                            <tr>
+                                                <th>Name</th>
+                                                <th>Email</th>
+                                                <th>Company</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <span id="Name"></span>
+                                                </td>
+                                                <td>
+                                                    <span id="Email"></span>
+                                                </td>
+                                                <td>
+                                                    <span id="Company"></span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row" style="margin-bottom:20px;" id="mchekboxes">
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="check_tile">
+                                    <label class="control control-checkbox">
+                                        Yellow Belt
+                                        @Html.CheckBoxFor(model => model.IsYBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
+                                        <div class="control_indicator"></div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="check_tile">
+                                    <label class="control control-checkbox">
+                                        Green Belt
+                                        @Html.CheckBoxFor(model => model.IsGBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
+                                        <div class="control_indicator"></div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="check_tile">
+                                    <label class="control control-checkbox">
+                                        Black Belt
+                                        @Html.CheckBoxFor(model => model.IsBBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
+                                        <div class="control_indicator"></div>
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="check_tile">
+                                    <label class="control control-checkbox">
+                                        TOC Expert
+                                        @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
+                                        <div class="control_indicator"></div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <hr style="margin:50px 0;" />
+
+                        <div class="heading" id="UpdateDatalbl">
+                            <div class="section_head">
+                                Update Member Data
+                            </div>
+                        </div>
+                        <div class="row" style="margin-top:0px;" id="adminPassword">
+
+
+
+                            <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
+                                Admin Password:
+                            </div>
+                            <div class="col-lg-3 col-md-3 col-sm-12 pass_field">
+                                <div>
+                                    @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required", })
+                                    <span id="ErrorInvalidPwd" style="color:#ff0000; font-size:12px;"></span>
+
+                                    @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="row" style="margin-top:40px;">
+                            <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
+
+                            </div>
+                            <div class="col-lg-4 col-md-4 col-sm-12">
+                                <input type="submit" value="Update Payment" id="updatePayment" class="btn btn-primary btn-sm" onclick="postModel()" />
+                                <input type="submit" value="Update" id="updateMember" class="btn btn-primary btn-sm" onclick="PostData()" />
+                            </div>
+
+
+                            @*<div class="pass_error" id="ErrorInvalidPwd"></div>*@
+
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <!-- Header Section-->
+        <section class="dashboard-header section-padding">
+            <div class="container-fluid">
+
+            </div>
+        </section>
+        <!-- Statistics Section-->
+        <section class="statistics">
+            <div class="container-fluid">
+
+            </div>
+        </section>
+        <!-- Updates Section -->
+
+        <footer class="main-footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Your company &copy; 2017-2019</p>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <p>Design by <a href="https://bootstrapious.com/p/bootstrap-4-dashboard" class="external">Bootstrapious</a></p>
+                        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+
+
+
+
+    <!-- New dashboard End-->
     @*Textbox for input Member Id*@
 
-    <div class="toolbar-out" style="background-color:#ffffff;">
-        <div class="container">
-            <div id="itoolbar_bg">
-                <div id="itoolbar" class="col-md-12  text-right">
-                    &nbsp;
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="header-out">
-        <div class="container">
-            <div class="header">
-                <script type="text/javascript">
-                    WebFontConfig = {
-                        google: { families: ['Open+Sans:400,300,600,700,800:latin', 'Roboto+Condensed:400,300,700:latin'] }
-                    };
-                    (function () {
-                        var wf = document.createElement('script');
-                        wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
-                        wf.type = 'text/javascript';
-                        wf.async = 'true';
-                        var s = document.getElementsByTagName('script')[0];
-                        s.parentNode.insertBefore(wf, s);
-                    })();</script>
-                <div class="row">
-                    <div class="col-lg-6 col-md-12 col-sm-12">
-                        <a class="logo" href="/" target="_parent" style="color:#000;">
-                            <img src="~/Content/Images/TOCICOBannerLogoGoldHorizontal.gif" />
-                        </a>
-                        <i class="head_sub_new">"Bringing People and TOC Knowledge Together Globally"</i>
-                    </div>
-                    <div class="col-lg-6 col-md-12 col-sm-12">
-                        <div id="social">
-                            <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank"><img border="0" src="~/Content/Images/facebook.png"></a>
-                            <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank"><img border="0" src="~/Content/Images/linkedin.png"></a>
-                            <a class="tw" href="https://twitter.com/TOCICO" target="_blank"><img border="0" src="~/Content/Images/twitter.png"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="step-page">
-        <div class="text-center " style="padding:15px;">Payment Update</div>
-    </div>
-
-
-    <div style="background: rgba(0, 0, 0, 0) linear-gradient(to bottom, rgba(80, 80, 80, 1) 0%, rgba(0, 0, 0, 1) 100%) repeat fixed 0 0;">
-        <div class="container ">
-            <div class="box-wrapper" style="padding-top:50px;padding-bottom: 114px;">
-
-
-                <div class="row" style="margin-bottom:20px;">
-                    <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
-                        Member ID:
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", minlength = "7" , maxlength = "8"  })
-                    
-
-                        <span id="ErrorRequired" style="color:#ff0000; font-size:12px;"></span>
-                        <span id="ErrorNotFound" style="color:#ff0000; font-size:12px;"></span>
-
-                        <span id="success"></span>
-                    </div>
-                </div>
-                <div></div>
-
-
-                <div class="row" style="margin-bottom:20px;" id="mtable">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <div class="table-responsive">
-                            <table class="table table-bordered">
-                                <thead>
-                                    <tr>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Company</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <span id="Name"></span>
-                                        </td>
-                                        <td>
-                                            <span id="Email"></span>
-                                        </td>
-                                        <td>
-                                            <span id="Company"></span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row" style="margin-bottom:20px;" id="mchekboxes">
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="check_tile">
-                            <label class="control control-checkbox">
-                                Yellow Belt
-                                @Html.CheckBoxFor(model => model.IsYBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
-                                <div class="control_indicator"></div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="check_tile">
-                            <label class="control control-checkbox">
-                                Green Belt
-                                @Html.CheckBoxFor(model => model.IsGBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
-                                <div class="control_indicator"></div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="check_tile">
-                            <label class="control control-checkbox">
-                                Black Belt
-                                @Html.CheckBoxFor(model => model.IsBBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
-                                <div class="control_indicator"></div>
-                            </label>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12">
-                        <div class="check_tile">
-                            <label class="control control-checkbox">
-                                TOC Expert
-                                @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
-                                <div class="control_indicator"></div>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                <hr style="margin:50px 0;" />
-
-                <div class="heading" id="UpdateDatalbl">
-                    <div class="section_head">
-                        Update Member Data
-                    </div>
-                </div>
-                <div class="row" style="margin-top:0px;" id="adminPassword">
 
 
 
-                    <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
-                        Admin Password:
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-12 pass_field">
-                        <div>
-                            @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required", })
-                            <span id="ErrorInvalidPwd" style="color:#ff0000; font-size:12px;"></span>
-
-                            @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row" style="margin-top:40px;">
-                    <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
-
-                    </div>
-                    <div class="col-lg-4 col-md-4 col-sm-12">
-                        <input type="submit" value="Update Payment" id="updatePayment" class="btn btn-primary btn-sm" onclick="postModel()" />
-                        <input type="submit" value="Update" id="updateMember" class="btn btn-primary btn-sm" onclick="PostData()" />
-                    </div>
-
-
-                    @*<div class="pass_error" id="ErrorInvalidPwd"></div>*@
-
-                </div>
-
-            </div>
-        </div>
-    </div>
 
 
 
-    <div id="footer">
-        <div id="foot-social">
-            <span>
-                <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank">
-                    <img alt="" src="~/Content/Images/facebook-w.png" style="border-width: 0px; border-style: solid;">
-                </a>
-                <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank">
-                    <img alt="" src="~/Content/Images/linkedin-w.png" style="border-width: 0px; border-style: solid;">
-                </a>
-                <a class="tw" href="https://twitter.com/TOCICO" target="_blank">
-                    <img alt="" src="~/Content/Images/twitter-w.png" style="border-width: 0px; border-style: solid;">
-                </a>
-            </span>
-        </div>
-        <div id="FooterContentArea">
-            <div class="container">
-                <!--YMPSTITLE=TgBBAA==/YMPSTITLE--><span>
-                    <style>
-                        #copyright-inner {
-                            padding-left: 0px !important;
-                            margin-right: 0px;
-                            margin-top: 0px;
-                            text-align: center;
-                        }
 
-                        #icopyright {
-                            width: 100% !important;
-                        }
-                        <!-- .mainmenu-out {
-                            padding-left: 8%;
-                        }
-                        -->
-                        .foot-copy {
-                        }
-                    </style>
-                </span>
-                <div id="footer">
-                    <div id="foot-social">
-                        <span>
-                            <a class="fb" href="https://www.facebook.com/Theory-of-Constraints-International-Certification-Organization-98918483549/?ref=hl" target="_blank">
-                                <img alt="" src="~/Content/Images/facebook-w.png" style="border-width: 0px; border-style: solid;">
-                            </a>
 
-                            <a class="li" href="https://www.linkedin.com/company/tocico?trk=nav_account_sub_nav_company_admin" target="_blank">
 
-                                <img alt="" src="~/Content/Images/linkedin-w.png" style="border-width: 0px; border-style: solid;">
-                            </a>
-
-                            <a class="tw" href="https://twitter.com/TOCICO" target="_blank">
-
-                                <img alt="" src="~/Content/Images/twitter-w.png" style="border-width: 0px; border-style: solid;">
-                            </a>
-                        </span>
-                    </div>
-                    <div class="foot-copy">
-                        <div class="footer_text">
-                            Copyright © <span id="2019"></span>
-                            TOCICO. All rights reserved.<br>
-                            Theory of Constraints International Certification Organization<br>
-                            230 Washington Avenue Extension, Suite 101<br>
-                            Albany, New York 12203-5319&nbsp; USA<br>
-                            Ph: +1 (518) 694-8478<br>
-                            Fax: +1 (518) 463-8656<br>
-                            admin@tocico.org<br>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div id="icopyright">
-                <div id="copyright-inner" class="text-center">
-                    <a href="/ams/legal-privacy.htm" class="">Legal</a><!-- Copyright (c) 1998-2019 YourMembership.com Inc. All Rights Reserved. Copyright: Certain elements of this website are: Copyright (c) 1998-2019, YourMembership.com, Incorporated. YourMembership.com, Incorporated provides a limited license to use its Copyrights to the entity from whose web page you are viewing. Certain elements of this website may also be copyrighted by that entity; please see its Terms of Use or contact the organization for more information. General information about copyright laws can be found at: http://www.copyright.gov/. For more specific information, please consult an attorney. -->
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
+
+
+    <!-- JavaScript files-->
+    <script src="~/Content/js/jquery/jquery.min.js"></script>
+    <script src="~/Content/js/popper.js/umd/popper.min.js"></script>
+    <script src="~/Content/js/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    <!-- Main File-->
+    <script src="~/Content/js/front.js"></script>
 </body>
 </html>
