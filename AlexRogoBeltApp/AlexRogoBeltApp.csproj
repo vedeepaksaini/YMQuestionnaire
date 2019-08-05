@@ -304,8 +304,30 @@
     <Content Include="Content\Images\yellow-belt.jpg" />
     <Content Include="Content\Images\yellow-level.png" />
     <Content Include="Content\Images\YellowBelt_Slide6_Video.png" />
+    <Content Include="Content\js\jquery\core.js" />
+    <Content Include="Content\js\jquery\jquery.js" />
+    <Content Include="Content\js\jquery\jquery.min.js" />
+    <Content Include="Content\js\jquery\jquery.slim.js" />
+    <Content Include="Content\js\jquery\jquery.slim.min.js" />
+    <Content Include="Content\js\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.concat.min.js" />
+    <Content Include="Content\js\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.css" />
+    <Content Include="Content\js\malihu-custom-scrollbar-plugin\jquery.mCustomScrollbar.js" />
+    <Content Include="Content\js\malihu-custom-scrollbar-plugin\mCSB_buttons.png" />
+    <Content Include="Content\js\popper.js\esm\popper-utils.js" />
+    <Content Include="Content\js\popper.js\esm\popper-utils.min.js" />
+    <Content Include="Content\js\popper.js\esm\popper.js" />
+    <Content Include="Content\js\popper.js\esm\popper.min.js" />
+    <Content Include="Content\js\popper.js\popper-utils.js" />
+    <Content Include="Content\js\popper.js\popper-utils.min.js" />
+    <Content Include="Content\js\popper.js\popper.js" />
+    <Content Include="Content\js\popper.js\popper.min.js" />
+    <Content Include="Content\js\popper.js\umd\popper-utils.js" />
+    <Content Include="Content\js\popper.js\umd\popper-utils.min.js" />
+    <Content Include="Content\js\popper.js\umd\popper.js" />
+    <Content Include="Content\js\popper.js\umd\popper.min.js" />
     <Content Include="Content\Memberstyle.css" />
     <Content Include="Content\responsive.css" />
+    <Content Include="Content\style.admin.css" />
     <Content Include="Content\style.css" />
     <Content Include="Content\Videos\YellowBelt_Slide10_Video.mp4" />
     <Content Include="Content\Videos\YellowBelt_Slide11_Video.mp4" />
@@ -339,6 +361,7 @@
     <Content Include="Entities\TocicoEntities.edmx.diagram">
       <DependentUpon>TocicoEntities.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\js\popper.js\umd\poppper.js.flow" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
