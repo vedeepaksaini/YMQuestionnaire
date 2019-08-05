@@ -157,6 +157,7 @@ ul li{
                 position: relative;
                 width: 100%;
                 word-break: break-all;
+                cursor:pointer;
             }
 
 .options ul li i {
@@ -620,7 +621,7 @@ min-height: 35px;
 /**/
 .popover {
     background-color: #f44336;
-    border: 1px solid #f44336 !important; 
+    border: 1px solid #f44336 !important;
     border-radius: 5px;
     top: 30px;
     box-shadow: 0 0 5px rgba(0,0,0,0.4);
@@ -632,9 +633,9 @@ min-height: 35px;
     margin-left: -65px;
     padding: 7px 10px;
     position: absolute;
+    text-align: center;
     width: 130px;
     z-index: 4;
-    text-align: center;
 }
 .popover:before {
     border-bottom: 7px solid #f44336;
@@ -713,6 +714,7 @@ min-height: 35px;
     width: 80%;
     word-break:break-word;
     margin-top:5px;
+    cursor:pointer;
 }
 .label_checkr {
     float: left;
@@ -821,4 +823,18 @@ min-height: 35px;
 .form-control, .form-control:focus {
     box-shadow: none !important;
     border: 1px solid #ccc !important;
+}
+#btnBack{
+    position:relative;
+    font-weight:normal !important;
+}
+    #btnBack:before {
+        content: "\f100";
+        display: inline;
+        font-family: FontAwesome;
+        font-weight: normal !important;
+    }
+.btnNext {
+    position: relative;    
+    font-family: FontAwesome, 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
