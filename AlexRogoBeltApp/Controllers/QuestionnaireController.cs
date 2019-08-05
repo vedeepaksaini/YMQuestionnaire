@@ -32,7 +32,7 @@ namespace AlexRogoBeltApp.Controllers
                 int id = Convert.ToInt32(TempData["MemberId"] == null ? res : TempData["MemberId"]);
                 var MemberDetails = _service.IsMemberExist(id);
                 if (MemberDetails != null)
-                //if (MemberId > 0)
+              
                 {
                     HttpContext.Session["MemberId"] = MemberDetails;// MemberDetails.MemberID;
                     return View();
@@ -56,7 +56,7 @@ namespace AlexRogoBeltApp.Controllers
             try
 
             {
-                //TempData.Remove("ErrorMsg");
+           
                 bool isValid = int.TryParse(Request.QueryString["MemberId"], out int res);
 
                 if (!isValid)
@@ -70,7 +70,7 @@ namespace AlexRogoBeltApp.Controllers
                 {
 
                     if (!MemberDetails.IsYBpaymentCompleted)
-                        // TempData["INFOMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
+                  
                         TempData["ErrorMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
                     else if (MemberDetails.IsYBStepsCompleted)
                         TempData["SuccessMsg"] = "You have completed the Yellow Belt.";
@@ -105,7 +105,7 @@ namespace AlexRogoBeltApp.Controllers
 
                 if (!MemberDetails.IsYBpaymentCompleted)
                 {
-                    //TempData["infoMsg"] = "Pay for Yellow Belt first.";
+                    
                     TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
@@ -145,7 +145,6 @@ namespace AlexRogoBeltApp.Controllers
             catch (Exception ex)
             {
 
-                //TempData["ErrorMsg"] = "We are facing some issue at this time.";
                 return PartialView(@"~\Views\Shared\Error.cshtml");
             }
         }
@@ -162,7 +161,7 @@ namespace AlexRogoBeltApp.Controllers
 
                 if (!MemberDetails.IsYBpaymentCompleted)
                 {
-                    //  TempData["infoMsg"] = "Pay for Yellow Belt first.";
+                   
                     TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
@@ -268,9 +267,7 @@ namespace AlexRogoBeltApp.Controllers
         [WebMethod]
         public JsonResult GetAllTemplates(int id)
         {
-            //var processes = _service.GetAllTemplates();
-            //ViewData["Processes"] = processes;
-            //ViewBag.Processes = processes;
+          
             return Json(_service.GetAllTemplates(id));
         }
 
@@ -279,8 +276,7 @@ namespace AlexRogoBeltApp.Controllers
         {
             var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
             var data = _service.GetTemplate(id, MemberDetails.MemberID);
-            //if (data[0] == null)
-            //    data.Clear();
+          
             return Json(data);
         }
 
@@ -384,6 +380,7 @@ namespace AlexRogoBeltApp.Controllers
             TempData["OrderId"] = 13 + 1;
             TempData["LevelId"] = 1;
             TempData["Slide"] = "slide13";
+
             //return RedirectToAction("Questions");
             return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
         }
@@ -423,7 +420,7 @@ namespace AlexRogoBeltApp.Controllers
 
         //Created By Sadhana 11 july 19
 
-            //Method to set the session of user after confirmation to continue session
+       //Method to set the session of user after confirmation to continue session
         public ActionResult Setsessiondata()
         {
 
@@ -522,10 +519,6 @@ namespace AlexRogoBeltApp.Controllers
            
             ViewBag.Error = "invalid User Name or Password";
             ModelState.Clear();
-<<<<<<< HEAD
-=======
-
->>>>>>> 3f30cf25ee34a6ce45a5d4e2f420fc366ac21a3a
             return View();
         }
     }
