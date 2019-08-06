@@ -1,6 +1,5 @@
 ﻿@model AlexRogoBeltApp.ViewModel.ProductViewModel
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -23,7 +22,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
           crossorigin="anonymous">
     <link href="~/Content/style.admin.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/Memberstyle.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/Content/Memberstyle.css" rel="stylesheet" type="text/css" />*@
     <link href="~/Content/responsive.css" rel="stylesheet" type="text/css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
@@ -206,303 +205,201 @@
         <div class="side-navbar-wrapper">
             <!-- Sidebar Header    -->
             @*<div class="sidenav-header d-flex align-items-center justify-content-center">
-                
-                <div class="sidenav-header-inner text-center">
-                    <img src="img/avatar-7.jpg" alt="person" class="img-fluid rounded-circle">
-                    <h2 class="h5">Nathan Andrews</h2><span>Web Developer</span>
-                </div>
-                
-                <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
-            </div>*@
+
+                    <div class="sidenav-header-inner text-center">
+                        <img src="img/avatar-7.jpg" alt="person" class="img-fluid rounded-circle">
+                        <h2 class="h5">Nathan Andrews</h2><span>Web Developer</span>
+                    </div>
+
+                    <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
+                </div>*@
             <!-- Sidebar Navigation Menus-->
             <div class="main-menu">
-                <h5 class="sidenav-heading">Main</h5>
                 <ul id="side-main-menu" class="side-menu list-unstyled">
-                    <li><a href=@Url.Action("PaymentUpdate", "Questionnaire")> <i class="icon-home"></i>Payment</a></li>
-
+                    @*<li><a href="index.html"> <i class="fa fa-tachometer-alt"></i>Home</a></li>*@
+                    <li><a href=@Url.Action("PaymentUpdate", "Questionnaire")> <i class="fa fa-tachometer-alt"></i>Payment</a></li>
                 </ul>
             </div>
-
         </div>
     </nav>
     <div class="page">
         <!-- navbar-->
-        <header class="header">
+        <header class="headers">
             <nav class="navbar">
                 <div class="container-fluid">
                     <div class="navbar-holder d-flex align-items-center justify-content-between">
                         <div class="navbar-header">
-                            <a id="toggle-btn" href="#" class="menu-btn"><i class="icon-bars"> </i></a><a href="index.html" class="navbar-brand">
-                                <div class="brand-text d-none d-md-inline-block"><span>Bootstrap </span><strong class="text-primary">Dashboard</strong></div>
+                            <a id="toggle-btn" href="#" class="menu-btn"><i class="fa fa-bars"> </i></a><a href="index.html" class="navbar-brand">
+                                <div class="brand-text head_brand d-none d-md-inline-block">
+                                    <img src="~/Content/Images/logo-dashboard.png" alt="logo" />
+                                    @*<img src="~/Content/Images/logo.png" alt="logo" />*@
+                                </div>
                             </a>
                         </div>
-                        <ul>
-                            <li class="nav-item dropdown" ngbDropdown>
-                                <div class="text-right">>
-                                    <a  class="nav-link">
-                                        <i class="fa fa-user"></i> @ViewBag.UserName
-                                    </a>
-
-                                   
-                                    <a class="dropdown-item" href=@Url.Action("Login", "Questionnaire")>
-                                        <i class="fa fa-fw fa-power-off"></i>Logout
-                                    </a>
-                                </div>
+                        
+                        <ul class="hnav_menu">
+                            <li class="nav-item">
+                                <a href="login.html" class="nav-link logout">
+                                    <i class="fa fa-user"></i>
+                                    <span class=""> @ViewBag.UserName</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="" href="@Url.Action("Login", "Questionnaire")">
+                                    <i class="fa fa-power-off"></i> <span class=""> Logout</span>
+                                </a>
                             </li>
                         </ul>
-                        @*<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
-
-            <li class="nav-item dropdown">
-                <a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-bell"></i><span class="badge badge-warning">12</span></a>
-                <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li>
-                        <a rel="nofollow" href="#" class="dropdown-item">
-                            <div class="notification d-flex justify-content-between">
-                                <div class="notification-content"><i class="fa fa-envelope"></i>You have 6 new messages </div>
-                                <div class="notification-time"><small>4 minutes ago</small></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="nofollow" href="#" class="dropdown-item">
-                            <div class="notification d-flex justify-content-between">
-                                <div class="notification-content"><i class="fa fa-twitter"></i>You have 2 followers</div>
-                                <div class="notification-time"><small>4 minutes ago</small></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="nofollow" href="#" class="dropdown-item">
-                            <div class="notification d-flex justify-content-between">
-                                <div class="notification-content"><i class="fa fa-upload"></i>Server Rebooted</div>
-                                <div class="notification-time"><small>4 minutes ago</small></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="nofollow" href="#" class="dropdown-item">
-                            <div class="notification d-flex justify-content-between">
-                                <div class="notification-content"><i class="fa fa-twitter"></i>You have 2 followers</div>
-                                <div class="notification-time"><small>10 minutes ago</small></div>
-                            </div>
-                        </a>
-                    </li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-bell"></i>view all notifications                                            </strong></a></li>
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a id="messages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="fa fa-envelope"></i><span class="badge badge-info">10</span></a>
-                <ul aria-labelledby="notifications" class="dropdown-menu">
-                    <li>
-                        <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                            <div class="msg-profile"> <img src="img/avatar-1.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                            <div class="msg-body">
-                                <h3 class="h5">Jason Doe</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                            <div class="msg-profile"> <img src="img/avatar-2.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                            <div class="msg-body">
-                                <h3 class="h5">Frank Williams</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a rel="nofollow" href="#" class="dropdown-item d-flex">
-                            <div class="msg-profile"> <img src="img/avatar-3.jpg" alt="..." class="img-fluid rounded-circle"></div>
-                            <div class="msg-body">
-                                <h3 class="h5">Ashley Wood</h3><span>sent you a direct message</span><small>3 days ago at 7:58 pm - 10.06.2014</small>
-                            </div>
-                        </a>
-                    </li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong> <i class="fa fa-envelope"></i>Read all messages    </strong></a></li>
-                </ul>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a id="languages" rel="nofollow" data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link language dropdown-toggle"><img src="img/flags/16/GB.png" alt="English"><span class="d-none d-sm-inline-block">English</span></a>
-                <ul aria-labelledby="languages" class="dropdown-menu">
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/DE.png" alt="English" class="mr-2"><span>German</span></a></li>
-                    <li><a rel="nofollow" href="#" class="dropdown-item"> <img src="img/flags/16/FR.png" alt="English" class="mr-2"><span>French                                                         </span></a></li>
-                </ul>
-            </li>
-
-            <li class="nav-item"><a href="login.html" class="nav-link logout"> <span class="d-none d-sm-inline-block">Logout</span><i class="fa fa-sign-out"></i></a></li>
-        </ul>*@
+                        
                     </div>
                 </div>
             </nav>
         </header>
-        <!-- Counts Section -->
-        <section class="dashboard-counts section-padding">
-            <div class="container-fluid">
+        
+        <div class="dashboard_area">
+            <div class="">
+                <div class="row" style="margin-bottom:20px;">
+                    <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
+                        Member ID:
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", minlength = "7", maxlength = "8" })
 
-                <div class="container ">
-                    <div class="box-wrapper" style="padding-top:50px;padding-bottom: 114px;">
+                        <span id="ErrorRequired" style="color:#ff0000; font-size:12px;"></span>
+                        <span id="ErrorNotFound" style="color:#ff0000; font-size:12px;"></span>
+                        <span id="success"></span>
+                    </div>
+                </div>
+                <div></div>
 
-
-                        <div class="row" style="margin-bottom:20px;">
-                            <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
-                                Member ID:
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-12">
-                                @Html.TextBoxFor(model => model.MemberID, new { onblur = "GetMemberData()", @class = "form-control", @id = "txtMemberId", required = "required", minlength = "7", maxlength = "8" })
-
-
-                                <span id="ErrorRequired" style="color:#ff0000; font-size:12px;"></span>
-                                <span id="ErrorNotFound" style="color:#ff0000; font-size:12px;"></span>
-
-                                <span id="success"></span>
-                            </div>
+                <div class="row" style="margin-bottom:20px;" id="mtable">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Company</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span id="Name"></span>
+                                        </td>
+                                        <td>
+                                            <span id="Email"></span>
+                                        </td>
+                                        <td>
+                                            <span id="Company"></span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div></div>
+                    </div>
+                </div>
 
-
-                        <div class="row" style="margin-bottom:20px;" id="mtable">
-                            <div class="col-lg-12 col-md-12 col-sm-12">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                            <tr>
-                                                <th>Name</th>
-                                                <th>Email</th>
-                                                <th>Company</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>
-                                                    <span id="Name"></span>
-                                                </td>
-                                                <td>
-                                                    <span id="Email"></span>
-                                                </td>
-                                                <td>
-                                                    <span id="Company"></span>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                <div class="row" style="margin-bottom:20px;" id="mchekboxes">
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="check_tile">
+                            <label class="control control-checkbox">
+                                Yellow Belt
+                                @Html.CheckBoxFor(model => model.IsYBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
+                                <div class="control_indicator"></div>
+                            </label>
                         </div>
-
-                        <div class="row" style="margin-bottom:20px;" id="mchekboxes">
-                            <div class="col-lg-3 col-md-3 col-sm-12">
-                                <div class="check_tile">
-                                    <label class="control control-checkbox">
-                                        Yellow Belt
-                                        @Html.CheckBoxFor(model => model.IsYBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
-                                        <div class="control_indicator"></div>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-12">
-                                <div class="check_tile">
-                                    <label class="control control-checkbox">
-                                        Green Belt
-                                        @Html.CheckBoxFor(model => model.IsGBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
-                                        <div class="control_indicator"></div>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-12">
-                                <div class="check_tile">
-                                    <label class="control control-checkbox">
-                                        Black Belt
-                                        @Html.CheckBoxFor(model => model.IsBBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
-                                        <div class="control_indicator"></div>
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-12">
-                                <div class="check_tile">
-                                    <label class="control control-checkbox">
-                                        TOC Expert
-                                        @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
-                                        <div class="control_indicator"></div>
-                                    </label>
-                                </div>
-                            </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="check_tile">
+                            <label class="control control-checkbox">
+                                Green Belt
+                                @Html.CheckBoxFor(model => model.IsGBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
+                                <div class="control_indicator"></div>
+                            </label>
                         </div>
-                        <hr style="margin:50px 0;" />
-
-                        <div class="heading" id="UpdateDatalbl">
-                            <div class="section_head">
-                                Update Member Data
-                            </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="check_tile">
+                            <label class="control control-checkbox">
+                                Black Belt
+                                @Html.CheckBoxFor(model => model.IsBBpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
+                                <div class="control_indicator"></div>
+                            </label>
                         </div>
-                        <div class="row" style="margin-top:0px;" id="adminPassword">
-
-
-
-                            <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
-                                Admin Password:
-                            </div>
-                            <div class="col-lg-3 col-md-3 col-sm-12 pass_field">
-                                <div>
-                                    @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required", })
-                                    <span id="ErrorInvalidPwd" style="color:#ff0000; font-size:12px;"></span>
-
-                                    @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12">
+                        <div class="check_tile">
+                            <label class="control control-checkbox">
+                                TOC Expert
+                                @Html.CheckBoxFor(model => model.IsTOIpaymentCompleted, new { onchange = "OnchangeEventCheckBox()" })
+                                <div class="control_indicator"></div>
+                            </label>
                         </div>
+                    </div>
+                </div>
+                <hr style="margin:50px 0;" />
 
-                        <div class="row" style="margin-top:40px;">
-                            <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
-
-                            </div>
-                            <div class="col-lg-4 col-md-4 col-sm-12">
-                                <input type="submit" value="Update Payment" id="updatePayment" class="btn btn-primary btn-sm" onclick="postModel()" />
-                                <input type="submit" value="Update" id="updateMember" class="btn btn-primary btn-sm" onclick="PostData()" />
-                            </div>
+                <div class="heading" id="UpdateDatalbl">
+                    <div class="section_head">
+                        Update Member Data
+                    </div>
+                </div>
+                <div class="row" style="margin-top:0px;" id="adminPassword">
 
 
-                       
+
+                    <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
+                        Admin Password:
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-12 pass_field">
+                        <div>
+                            @Html.PasswordFor(model => model.AdminPassword, new { @class = "form-control", required = "required", })
+                            <span id="ErrorInvalidPwd" style="color:#ff0000; font-size:12px;"></span>
+
+                            @Html.ValidationMessageFor(model => model.Error, "", new { @class = "text-danger" })
                         </div>
-
                     </div>
 
                 </div>
-            </div>
-        </section>
-        <!-- Header Section-->
-        <section class="dashboard-header section-padding">
-            <div class="container-fluid">
+
+                <div class="row" style="margin-top:40px;">
+                    <div class="col-lg-2 col-md-2 col-sm-12 fi_label">
+
+                    </div>
+                    <div class="col-lg-4 col-md-4 col-sm-12">
+                        <input type="submit" value="Update Payment" id="updatePayment" class="btn btn-primary btn-sm payment_p" onclick="postModel()" />
+                        <input type="submit" value="Update" id="updateMember" class="btn btn-primary btn-sm payment_p" onclick="PostData()" />
+                    </div>
+
+
+                    @*<div class="pass_error" id="ErrorInvalidPwd"></div>*@
+
+                </div>
 
             </div>
-        </section>
-        <!-- Statistics Section-->
-        <section class="statistics">
-            <div class="container-fluid">
+        </div>
 
-            </div>
-        </section>
-        <!-- Updates Section -->
+
+        
+        
+        
+       
 
         <footer class="main-footer">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-sm-6">
-                        <p>Your company &copy; 2017-2019</p>
+
                     </div>
                     <div class="col-sm-6 text-right">
-                        <p>Design by <a href="https://bootstrapious.com/p/bootstrap-4-dashboard" class="external">Bootstrapious</a></p>
-                        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions and it helps me to run Bootstrapious. Thank you for understanding :)-->
+                        <p>TOCICO &copy; 2017-2019</p>
                     </div>
                 </div>
             </div>
         </footer>
     </div>
-
-
-
-
 
     <!-- New dashboard End-->
     @*Textbox for input Member Id*@
@@ -519,13 +416,10 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-
-
     <!-- JavaScript files-->
     <script src="~/Content/js/jquery/jquery.min.js"></script>
     <script src="~/Content/js/popper.js/umd/popper.min.js"></script>
     <script src="~/Content/js/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
-
     <!-- Main File-->
     <script src="~/Content/js/front.js"></script>
 </body>
