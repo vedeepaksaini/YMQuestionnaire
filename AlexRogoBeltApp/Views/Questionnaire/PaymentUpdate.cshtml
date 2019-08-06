@@ -226,13 +226,12 @@
         <!-- navbar-->
         <header class="headers">
             <nav class="navbar">
-                <div class="container-fluid">
-                    <div class="navbar-holder d-flex align-items-center justify-content-between">
+                
+                    <div class="navbar-holder">
                         <div class="navbar-header">
                             <a id="toggle-btn" href="#" class="menu-btn"><i class="fa fa-bars"> </i></a><a href="index.html" class="navbar-brand">
-                                <div class="brand-text head_brand d-none d-md-inline-block">
-                                    <img src="~/Content/Images/logo-dashboard.png" alt="logo" />
-                                    @*<img src="~/Content/Images/logo.png" alt="logo" />*@
+                                <div class="head_brand">
+                                    <img src="~/Content/Images/logo-dashboard.png" alt="logo" />                                    
                                 </div>
                             </a>
                         </div>
@@ -252,7 +251,7 @@
                         </ul>
                         
                     </div>
-                </div>
+                
             </nav>
         </header>
         
@@ -272,7 +271,7 @@
                 </div>
                 <div></div>
 
-                <div class="row" style="margin-bottom:20px;" id="mtable">
+                <div class="row" style="margin-bottom:0px;" id="mtable">
                     <div class="col-lg-12 col-md-12 col-sm-12">
                         <div class="table-responsive">
                             <table class="table table-bordered">
@@ -302,6 +301,18 @@
                 </div>
 
                 <div class="row" style="margin-bottom:20px;" id="mchekboxes">
+
+                    
+                    <div class="info_incon">
+                        <i class="fa fa-info-circle"></i>
+                        <span class="infppop">
+                            Please select the check box to proceed.
+                        </span>
+                    </div>
+                    <div class="clearfix"></div>
+                    
+
+
                     <div class="col-lg-3 col-md-3 col-sm-12">
                         <div class="check_tile">
                             <label class="control control-checkbox">
@@ -369,8 +380,8 @@
 
                     </div>
                     <div class="col-lg-4 col-md-4 col-sm-12">
-                        <input type="submit" value="Update Payment" id="updatePayment" class="btn btn-primary btn-sm payment_p" onclick="postModel()" />
-                        <input type="submit" value="Update" id="updateMember" class="btn btn-primary btn-sm payment_p" onclick="PostData()" />
+                        <input type="submit" value="Update Payment &#xf101" id="updatePayment" class="btn btn-primary btn-sm payment_p" onclick="postModel()" />
+                        <input type="submit" value="Update &#xf101" id="updateMember" class="btn btn-primary btn-sm payment_p" onclick="PostData()" />
                     </div>
 
 

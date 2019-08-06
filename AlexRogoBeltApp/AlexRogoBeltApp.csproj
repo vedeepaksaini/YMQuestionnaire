@@ -304,6 +304,7 @@
     <Content Include="Content\Images\yellow-belt.jpg" />
     <Content Include="Content\Images\yellow-level.png" />
     <Content Include="Content\Images\YellowBelt_Slide6_Video.png" />
+    <Content Include="Content\js\front.js" />
     <Content Include="Content\js\jquery\core.js" />
     <Content Include="Content\js\jquery\jquery.js" />
     <Content Include="Content\js\jquery\jquery.min.js" />
