@@ -260,6 +260,7 @@ namespace AlexRogoBeltApp.Services
             var result = db.MemberMasters.Where(y=> y.MemberUserName == "Admin" && y.Email == model.Password).FirstOrDefault();
             if (result == null)
             {
+
                 return false;
             }
 

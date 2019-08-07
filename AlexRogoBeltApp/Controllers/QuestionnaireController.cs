@@ -515,10 +515,12 @@ namespace AlexRogoBeltApp.Controllers
             if(result==true)
             {
                 ViewBag.UserName = LoginModel.UserID;
+                
                 return View("PaymentUpdate");
             }
            
             ViewBag.Error = "invalid User Name or Password";
+           
             ModelState.Clear();
             return View();
         }
