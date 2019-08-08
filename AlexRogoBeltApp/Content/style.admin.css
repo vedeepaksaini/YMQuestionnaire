@@ -2886,6 +2886,9 @@ a > code {
     background: #006599;
     border: 1px solid #006599;
 }
+.check_tile .control input:checked ~ .check_tile {
+    border: 1px solid #006599 !important;
+}
 
 .control:hover input:not([disabled]):checked ~ .control_indicator,
 .control input:checked:focus ~ .control_indicator {
@@ -3067,9 +3070,12 @@ a > code {
         .info_incon:hover .infppop {
             display:block;
         }
-        /*Media query*/
-        @media only screen and (min-width:320px) and (max-width:480px) {
-            nav .navbar {
+#mtable table td{
+    padding:15px 8px !important;
+}
+/*Media query*/
+@media only screen and (min-width:320px) and (max-width:480px) {
+    nav .navbar {
         padding:0px;
     }
     nav.navbar a.menu-btn {        
