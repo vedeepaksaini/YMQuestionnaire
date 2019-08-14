@@ -438,7 +438,7 @@ namespace AlexRogoBeltApp.Controllers
         //Created By Sadhana 17 july 19
         [HttpGet]
         public ActionResult PaymentUpdate()
-        {
+      {
             return View();
         }
 
