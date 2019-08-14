@@ -32,7 +32,7 @@ namespace AlexRogoBeltApp.Controllers
                 int id = Convert.ToInt32(TempData["MemberId"] == null ? res : TempData["MemberId"]);
                 var MemberDetails = _service.IsMemberExist(id);
                 if (MemberDetails != null)
-
+              
                 {
                     HttpContext.Session["MemberId"] = MemberDetails;// MemberDetails.MemberID;
                     return View();
@@ -56,7 +56,7 @@ namespace AlexRogoBeltApp.Controllers
             try
 
             {
-
+           
                 bool isValid = int.TryParse(Request.QueryString["MemberId"], out int res);
 
                 if (!isValid)
@@ -70,7 +70,7 @@ namespace AlexRogoBeltApp.Controllers
                 {
 
                     if (!MemberDetails.IsYBpaymentCompleted)
-
+                  
                         TempData["ErrorMsg"] = "You have not purchased the Yellow Belt. Please goto YM E-Commerce and purchase this product.";
                     else if (MemberDetails.IsYBStepsCompleted)
                         TempData["SuccessMsg"] = "You have completed the Yellow Belt.";
@@ -105,7 +105,7 @@ namespace AlexRogoBeltApp.Controllers
 
                 if (!MemberDetails.IsYBpaymentCompleted)
                 {
-
+                    
                     TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
@@ -161,7 +161,7 @@ namespace AlexRogoBeltApp.Controllers
 
                 if (!MemberDetails.IsYBpaymentCompleted)
                 {
-
+                   
                     TempData["ErrorMsg"] = "Pay for Yellow Belt first.";
                     return RedirectToAction("Dashboard", new { MemberId = MemberDetails.MemberID });
                 }
@@ -267,7 +267,7 @@ namespace AlexRogoBeltApp.Controllers
         [WebMethod]
         public JsonResult GetAllTemplates(int id)
         {
-
+          
             return Json(_service.GetAllTemplates(id));
         }
 
@@ -276,7 +276,7 @@ namespace AlexRogoBeltApp.Controllers
         {
             var MemberDetails = (MemberMaster)HttpContext.Session["MemberId"];
             var data = _service.GetTemplate(id, MemberDetails.MemberID);
-
+          
             return Json(data);
         }
 
@@ -331,11 +331,12 @@ namespace AlexRogoBeltApp.Controllers
         private ActionResult SessionExpired()
         {
             var MemberDetails = _service.IsMemberExist(Convert.ToInt32(Request.QueryString["MemberId"]));
-            if (MemberDetails == null)
+            if (MemberDetails==null)
             {
                 return UnauthorizedRequest();
             }
             TempData["InfoMsg"] = "Session has been expired.";
+
             return View("Dashboard");
         }
 
@@ -384,16 +385,16 @@ namespace AlexRogoBeltApp.Controllers
             return RedirectToAction("Questions", new { MemberId = MemberDetails.MemberID });
         }
         [HttpPost]
-        public ActionResult LoadMemebrGUID(string id)
+        public ActionResult LoadMemebrGUID( string id)
         {
             ProductViewModel model = new ProductViewModel();
             model.AdminPassword = id;
             if ((_service.CheckAdminPassword(model)) == true)
 
-            {
+            {    
                 //Getting all GUID from Server
-                model.Success = _ymservice.GetAllGuid();
-                return Json(model, JsonRequestBehavior.AllowGet);
+                 model.Success = _ymservice.GetAllGuid();
+                 return Json(model, JsonRequestBehavior.AllowGet);
 
 
             }
@@ -419,7 +420,7 @@ namespace AlexRogoBeltApp.Controllers
 
         //Created By Sadhana 11 july 19
 
-        //Method to set the session of user after confirmation to continue session
+       //Method to set the session of user after confirmation to continue session
         public ActionResult Setsessiondata()
         {
 
@@ -444,58 +445,42 @@ namespace AlexRogoBeltApp.Controllers
 
         //Created By Sadhana 16 july 19
 
-        //Method to get the MemberDeatil of specific member requested from the PaymentUpdate Page.
+            //Method to get the MemberDeatil of specific member requested from the PaymentUpdate Page.
         [HttpPost]
         public ActionResult PaymentUpdate(int MID)
         {
+            ProductViewModel model = new ProductViewModel();
+            model.MemberID = MID;
 
-            var UserId = (MemberMaster)HttpContext.Session["MemberId"];
-            if (UserId == null)
+            if (!ModelState.IsValid)
+                return View(model);
+
+            try
             {
-                return AdminSessionExpier();
+                var member = _service.GetMemberIdExist(Convert.ToInt32(model.MemberID));
+
+                if (member == null)
+                {
+                    model.Error = "Member not found";
+                    model.MemberID = 0;
+                    return Json(model, JsonRequestBehavior.AllowGet);
+                    //return View(model);
+                }
+
+                return Json(member, JsonRequestBehavior.AllowGet);
             }
-
-            else
+            catch (Exception e)
             {
-
-                ProductViewModel model = new ProductViewModel();
-                model.MemberID = MID;
-
-                if (!ModelState.IsValid)
-                    return View(model);
-
-                try
-                {
-                    var member = _service.GetMemberIdExist(Convert.ToInt32(model.MemberID));
-
-                    if (member == null)
-                    {
-                        model.Error = "Member not found";
-                        model.MemberID = 0;
-                        return Json(model, JsonRequestBehavior.AllowGet);
-                        //return View(model);
-                    }
-
-                    return Json(member, JsonRequestBehavior.AllowGet);
-                }
-                catch (Exception e)
-                {
-                    return PartialView(@"~\Views\Shared\Error.cshtml");
-                }
+                return PartialView(@"~\Views\Shared\Error.cshtml");
             }
         }
 
         //Created By Sadhana 16 july 19
 
-        //method to update data in member master table posted from PaymentUpdatePage
+            //method to update data in member master table posted from PaymentUpdatePage
         [HttpPost]
         public ActionResult ConfirmPayment(ProductViewModel model)
         {
-            var UserId = (MemberMaster)HttpContext.Session["MemberId"];
-            if (UserId == null)
-            {
-                return AdminSessionExpier();
-            }
             if ((_service.CheckAdminPassword(model)) == true)
             {
                 var result = _service.ConfirmPayment(model);
@@ -508,7 +493,7 @@ namespace AlexRogoBeltApp.Controllers
             }
             else
             {
-
+            
                 model.Error = "Invalid Password";
             }
             return Json(model, JsonRequestBehavior.AllowGet);
@@ -526,36 +511,18 @@ namespace AlexRogoBeltApp.Controllers
 
 
         {
-            var AdminDetail = _service.CheckLoginCredential(LoginModel);
-            if (AdminDetail!=null)
+            var result = _service.CheckLoginCredential(LoginModel);
+            if(result==true)
             {
-                ViewBag.UserName = AdminDetail.MemberUserName;
-
-                HttpContext.Session["MemberId"] = AdminDetail; // MemberDetails.MemberID;
-
+                ViewBag.UserName = LoginModel.UserID;
+                
                 return View("PaymentUpdate");
             }
-
+           
             ViewBag.Error = "invalid User Name or Password";
-
+           
             ModelState.Clear();
             return View();
-        }
-
-
-        
-        public ActionResult AdminLogout()
-        {
-            Session.Abandon(); // it will clear the session at the end of request
-            return View("Login");
-        }
-
-        public ActionResult AdminSessionExpier()
-        {
-            ViewBag.Error= "Session has been expired.";
-
-             return Redirect("/Questionnaire/Login");
-
         }
     }
 }
