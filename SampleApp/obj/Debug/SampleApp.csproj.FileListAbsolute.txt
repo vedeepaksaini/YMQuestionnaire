@@ -1,0 +1,10 @@
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\bin\Debug\SampleApp.exe.config
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\bin\Debug\SampleApp.exe
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\bin\Debug\SampleApp.pdb
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\bin\Debug\YMSDK.dll
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\bin\Debug\YMSDK.pdb
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\obj\Debug\SampleApp.csprojAssemblyReference.cache
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\obj\Debug\SampleApp.csproj.CoreCompileInputs.cache
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\obj\Debug\SampleApp.csproj.CopyComplete
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\obj\Debug\SampleApp.exe
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\obj\Debug\SampleApp.pdb

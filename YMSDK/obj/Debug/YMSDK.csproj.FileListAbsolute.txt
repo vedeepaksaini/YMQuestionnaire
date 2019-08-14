@@ -1,0 +1,6 @@
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\YMSDK\bin\Debug\YMSDK.dll
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\YMSDK\bin\Debug\YMSDK.pdb
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\YMSDK\obj\Debug\YMSDK.csprojAssemblyReference.cache
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\YMSDK\obj\Debug\YMSDK.csproj.CoreCompileInputs.cache
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\YMSDK\obj\Debug\YMSDK.dll
+D:\Abhinav D Drive\Kobus\YMQuestionnaire\YMSDK\obj\Debug\YMSDK.pdb

@@ -22,14 +22,6 @@
     <Property Name="ControlID" Type="int" />
     <Property Name="ActionID" Type="int" />
   </EntityType>
-  <EntityType Name="ConstraintMaster">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ConstraintName" Type="varchar" MaxLength="900" Nullable="false" />
-    <Property Name="Deactive" Type="bit" Nullable="false" />
-  </EntityType>
   <EntityType Name="ControlMaster">
     <Key>
       <PropertyRef Name="ID" />
@@ -41,36 +33,15 @@
     <Property Name="IsControlDisabled" Type="bit" Nullable="false" />
     <Property Name="Deactive" Type="bit" Nullable="false" />
   </EntityType>
-  <EntityType Name="EnvironmentMaster">
+  <EntityType Name="GuidMaster">
     <Key>
-      <PropertyRef Name="ID" />
+      <PropertyRef Name="GUID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EnvironmentName" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="ProcessTemplateID" Type="int" />
-    <Property Name="IsCustom" Type="bit" Nullable="false" />
-    <Property Name="MemberID" Type="int" />
-    <Property Name="Deactive" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="GoalMaster">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="GoalName" Type="varchar" MaxLength="900" Nullable="false" />
-    <Property Name="Deactive" Type="bit" Nullable="false" />
-  </EntityType>
-  <EntityType Name="GoalTarget">
-    <Key>
-      <PropertyRef Name="MemberID" />
-      <PropertyRef Name="GoalID" />
-      <PropertyRef Name="TargetID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="MemberID" Type="int" Nullable="false" />
-    <Property Name="GoalID" Type="int" Nullable="false" />
-    <Property Name="TargetID" Type="int" Nullable="false" />
-    <Property Name="Deavtive" Type="bit" Nullable="false" />
+    <Property Name="GUID" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="UpdateOn" Type="date" />
+    <Property Name="CreatedON" Type="date" />
+    <Property Name="DeletedOn" Type="date" />
   </EntityType>
   <EntityType Name="LevelMaster">
     <Key>
@@ -84,27 +55,31 @@
     <Key>
       <PropertyRef Name="MemberID" />
     </Key>
-    <Property Name="MemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GUID" Type="nvarchar" MaxLength="100" />
+    <Property Name="MemberID" Type="int" Nullable="false" />
+    <Property Name="WebsiteID" Type="int" />
     <Property Name="MemberUserName" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
     <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="Company" Type="varchar" MaxLength="500" Nullable="false" />
-    <Property Name="NoOfEmployed" Type="int" Nullable="false" />
-    <Property Name="AnnualRevenue" Type="money" />
-    <Property Name="BusinessEnvironment" Type="varchar" MaxLength="100" Nullable="false" />
-  </EntityType>
-  <EntityType Name="ProcessGoalMapping">
-    <Key>
-      <PropertyRef Name="MemberID" />
-      <PropertyRef Name="ProcessID" />
-      <PropertyRef Name="GoalID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="MemberID" Type="int" Nullable="false" />
-    <Property Name="ProcessID" Type="int" Nullable="false" />
-    <Property Name="GoalID" Type="int" Nullable="false" />
-    <Property Name="Deactive" Type="bit" Nullable="false" />
+    <Property Name="Company" Type="varchar" MaxLength="500" />
+    <Property Name="MemberType" Type="varchar" MaxLength="20" />
+    <Property Name="HomeAddress1" Type="varchar" MaxLength="300" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Location" Type="varchar" MaxLength="50" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="30" />
+    <Property Name="EmployeeName" Type="varchar" MaxLength="100" />
+    <Property Name="MemberSuspended" Type="varchar" MaxLength="100" />
+    <Property Name="IsYBpaymentCompleted" Type="bit" Nullable="false" />
+    <Property Name="IsYBStepsCompleted" Type="bit" Nullable="false" />
+    <Property Name="IsGBpaymentCompleted" Type="bit" Nullable="false" />
+    <Property Name="IsGBStepsCompleted" Type="bit" Nullable="false" />
+    <Property Name="IsBBpaymentCompleted" Type="bit" Nullable="false" />
+    <Property Name="IsBBStepsCompleted" Type="bit" Nullable="false" />
+    <Property Name="IsTOIpaymentCompleted" Type="bit" Nullable="false" />
+    <Property Name="IsTOIStepsCompleted" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ProcessTemplateMaster">
     <Key>
@@ -113,8 +88,6 @@
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ProcessTemplateName" Type="varchar" MaxLength="900" Nullable="false" />
     <Property Name="Steps" Type="int" Nullable="false" />
-    <Property Name="IsCustom" Type="bit" Nullable="false" />
-    <Property Name="MemberID" Type="int" />
     <Property Name="Deactive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="ProcessTemplateSteps">
@@ -125,8 +98,6 @@
     <Property Name="ProcessID" Type="int" Nullable="false" />
     <Property Name="ProcessOrder" Type="int" />
     <Property Name="StepDescription" Type="varchar(max)" Nullable="false" />
-    <Property Name="IsCustom" Type="bit" Nullable="false" />
-    <Property Name="MemberID" Type="int" />
     <Property Name="Deactive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="QuestionMaster">
@@ -150,14 +121,6 @@
     <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="version" Type="int" />
     <Property Name="definition" Type="varbinary(max)" />
-  </EntityType>
-  <EntityType Name="TargetMaster">
-    <Key>
-      <PropertyRef Name="ID" />
-    </Key>
-    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="TargetName" Type="varchar" MaxLength="900" Nullable="false" />
-    <Property Name="Deactive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="TransactionMaster">
     <Key>
@@ -206,90 +169,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Environme__Proce__756D6ECB">
-    <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="0..1" />
-    <End Role="EnvironmentMaster" Type="Self.EnvironmentMaster" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProcessTemplateMaster">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="EnvironmentMaster">
-        <PropertyRef Name="ProcessTemplateID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__GoalTarge__GoalI__267ABA7A">
-    <End Role="GoalMaster" Type="Self.GoalMaster" Multiplicity="1" />
-    <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="GoalMaster">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="GoalTarget">
-        <PropertyRef Name="GoalID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__GoalTarge__Membe__5441852A">
-    <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
-    <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MemberMaster">
-        <PropertyRef Name="MemberID" />
-      </Principal>
-      <Dependent Role="GoalTarget">
-        <PropertyRef Name="MemberID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__GoalTarge__Targe__276EDEB3">
-    <End Role="TargetMaster" Type="Self.TargetMaster" Multiplicity="1" />
-    <End Role="GoalTarget" Type="Self.GoalTarget" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="TargetMaster">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="GoalTarget">
-        <PropertyRef Name="TargetID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ProcessGo__GoalI__2A4B4B5E">
-    <End Role="GoalMaster" Type="Self.GoalMaster" Multiplicity="1" />
-    <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="GoalMaster">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ProcessGoalMapping">
-        <PropertyRef Name="GoalID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ProcessGo__Membe__5535A963">
-    <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
-    <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="MemberMaster">
-        <PropertyRef Name="MemberID" />
-      </Principal>
-      <Dependent Role="ProcessGoalMapping">
-        <PropertyRef Name="MemberID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK__ProcessGo__Proce__29572725">
-    <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="1" />
-    <End Role="ProcessGoalMapping" Type="Self.ProcessGoalMapping" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ProcessTemplateMaster">
-        <PropertyRef Name="ID" />
-      </Principal>
-      <Dependent Role="ProcessGoalMapping">
-        <PropertyRef Name="ProcessID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__ProcessTe__Proce__59C55456">
     <End Role="ProcessTemplateMaster" Type="Self.ProcessTemplateMaster" Multiplicity="1" />
     <End Role="ProcessTemplateSteps" Type="Self.ProcessTemplateSteps" Multiplicity="*" />
@@ -314,7 +193,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Transacti__Answe__68487DD7">
+  <Association Name="FK__Transacti__Answe__477199F1">
     <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="1" />
     <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
     <ReferentialConstraint>
@@ -326,7 +205,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Transacti__Membe__5629CD9C">
+  <Association Name="FK__Transacti__Answe__4B422AD5">
+    <End Role="AnswerMaster" Type="Self.AnswerMaster" Multiplicity="1" />
+    <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="AnswerMaster">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="TransactionMaster">
+        <PropertyRef Name="AnswerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Membe__467D75B8">
     <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
     <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
     <ReferentialConstraint>
@@ -338,7 +229,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Transacti__Quest__1ED998B2">
+  <Association Name="FK__Transacti__Membe__4865BE2A">
+    <End Role="MemberMaster" Type="Self.MemberMaster" Multiplicity="1" />
+    <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MemberMaster">
+        <PropertyRef Name="MemberID" />
+      </Principal>
+      <Dependent Role="TransactionMaster">
+        <PropertyRef Name="MemberID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Transacti__Quest__43A1090D">
     <End Role="QuestionMaster" Type="Self.QuestionMaster" Multiplicity="1" />
     <End Role="TransactionMaster" Type="Self.TransactionMaster" Multiplicity="*" />
     <ReferentialConstraint>
@@ -353,19 +256,14 @@
   <EntityContainer Name="TOCICOModelStoreContainer">
     <EntitySet Name="ActionMaster" EntityType="Self.ActionMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="AnswerMaster" EntityType="Self.AnswerMaster" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ConstraintMaster" EntityType="Self.ConstraintMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ControlMaster" EntityType="Self.ControlMaster" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="EnvironmentMaster" EntityType="Self.EnvironmentMaster" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="GoalMaster" EntityType="Self.GoalMaster" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="GoalTarget" EntityType="Self.GoalTarget" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GuidMaster" EntityType="Self.GuidMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="LevelMaster" EntityType="Self.LevelMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="MemberMaster" EntityType="Self.MemberMaster" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="ProcessGoalMapping" EntityType="Self.ProcessGoalMapping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProcessTemplateMaster" EntityType="Self.ProcessTemplateMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProcessTemplateSteps" EntityType="Self.ProcessTemplateSteps" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="QuestionMaster" EntityType="Self.QuestionMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="TargetMaster" EntityType="Self.TargetMaster" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TransactionMaster" EntityType="Self.TransactionMaster" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__AnswerMas__Actio__55009F39" Association="Self.FK__AnswerMas__Actio__55009F39">
       <End Role="ActionMaster" EntitySet="ActionMaster" />
@@ -379,34 +277,6 @@
       <End Role="QuestionMaster" EntitySet="QuestionMaster" />
       <End Role="AnswerMaster" EntitySet="AnswerMaster" />
     </AssociationSet>
-    <AssociationSet Name="FK__Environme__Proce__756D6ECB" Association="Self.FK__Environme__Proce__756D6ECB">
-      <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMaster" />
-      <End Role="EnvironmentMaster" EntitySet="EnvironmentMaster" />
-    </AssociationSet>
-    <AssociationSet Name="FK__GoalTarge__GoalI__267ABA7A" Association="Self.FK__GoalTarge__GoalI__267ABA7A">
-      <End Role="GoalMaster" EntitySet="GoalMaster" />
-      <End Role="GoalTarget" EntitySet="GoalTarget" />
-    </AssociationSet>
-    <AssociationSet Name="FK__GoalTarge__Membe__5441852A" Association="Self.FK__GoalTarge__Membe__5441852A">
-      <End Role="MemberMaster" EntitySet="MemberMaster" />
-      <End Role="GoalTarget" EntitySet="GoalTarget" />
-    </AssociationSet>
-    <AssociationSet Name="FK__GoalTarge__Targe__276EDEB3" Association="Self.FK__GoalTarge__Targe__276EDEB3">
-      <End Role="TargetMaster" EntitySet="TargetMaster" />
-      <End Role="GoalTarget" EntitySet="GoalTarget" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ProcessGo__GoalI__2A4B4B5E" Association="Self.FK__ProcessGo__GoalI__2A4B4B5E">
-      <End Role="GoalMaster" EntitySet="GoalMaster" />
-      <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMapping" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ProcessGo__Membe__5535A963" Association="Self.FK__ProcessGo__Membe__5535A963">
-      <End Role="MemberMaster" EntitySet="MemberMaster" />
-      <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMapping" />
-    </AssociationSet>
-    <AssociationSet Name="FK__ProcessGo__Proce__29572725" Association="Self.FK__ProcessGo__Proce__29572725">
-      <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMaster" />
-      <End Role="ProcessGoalMapping" EntitySet="ProcessGoalMapping" />
-    </AssociationSet>
     <AssociationSet Name="FK__ProcessTe__Proce__59C55456" Association="Self.FK__ProcessTe__Proce__59C55456">
       <End Role="ProcessTemplateMaster" EntitySet="ProcessTemplateMaster" />
       <End Role="ProcessTemplateSteps" EntitySet="ProcessTemplateSteps" />
@@ -415,15 +285,23 @@
       <End Role="LevelMaster" EntitySet="LevelMaster" />
       <End Role="QuestionMaster" EntitySet="QuestionMaster" />
     </AssociationSet>
-    <AssociationSet Name="FK__Transacti__Answe__68487DD7" Association="Self.FK__Transacti__Answe__68487DD7">
+    <AssociationSet Name="FK__Transacti__Answe__477199F1" Association="Self.FK__Transacti__Answe__477199F1">
       <End Role="AnswerMaster" EntitySet="AnswerMaster" />
       <End Role="TransactionMaster" EntitySet="TransactionMaster" />
     </AssociationSet>
-    <AssociationSet Name="FK__Transacti__Membe__5629CD9C" Association="Self.FK__Transacti__Membe__5629CD9C">
+    <AssociationSet Name="FK__Transacti__Answe__4B422AD5" Association="Self.FK__Transacti__Answe__4B422AD5">
+      <End Role="AnswerMaster" EntitySet="AnswerMaster" />
+      <End Role="TransactionMaster" EntitySet="TransactionMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Membe__467D75B8" Association="Self.FK__Transacti__Membe__467D75B8">
       <End Role="MemberMaster" EntitySet="MemberMaster" />
       <End Role="TransactionMaster" EntitySet="TransactionMaster" />
     </AssociationSet>
-    <AssociationSet Name="FK__Transacti__Quest__1ED998B2" Association="Self.FK__Transacti__Quest__1ED998B2">
+    <AssociationSet Name="FK__Transacti__Membe__4865BE2A" Association="Self.FK__Transacti__Membe__4865BE2A">
+      <End Role="MemberMaster" EntitySet="MemberMaster" />
+      <End Role="TransactionMaster" EntitySet="TransactionMaster" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Transacti__Quest__43A1090D" Association="Self.FK__Transacti__Quest__43A1090D">
       <End Role="QuestionMaster" EntitySet="QuestionMaster" />
       <End Role="TransactionMaster" EntitySet="TransactionMaster" />
     </AssociationSet>
