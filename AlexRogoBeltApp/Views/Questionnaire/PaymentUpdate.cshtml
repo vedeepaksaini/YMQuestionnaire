@@ -56,7 +56,9 @@
 
             $.post("/Questionnaire/PaymentUpdate", { MId: $('#txtMemberId').val() }, function (data) {
                 debugger;
-
+                if (JSON.stringify(data).indexOf('Username') != -1) {
+                    window.location.href = 'Login';
+                }
 
                 $('#IsYBpaymentCompleted').attr('checked', data.IsYBpaymentCompleted);
                 $('#IsGBpaymentCompleted').attr('checked', data.IsGBpaymentCompleted);
@@ -226,35 +228,35 @@
         <!-- navbar-->
         <header class="headers">
             <nav class="navbar">
-                
-                    <div class="navbar-holder">
-                        <div class="navbar-header">
-                            <a id="toggle-btn" href="#" class="menu-btn"><i class="fa fa-bars"> </i></a><a href="index.html" class="navbar-brand">
-                                <div class="head_brand">
-                                    <img src="~/Content/Images/logo-dashboard.png" alt="logo" />                                    
-                                </div>
-                            </a>
-                        </div>
-                        
-                        <ul class="hnav_menu">
-                            <li class="nav-item">
-                                <a href="login.html" class="nav-link logout">
-                                    <i class="fa fa-user"></i>
-                                    <span class=""> @ViewBag.UserName</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="" href="@Url.Action("AdminLogout", "Questionnaire")">
-                                    <i class="fa fa-power-off"></i> <span class=""> Logout</span>
-                                </a>
-                            </li>
-                        </ul>
-                        
+
+                <div class="navbar-holder">
+                    <div class="navbar-header">
+                        <a id="toggle-btn" href="#" class="menu-btn"><i class="fa fa-bars"> </i></a><a href="index.html" class="navbar-brand">
+                            <div class="head_brand">
+                                <img src="~/Content/Images/logo-dashboard.png" alt="logo" />
+                            </div>
+                        </a>
                     </div>
-                
+
+                    <ul class="hnav_menu">
+                        <li class="nav-item">
+                            <a href="login.html" class="nav-link logout">
+                                <i class="fa fa-user"></i>
+                                <span class=""> @ViewBag.UserName</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="" href="@Url.Action("AdminLogout", "Questionnaire")">
+                                <i class="fa fa-power-off"></i> <span class=""> Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
             </nav>
         </header>
-        
+
         <div class="dashboard_area">
             <div class="">
                 <div class="row" style="margin-bottom:20px;">
@@ -302,14 +304,14 @@
 
                 <div class="row" style="margin-bottom:20px;" id="mchekboxes">
 
-                    
+
                     <div class="info_incon">
                         <i class="fa fa-info-circle"></i>
                         <span class="infppop">
                             Please select the check box to proceed.
                         </span>
                     </div>
-                    <div class="clearfix"></div>              
+                    <div class="clearfix"></div>
 
 
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -392,10 +394,10 @@
         </div>
 
 
-        
-        
-        
-       
+
+
+
+
 
         <footer class="main-footer">
             <div class="container-fluid">

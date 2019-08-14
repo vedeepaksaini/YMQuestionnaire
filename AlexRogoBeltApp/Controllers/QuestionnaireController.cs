@@ -491,6 +491,11 @@ namespace AlexRogoBeltApp.Controllers
         [HttpPost]
         public ActionResult ConfirmPayment(ProductViewModel model)
         {
+            var UserId = (MemberMaster)HttpContext.Session["MemberId"];
+            if (UserId == null)
+            {
+                return AdminSessionExpier();
+            }
             if ((_service.CheckAdminPassword(model)) == true)
             {
                 var result = _service.ConfirmPayment(model);
@@ -549,7 +554,7 @@ namespace AlexRogoBeltApp.Controllers
         {
             ViewBag.Error= "Session has been expired.";
 
-             return RedirectToAction("Login");
+             return Redirect("/Questionnaire/Login");
 
         }
     }
