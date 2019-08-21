@@ -424,6 +424,7 @@
     <Content Include="Views\Shared\SuccessPopup.cshtml" />
     <Content Include="Views\Questionnaire\PaymentUpdate.cshtml" />
     <Content Include="Views\Questionnaire\Login.cshtml" />
+    <Content Include="Views\Shared\SessionError.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
