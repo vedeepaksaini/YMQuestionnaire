@@ -30,6 +30,49 @@
 
 
     <script>
+
+        @*//Show Sessionout message
+
+        var timoutNow = @Session.Timeout*60000; // Timeout in 2 mins.
+
+            var timeoutTimer;
+
+            // Start timers.
+        function StartTimers() {
+            debugger;
+             //   warningTimer = setTimeout("IdleWarning()", timoutWarning);
+                 setTimeout("IdleTimeout()", timoutNow);
+                $.get("@Url.Action("ResetSession", "Questionnaire")", function () {
+                  //  debugger
+                    timoutNow = @Session.Timeout*60000; // Timeout in 2 mins.
+                  //  debugger
+
+                     setTimeout("IdleTimeout()", timoutNow);
+                });
+            }
+
+            // Reset timers.
+            function ResetTimers() {
+
+                clearTimeout(timeoutTimer);
+                StartTimers();
+
+            }
+
+
+            // Logout the user.
+            function IdleTimeout() {
+
+                    window.location =path + "/Questionnaire/Logout" + window.location.search;
+
+            }
+            /// define keyup and mousemove here:
+            $(document).keyup(function(){
+                 ResetTimers();
+            }).mousemove(function(){
+                ResetTimers();
+            });*@
+
         //method to get memberRecord onblur event of textbox
         function GetMemberData() {
 
@@ -85,14 +128,20 @@
 
                 }
                 else {
-                    document.getElementById("mtable").style.display = "none";
-                    document.getElementById("mchekboxes").style.display = "none";
-                    document.getElementById("updatePayment").style.display = "none";
-                    document.getElementById("updateMember").style.display = "block";
-                    document.getElementById("adminPassword").style.display = "block";
-                    document.getElementById("UpdateDatalbl").style.display = "block";
+                    if (data == "Your Session Expired") {
 
+                        alert(data);
+                        window.location.href = '/Questionnaire/Login';
+                    }
+                    else {
+                        document.getElementById("mtable").style.display = "none";
+                        document.getElementById("mchekboxes").style.display = "none";
+                        document.getElementById("updatePayment").style.display = "none";
+                        document.getElementById("updateMember").style.display = "block";
+                        document.getElementById("adminPassword").style.display = "block";
+                        document.getElementById("UpdateDatalbl").style.display = "block";
 
+                    }
 
 
                 }
@@ -125,7 +174,12 @@
                 dataType: "json",
                 success: function (response) {
                     debugger;
-                    if (response.Success != null) {
+                    if (response == "Your Session Expired") {
+
+                        alert(response);
+                        window.location.href = '/Questionnaire/Login';
+                    }
+                    else if (response.Success != null) {
                         $('#success').text(response.Success);
                         document.getElementById("mtable").style.display = "none";
                         document.getElementById("mchekboxes").style.display = "none";
@@ -134,6 +188,7 @@
                         document.getElementById("adminPassword").style.display = "none";
                     }
                     else {
+
                         $('#ErrorInvalidPwd').text(response.Error);
                     }
                 },
@@ -160,7 +215,14 @@
                 dataType: "json",
                 success: function (response) {
                     debugger;
-                    if (response.Success != null) {
+                    //checking for session
+                    if (response == "Your Session Expired") {
+
+                        alert(response);
+                        window.location.href = '/Questionnaire/Login';
+                    }
+
+                   else  if (response.Success != null) {
                         $('#success').text(response.Success);
                         document.getElementById("mtable").style.display = "none";
                         document.getElementById("mchekboxes").style.display = "none";
@@ -200,23 +262,17 @@
 </head>
 <body>
 
+    onload="StartTimers();" onmousemove="ResetTimers();
+
     <!-- Side Navbar -->
     <nav class="side-navbar">
         <div class="side-navbar-wrapper">
-            <!-- Sidebar Header    -->
-            @*<div class="sidenav-header d-flex align-items-center justify-content-center">
 
-                    <div class="sidenav-header-inner text-center">
-                        <img src="img/avatar-7.jpg" alt="person" class="img-fluid rounded-circle">
-                        <h2 class="h5">Nathan Andrews</h2><span>Web Developer</span>
-                    </div>
 
-                    <div class="sidenav-header-logo"><a href="index.html" class="brand-small text-center"> <strong>B</strong><strong class="text-primary">D</strong></a></div>
-                </div>*@
             <!-- Sidebar Navigation Menus-->
             <div class="main-menu">
                 <ul id="side-main-menu" class="side-menu list-unstyled">
-                    @*<li><a href="index.html"> <i class="fa fa-tachometer-alt"></i>Home</a></li>*@
+
                     <li><a href=@Url.Action("PaymentUpdate", "Questionnaire")> <i class="fa fa-tachometer-alt"></i>Payment</a></li>
                 </ul>
             </div>
@@ -226,35 +282,35 @@
         <!-- navbar-->
         <header class="headers">
             <nav class="navbar">
-                
-                    <div class="navbar-holder">
-                        <div class="navbar-header">
-                            <a id="toggle-btn" href="#" class="menu-btn"><i class="fa fa-bars"> </i></a><a href="index.html" class="navbar-brand">
-                                <div class="head_brand">
-                                    <img src="~/Content/Images/logo-dashboard.png" alt="logo" />                                    
-                                </div>
-                            </a>
-                        </div>
-                        
-                        <ul class="hnav_menu">
-                            <li class="nav-item">
-                                <a href="login.html" class="nav-link logout">
-                                    <i class="fa fa-user"></i>
-                                    <span class=""> @ViewBag.UserName</span>
-                                </a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="" href="@Url.Action("Login", "Questionnaire")">
-                                    <i class="fa fa-power-off"></i> <span class=""> Logout</span>
-                                </a>
-                            </li>
-                        </ul>
-                        
+
+                <div class="navbar-holder">
+                    <div class="navbar-header">
+                        <a id="toggle-btn" href="#" class="menu-btn"><i class="fa fa-bars"> </i></a><a href="index.html" class="navbar-brand">
+                            <div class="head_brand">
+                                <img src="~/Content/Images/logo-dashboard.png" alt="logo" />
+                            </div>
+                        </a>
                     </div>
-                
+
+                    <ul class="hnav_menu">
+                        <li class="nav-item">
+                            <a href="login.html" class="nav-link logout">
+                                <i class="fa fa-user"></i>
+                                <span class=""> @ViewBag.UserName</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="" href="@Url.Action("AdminLogout", "Questionnaire")">
+                                <i class="fa fa-power-off"></i> <span class=""> Logout</span>
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+
             </nav>
         </header>
-        
+
         <div class="dashboard_area">
             <div class="">
                 <div class="row" style="margin-bottom:20px;">
@@ -302,14 +358,14 @@
 
                 <div class="row" style="margin-bottom:20px;" id="mchekboxes">
 
-                    
+
                     <div class="info_incon">
                         <i class="fa fa-info-circle"></i>
                         <span class="infppop">
                             Please select the check box to proceed.
                         </span>
                     </div>
-                    <div class="clearfix"></div>              
+                    <div class="clearfix"></div>
 
 
                     <div class="col-lg-3 col-md-3 col-sm-12">
@@ -392,10 +448,10 @@
         </div>
 
 
-        
-        
-        
-       
+
+
+
+
 
         <footer class="main-footer">
             <div class="container-fluid">
@@ -434,3 +490,49 @@
     <script src="~/Content/js/front.js"></script>
 </body>
 </html>
+
+
+
+@*<body onload="StartTimers();" onmousemove="ResetTimers();">
+    </body>*@
+@*<script type="text/javascript">*@
+
+@*var timoutNow = @Session.Timeout*60000; // Timeout in 2 mins.
+
+            var timeoutTimer;
+
+            // Start timers.
+            function StartTimers() {
+             //   warningTimer = setTimeout("IdleWarning()", timoutWarning);
+                 setTimeout("IdleTimeout()", timoutNow);
+                $.get("@Url.Action("ResetSession", "Home")", function () {
+                  //  debugger
+                    timoutNow = @Session.Timeout*60000; // Timeout in 2 mins.
+                  //  debugger
+
+                     setTimeout("IdleTimeout()", timoutNow);
+                });
+            }
+
+            // Reset timers.
+            function ResetTimers() {
+
+                clearTimeout(timeoutTimer);
+                StartTimers();
+
+            }
+
+
+            // Logout the user.
+            function IdleTimeout() {
+
+                    window.location =path + "/Home/Logout" + window.location.search;
+
+            }
+            /// define keyup and mousemove here:
+            $(document).keyup(function(){
+                 ResetTimers();
+            }).mousemove(function(){
+                ResetTimers();
+            });
+    </script>*@
