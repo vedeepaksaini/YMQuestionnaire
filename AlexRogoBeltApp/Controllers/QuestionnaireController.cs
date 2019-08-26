@@ -330,11 +330,12 @@ namespace AlexRogoBeltApp.Controllers
         }
         private ActionResult SessionExpired()
         {
-            var MemberDetails = _service.IsMemberExist(Convert.ToInt32(Request.QueryString["MemberId"]));
-            if (MemberDetails == null)
-            {
-                return UnauthorizedRequest();
-            }
+
+            //var MemberDetails = _service.IsMemberExist(Convert.ToInt32(Request.QueryString["MemberId"]));
+            //if (MemberDetails == null)
+            //{
+            //    return UnauthorizedRequest();
+            //}
             TempData["InfoMsg"] = "Session has been expired.";
 
             return View("Dashboard");
@@ -437,6 +438,11 @@ namespace AlexRogoBeltApp.Controllers
 
             var MemberDetails = _service.IsMemberExist(Convert.ToInt32(memberId));
 
+            if(MemberDetails==null)
+            {
+                return UnauthorizedRequest();
+            }
+
             HttpContext.Session["MemberId"] = MemberDetails;// MemberDetails.MemberID;
 
             return RedirectToAction("Questions", new { MemberId = memberId });
@@ -458,18 +464,20 @@ namespace AlexRogoBeltApp.Controllers
         [HttpPost]
         public ActionResult PaymentUpdate(int MID)
         {
+
+
+
+            //Check for the session
+            var memberId = HttpContext.Session["MemberId"];
+
+            if (memberId == null)
+            {
+                return AdminSessionOut();
+            }
+
             ProductViewModel model = new ProductViewModel();
 
-            //code to check the session time out
-            //var memberId = HttpContext.Session["MemberId"];
-
-            //if (memberId == null)
-            //{
-            //    return AdminSessionOut();
-            //}
-
-
-            model.MemberID = MID;
+             model.MemberID = MID;
 
             if (!ModelState.IsValid)
                 return View(model);
@@ -572,11 +580,11 @@ namespace AlexRogoBeltApp.Controllers
         }
 
 
-        public void ResetSession()
-        {
+        //public void ResetSession()
+        //{
 
-            Session.Timeout = 1;
+        //    Session.Timeout = 1;
 
-        }
+        //}
     }
 }
