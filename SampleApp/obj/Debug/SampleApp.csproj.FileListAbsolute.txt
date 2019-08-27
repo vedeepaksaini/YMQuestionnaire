@@ -8,3 +8,13 @@ D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\obj\Debug\SampleApp.csproj.Co
 D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\obj\Debug\SampleApp.csproj.CopyComplete
 D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\obj\Debug\SampleApp.exe
 D:\Abhinav D Drive\Kobus\YMQuestionnaire\SampleApp\obj\Debug\SampleApp.pdb
+D:\Client\Kobus Ven Der Zel\SampleApp\bin\Debug\SampleApp.exe.config
+D:\Client\Kobus Ven Der Zel\SampleApp\bin\Debug\SampleApp.exe
+D:\Client\Kobus Ven Der Zel\SampleApp\bin\Debug\SampleApp.pdb
+D:\Client\Kobus Ven Der Zel\SampleApp\bin\Debug\YMSDK.dll
+D:\Client\Kobus Ven Der Zel\SampleApp\bin\Debug\YMSDK.pdb
+D:\Client\Kobus Ven Der Zel\SampleApp\obj\Debug\SampleApp.csprojResolveAssemblyReference.cache
+D:\Client\Kobus Ven Der Zel\SampleApp\obj\Debug\SampleApp.csproj.CoreCompileInputs.cache
+D:\Client\Kobus Ven Der Zel\SampleApp\obj\Debug\SampleApp.csproj.CopyComplete
+D:\Client\Kobus Ven Der Zel\SampleApp\obj\Debug\SampleApp.exe
+D:\Client\Kobus Ven Der Zel\SampleApp\obj\Debug\SampleApp.pdb

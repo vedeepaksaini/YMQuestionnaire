@@ -4,3 +4,9 @@ D:\Abhinav D Drive\Kobus\YMQuestionnaire\YMSDK\obj\Debug\YMSDK.csprojAssemblyRef
 D:\Abhinav D Drive\Kobus\YMQuestionnaire\YMSDK\obj\Debug\YMSDK.csproj.CoreCompileInputs.cache
 D:\Abhinav D Drive\Kobus\YMQuestionnaire\YMSDK\obj\Debug\YMSDK.dll
 D:\Abhinav D Drive\Kobus\YMQuestionnaire\YMSDK\obj\Debug\YMSDK.pdb
+D:\Client\Kobus Ven Der Zel\YMSDK\bin\Debug\YMSDK.dll
+D:\Client\Kobus Ven Der Zel\YMSDK\bin\Debug\YMSDK.pdb
+D:\Client\Kobus Ven Der Zel\YMSDK\obj\Debug\YMSDK.csprojResolveAssemblyReference.cache
+D:\Client\Kobus Ven Der Zel\YMSDK\obj\Debug\YMSDK.csproj.CoreCompileInputs.cache
+D:\Client\Kobus Ven Der Zel\YMSDK\obj\Debug\YMSDK.dll
+D:\Client\Kobus Ven Der Zel\YMSDK\obj\Debug\YMSDK.pdb
